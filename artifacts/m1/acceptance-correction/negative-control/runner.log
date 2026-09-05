@@ -1,0 +1,31 @@
+
+Running 1 test using 1 worker
+
+(node:43524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [engine] › tests\engine.spec.ts:68:37 › 20 strokes restore independent color and height expectations one undo at a time (489ms)
+
+
+  1) [engine] › tests\engine.spec.ts:68:37 › 20 strokes restore independent color and height expectations one undo at a time 
+
+    Error: undo 20 -> 19: height bytes
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      20 |   expect(Buffer.from(p.color).equals(expected.color), `${label}: color bytes`).toBe(true);
+      21 |   const actualHeight = new Uint8Array(p.height.buffer, p.height.byteOffset, p.height.byteLength);
+    > 22 |   expect(Buffer.from(actualHeight).equals(expected.height), `${label}: height bytes`).toBe(true);
+         |                                                                                       ^
+      23 | };
+      24 | // Negative control only: replace undo on this test instance, never the prototype
+      25 | // or production code. Color restores normally; height intentionally stays stale.
+        at assertRestored (E:\0906_codexgpt6_project\tests\engine.spec.ts:22:87)
+        at E:\0906_codexgpt6_project\tests\engine.spec.ts:82:5
+
+    Error Context: test-results\engine-20-strokes-restore--2c813-ctations-one-undo-at-a-time-engine\error-context.md
+
+  1 failed
+    [engine] › tests\engine.spec.ts:68:37 › 20 strokes restore independent color and height expectations one undo at a time 

@@ -1,0 +1,5 @@
+{
+  "status": "通过",
+  "unavailable": "forced init refusal, Canvas 2D drawing/mix/undo/export/retry",
+  "loss": "WEBGL_lose_context, exact state preserved through fallback edits and restoration"
+}

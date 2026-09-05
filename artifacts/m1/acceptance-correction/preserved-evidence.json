@@ -1,0 +1,42 @@
+[
+  {
+    "path": "artifacts/m1/single-stroke.png",
+    "unchanged": true,
+    "gitBlob": "ca4d267277f4c98ac058500a975b712d810d7985"
+  },
+  {
+    "path": "artifacts/m1/two-color-overlap.png",
+    "unchanged": true,
+    "gitBlob": "319580ceb858ec0f55b3ef37acbde82c14656a3f"
+  },
+  {
+    "path": "artifacts/m1/repeated-layering.png",
+    "unchanged": true,
+    "gitBlob": "1d3d9aa4c3387e4b84eda87b2aa33a68414bba7c"
+  },
+  {
+    "path": "artifacts/m1/workflow.webm",
+    "unchanged": true,
+    "gitBlob": "49b46cc7fffab439c2641fadc4194cf4dc3054af"
+  },
+  {
+    "path": "artifacts/m1/actual-painting.png",
+    "unchanged": true,
+    "gitBlob": "3e9e1ea0908323c8d09557cf395aea2a1bedeaf3"
+  },
+  {
+    "path": "artifacts/m1/perf.json",
+    "unchanged": true,
+    "gitBlob": "e13a6033661b2416feef56093253ce4c20f84d38"
+  },
+  {
+    "path": "artifacts/m1/memory.json",
+    "unchanged": true,
+    "gitBlob": "1d77fe6d3f9c5247b609ffbf55daff59c4a4adc0"
+  },
+  {
+    "path": "artifacts/m1/ui-perf.json",
+    "unchanged": true,
+    "gitBlob": "16e90709d5aa9811956f28bde4b6db3977f4ef77"
+  }
+]

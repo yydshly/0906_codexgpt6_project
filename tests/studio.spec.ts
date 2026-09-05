@@ -7,7 +7,7 @@ test('designed studio, fixed brush samples and real UI workflow PNG download',as
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await ready(page);mkdirSync(artifact,{recursive:true});
   await page.mouse.move(30,120);await page.screenshot({path:`${artifact}/page.png`});
-  if(!existsSync(`${artifact}/initial/page.png`)){mkdirSync(`${artifact}/initial`,{recursive:true});copyFileSync(`${artifact}/page.png`,`${artifact}/initial/page.png`);}
+  if(!process.env.M1_ARTIFACT_DIR && !existsSync(`${artifact}/initial/page.png`)){mkdirSync(`${artifact}/initial`,{recursive:true});copyFileSync(`${artifact}/page.png`,`${artifact}/initial/page.png`);}
   const environment=await page.evaluate(()=>({userAgent:navigator.userAgent,platform:navigator.platform,viewport:[innerWidth,innerHeight],...window.__studio!.renderer.info()}));
   writeFileSync(`${artifact}/environment.json`,JSON.stringify(environment,null,2));
   expect(environment.mode).toBe('webgl2');
@@ -21,7 +21,7 @@ test('designed studio, fixed brush samples and real UI workflow PNG download',as
   await clear(page);await settings(page,{size:48,load:.5,mode:'mix'});
   for(let i=0;i<10;i++){await settings(page,{color:i%2?blue:yellow});await draw(page,shortArc);if([0,4,9].includes(i))await exportSample(page,`layer-${i+1}`);}
   await exportSample(page,'repeated-layering');
-  for(const name of ['single-stroke','two-color-overlap','repeated-layering'])if(!existsSync(`${artifact}/initial/${name}.png`))copyFileSync(`${artifact}/${name}.png`,`${artifact}/initial/${name}.png`);
+  for(const name of ['single-stroke','two-color-overlap','repeated-layering'])if(!process.env.M1_ARTIFACT_DIR && !existsSync(`${artifact}/initial/${name}.png`))copyFileSync(`${artifact}/${name}.png`,`${artifact}/initial/${name}.png`);
   await page.evaluate(()=>{window.__studio!.renderer.lighting=0;});await exportSample(page,'height-lighting-off');
   await page.evaluate(()=>{window.__studio!.renderer.lighting=1;});await settle(page);
   await clear(page);
