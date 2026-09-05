@@ -1,0 +1,303 @@
+{
+  "status": "通过",
+  "checks": [
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/index.html",
+      "status": "通过",
+      "title": "慢光 · M1 实际验收证据",
+      "images": [
+        {
+          "path": "page.png",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "path": "single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "two-color-overlap.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "repeated-layering.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "actual-painting.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "two-color-cover.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "height-lighting-off.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "initial/single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "round-1/single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "initial/page.png",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "path": "../../oil-painting-product-kit/reference/reference.png",
+          "width": 440,
+          "height": 522
+        }
+      ],
+      "video": {
+        "path": "workflow.webm",
+        "width": 1440,
+        "height": 900,
+        "duration": 30.24
+      },
+      "pendingV4": true,
+      "links": [
+        "http://127.0.0.1:5174/",
+        "http://127.0.0.1:5174/M1_REPORT.md",
+        "http://127.0.0.1:5174/artifacts/m1/actual-painting.png",
+        "http://127.0.0.1:5174/artifacts/m1/workflow.webm",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/undo-20-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/undo-21-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/negative-control/runner.log",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/preserved-evidence.json",
+        "http://127.0.0.1:5174/artifacts/m1/page.png",
+        "http://127.0.0.1:5174/artifacts/m1/single-stroke.png",
+        "http://127.0.0.1:5174/artifacts/m1/two-color-overlap.png",
+        "http://127.0.0.1:5174/artifacts/m1/repeated-layering.png",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/test-engine-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/snapshot-independence.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/test-e2e-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/fallback-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/workflow.webm",
+        "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/actual-painting.png",
+        "http://127.0.0.1:5174/artifacts/m1/test-engine-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/test-e2e-results.json",
+        "http://127.0.0.1:5174/artifacts/m1/perf.json",
+        "http://127.0.0.1:5174/artifacts/m1/memory.json",
+        "http://127.0.0.1:5174/artifacts/m1/ui-perf.json",
+        "http://127.0.0.1:5174/artifacts/m1/environment.json"
+      ]
+    },
+    {
+      "url": "file:///E:/0906_codexgpt6_project/artifacts/m1/index.html",
+      "status": "通过",
+      "title": "慢光 · M1 实际验收证据",
+      "images": [
+        {
+          "path": "page.png",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "path": "single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "two-color-overlap.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "repeated-layering.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "actual-painting.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "two-color-cover.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "height-lighting-off.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "initial/single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "round-1/single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "single-stroke.png",
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "path": "initial/page.png",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "path": "../../oil-painting-product-kit/reference/reference.png",
+          "width": 440,
+          "height": 522
+        }
+      ],
+      "video": {
+        "path": "workflow.webm",
+        "width": 1440,
+        "height": 900,
+        "duration": 30.24
+      },
+      "pendingV4": true,
+      "links": [
+        "http://127.0.0.1:5174/",
+        "file:///E:/0906_codexgpt6_project/M1_REPORT.md",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/actual-painting.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/workflow.webm",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/undo-20-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/undo-21-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/negative-control/runner.log",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/preserved-evidence.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/page.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/single-stroke.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/two-color-overlap.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/repeated-layering.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/test-engine-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/snapshot-independence.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/test-e2e-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/fallback-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/workflow.webm",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/acceptance-correction/actual-painting.png",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/test-engine-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/test-e2e-results.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/perf.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/memory.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/ui-perf.json",
+        "file:///E:/0906_codexgpt6_project/artifacts/m1/environment.json"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "url": "http://127.0.0.1:5174/",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/M1_REPORT.md",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/actual-painting.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/workflow.webm",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/undo-20-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/undo-21-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/negative-control/runner.log",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/preserved-evidence.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/page.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/single-stroke.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/two-color-overlap.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/repeated-layering.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/test-engine-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/snapshot-independence.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/test-e2e-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/fallback-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/workflow.webm",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/acceptance-correction/actual-painting.png",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/test-engine-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/test-e2e-results.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/perf.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/memory.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/ui-perf.json",
+      "httpStatus": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/environment.json",
+      "httpStatus": 200
+    }
+  ]
+}
