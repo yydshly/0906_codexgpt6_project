@@ -5,6 +5,7 @@ import type { Brush } from '../src/painting/engine';
 export const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m2/regression';
 export async function ready(page:Page, query='') {
   await page.goto('/?test=1'+query); await page.waitForFunction(()=>!!window.__studio);
+  await page.waitForFunction(() => window.__studio!.draft.state.phase !== 'loading');
   await settle(page);
 }
 export async function settle(page:Page) { await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))); }

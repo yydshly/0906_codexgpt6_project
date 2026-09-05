@@ -5,6 +5,7 @@ import { attachInput } from './painting/input';
 import { StudioRenderer } from './rendering/renderer';
 import { Guide, GuideOverlay } from './guidance/Guide';
 import { emptyGuide, type GuideState } from './guidance/sunset';
+import { DraftSession, type DraftRecord, type SaveState } from './works/draft';
 import './style.css';
 
 export const COLORS = [
@@ -28,7 +29,7 @@ function Icon({ name, size = 20 }: { name: string; size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
 }
 
-type TestStudio = { painting: Painting; renderer: StudioRenderer; setBrush: (brush: Partial<Brush>) => void; finish: () => void; refresh: () => void };
+type TestStudio = { painting: Painting; renderer: StudioRenderer; draft: DraftSession; setBrush: (brush: Partial<Brush>) => void; finish: () => void; refresh: () => void };
 declare global { interface Window { __studio?: TestStudio } }
 
 function App() {
@@ -42,32 +43,70 @@ function App() {
   const [guide, setGuide] = useState<GuideState>(emptyGuide);
   const [newChoice, setNewChoice] = useState(false);
   const newDialog = useRef<HTMLDialogElement>(null);
+  const [signature, setSignature] = useState('');
+  const [saveState, setSaveState] = useState<SaveState>({ phase: 'loading', message: '正在读取本地草稿…' });
+  const [availableDraft, setAvailableDraft] = useState<DraftRecord | null>(null);
+  const [recoveryOpen, setRecoveryOpen] = useState(false);
+  const recoveryDialog = useRef<HTMLDialogElement>(null);
+  const draft = useRef<DraftSession | null>(null);
+  const guideRef = useRef(guide), signatureRef = useRef(signature);
+  guideRef.current = guide; signatureRef.current = signature;
+  const metadataMounted = useRef(false), restoringDetails = useRef(false);
   const surface = useRef<HTMLDivElement>(null), canvas = useRef<HTMLCanvasElement>(null), flat = useRef<HTMLCanvasElement>(null), cursor = useRef<HTMLDivElement>(null);
   const painting = useRef<Painting | null>(null), renderer = useRef<StudioRenderer | null>(null), input = useRef<ReturnType<typeof attachInput> | null>(null);
   const brushRef = useRef(brush); brushRef.current = brush;
   const dialog = useRef<HTMLDialogElement>(null);
-  const selected = COLORS.find(c => c.hex === brush.color)!;
+  const selected = COLORS.find(c => c.hex === brush.color) ?? { hex: brush.color, name: '自选色' };
   function update() { if (!painting.current) return; setHistoryCount(painting.current.history.length); setHasPaint(painting.current.color.some(v => v !== 0)); }
+  function changed() { update(); draft.current?.changed(); }
 
   useEffect(() => {
     const art = new Painting(); painting.current = art;
+    const drafts = new DraftSession(art, () => ({ brush: brushRef.current, guide: guideRef.current, signature: signatureRef.current }), setSaveState); draft.current = drafts;
+    let disposed = false;
+    void drafts.load().then(record => { if (!disposed && record) { setAvailableDraft(record); setRecoveryOpen(true); } });
     const params = new URLSearchParams(location.search);
     const view = new StudioRenderer(canvas.current!, flat.current!, art, () => { setFallback(view.mode !== 'webgl2'); update(); }, import.meta.env.DEV && params.get('fallback') === '1'); renderer.current = view;
     setFallback(view.mode !== 'webgl2');
-    const controls = attachInput(surface.current!, art, () => brushRef.current, () => view.request(), update, p => {
+    const controls = attachInput(surface.current!, art, () => brushRef.current, () => view.request(), changed, p => {
       if (!cursor.current) return;
       cursor.current.style.display = p ? 'block' : 'none';
       if (p) cursor.current.style.transform = `translate(${p.x}px,${p.y}px)`;
     }, setStatus); input.current = controls;
     const resize = new ResizeObserver(() => view.resize()); resize.observe(surface.current!);
     const key = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z' && !event.shiftKey && !dialog.current?.open) { event.preventDefault(); controls.finish(); art.undo(); view.request(); update(); }
+      if ((event.target as HTMLElement)?.closest('input,textarea,[contenteditable=true]') || document.querySelector('dialog[open]')) return;
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z' && !event.shiftKey) { event.preventDefault(); controls.finish(); art.undo(); view.request(); changed(); }
     };
-    const beforeUnload = (event: BeforeUnloadEvent) => { if (art.color.some(v => v !== 0)) { event.preventDefault(); event.returnValue = ''; } };
+    const beforeUnload = (event: BeforeUnloadEvent) => { if (drafts.unsaved) { event.preventDefault(); event.returnValue = ''; } };
+    const strokeStarted = (event: PointerEvent) => { if (event.button === 0 && event.isPrimary) drafts.changed(); };
+    const target = surface.current!; target.addEventListener('pointerdown', strokeStarted, true);
     window.addEventListener('keydown', key); window.addEventListener('beforeunload', beforeUnload);
-    if (import.meta.env.DEV && params.get('test') === '1') window.__studio = { painting: art, renderer: view, setBrush: b => { setBrush(old => ({ ...old, ...b })); brushRef.current = { ...brushRef.current, ...b }; }, finish: controls.finish, refresh: () => { view.request(); update(); } };
-    return () => { controls.dispose(); view.dispose(); resize.disconnect(); window.removeEventListener('keydown', key); window.removeEventListener('beforeunload', beforeUnload); delete window.__studio; };
+    if (import.meta.env.DEV && params.get('test') === '1') window.__studio = { painting: art, renderer: view, draft: drafts, setBrush: b => { setBrush(old => ({ ...old, ...b })); brushRef.current = { ...brushRef.current, ...b }; }, finish: controls.finish, refresh: () => { view.request(); changed(); } };
+    return () => { disposed = true; drafts.dispose(); controls.dispose(); view.dispose(); resize.disconnect(); target.removeEventListener('pointerdown', strokeStarted, true); window.removeEventListener('keydown', key); window.removeEventListener('beforeunload', beforeUnload); delete window.__studio; };
   }, []);
+
+  useEffect(() => {
+    if (!metadataMounted.current) { metadataMounted.current = true; return; }
+    if (restoringDetails.current) { restoringDetails.current = false; return; }
+    draft.current?.changed();
+  }, [brush, guide, signature]);
+  useEffect(() => { if (recoveryOpen) recoveryDialog.current?.showModal(); else recoveryDialog.current?.close(); }, [recoveryOpen]);
+  const restore = () => {
+    if (!availableDraft || !painting.current) return;
+    input.current?.finish(); const art = painting.current;
+    art.color.set(availableDraft.color); art.height.set(availableDraft.height); art.history = []; art.invalidate();
+    restoringDetails.current = true;
+    brushRef.current = availableDraft.brush; guideRef.current = availableDraft.guide; signatureRef.current = availableDraft.signature;
+    setBrush(availableDraft.brush); setGuide(availableDraft.guide); setSignature(availableDraft.signature);
+    draft.current?.restored(availableDraft); setAvailableDraft(null); setRecoveryOpen(false); renderer.current?.request(); update();
+    setStatus('草稿已恢复。撤销从恢复后的新笔开始，旧撤销历史不跨刷新保留。');
+  };
+  const replaceSavedDraft = () => {
+    input.current?.finish(); painting.current?.clear(); setGuide(emptyGuide); setSignature('');
+    draft.current?.replace(); setAvailableDraft(null); setRecoveryOpen(false); renderer.current?.request(); update();
+    setStatus('已选择新建并替换旧草稿，请等待新草稿保存完成。');
+  };
 
   useEffect(() => { if (confirmClear) dialog.current?.showModal(); else dialog.current?.close(); }, [confirmClear]);
   useEffect(() => { if (newChoice) newDialog.current?.showModal(); else newDialog.current?.close(); }, [newChoice]);
@@ -78,12 +117,12 @@ function App() {
     else setGuide({ theme: 'sunset', step: 0, open: true, overlay: true });
   };
   const chooseGuide = (fresh: boolean) => {
-    if (fresh) { input.current?.finish(); painting.current?.clear(); renderer.current?.request(); update(); }
+    if (fresh) { input.current?.finish(); painting.current?.clear(); setSignature(''); renderer.current?.request(); changed(); }
     setGuide({ theme: 'sunset', step: 0, open: true, overlay: true }); setNewChoice(false);
     setStatus(fresh ? '新画布已准备好；清空仍可撤销。' : '在你的画作上继续，原有笔触都保留。');
   };
-  const undo = () => { input.current?.finish(); painting.current?.undo(); renderer.current?.request(); update(); setStatus('已撤回上一笔，慢慢来。'); };
-  const clear = () => { input.current?.finish(); painting.current?.clear(); renderer.current?.request(); update(); setConfirmClear(false); setStatus('一张空白画布，一次新的开始。清空也可以撤销。'); };
+  const undo = () => { input.current?.finish(); painting.current?.undo(); renderer.current?.request(); changed(); setStatus('已撤回上一笔，慢慢来。'); };
+  const clear = () => { input.current?.finish(); painting.current?.clear(); renderer.current?.request(); changed(); setConfirmClear(false); setStatus('一张空白画布，一次新的开始。清空也可以撤销。'); };
   const download = async () => {
     if (!renderer.current || busy) return;
     input.current?.finish(); setBusy(true); setStatus('正在将你的画作装进 PNG…');
@@ -103,7 +142,7 @@ function App() {
       <div className="edition"><span/> 数字油画室 <small>VOL. 01</small></div>
     </header>
 
-    <main className="workspace">
+    <main className="workspace" inert={saveState.phase === 'loading'}>
       <Guide state={guide} change={setGuide} start={startGuide} recommend={b => setBrush(old => ({ ...old, ...b }))} complete={() => { setGuide({ ...guide, open: false }); setStatus('四步已经走过。可以继续自由绘画，或导出这场日落。'); }}/>
       <section className="canvas-column" aria-label="创作区">
         <div className="workspace-heading"><div><p className="eyebrow">A LITTLE TIME, A LITTLE PAINT</p><h1>把此刻，慢慢画下来。</h1></div><span className="paper-label">你的画布 <span>01</span></span></div>
@@ -141,10 +180,11 @@ function App() {
         <p className="material-note">不必急着画好。<br/>先感受颜色经过画布的样子。</p>
       </aside>
     </main>
-    <footer className="statusbar"><span className="live-status" role="status">{status}</span><span>作品暂存在本页 · 离开前记得导出</span></footer>
+    <footer className="statusbar"><span className="live-status" role="status">{status}</span><div className="draft-status"><span data-testid="save-state" data-phase={saveState.phase} role="status">{saveState.phase === 'failed' ? '保存失败 · ' : ''}{saveState.message}{saveState.savedAt && saveState.phase === 'saved' ? ` · ${new Date(saveState.savedAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}` : ''}</span>{availableDraft && <button onClick={() => setRecoveryOpen(true)}>恢复已有草稿</button>}{saveState.phase === 'failed' && draft.current?.canRetrySave && <button onClick={() => draft.current?.retrySave()}>重试保存</button>}{saveState.phase === 'failed' && <button onClick={() => { void draft.current?.load().then(record => { if (record) { setAvailableDraft(record); setRecoveryOpen(true); } }); }}>重新读取草稿</button>}<small>仅在此浏览器本地保存一个草稿 · 清理浏览器数据会丢失，请导出留存</small></div></footer>
     {fallback && <div className="fallback-notice" role="alert"><strong>已切换简化显示</strong><span>仍可绘画、混色、撤销和导出；局部光照暂不可用。</span><button onClick={() => renderer.current?.retry()}>重试材质显示</button></div>}
     <dialog ref={dialog} className="clear-dialog" onCancel={() => setConfirmClear(false)} onClose={() => setConfirmClear(false)}><p className="eyebrow">A FRESH START</p><h2>回到一张空白画布？</h2><p>当前画面会被清空。你仍然可以撤销这次清空。</p><div><button autoFocus onClick={() => setConfirmClear(false)}>继续画</button><button className="confirm-button" onClick={clear}>确认清空</button></div></dialog>
     <dialog ref={newDialog} className="clear-dialog" onCancel={() => setNewChoice(false)} onClose={() => setNewChoice(false)}><p className="eyebrow">KEEP YOUR MARKS</p><h2>从哪里开始这场日落？</h2><p>画布上已经有你的笔触。可以直接在当前画作上开启提示；新画一张会清空当前画布，这次清空仍可撤销。</p><div className="choice-actions"><button autoFocus onClick={() => setNewChoice(false)}>取消，保留画作</button><button onClick={() => chooseGuide(true)}>新画一张旅行日落</button><button className="confirm-button" onClick={() => chooseGuide(false)}>在当前画作上继续</button></div></dialog>
+    <dialog ref={recoveryDialog} className="clear-dialog" onCancel={() => setRecoveryOpen(false)} onClose={() => setRecoveryOpen(false)}><p className="eyebrow">WELCOME BACK</p><h2>上次的日光，还在这里。</h2><p>找到一个本地草稿{availableDraft ? `，保存于 ${new Date(availableDraft.savedAt).toLocaleString('zh-CN')}` : ''}。恢复颜色、厚度与创作步骤后，可以继续绘画。旧撤销历史不会恢复，撤销从接下来的新笔开始。</p>{hasPaint && <p>恢复会替换当前未保存画面；请先导出当前画作。</p>}<p>选择新建会替换这个唯一的已存草稿。暂不恢复时，旧草稿会保留，当前画面只在内存中。</p><div className="choice-actions"><button onClick={() => setRecoveryOpen(false)}>暂不恢复，保留草稿</button>{hasPaint && <button onClick={download}>导出当前画面</button>}<button onClick={replaceSavedDraft}>新建并替换旧草稿</button><button className="confirm-button" autoFocus onClick={restore}>{hasPaint ? '确认恢复并替换当前画面' : '恢复草稿'}</button></div></dialog>
   </div>;
 }
 

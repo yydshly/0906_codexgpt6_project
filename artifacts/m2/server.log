@@ -3,3 +3,7 @@
 
   ➜  Local:   http://127.0.0.1:5174/
   ➜  press h + enter to show help
+03:41:39 [vite] (client) hmr update /src/main.tsx
+03:41:41 [vite] (client) hmr update /src/style.css
+03:45:04 [vite] (client) hmr update /src/main.tsx
+03:45:05 [vite] (client) hmr update /src/main.tsx

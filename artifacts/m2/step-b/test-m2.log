@@ -1,0 +1,17 @@
+
+> slowlight-oil-studio@0.1.0 test:m2
+> playwright test --project=m2
+
+
+Running 6 tests using 1 worker
+
+(node:14816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [m2] › tests\m2.spec.ts:13:1 › A guide choices and overlays preserve independent artwork and user choices (7.7s)
+  ok 2 [m2] › tests\m2.spec.ts:39:1 › A explicitly choosing a fresh themed canvas remains undoable (4.5s)
+  ok 3 [m2] › tests\m2.spec.ts:47:1 › B committed draft restores exact color/height, brush and step; new undo returns to restored state (11.7s)
+  ok 4 [m2] › tests\m2.spec.ts:70:1 › B deferred recovery preserves the old record and asks before replacing current work (7.7s)
+  ok 5 [m2] › tests\m2.spec.ts:83:1 › B write failure cannot claim saved, retains both current painting and previous committed draft (6.3s)
+  ok 6 [m2] › tests\m2.spec.ts:98:1 › B corrupted bytes are rejected without replacing stored data; drawing and export remain available (8.1s)
+
+  6 passed (47.9s)
