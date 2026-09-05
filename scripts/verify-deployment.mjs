@@ -1,0 +1,65 @@
+import { chromium } from '@playwright/test';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+
+const url = process.argv[2];
+if (!url) throw new Error('Usage: node scripts/verify-deployment.mjs <site-url>');
+const out = 'artifacts/deployment';
+await mkdir(out, { recursive: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, acceptDownloads: true });
+  const errors = [], failed = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('requestfailed', request => failed.push({ url: request.url(), error: request.failure()?.errorText }));
+  const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+  assert.equal(response?.status(), 200);
+  await page.getByRole('heading', { name: '把此刻，慢慢画下来。' }).waitFor();
+  assert.equal(await page.evaluate(() => typeof window.__studio), 'undefined', 'Production must not expose the test API');
+  const surface = page.getByTestId('painting-surface');
+  await page.mouse.move(30, 120);
+  await page.screenshot({ path: `${out}/live-page.png` });
+  const blank = await surface.screenshot();
+  const box = await surface.boundingBox();
+  assert.ok(box);
+  const stroke = async (a, b) => {
+    await page.mouse.move(box.x + a[0] * box.width, box.y + a[1] * box.height);
+    await page.mouse.down();
+    await page.mouse.move(box.x + b[0] * box.width, box.y + b[1] * box.height, { steps: 50 });
+    await page.mouse.up();
+    await page.mouse.move(30, 120);
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  };
+  await page.getByRole('button', { name: '选择日落黄', exact: true }).click();
+  await stroke([.2, .48], [.8, .48]);
+  const first = await surface.screenshot();
+  assert.ok(!blank.equals(first), 'Drawing must change real canvas pixels');
+  await page.getByRole('button', { name: '选择群青', exact: true }).click();
+  await page.getByRole('button', { name: '混色', exact: true }).click();
+  await stroke([.5, .2], [.5, .8]);
+  const second = await surface.screenshot();
+  assert.ok(!first.equals(second));
+  await page.getByRole('button', { name: '撤销', exact: true }).click();
+  await page.mouse.move(30, 120);
+  assert.ok(first.equals(await surface.screenshot()), 'Undo must restore the rendered first stroke');
+  await stroke([.5, .2], [.5, .8]);
+  const waiting = page.waitForEvent('download');
+  await page.getByRole('button', { name: '导出 PNG', exact: true }).click();
+  await (await waiting).saveAs(`${out}/live-painting.png`);
+  const data = (await readFile(`${out}/live-painting.png`)).toString('base64');
+  const png = await page.evaluate(async data => {
+    const img = new Image(); img.src = `data:image/png;base64,${data}`; await img.decode();
+    const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+    const ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0);
+    const pixels = ctx.getImageData(0, 0, c.width, c.height).data;
+    let colored = 0;
+    for (let i = 0; i < pixels.length; i += 4) if (Math.max(pixels[i], pixels[i + 1], pixels[i + 2]) - Math.min(pixels[i], pixels[i + 1], pixels[i + 2]) > 60) colored++;
+    return { width: img.width, height: img.height, colored };
+  }, data);
+  assert.equal(png.width, 1024); assert.equal(png.height, 1024); assert.ok(png.colored > 1000);
+  await page.screenshot({ path: `${out}/live-painted-page.png` });
+  assert.deepEqual(errors, []); assert.deepEqual(failed, []);
+  const result = { url, status: 'passed', at: new Date().toISOString(), title: await page.title(), png, pageErrors: errors, failedRequests: failed, checks: ['HTTP 200', 'production assets loaded', 'no test API', 'real painting', 'color/mix selection', 'rendered undo equality', 'PNG download and decode'], limitation: 'Automated production smoke test; V4 manual aesthetics and hand feel remain pending' };
+  await writeFile(`${out}/verification.json`, JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result, null, 2));
+} finally { await browser.close(); }

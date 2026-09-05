@@ -1,0 +1,20 @@
+{
+  "durationMs": 60050,
+  "sent": 3504,
+  "averageFps": 239.85064709049462,
+  "p95FrameMs": 4.30000000000291,
+  "maxFrameMs": 20.699999999999818,
+  "framesOver50ms": 0,
+  "receivedMoveEvents": 3504,
+  "history": {
+    "currentBytes": 6291456,
+    "historyBytes": 6291456,
+    "pendingBytes": 0,
+    "brushBytes": 2048,
+    "cacheEntries": 0,
+    "historyCount": 1
+  },
+  "active": false,
+  "exact20UiUndos": "通过：RGBA/height SHA-256 equal to blank",
+  "method": "Playwright mouse -> browser Pointer Events -> production input handler -> Painting -> scheduled WebGL; no video; actual hardware hand feel and end-to-end input latency unmeasured"
+}

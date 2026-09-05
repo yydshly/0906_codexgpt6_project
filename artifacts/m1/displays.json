@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "Intel(R) UHD Graphics",
+    "CurrentHorizontalResolution": 2560,
+    "CurrentVerticalResolution": 1600,
+    "CurrentRefreshRate": 240
+  },
+  {
+    "Name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "CurrentHorizontalResolution": 1920,
+    "CurrentVerticalResolution": 1080,
+    "CurrentRefreshRate": 60
+  }
+]

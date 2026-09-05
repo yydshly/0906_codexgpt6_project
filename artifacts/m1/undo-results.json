@@ -1,0 +1,12 @@
+{
+  "status": "通过",
+  "exactByteComparisons": 42,
+  "history": {
+    "currentBytes": 6291456,
+    "historyBytes": 125829120,
+    "pendingBytes": 0,
+    "brushBytes": 2048,
+    "cacheEntries": 0,
+    "historyCount": 20
+  }
+}

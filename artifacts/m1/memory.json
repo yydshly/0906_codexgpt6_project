@@ -1,0 +1,81 @@
+{
+  "cycles": [
+    {
+      "cycle": 1,
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20,
+      "rendererCpuBytes": 4194304,
+      "explicitCpuBytes": 136316928,
+      "gpuTextureBytes": 6291456,
+      "exportAdditionalPeakBytes": 8388608,
+      "jsHeapUsedBytes": 5955252,
+      "jsHeapTotalBytes": 6422528
+    },
+    {
+      "cycle": 2,
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20,
+      "rendererCpuBytes": 4194304,
+      "explicitCpuBytes": 136316928,
+      "gpuTextureBytes": 6291456,
+      "exportAdditionalPeakBytes": 8388608,
+      "jsHeapUsedBytes": 5955664,
+      "jsHeapTotalBytes": 6422528
+    },
+    {
+      "cycle": 3,
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20,
+      "rendererCpuBytes": 4194304,
+      "explicitCpuBytes": 136316928,
+      "gpuTextureBytes": 6291456,
+      "exportAdditionalPeakBytes": 8388608,
+      "jsHeapUsedBytes": 5949048,
+      "jsHeapTotalBytes": 6422528
+    },
+    {
+      "cycle": 4,
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20,
+      "rendererCpuBytes": 4194304,
+      "explicitCpuBytes": 136316928,
+      "gpuTextureBytes": 6291456,
+      "exportAdditionalPeakBytes": 8388608,
+      "jsHeapUsedBytes": 5957004,
+      "jsHeapTotalBytes": 6422528
+    },
+    {
+      "cycle": 5,
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20,
+      "rendererCpuBytes": 4194304,
+      "explicitCpuBytes": 136316928,
+      "gpuTextureBytes": 6291456,
+      "exportAdditionalPeakBytes": 8388608,
+      "jsHeapUsedBytes": 5957984,
+      "jsHeapTotalBytes": 6422528
+    }
+  ],
+  "method": "explicit TypedArray accounting plus CDP JS heap after forced GC outside timed benchmark; JS heap is not whole browser/driver memory; bounded mix cache transient <=4096 entries, no input queue",
+  "status": "see test assertions"
+}

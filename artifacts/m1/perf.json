@@ -1,0 +1,134 @@
+[
+  {
+    "size": 32,
+    "fullHistory": false,
+    "durationMs": 60000,
+    "frameCount": 13551,
+    "averageFps": 225.83333333333334,
+    "p95FrameMs": 4.399999999994179,
+    "maxFrameMs": 558.5,
+    "p95CpuDrawMs": 0.40000003576278687,
+    "framesOver50ms": 2,
+    "inputQueue": 0,
+    "memory": {
+      "currentBytes": 6291456,
+      "historyBytes": 6291456,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 1
+    },
+    "environment": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    },
+    "method": "headed Chrome, no video, rAF drives exact Painting.move + renderer.draw hot path; engine input, not hardware input latency"
+  },
+  {
+    "size": 32,
+    "fullHistory": true,
+    "durationMs": 60000,
+    "frameCount": 14107,
+    "averageFps": 235.1,
+    "p95FrameMs": 4.30000000000291,
+    "maxFrameMs": 354.1999999999971,
+    "p95CpuDrawMs": 0.5,
+    "framesOver50ms": 2,
+    "inputQueue": 0,
+    "memory": {
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20
+    },
+    "environment": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    },
+    "method": "headed Chrome, no video, rAF drives exact Painting.move + renderer.draw hot path; engine input, not hardware input latency"
+  },
+  {
+    "size": 96,
+    "fullHistory": false,
+    "durationMs": 60000.100000000006,
+    "frameCount": 14390,
+    "averageFps": 239.81626697288837,
+    "p95FrameMs": 4.300000000017462,
+    "maxFrameMs": 45.79999999998836,
+    "p95CpuDrawMs": 1.4000000357627869,
+    "framesOver50ms": 0,
+    "inputQueue": 0,
+    "memory": {
+      "currentBytes": 6291456,
+      "historyBytes": 6291456,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 1
+    },
+    "environment": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    },
+    "method": "headed Chrome, no video, rAF drives exact Painting.move + renderer.draw hot path; engine input, not hardware input latency"
+  },
+  {
+    "size": 96,
+    "fullHistory": true,
+    "durationMs": 60004.100000000006,
+    "frameCount": 14382,
+    "averageFps": 239.66695609133373,
+    "p95FrameMs": 4.300000000017462,
+    "maxFrameMs": 49.89999999999418,
+    "p95CpuDrawMs": 1.800000011920929,
+    "framesOver50ms": 0,
+    "inputQueue": 0,
+    "memory": {
+      "currentBytes": 6291456,
+      "historyBytes": 125829120,
+      "pendingBytes": 0,
+      "brushBytes": 2048,
+      "cacheEntries": 0,
+      "historyCount": 20
+    },
+    "environment": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    },
+    "method": "headed Chrome, no video, rAF drives exact Painting.move + renderer.draw hot path; engine input, not hardware input latency"
+  }
+]

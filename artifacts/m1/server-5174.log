@@ -1,0 +1,14 @@
+
+  VITE v8.2.2  ready in 476 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+  ➜  press h + enter to show help
+02:28:01 [vite] (client) hmr update /src/main.tsx
+02:28:01 [vite] (client) hmr update /src/main.tsx
+02:28:01 [vite] (client) hmr update /src/main.tsx
+02:28:02 [vite] (client) hmr update /src/style.css
+02:28:19 [vite] (client) hmr update /src/style.css
+02:29:52 [vite] (client) hmr update /src/main.tsx
+02:34:27 [vite] (client) page reload artifacts/m1/index.html
+02:40:03 [vite] vite.config.ts changed, restarting server...
+02:40:03 [vite] server restarted.
