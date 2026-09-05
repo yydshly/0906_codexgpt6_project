@@ -1,0 +1,9 @@
+
+> slowlight-oil-studio@0.1.0 test:m2
+> playwright test --project=m2
+
+
+Running 2 tests using 1 worker
+
+(node:32140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

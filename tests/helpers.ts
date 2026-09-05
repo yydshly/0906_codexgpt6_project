@@ -2,7 +2,7 @@ import { expect, type Page } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import type { Brush } from '../src/painting/engine';
 
-export const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m1';
+export const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m2/regression';
 export async function ready(page:Page, query='') {
   await page.goto('/?test=1'+query); await page.waitForFunction(()=>!!window.__studio);
   await settle(page);

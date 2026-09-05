@@ -8,7 +8,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const brush: Brush = { color: blue, size: 32, load: .6, mode: 'cover', seed };
 const draw = (p: Painting, points = single, b: Partial<Brush> = {}) => { p.begin(points[0], { ...brush, ...b }); for (const point of points.slice(1)) p.move(point); p.end(); };
 const pixel = (p: Painting, x: number, y: number) => Array.from(p.color.slice((y * 1024 + x) * 4, (y * 1024 + x) * 4 + 4));
-const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m1';
+const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m2/regression';
 type ExpectedState = { color: Buffer; height: Buffer };
 const captureExpected = (p: Painting): ExpectedState => ({
   color: Buffer.from(p.color),

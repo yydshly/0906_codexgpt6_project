@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { Painting, type Brush } from './painting/engine';
 import { attachInput } from './painting/input';
 import { StudioRenderer } from './rendering/renderer';
+import { Guide, GuideOverlay } from './guidance/Guide';
+import { emptyGuide, type GuideState } from './guidance/sunset';
 import './style.css';
 
 export const COLORS = [
@@ -37,6 +39,9 @@ function App() {
   const [fallback, setFallback] = useState(false);
   const [busy, setBusy] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
+  const [guide, setGuide] = useState<GuideState>(emptyGuide);
+  const [newChoice, setNewChoice] = useState(false);
+  const newDialog = useRef<HTMLDialogElement>(null);
   const surface = useRef<HTMLDivElement>(null), canvas = useRef<HTMLCanvasElement>(null), flat = useRef<HTMLCanvasElement>(null), cursor = useRef<HTMLDivElement>(null);
   const painting = useRef<Painting | null>(null), renderer = useRef<StudioRenderer | null>(null), input = useRef<ReturnType<typeof attachInput> | null>(null);
   const brushRef = useRef(brush); brushRef.current = brush;
@@ -65,6 +70,18 @@ function App() {
   }, []);
 
   useEffect(() => { if (confirmClear) dialog.current?.showModal(); else dialog.current?.close(); }, [confirmClear]);
+  useEffect(() => { if (newChoice) newDialog.current?.showModal(); else newDialog.current?.close(); }, [newChoice]);
+  const startGuide = () => {
+    input.current?.finish();
+    if (guide.theme) setGuide({ ...guide, open: true });
+    else if (painting.current?.color.some(v => v !== 0)) setNewChoice(true);
+    else setGuide({ theme: 'sunset', step: 0, open: true, overlay: true });
+  };
+  const chooseGuide = (fresh: boolean) => {
+    if (fresh) { input.current?.finish(); painting.current?.clear(); renderer.current?.request(); update(); }
+    setGuide({ theme: 'sunset', step: 0, open: true, overlay: true }); setNewChoice(false);
+    setStatus(fresh ? '新画布已准备好；清空仍可撤销。' : '在你的画作上继续，原有笔触都保留。');
+  };
   const undo = () => { input.current?.finish(); painting.current?.undo(); renderer.current?.request(); update(); setStatus('已撤回上一笔，慢慢来。'); };
   const clear = () => { input.current?.finish(); painting.current?.clear(); renderer.current?.request(); update(); setConfirmClear(false); setStatus('一张空白画布，一次新的开始。清空也可以撤销。'); };
   const download = async () => {
@@ -87,6 +104,7 @@ function App() {
     </header>
 
     <main className="workspace">
+      <Guide state={guide} change={setGuide} start={startGuide} recommend={b => setBrush(old => ({ ...old, ...b }))} complete={() => { setGuide({ ...guide, open: false }); setStatus('四步已经走过。可以继续自由绘画，或导出这场日落。'); }}/>
       <section className="canvas-column" aria-label="创作区">
         <div className="workspace-heading"><div><p className="eyebrow">A LITTLE TIME, A LITTLE PAINT</p><h1>把此刻，慢慢画下来。</h1></div><span className="paper-label">你的画布 <span>01</span></span></div>
         <div className="toolbar" aria-label="绘画工具">
@@ -98,6 +116,7 @@ function App() {
         <div className="canvas-frame">
           <div ref={surface} className="painting-surface" data-testid="painting-surface" aria-label="油画画布，选择颜色后按住鼠标拖动绘画" style={{ pointerEvents: busy ? 'none' : 'auto' }}>
             <canvas ref={canvas} aria-label="油画材质显示"/><canvas ref={flat} aria-label="简化画布显示"/>
+            {guide.open && guide.overlay && <GuideOverlay step={guide.step}/>}
             <div ref={cursor} className="brush-cursor"><span style={{ width: `calc(var(--canvas-side) * ${brush.size} / 1024)`, height: `calc(var(--canvas-side) * ${brush.size} / 1024)` }}/></div>
           </div>
         </div>
@@ -125,6 +144,7 @@ function App() {
     <footer className="statusbar"><span className="live-status" role="status">{status}</span><span>作品暂存在本页 · 离开前记得导出</span></footer>
     {fallback && <div className="fallback-notice" role="alert"><strong>已切换简化显示</strong><span>仍可绘画、混色、撤销和导出；局部光照暂不可用。</span><button onClick={() => renderer.current?.retry()}>重试材质显示</button></div>}
     <dialog ref={dialog} className="clear-dialog" onCancel={() => setConfirmClear(false)} onClose={() => setConfirmClear(false)}><p className="eyebrow">A FRESH START</p><h2>回到一张空白画布？</h2><p>当前画面会被清空。你仍然可以撤销这次清空。</p><div><button autoFocus onClick={() => setConfirmClear(false)}>继续画</button><button className="confirm-button" onClick={clear}>确认清空</button></div></dialog>
+    <dialog ref={newDialog} className="clear-dialog" onCancel={() => setNewChoice(false)} onClose={() => setNewChoice(false)}><p className="eyebrow">KEEP YOUR MARKS</p><h2>从哪里开始这场日落？</h2><p>画布上已经有你的笔触。可以直接在当前画作上开启提示；新画一张会清空当前画布，这次清空仍可撤销。</p><div className="choice-actions"><button autoFocus onClick={() => setNewChoice(false)}>取消，保留画作</button><button onClick={() => chooseGuide(true)}>新画一张旅行日落</button><button className="confirm-button" onClick={() => chooseGuide(false)}>在当前画作上继续</button></div></dialog>
   </div>;
 }
 
