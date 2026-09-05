@@ -1,0 +1,514 @@
+{
+  "config": {
+    "argv": [
+      "D:\\software\\nodejs\\node.exe",
+      "E:\\0906_codexgpt6_project\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=m2"
+    ],
+    "configFile": "E:\\0906_codexgpt6_project\\playwright.config.ts",
+    "rootDir": "E:/0906_codexgpt6_project/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "engine",
+        "name": "engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "studio",
+        "name": "studio",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "studio.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2",
+        "name": "m2",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2-performance",
+        "name": "m2-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "performance",
+        "name": "performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "performance.spec.ts"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/m2/verified/test-m2-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5174 --strictPort",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "m2.spec.ts",
+      "file": "m2.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "A guide choices and overlays preserve independent artwork and user choices",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5706,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:19.756Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-A-guide-choices-and-ove-f5fe8-nt-artwork-and-user-choices-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-51b1115751f909079002",
+          "file": "m2.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "A explicitly choosing a fresh themed canvas remains undoable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:25.753Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-A-explicitly-choosing-a-ddc0f-med-canvas-remains-undoable-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-e93ba498746246bf9717",
+          "file": "m2.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "B committed draft restores exact color/height, brush and step; new undo returns to restored state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11419,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:29.510Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-B-committed-draft-resto-81664-o-returns-to-restored-state-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-7d8927eda443991fd6da",
+          "file": "m2.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "B deferred recovery preserves the old record and asks before replacing current work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6172,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:40.945Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-B-deferred-recovery-pre-1a9a5-fore-replacing-current-work-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-72a1282ba5981de24ccd",
+          "file": "m2.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "B write failure cannot claim saved, retains both current painting and previous committed draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5688,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:47.134Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-B-write-failure-cannot--aecab-nd-previous-committed-draft-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-6402c64166b78197e5f6",
+          "file": "m2.spec.ts",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "B corrupted bytes are rejected without replacing stored data; drawing and export remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7049,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:52.840Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-B-corrupted-bytes-are-r-8e9e7-and-export-remain-available-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-7117eb176bb089e54de0",
+          "file": "m2.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "C real travel sunset journey, signed preview/download, return to edit and signature recovery",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 36226,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('work-preview')\nExpected: \u001b[32m\"Lina · 2026\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('work-preview') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('work-preview')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('work-preview')\nExpected: \u001b[32m\"Lina · 2026\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('work-preview') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('work-preview')\u001b[22m\n\n    at E:\\0906_codexgpt6_project\\tests\\m2.spec.ts:143:50",
+                    "location": {
+                      "file": "E:\\0906_codexgpt6_project\\tests\\m2.spec.ts",
+                      "column": 50,
+                      "line": 143
+                    },
+                    "snippet": "  141 |   await page.getByRole('button', { name: '完成引导', exact: true }).click();\n  142 |   await page.getByLabel('给这幅画签名', { exact: false }).fill('Lina · 2026');\n> 143 |   await expect(page.getByTestId('work-preview')).toHaveAttribute('data-signature', 'Lina · 2026');\n      |                                                  ^\n  144 |   await expect(page.getByRole('button', { name: '保存这幅画 · PNG', exact: true })).toBeEnabled();\n  145 |   await page.getByTestId('work-preview').evaluate((img: HTMLImageElement) => img.decode());\n  146 |   const preview = await page.getByTestId('work-preview').evaluate(async (img: HTMLImageElement) => Array.from(new Uint8Array(await (await fetch(img.src)).arrayBuffer())));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\0906_codexgpt6_project\\tests\\m2.spec.ts",
+                        "column": 50,
+                        "line": 143
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('work-preview')\nExpected: \u001b[32m\"Lina · 2026\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('work-preview') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('work-preview')\u001b[22m\n\n\n  141 |   await page.getByRole('button', { name: '完成引导', exact: true }).click();\n  142 |   await page.getByLabel('给这幅画签名', { exact: false }).fill('Lina · 2026');\n> 143 |   await expect(page.getByTestId('work-preview')).toHaveAttribute('data-signature', 'Lina · 2026');\n      |                                                  ^\n  144 |   await expect(page.getByRole('button', { name: '保存这幅画 · PNG', exact: true })).toBeEnabled();\n  145 |   await page.getByTestId('work-preview').evaluate((img: HTMLImageElement) => img.decode());\n  146 |   const preview = await page.getByTestId('work-preview').evaluate(async (img: HTMLImageElement) => Array.from(new Uint8Array(await (await fetch(img.src)).arrayBuffer())));\n    at E:\\0906_codexgpt6_project\\tests\\m2.spec.ts:143:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:02:59.901Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\0906_codexgpt6_project\\tests\\m2.spec.ts",
+                    "column": 50,
+                    "line": 143
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-6f281b44c6f810aba295",
+          "file": "m2.spec.ts",
+          "line": 110,
+          "column": 1
+        },
+        {
+          "title": "C newer draft in another tab cannot be silently overwritten by an older session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7177,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:03:37.200Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-C-newer-draft-in-anothe-054ed-written-by-an-older-session-m2\\video-1.webm"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\m2-C-newer-draft-in-anothe-054ed-written-by-an-older-session-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-75a3b0a8f7f68154f83b",
+          "file": "m2.spec.ts",
+          "line": 167,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T20:02:19.147Z",
+    "duration": 85810.412,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

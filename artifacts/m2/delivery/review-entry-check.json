@@ -1,0 +1,139 @@
+{
+  "status": "通过",
+  "httpLinks": [
+    {
+      "url": "http://127.0.0.1:5174/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/M2_REPORT.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/travel-sunset.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/journey.webm",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/first-screen.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/sunset-guided.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/sunset-guide-closed.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/completion.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/restore-prompt.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/restored.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/save-failure.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/test-engine-results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/test-e2e-results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/test-m2-results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/journey-results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/autosave-performance.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/baseline-preservation.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/single-stroke.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/two-color-overlap.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/repeated-layering.png",
+      "status": 200
+    }
+  ],
+  "reportFilesChecked": 53,
+  "imageSizes": [
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/first-screen.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/sunset-guided.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/sunset-guide-closed.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/completion.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/restore-prompt.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/restored.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/save-failure.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/single-stroke.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/two-color-overlap.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/delivery/repeated-layering.png",
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "localFileEntryImagesDecoded": true
+}

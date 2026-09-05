@@ -1,0 +1,35 @@
+{
+  "status": "通过",
+  "checks": [
+    {
+      "status": "通过",
+      "mode": "production bundled Worker; refresh and identical signed PNG",
+      "developmentHookAbsent": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "previewDownloadIdentical": true,
+      "workers": [
+        "http://127.0.0.1:5176/assets/png.worker-CD6LPnT8.js",
+        "http://127.0.0.1:5176/assets/png.worker-CD6LPnT8.js",
+        "http://127.0.0.1:5176/assets/png.worker-CD6LPnT8.js",
+        "http://127.0.0.1:5176/assets/png.worker-CD6LPnT8.js"
+      ],
+      "errors": []
+    },
+    {
+      "status": "通过",
+      "mode": "Worker unavailable injected; native toBlob compatibility",
+      "developmentHookAbsent": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "previewDownloadIdentical": true,
+      "workers": [],
+      "errors": []
+    }
+  ],
+  "scope": "Local vite preview of current dist. No deployment. Fallback API absence is injected in Chrome, not an old-browser test."
+}

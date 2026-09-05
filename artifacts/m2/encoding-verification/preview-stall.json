@@ -1,0 +1,93 @@
+{
+  "atFailure": {
+    "events": [
+      {
+        "stage": "fonts ready",
+        "at": 1472.2000000476837
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 17151.100000023842
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 17241.700000047684
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 18151
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 24907.400000035763
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 25382.30000001192
+      }
+    ],
+    "fonts": "loaded",
+    "renderer": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    }
+  },
+  "afterWait": {
+    "events": [
+      {
+        "stage": "fonts ready",
+        "at": 1472.2000000476837
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 17151.100000023842
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 17241.700000047684
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 18151
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 24907.400000035763
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 25382.30000001192
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 32118.900000035763
+      },
+      {
+        "stage": "bitmap start",
+        "at": 32119.200000047684
+      },
+      {
+        "stage": "bitmap done",
+        "at": 32137.900000035763
+      },
+      {
+        "stage": "convertToBlob start",
+        "at": 32139.200000047684
+      },
+      {
+        "stage": "convertToBlob done",
+        "at": 38873.200000047684
+      }
+    ],
+    "fonts": "loaded",
+    "preview": true
+  }
+}

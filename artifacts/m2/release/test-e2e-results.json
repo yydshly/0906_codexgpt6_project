@@ -1,0 +1,315 @@
+{
+  "config": {
+    "argv": [
+      "D:\\software\\nodejs\\node.exe",
+      "E:\\0906_codexgpt6_project\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=studio"
+    ],
+    "configFile": "E:\\0906_codexgpt6_project\\playwright.config.ts",
+    "rootDir": "E:/0906_codexgpt6_project/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "engine",
+        "name": "engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "studio",
+        "name": "studio",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "studio.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2",
+        "name": "m2",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2-performance",
+        "name": "m2-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "performance",
+        "name": "performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "performance.spec.ts"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/m2/release/test-e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5174 --strictPort",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "studio.spec.ts",
+      "file": "studio.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "designed studio, fixed brush samples and real UI workflow PNG download",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28692,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:09:18.029Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\studio-designed-studio-fix-fa656-al-UI-workflow-PNG-download-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-67145de5a8bf37361a6a",
+          "file": "studio.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "input cancellation, outside release, fast turns, clear confirmation and resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4803,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:09:47.040Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\studio-input-cancellation--9b6ea-ear-confirmation-and-resize-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-c97a367cfacc264c287e",
+          "file": "studio.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "WebGL unavailable fallback retains editable color, undo and PNG",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:09:51.859Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\studio-WebGL-unavailable-f-9fdce-editable-color-undo-and-PNG-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-9128609424c84e16fc25",
+          "file": "studio.spec.ts",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "context loss and restore keep complete color and height state including edits made in fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6747,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T20:10:00.653Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\studio-context-loss-and-re-3b053-ding-edits-made-in-fallback-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-5b5eb299682a7284cbce",
+          "file": "studio.spec.ts",
+          "line": 76,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T20:09:17.398Z",
+    "duration": 50529.772,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

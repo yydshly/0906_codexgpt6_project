@@ -1,0 +1,15 @@
+
+> slowlight-oil-studio@0.1.0 test:e2e
+> playwright test --project=studio
+
+
+Running 4 tests using 1 worker
+
+(node:46624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [studio] › tests\studio.spec.ts:6:1 › designed studio, fixed brush samples and real UI workflow PNG download (29.5s)
+  ok 2 [studio] › tests\studio.spec.ts:47:1 › input cancellation, outside release, fast turns, clear confirmation and resize (4.8s)
+  ok 3 [studio] › tests\studio.spec.ts:67:1 › WebGL unavailable fallback retains editable color, undo and PNG (9.4s)
+  ok 4 [studio] › tests\studio.spec.ts:76:1 › context loss and restore keep complete color and height state including edits made in fallback (5.9s)
+
+  4 passed (51.2s)

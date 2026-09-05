@@ -1,0 +1,20 @@
+{
+  "diagnostic": {
+    "stages": [
+      "fonts ready",
+      "png start",
+      "png done",
+      "bitmap start",
+      "bitmap done"
+    ],
+    "fonts": "loaded",
+    "images": 1,
+    "dialog": "A LITTLE LIGHT, YOURS TO KEEP\n\n把这段日光，\n带回家。\n\n每一处留下的颜色，\n都有你的选择。\n\n给这幅画签名\n可留空\n\n签名会印在 PNG 右下角。\n1024 × 1024 · 仅含你的画作与签名\n参考轮廓与工具不会出现在作品里。\n\n保存这幅画 · PNG返回修改\n\n浏览器草稿不是永久备份，\n把导出的文件也留在身边。"
+  },
+  "messages": [
+    "[vite] connecting...",
+    "[vite] connected.",
+    "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+}

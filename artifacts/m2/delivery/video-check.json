@@ -1,0 +1,40 @@
+{
+  "status": "通过",
+  "videos": [
+    {
+      "status": "通过",
+      "path": "journey.webm",
+      "duration": 29.44,
+      "width": 1440,
+      "height": 900,
+      "decodedFrameFractions": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "differentDecodedFrameHashes": [
+        "093627f7b1157e849280658b03fc5c61104a62c5af3e8c974985b2f4851447e6",
+        "7778c95c85d3611e8cb7eb3dc40c428b2af26b98bb3b180fc4907263384225dc",
+        "69decb4c05c67d0e146fd011c45918e74579b2c570b9a7453b6124f4959ebf23"
+      ]
+    },
+    {
+      "status": "通过",
+      "path": "workflow.webm",
+      "duration": 28.12,
+      "width": 1440,
+      "height": 900,
+      "decodedFrameFractions": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "differentDecodedFrameHashes": [
+        "fbea06b3beeb19ad662b2fafbbe3331b1db81b76f051019cdffef64f6f48431a",
+        "f554912518eb697608904885facbb90c719df88c66588948928d00b6852f990d",
+        "9fba19b68f7b9f5776800644a68de754e28a00c30df84b73af13e39049a85121"
+      ]
+    }
+  ],
+  "scope": "Browser decodes original recordings at three positions; not a human UX verdict."
+}

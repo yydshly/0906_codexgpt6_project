@@ -31,4 +31,10 @@ RYB 转换代码使用去公共白分量、黄绿分解与范围归一化的近�
 - [Pointer Events 压力语义](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pressure)
 - [Playwright 录像保存](https://playwright.dev/docs/videos)
 
-上述文档说明接口机制，实际功能与性能以 artifacts/m1 的测试结果为准。
+M2 没有增加运行或测试依赖。四步引导文案与 SVG 轮廓为本项目编写；保存使用浏览器 IndexedDB 和 Web Crypto，签名使用系统字体与 Canvas 2D，在已有真实材质导出结果上合成。
+
+- [IndexedDB 使用与事务](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB)
+- [事务 complete 事件：实际提交成功后触发](https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/complete_event)
+- [OffscreenCanvas.convertToBlob：原生 PNG 编码](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/convertToBlob)
+
+上述文档说明接口机制，实际功能与性能以 artifacts/m1 的历史记录及 artifacts/m2 的当前测试结果为准。

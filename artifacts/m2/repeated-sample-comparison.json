@@ -1,0 +1,15 @@
+{
+  "sample": "repeated-layering",
+  "original": "artifacts/m1/repeated-layering.png",
+  "current": "artifacts/m2/final/repeated-layering.png",
+  "differentPixels": 37,
+  "totalPixels": 1048576,
+  "meanAbsoluteChannelDelta": 0.00002288818359375,
+  "maxChannelDelta": 6,
+  "bounds": [
+    296,
+    468,
+    704,
+    556
+  ]
+}

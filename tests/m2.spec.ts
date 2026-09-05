@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { ready, draw, digest, settle } from './helpers';
-import { single } from './fixtures/strokes';
+import { single, line } from './fixtures/strokes';
 import type { Page } from '@playwright/test';
 const artifact = process.env.M1_ARTIFACT_DIR || 'artifacts/m2';
 const saved = (page: Page) => expect(page.getByTestId('save-state')).toHaveAttribute('data-phase', 'saved', { timeout: 15000 });
@@ -105,4 +105,91 @@ test('B corrupted bytes are rejected without replacing stored data; drawing and 
   expect(await storedId(page)).toBe(corruptedId); expect(await digest(page)).toEqual(current);
   const download = page.waitForEvent('download'); await page.getByRole('button', { name: '导出 PNG', exact: true }).click(); await (await download).saveAs(`${artifact}/corrupt-draft-export.png`);
   writeFileSync(`${artifact}/corruption-results.json`, JSON.stringify({ status: '通过', fault: 'test-only single height bit changed without updating checksum', rejected: true, storedRecordPreserved: true, inMemoryDrawingAndExport: true }, null, 2));
+});
+
+test('C real travel sunset journey, signed preview/download, return to edit and signature recovery', async ({ page }) => {
+  test.setTimeout(180000); mkdirSync(artifact, { recursive: true });
+  const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
+  const began = Date.now(); await ready(page);
+  // Test-only stage timings diagnose asynchronous browser export stalls.
+  await page.evaluate(() => {
+    const events: unknown[] = []; (window as any).__exportTimings = events;
+    const mark = (stage: string) => events.push({ stage, at: performance.now() });
+    const toBlob = HTMLCanvasElement.prototype.toBlob;
+    HTMLCanvasElement.prototype.toBlob = function (callback, ...args) { mark('toBlob start'); return toBlob.call(this, blob => { mark('toBlob done'); callback(blob); }, ...args); };
+    const bitmap = window.createImageBitmap;
+    (window as any).createImageBitmap = async (...args: any[]) => { mark('bitmap start'); const result = await (bitmap as any)(...args); mark('bitmap done'); return result; };
+    document.fonts.ready.then(() => mark('fonts ready'));
+    const convert = OffscreenCanvas.prototype.convertToBlob;
+    OffscreenCanvas.prototype.convertToBlob = async function (...args) { mark('convertToBlob start'); const result = await convert.apply(this, args); mark('convertToBlob done'); return result; };
+  });
+  await page.screenshot({ path: `${artifact}/first-screen.png` });
+  await page.getByRole('button', { name: '画一幅旅行日落', exact: true }).click();
+  await page.getByRole('button', { name: '采用本步建议' }).click();
+  await draw(page, line(80, 105, 945, 105, 30)); const firstStrokeMs = Date.now() - began;
+  for (const y of [160, 215, 270]) await draw(page, line(80, y, 945, y, 30));
+  await page.getByRole('button', { name: '选择日落黄', exact: true }).click();
+  for (const y of [325, 380, 435, 490]) await draw(page, line(80, y, 945, y, 30));
+  await page.getByRole('button', { name: '选择暖白', exact: true }).click();
+  await page.getByLabel('笔刷大小', { exact: true }).fill('64');
+  const sun = Array.from({ length: 25 }, (_, i) => ({ x: 565 + 14 * Math.cos(i * Math.PI / 12), y: 428 + 14 * Math.sin(i * Math.PI / 12) })); await draw(page, sun);
+  await page.getByRole('button', { name: '继续下一步' }).click(); await page.getByRole('button', { name: '采用本步建议' }).click();
+  await draw(page, [{ x: 65, y: 545 }, { x: 205, y: 470 }, { x: 325, y: 515 }, { x: 415, y: 450 }, { x: 555, y: 540 }, { x: 745, y: 480 }, { x: 955, y: 555 }]);
+  await draw(page, line(70, 560, 950, 560, 30));
+  await page.getByRole('button', { name: '继续下一步' }).click(); await page.getByRole('button', { name: '采用本步建议' }).click();
+  for (const y of [605, 650, 695, 740, 785, 830, 875, 920]) await draw(page, line(75, y, 950, y, 30));
+  await page.getByRole('button', { name: '继续下一步' }).click(); await page.getByRole('button', { name: '采用本步建议' }).click();
+  for (let i = 0; i < 7; i++) await draw(page, line(555 - 18 - i * 10, 625 + i * 42, 570 + 18 + i * 10, 625 + i * 42, 12));
+  await page.getByRole('button', { name: '选择深褐', exact: true }).click();
+  await draw(page, [{ x: 760, y: 780 }, { x: 790, y: 790 }, { x: 825, y: 780 }]);
+  await draw(page, [{ x: 792, y: 782 }, { x: 792, y: 735 }]);
+  const art = await digest(page); await page.screenshot({ path: `${artifact}/sunset-guided.png` });
+  const rootExport = async (name: string) => { const event = page.waitForEvent('download'); await page.getByRole('button', { name: '导出 PNG', exact: true }).click(); await (await event).saveAs(`${artifact}/${name}.png`); };
+  await rootExport('guided-export');
+  await page.getByRole('button', { name: '关闭引导' }).click(); expect(await digest(page)).toEqual(art);
+  await page.screenshot({ path: `${artifact}/sunset-guide-closed.png` }); await rootExport('unsigned-sunset');
+  expect(readFileSync(`${artifact}/guided-export.png`).equals(readFileSync(`${artifact}/unsigned-sunset.png`))).toBe(true);
+  await page.getByRole('button', { name: '继续旅行日落引导' }).click();
+  await page.getByRole('button', { name: '完成引导', exact: true }).click();
+  await page.getByLabel('给这幅画签名', { exact: false }).fill('Lina · 2026');
+  try { await expect(page.getByTestId('work-preview')).toHaveAttribute('data-signature', 'Lina · 2026'); }
+  catch (error) {
+    const atFailure = await page.evaluate(() => ({ events: (window as any).__exportTimings, fonts: document.fonts.status, renderer: window.__studio!.renderer.info() }));
+    await page.waitForTimeout(10000); // Diagnostic only: the original failed assertion is rethrown.
+    const afterWait = await page.evaluate(() => ({ events: (window as any).__exportTimings, fonts: document.fonts.status, preview: !!document.querySelector('[data-testid=work-preview]') }));
+    writeFileSync(`${artifact}/preview-stall.json`, JSON.stringify({ atFailure, afterWait }, null, 2)); throw error;
+  }
+  await expect(page.getByRole('button', { name: '保存这幅画 · PNG', exact: true })).toBeEnabled();
+  await page.getByTestId('work-preview').evaluate((img: HTMLImageElement) => img.decode());
+  const preview = await page.getByTestId('work-preview').evaluate(async (img: HTMLImageElement) => Array.from(new Uint8Array(await (await fetch(img.src)).arrayBuffer())));
+  writeFileSync(`${artifact}/preview.png`, Buffer.from(preview)); await page.screenshot({ path: `${artifact}/completion.png` });
+  const download = page.waitForEvent('download'); await page.getByRole('button', { name: '保存这幅画 · PNG', exact: true }).click(); await (await download).saveAs(`${artifact}/travel-sunset.png`);
+  expect(readFileSync(`${artifact}/travel-sunset.png`).equals(Buffer.from(preview))).toBe(true); expect(await digest(page)).toEqual(art);
+  const pixels = await page.evaluate(async ({ unsigned, signed }) => {
+    const decode = async (base64: string) => { const image = new Image(); image.src = 'data:image/png;base64,' + base64; await image.decode(); const c = document.createElement('canvas'); c.width = image.width; c.height = image.height; const ctx = c.getContext('2d')!; ctx.drawImage(image, 0, 0); return { width: c.width, height: c.height, bytes: ctx.getImageData(0, 0, c.width, c.height).data }; };
+    const a = await decode(unsigned), b = await decode(signed); let signaturePixels = 0, outsideSignatureChanges = 0;
+    for (let i = 0; i < a.bytes.length; i += 4) if (a.bytes.slice(i, i + 4).some((v, j) => v !== b.bytes[i + j])) { const x = i / 4 % 1024, y = Math.floor(i / 4 / 1024); if (x >= 320 && y >= 910 && y <= 990) signaturePixels++; else outsideSignatureChanges++; }
+    return { width: b.width, height: b.height, signaturePixels, outsideSignatureChanges };
+  }, { unsigned: readFileSync(`${artifact}/unsigned-sunset.png`).toString('base64'), signed: readFileSync(`${artifact}/travel-sunset.png`).toString('base64') });
+  expect(pixels.width).toBe(1024); expect(pixels.height).toBe(1024); expect(pixels.signaturePixels).toBeGreaterThan(50); expect(pixels.outsideSignatureChanges).toBe(0);
+  await page.getByRole('button', { name: '返回修改', exact: true }).click(); expect(await digest(page)).toEqual(art);
+  await page.getByRole('button', { name: '清空画布', exact: true }).click(); await page.getByRole('button', { name: '继续画', exact: true }).click(); expect(await digest(page)).toEqual(art);
+  const exportTimings = await page.evaluate(() => (window as any).__exportTimings ?? []);
+  await saved(page); await page.reload(); await page.getByRole('button', { name: '恢复草稿', exact: true }).click(); expect(await digest(page)).toEqual(art);
+  await page.getByRole('button', { name: '签名与完成', exact: true }).click(); await expect(page.getByLabel('给这幅画签名')).toHaveValue('Lina · 2026');
+  await expect(page.getByRole('button', { name: '保存这幅画 · PNG', exact: true })).toBeEnabled();
+  expect(errors).toEqual([]); expect(firstStrokeMs).toBeLessThan(60000);
+  writeFileSync(`${artifact}/journey-results.json`, JSON.stringify({ status: '通过', firstStrokeMs, timingScope: 'automated Playwright flow, not a first-time human test', pixels, guideExportIdentical: true, previewDownloadIdentical: true, restoredSignature: 'Lina · 2026', art, errors, environment: await page.evaluate(() => ({ userAgent: navigator.userAgent, viewport: [innerWidth, innerHeight], ...window.__studio!.renderer.info() })) }, null, 2));
+  writeFileSync(`${artifact}/export-timings.json`, JSON.stringify(exportTimings, null, 2));
+  const video = page.video()!; await page.close(); await video.saveAs(`${artifact}/journey.webm`);
+});
+
+test('C newer draft in another tab cannot be silently overwritten by an older session', async ({ page, context }) => {
+  await ready(page); await draw(page, single); await saved(page);
+  const second = await context.newPage(); await ready(second); await second.getByRole('button', { name: '恢复草稿', exact: true }).click();
+  await draw(second, [{ x: 200, y: 650 }, { x: 800, y: 650 }]); await saved(second); const latestId = await storedId(second);
+  await draw(page, [{ x: 200, y: 800 }, { x: 800, y: 800 }]); const current = await digest(page);
+  await expect(page.getByTestId('save-state')).toHaveAttribute('data-phase', 'failed', { timeout: 15000 });
+  await expect(page.getByTestId('save-state')).toContainText('另一个页面已更新');
+  expect(await storedId(page)).toBe(latestId); expect(await digest(page)).toEqual(current); await second.close();
 });

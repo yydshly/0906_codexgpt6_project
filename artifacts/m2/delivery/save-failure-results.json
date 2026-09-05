@@ -1,0 +1,8 @@
+{
+  "status": "通过",
+  "fault": "test-only IDBObjectStore.put throws QuotaExceededError",
+  "visibleState": "保存失败",
+  "currentPreserved": true,
+  "oldStoredIdPreserved": true,
+  "export": "save-failure-export.png"
+}

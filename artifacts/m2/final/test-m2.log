@@ -1,0 +1,47 @@
+
+> slowlight-oil-studio@0.1.0 test:m2
+> playwright test --project=m2
+
+
+Running 8 tests using 1 worker
+
+(node:10468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [m2] › tests\m2.spec.ts:13:1 › A guide choices and overlays preserve independent artwork and user choices (5.9s)
+  ok 2 [m2] › tests\m2.spec.ts:39:1 › A explicitly choosing a fresh themed canvas remains undoable (3.5s)
+  ok 3 [m2] › tests\m2.spec.ts:47:1 › B committed draft restores exact color/height, brush and step; new undo returns to restored state (10.7s)
+  ok 4 [m2] › tests\m2.spec.ts:70:1 › B deferred recovery preserves the old record and asks before replacing current work (6.1s)
+  x  5 [m2] › tests\m2.spec.ts:83:1 › B write failure cannot claim saved, retains both current painting and previous committed draft (5.7s)
+(node:48348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 6 [m2] › tests\m2.spec.ts:98:1 › B corrupted bytes are rejected without replacing stored data; drawing and export remain available (7.4s)
+  ok 7 [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery (27.5s)
+  ok 8 [m2] › tests\m2.spec.ts:167:1 › C newer draft in another tab cannot be silently overwritten by an older session (7.1s)
+
+
+  1) [m2] › tests\m2.spec.ts:83:1 › B write failure cannot claim saved, retains both current painting and previous committed draft 
+
+    Error: download.saveAs: UNKNOWN: unknown error, copyfile 'E:\0906_codexgpt6_project\test-results\.playwright-artifacts-0\3e732868-231d-42f9-b01f-ecbfdac9750e' -> 'E:\0906_codexgpt6_project\artifacts\m2\final\save-failure-export.png'
+
+      88 |   expect(await digest(page)).toEqual(current); expect(await storedId(page)).toBe(id);
+      89 |   const download = page.waitForEvent('download'); await page.getByRole('button', { name: '导出 PNG', exact: true }).click();
+    > 90 |   await (await download).saveAs(`${artifact}/save-failure-export.png`);
+         |                          ^
+      91 |   await page.screenshot({ path: `${artifact}/save-failure.png` });
+      92 |   writeFileSync(`${artifact}/save-failure-results.json`, JSON.stringify({ status: '通过', fault: 'test-only IDBObjectStore.put throws QuotaExceededError', visibleState: '保存失败', currentPreserved: (await digest(page)).color === current.color, oldStoredIdPreserved: (await storedId(page)) === id, export: 'save-failure-export.png' }, null, 2));
+      93 |   await page.evaluate(() => { IDBObjectStore.prototype.put = (window as any).__originalPut; });
+        at E:\0906_codexgpt6_project\tests\m2.spec.ts:90:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\m2-B-write-failure-cannot--aecab-nd-previous-committed-draft-m2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\m2-B-write-failure-cannot--aecab-nd-previous-committed-draft-m2\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\m2-B-write-failure-cannot--aecab-nd-previous-committed-draft-m2\error-context.md
+
+  1 failed
+    [m2] › tests\m2.spec.ts:83:1 › B write failure cannot claim saved, retains both current painting and previous committed draft 
+  7 passed (1.3m)

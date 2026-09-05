@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:50688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery (41.0s)
+
+
+  1) [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByTestId('work-preview')
+    Expected: "Lina · 2026"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('work-preview') with timeout 5000ms
+      - waiting for getByTestId('work-preview')
+
+
+      153 |   await page.getByRole('button', { name: '完成引导', exact: true }).click();
+      154 |   await page.getByLabel('给这幅画签名', { exact: false }).fill('Lina · 2026');
+    > 155 |   try { await expect(page.getByTestId('work-preview')).toHaveAttribute('data-signature', 'Lina · 2026'); }
+          |                                                        ^
+      156 |   catch (error) {
+      157 |     const atFailure = await page.evaluate(() => ({ events: (window as any).__exportTimings, fonts: document.fonts.status, renderer: window.__studio!.renderer.info() }));
+      158 |     await page.waitForTimeout(10000); // Diagnostic only: the original failed assertion is rethrown.
+        at E:\0906_codexgpt6_project\tests\m2.spec.ts:155:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\error-context.md
+
+  1 failed
+    [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery 

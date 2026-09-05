@@ -1,0 +1,23 @@
+{
+  "status": "通过",
+  "before": {
+    "color": "3c696e4de907bf13d15936567e3bb7a0fee59932300360100c867922a7f9155b",
+    "height": "cf18d4ff477f76962c2f0ea4fb3e4fb8dec1e73290faa639b5bf3b2a9285c5f0"
+  },
+  "after": {
+    "color": "37cc94775a9b5cd2657d4437ca1056c16d1c9a6593e637f700b00330b80afc58",
+    "height": "9f3087798bfed12f9ccf4e5adb4ded9e802fedeadb54ca67cabf299af0f3d5f2"
+  },
+  "red": [
+    201,
+    81,
+    57
+  ],
+  "checks": [
+    "existing work cancel/continue",
+    "four steps and skip/back preserve arrays",
+    "recommendation does not draw",
+    "custom red changes artwork",
+    "overlay/guide close preserves arrays"
+  ]
+}

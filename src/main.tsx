@@ -6,6 +6,8 @@ import { StudioRenderer } from './rendering/renderer';
 import { Guide, GuideOverlay } from './guidance/Guide';
 import { emptyGuide, type GuideState } from './guidance/sunset';
 import { DraftSession, type DraftRecord, type SaveState } from './works/draft';
+import { Completion } from './works/Completion';
+import { downloadBlob, exportArtwork } from './works/export';
 import './style.css';
 
 export const COLORS = [
@@ -44,6 +46,7 @@ function App() {
   const [newChoice, setNewChoice] = useState(false);
   const newDialog = useRef<HTMLDialogElement>(null);
   const [signature, setSignature] = useState('');
+  const [finishing, setFinishing] = useState(false);
   const [saveState, setSaveState] = useState<SaveState>({ phase: 'loading', message: '正在读取本地草稿…' });
   const [availableDraft, setAvailableDraft] = useState<DraftRecord | null>(null);
   const [recoveryOpen, setRecoveryOpen] = useState(false);
@@ -127,14 +130,14 @@ function App() {
     if (!renderer.current || busy) return;
     input.current?.finish(); setBusy(true); setStatus('正在将你的画作装进 PNG…');
     try {
-      const blob = await renderer.current.exportPng();
-      const url = URL.createObjectURL(blob), link = document.createElement('a'); link.href = url; link.download = '慢光-我的小画.png'; link.click();
-      setTimeout(() => URL.revokeObjectURL(url), 10000);
+      const blob = await exportArtwork(renderer.current, signature);
+      downloadBlob(blob, '慢光-我的小画.png');
       setStatus(renderer.current.mode === 'webgl2' ? 'PNG 已导出。把这段时光留在身边。' : 'PNG 已导出：简化显示，不含局部光照。');
     } catch (error) { setStatus(error instanceof Error ? error.message : '导出失败，请重试。'); }
     finally { setBusy(false); update(); }
   };
 
+  const complete = () => { input.current?.finish(); if (!painting.current?.color.some(v => v !== 0)) { setStatus('先留下至少一笔，再签名完成这幅画。'); return; } setFinishing(true); };
   return <div className="studio">
     <header className="header">
       <div className="wordmark" aria-label="慢光数字油画室"><span className="brand-symbol"><Icon name="sun" size={24}/></span><span className="brand-name">慢光<span className="brand-en">SLOWLIGHT</span></span></div>
@@ -143,13 +146,14 @@ function App() {
     </header>
 
     <main className="workspace" inert={saveState.phase === 'loading'}>
-      <Guide state={guide} change={setGuide} start={startGuide} recommend={b => setBrush(old => ({ ...old, ...b }))} complete={() => { setGuide({ ...guide, open: false }); setStatus('四步已经走过。可以继续自由绘画，或导出这场日落。'); }}/>
+      <Guide state={guide} change={setGuide} start={startGuide} recommend={b => setBrush(old => ({ ...old, ...b }))} complete={complete}/>
       <section className="canvas-column" aria-label="创作区">
         <div className="workspace-heading"><div><p className="eyebrow">A LITTLE TIME, A LITTLE PAINT</p><h1>把此刻，慢慢画下来。</h1></div><span className="paper-label">你的画布 <span>01</span></span></div>
         <div className="toolbar" aria-label="绘画工具">
           <div className="toolbar-actions"><button className="icon-button" aria-label="撤销" title="撤销 · Ctrl+Z" disabled={!historyCount || busy} onClick={undo}><Icon name="undo"/></button><button className="icon-button" aria-label="清空画布" title="清空画布" disabled={!hasPaint || busy} onClick={() => setConfirmClear(true)}><Icon name="clear"/></button></div>
           <div className="mode-switch" aria-label="绘画方式"><button aria-pressed={brush.mode === 'cover'} onClick={() => setBrush({ ...brush, mode: 'cover' })}>覆盖</button><button aria-pressed={brush.mode === 'mix'} onClick={() => setBrush({ ...brush, mode: 'mix' })}>混色</button></div>
           <span className="toolbar-caption">{brush.mode === 'cover' ? '让新的颜色，留在画布上' : '让两种颜色，在接触处相遇'}</span>
+          <button className="finish-button" onClick={complete} disabled={!hasPaint || busy}>签名与完成</button>
           <button className="export-button" onClick={download} disabled={busy}><Icon name="download" size={17}/>{busy ? '导出中…' : '导出 PNG'}</button>
         </div>
         <div className="canvas-frame">
@@ -185,6 +189,7 @@ function App() {
     <dialog ref={dialog} className="clear-dialog" onCancel={() => setConfirmClear(false)} onClose={() => setConfirmClear(false)}><p className="eyebrow">A FRESH START</p><h2>回到一张空白画布？</h2><p>当前画面会被清空。你仍然可以撤销这次清空。</p><div><button autoFocus onClick={() => setConfirmClear(false)}>继续画</button><button className="confirm-button" onClick={clear}>确认清空</button></div></dialog>
     <dialog ref={newDialog} className="clear-dialog" onCancel={() => setNewChoice(false)} onClose={() => setNewChoice(false)}><p className="eyebrow">KEEP YOUR MARKS</p><h2>从哪里开始这场日落？</h2><p>画布上已经有你的笔触。可以直接在当前画作上开启提示；新画一张会清空当前画布，这次清空仍可撤销。</p><div className="choice-actions"><button autoFocus onClick={() => setNewChoice(false)}>取消，保留画作</button><button onClick={() => chooseGuide(true)}>新画一张旅行日落</button><button className="confirm-button" onClick={() => chooseGuide(false)}>在当前画作上继续</button></div></dialog>
     <dialog ref={recoveryDialog} className="clear-dialog" onCancel={() => setRecoveryOpen(false)} onClose={() => setRecoveryOpen(false)}><p className="eyebrow">WELCOME BACK</p><h2>上次的日光，还在这里。</h2><p>找到一个本地草稿{availableDraft ? `，保存于 ${new Date(availableDraft.savedAt).toLocaleString('zh-CN')}` : ''}。恢复颜色、厚度与创作步骤后，可以继续绘画。旧撤销历史不会恢复，撤销从接下来的新笔开始。</p>{hasPaint && <p>恢复会替换当前未保存画面；请先导出当前画作。</p>}<p>选择新建会替换这个唯一的已存草稿。暂不恢复时，旧草稿会保留，当前画面只在内存中。</p><div className="choice-actions"><button onClick={() => setRecoveryOpen(false)}>暂不恢复，保留草稿</button>{hasPaint && <button onClick={download}>导出当前画面</button>}<button onClick={replaceSavedDraft}>新建并替换旧草稿</button><button className="confirm-button" autoFocus onClick={restore}>{hasPaint ? '确认恢复并替换当前画面' : '恢复草稿'}</button></div></dialog>
+    {finishing && renderer.current && <Completion renderer={renderer.current} signature={signature} changeSignature={setSignature} back={() => { setFinishing(false); setStatus('画作与签名都已保留，可以继续修改。'); }}/>}
   </div>;
 }
 

@@ -1,0 +1,14 @@
+{
+  "status": "通过",
+  "expected": {
+    "color": "ae783adb218bde23edec8327ecaf6930d3ac96e52b20faf45f57ff6c6ac0562c",
+    "height": "e395c3b972a578f7236b2418c1e4c4cb82c0e14b4ea1b9b3e512a2041dccb860"
+  },
+  "restored": {
+    "color": "ae783adb218bde23edec8327ecaf6930d3ac96e52b20faf45f57ff6c6ac0562c",
+    "height": "e395c3b972a578f7236b2418c1e4c4cb82c0e14b4ea1b9b3e512a2041dccb860"
+  },
+  "initialRecordPreserved": true,
+  "restoredHistory": 0,
+  "newStrokeUndoExact": true
+}

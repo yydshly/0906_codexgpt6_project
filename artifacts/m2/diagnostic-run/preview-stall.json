@@ -1,0 +1,93 @@
+{
+  "atFailure": {
+    "events": [
+      {
+        "stage": "fonts ready",
+        "at": 492.10000002384186
+      },
+      {
+        "stage": "toBlob start",
+        "at": 14520.600000023842
+      },
+      {
+        "stage": "toBlob done",
+        "at": 21272.5
+      },
+      {
+        "stage": "toBlob start",
+        "at": 22105.400000035763
+      },
+      {
+        "stage": "toBlob done",
+        "at": 28859.200000047684
+      },
+      {
+        "stage": "toBlob start",
+        "at": 29316.400000035763
+      }
+    ],
+    "fonts": "loaded",
+    "renderer": {
+      "mode": "webgl2",
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)",
+      "backing": [
+        611,
+        611
+      ],
+      "dpr": 1.0000000298023224,
+      "cpuBufferBytes": 4194304,
+      "gpuTextureBytes": 6291456
+    }
+  },
+  "afterWait": {
+    "events": [
+      {
+        "stage": "fonts ready",
+        "at": 492.10000002384186
+      },
+      {
+        "stage": "toBlob start",
+        "at": 14520.600000023842
+      },
+      {
+        "stage": "toBlob done",
+        "at": 21272.5
+      },
+      {
+        "stage": "toBlob start",
+        "at": 22105.400000035763
+      },
+      {
+        "stage": "toBlob done",
+        "at": 28859.200000047684
+      },
+      {
+        "stage": "toBlob start",
+        "at": 29316.400000035763
+      },
+      {
+        "stage": "toBlob done",
+        "at": 36045.90000003576
+      },
+      {
+        "stage": "bitmap start",
+        "at": 36046
+      },
+      {
+        "stage": "bitmap done",
+        "at": 36064.700000047684
+      },
+      {
+        "stage": "toBlob start",
+        "at": 36067.200000047684
+      },
+      {
+        "stage": "toBlob done",
+        "at": 42797.200000047684
+      }
+    ],
+    "fonts": "loaded",
+    "preview": true
+  }
+}

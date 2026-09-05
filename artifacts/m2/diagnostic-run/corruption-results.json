@@ -1,0 +1,7 @@
+{
+  "status": "通过",
+  "fault": "test-only single height bit changed without updating checksum",
+  "rejected": true,
+  "storedRecordPreserved": true,
+  "inMemoryDrawingAndExport": true
+}

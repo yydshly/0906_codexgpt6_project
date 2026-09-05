@@ -1,0 +1,67 @@
+{
+  "baseline": "82c5c6f",
+  "preserved": [
+    {
+      "path": "src/painting/engine.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/painting/input.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/painting/mix.ts",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/strokes.ts",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/deploy.yml",
+      "unchanged": true
+    },
+    {
+      "path": "M1_REPORT.md",
+      "unchanged": true
+    }
+  ],
+  "rendererOnlyPngEncoderChanged": true,
+  "m1HistoricalArtifactsUnchanged": true,
+  "samples": [
+    {
+      "name": "single-stroke",
+      "original": "artifacts/m1/single-stroke.png",
+      "current": "artifacts/m2/delivery/single-stroke.png",
+      "originalSha256": "39888821c92e1c896bf00709a87ec2cbb6972750a8ad1d3b912cfbd1cbd4c9d8",
+      "currentSha256": "39888821c92e1c896bf00709a87ec2cbb6972750a8ad1d3b912cfbd1cbd4c9d8",
+      "identicalFile": true,
+      "differentPixels": 0,
+      "maxChannelDelta": 0,
+      "meanAbsoluteRGBAChannelDelta": 0
+    },
+    {
+      "name": "two-color-overlap",
+      "original": "artifacts/m1/two-color-overlap.png",
+      "current": "artifacts/m2/delivery/two-color-overlap.png",
+      "originalSha256": "267fabc814beb2703f3a0b633bc42f0c7a35525ef3384cdb359c786bc7fc5414",
+      "currentSha256": "267fabc814beb2703f3a0b633bc42f0c7a35525ef3384cdb359c786bc7fc5414",
+      "identicalFile": true,
+      "differentPixels": 0,
+      "maxChannelDelta": 0,
+      "meanAbsoluteRGBAChannelDelta": 0
+    },
+    {
+      "name": "repeated-layering",
+      "original": "artifacts/m1/repeated-layering.png",
+      "current": "artifacts/m2/delivery/repeated-layering.png",
+      "originalSha256": "6571dd3983ae4816917f266ee9197e1a29df3ae1984c0b787ecbf84b704a6176",
+      "currentSha256": "3efa25e06dd2cb35a3e175b8262384c09afa60ada86c2259f77cab568111eaed",
+      "identicalFile": false,
+      "differentPixels": 37,
+      "maxChannelDelta": 6,
+      "meanAbsoluteRGBAChannelDelta": 0.0000171661376953125
+    }
+  ],
+  "rendererDiff": "diff --git a/src/rendering/renderer.ts b/src/rendering/renderer.ts\nindex 5e178cc..82e0f17 100644\n--- a/src/rendering/renderer.ts\n+++ b/src/rendering/renderer.ts\n@@ -1,4 +1,5 @@\n import { Painting, SIZE } from '../painting/engine';\n+import { encodePng } from './png';\n \n const vertex = `#version 300 es\n out vec2 uv;\n@@ -151,7 +152,7 @@ export class StudioRenderer {\n         ctx.putImageData(result, 0, 0);\n       } finally { gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.deleteFramebuffer(fbo); gl.deleteTexture(target); this.request(); }\n     } else ctx.drawImage(this.fallback, 0, 0);\n-    return new Promise((resolve, reject) => output.toBlob(blob => blob ? resolve(blob) : reject(new Error('PNG 编码失败，请重试')), 'image/png'));\n+    return encodePng(output);\n   }\n   info() {\n     const gl = this.gl, ext = gl?.getExtension('WEBGL_debug_renderer_info');\n"
+}

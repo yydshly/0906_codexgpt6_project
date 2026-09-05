@@ -1,4 +1,5 @@
 import { Painting, SIZE } from '../painting/engine';
+import { encodePng } from './png';
 
 const vertex = `#version 300 es
 out vec2 uv;
@@ -151,7 +152,7 @@ export class StudioRenderer {
         ctx.putImageData(result, 0, 0);
       } finally { gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.deleteFramebuffer(fbo); gl.deleteTexture(target); this.request(); }
     } else ctx.drawImage(this.fallback, 0, 0);
-    return new Promise((resolve, reject) => output.toBlob(blob => blob ? resolve(blob) : reject(new Error('PNG 编码失败，请重试')), 'image/png'));
+    return encodePng(output);
   }
   info() {
     const gl = this.gl, ext = gl?.getExtension('WEBGL_debug_renderer_info');

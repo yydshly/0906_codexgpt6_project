@@ -1,0 +1,57 @@
+
+> slowlight-oil-studio@0.1.0 test:m2
+> playwright test --project=m2
+
+
+Running 8 tests using 1 worker
+
+(node:8580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [m2] › tests\m2.spec.ts:13:1 › A guide choices and overlays preserve independent artwork and user choices (6.3s)
+  ok 2 [m2] › tests\m2.spec.ts:39:1 › A explicitly choosing a fresh themed canvas remains undoable (3.3s)
+  ok 3 [m2] › tests\m2.spec.ts:47:1 › B committed draft restores exact color/height, brush and step; new undo returns to restored state (10.2s)
+  ok 4 [m2] › tests\m2.spec.ts:70:1 › B deferred recovery preserves the old record and asks before replacing current work (5.9s)
+  ok 5 [m2] › tests\m2.spec.ts:83:1 › B write failure cannot claim saved, retains both current painting and previous committed draft (5.5s)
+  ok 6 [m2] › tests\m2.spec.ts:98:1 › B corrupted bytes are rejected without replacing stored data; drawing and export remain available (6.7s)
+  x  7 [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery (28.2s)
+(node:7016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 8 [m2] › tests\m2.spec.ts:167:1 › C newer draft in another tab cannot be silently overwritten by an older session (7.5s)
+
+
+  1) [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByTestId('work-preview')
+    Expected: "Lina · 2026"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('work-preview') with timeout 5000ms
+      - waiting for getByTestId('work-preview')
+
+
+      141 |   await page.getByRole('button', { name: '完成引导', exact: true }).click();
+      142 |   await page.getByLabel('给这幅画签名', { exact: false }).fill('Lina · 2026');
+    > 143 |   await expect(page.getByTestId('work-preview')).toHaveAttribute('data-signature', 'Lina · 2026');
+          |                                                  ^
+      144 |   await expect(page.getByRole('button', { name: '保存这幅画 · PNG', exact: true })).toBeEnabled();
+      145 |   await page.getByTestId('work-preview').evaluate((img: HTMLImageElement) => img.decode());
+      146 |   const preview = await page.getByTestId('work-preview').evaluate(async (img: HTMLImageElement) => Array.from(new Uint8Array(await (await fetch(img.src)).arrayBuffer())));
+        at E:\0906_codexgpt6_project\tests\m2.spec.ts:143:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\error-context.md
+
+  1 failed
+    [m2] › tests\m2.spec.ts:110:1 › C real travel sunset journey, signed preview/download, return to edit and signature recovery 
+  7 passed (1.3m)

@@ -7,6 +7,7 @@ export default defineConfig({
     { name: 'engine', testMatch: 'engine.spec.ts' },
     { name: 'studio', testMatch: 'studio.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
     { name: 'm2', testMatch: 'm2.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
+    { name: 'm2-performance', testMatch: 'm2-performance.spec.ts', use: { video: 'off', screenshot: 'off' }, timeout: 180000 },
     { name: 'performance', testMatch: 'performance.spec.ts', use: { video: 'off', screenshot: 'off' }, timeout: 360000 },
   ],
   webServer: { command: 'npm run dev -- --host 127.0.0.1 --port 5174 --strictPort', url: 'http://127.0.0.1:5174', reuseExistingServer: true, timeout: 30000 },
