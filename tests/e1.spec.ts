@@ -3,7 +3,7 @@ import { ready, digest, draw } from './helpers';
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { experimentDigest, completed, loadedPlan, experimentPng, storedDraft } from './e1-helpers';
 
-const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/a';
+const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local';
 test('E1-A actual redraw in the existing page with isolated state', async ({ page }, info) => {
   mkdirSync(root, { recursive: true });
   await ready(page); const before = await digest(page);
@@ -12,8 +12,7 @@ test('E1-A actual redraw in the existing page with isolated state', async ({ pag
   await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
   await page.screenshot({ path: `${root}/first-screen.png` });
   await page.getByRole('button', { name: '确认构图并绘制' }).click();
-  await page.waitForFunction(() => !!window.__experiment?.player, { timeout: 180000 });
-  await page.waitForFunction(() => window.__experiment?.player?.state === 'complete', { timeout: 180000 });
+  await loadedPlan(page); await completed(page);
   await page.screenshot({ path: `${root}/landscape-result.png` });
   const output = await page.evaluate(async () => {
     const e = window.__experiment!, p = e.painting;

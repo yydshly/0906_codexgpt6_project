@@ -1,0 +1,17 @@
+
+> slowlight-oil-studio@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/png.worker-CD6LPnT8.js        0.41 kB
+dist/index.html                           0.59 kB │ gzip:  0.43 kB
+dist/assets/planner.worker-C8DZ3ZI5.js    9.74 kB
+dist/assets/index-DwWAGhjm.css           21.26 kB │ gzip:  6.03 kB
+dist/assets/index-sRZtfYK4.js           252.53 kB │ gzip: 81.63 kB
+
+✓ built in 199ms
+Published review navigation and 47 unchanged evidence files.

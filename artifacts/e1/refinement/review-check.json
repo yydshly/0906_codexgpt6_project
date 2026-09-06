@@ -1,0 +1,109 @@
+{
+  "status": "通过",
+  "images": 25,
+  "links": 55,
+  "videos": [
+    {
+      "src": "c/landscape/process.webm",
+      "width": 1440,
+      "height": 900,
+      "duration": 197.6,
+      "decodedFrames": [
+        {
+          "mediaTime": 0.3,
+          "readyState": 4,
+          "paintedChannels": 48000
+        },
+        {
+          "mediaTime": 98.8,
+          "readyState": 4,
+          "paintedChannels": 48000
+        },
+        {
+          "mediaTime": 197.1,
+          "readyState": 4,
+          "paintedChannels": 48000
+        }
+      ]
+    },
+    {
+      "src": "c/still-life/process.webm",
+      "width": 1440,
+      "height": 900,
+      "duration": 185.08,
+      "decodedFrames": [
+        {
+          "mediaTime": 0.3,
+          "readyState": 4,
+          "paintedChannels": 48000
+        },
+        {
+          "mediaTime": 92.54,
+          "readyState": 4,
+          "paintedChannels": 47759
+        },
+        {
+          "mediaTime": 184.58,
+          "readyState": 4,
+          "paintedChannels": 47983
+        }
+      ]
+    },
+    {
+      "src": "c/complex/process.webm",
+      "width": 1440,
+      "height": 900,
+      "duration": 188.44,
+      "decodedFrames": [
+        {
+          "mediaTime": 0.3,
+          "readyState": 4,
+          "paintedChannels": 47999
+        },
+        {
+          "mediaTime": 94.22,
+          "readyState": 4,
+          "paintedChannels": 47788
+        },
+        {
+          "mediaTime": 187.94,
+          "readyState": 4,
+          "paintedChannels": 47974
+        }
+      ]
+    },
+    {
+      "src": "c/pen/process.webm",
+      "width": 1440,
+      "height": 900,
+      "duration": 96.2,
+      "decodedFrames": [
+        {
+          "mediaTime": 0.3,
+          "readyState": 4,
+          "paintedChannels": 48000
+        },
+        {
+          "mediaTime": 48.1,
+          "readyState": 3,
+          "paintedChannels": 48000
+        },
+        {
+          "mediaTime": 95.7,
+          "readyState": 4,
+          "paintedChannels": 48000
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "header": {
+    "text": "SLOWLIGHT / LOCAL STUDY · E1\n\n让照片，慢慢成为笔触。\n\n图片自动绘制 · 实验　原画室与草稿已保留\n\n返回画室",
+    "visible": "visible",
+    "opacity": "1"
+  },
+  "actualStudioAndExperimentEntry": true,
+  "experimentOpensReviewWithoutLeaving": true,
+  "selectionDrawingPauseExportAfterOverlayChange": true,
+  "note": "Chrome decoded start/middle/end frames; this is media integrity, not human visual acceptance."
+}

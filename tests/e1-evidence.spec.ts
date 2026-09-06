@@ -8,7 +8,7 @@ import { executeStroke, MAX_STROKES, STAGES } from '../src/experiment/plan';
 import type { StrokePlan } from '../src/experiment/plan';
 import { relative } from 'node:path';
 
-const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/c';
+const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local';
 for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${sample}: real strokes, every phase, video and exact independent replay`, async ({ page }, info) => {
   const dir = `${root}/${sample}`; mkdirSync(dir, { recursive: true }); await ready(page);
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));

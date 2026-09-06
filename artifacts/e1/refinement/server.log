@@ -1,0 +1,13 @@
+
+  VITE v8.2.2  ready in 283 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+13:01:41 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx
+13:02:24 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx
+13:02:25 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx
+13:02:25 [vite] (client) hmr update /src/experiment/experiment.css
+13:05:51 [vite] vite.config.ts changed, restarting server...
+13:05:51 [vite] server restarted.
+13:08:26 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx
+13:08:26 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx
+13:08:27 [vite] (client) hmr update /src/experiment/ImageExperiment.tsx

@@ -1,0 +1,10 @@
+{
+  "file": "../../../fixtures/complex.jpg",
+  "inputHash": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0",
+  "composition": "contain",
+  "plannerVersion": "e1-refined-2",
+  "seed": 1906,
+  "canvasSeed": 906,
+  "brushVersion": 2,
+  "analysisSize": 512
+}

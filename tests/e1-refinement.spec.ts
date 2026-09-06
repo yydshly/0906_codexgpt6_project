@@ -4,7 +4,7 @@ import { ready, draw, digest } from './helpers';
 import { loadedPlan, completed, experimentDigest, experimentPng, storedDraft } from './e1-helpers';
 
 test('visible pen pauses inside a stroke; export and context loss preserve continuation', async ({ page }) => {
-  const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/b'}/pen`; mkdirSync(dir, { recursive: true });
+  const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local'}/pen`; mkdirSync(dir, { recursive: true });
   await ready(page); await draw(page, [{ x: 100, y: 300 }, { x: 400, y: 400 }]);
   await expect(page.getByTestId('save-state')).toHaveAttribute('data-phase', 'saved', { timeout: 15000 });
   const manual = await digest(page), saved = await storedDraft(page);

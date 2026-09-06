@@ -1,0 +1,30 @@
+{
+  "status": "通过",
+  "contact": {
+    "contact": [
+      160,
+      169,
+      72,
+      197
+    ],
+    "yellowOnly": [
+      235,
+      196,
+      60,
+      172
+    ],
+    "blueOnly": [
+      49,
+      85,
+      166,
+      191
+    ]
+  },
+  "decoded": {
+    "width": 1024,
+    "height": 1024,
+    "colored": 54872
+  },
+  "errors": [],
+  "video": "E:\\0906_codexgpt6_project\\test-results\\studio-designed-studio-fix-fa656-al-UI-workflow-PNG-download-studio\\video.webm"
+}

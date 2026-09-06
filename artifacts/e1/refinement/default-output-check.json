@@ -1,0 +1,7 @@
+{
+  "status": "通过",
+  "defaultOutput": "artifacts/e1/refinement/local/npx-results.json",
+  "passed": 1,
+  "failed": 0,
+  "legacyEvidenceUntouched": true
+}

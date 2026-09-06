@@ -5,10 +5,11 @@ export const experimentDigest = (page: Page) => page.evaluate(async () => {
   const hash = async (a: Uint8ClampedArray | Uint16Array) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', a.buffer as ArrayBuffer))).map(x => x.toString(16).padStart(2, '0')).join('');
   return { color: await hash(p.color), height: await hash(p.height) };
 });
-export const completed = (page: Page) => page.waitForFunction(() => window.__experiment?.player?.state === 'complete', undefined, { timeout: 180000 });
+// Visible travel and drawing intentionally take longer; CPU batch gates stay unchanged.
+export const completed = (page: Page) => page.waitForFunction(() => window.__experiment?.player?.state === 'complete', undefined, { timeout: 300000 });
 export async function loadedPlan(page: Page) {
-  await page.waitForFunction(() => !!window.__experiment?.player || /失败|未能完成|超过 120 秒/.test(document.querySelector('.experiment-message')?.textContent || ''), undefined, { timeout: 130000 });
-  expect(await page.evaluate(() => !!window.__experiment?.player), await page.locator('.experiment-message').innerText()).toBe(true);
+  await page.waitForFunction(() => !!window.__experiment?.player || /失败|未能完成|超过 120 秒/.test(document.querySelector('.experiment-message[role="status"]')?.textContent || ''), undefined, { timeout: 130000 });
+  expect(await page.evaluate(() => !!window.__experiment?.player), await page.locator('.experiment-message[role="status"]').innerText()).toBe(true);
 }
 export async function experimentPng(page: Page, path: string) {
   const encoded = await page.evaluate(async () => {

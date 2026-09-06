@@ -1,0 +1,40 @@
+{
+  "status": "通过",
+  "samples": [
+    {
+      "sample": "landscape",
+      "strokes": 6735,
+      "planningSeconds": 5.385400000095367,
+      "stageRecordingSeconds": 173.5777999999523,
+      "batchP95Ms": 6.399999976158142,
+      "batchMaxMs": 13,
+      "historyBytes": 0,
+      "arrayMatch": true,
+      "pngMatch": true
+    },
+    {
+      "sample": "still-life",
+      "strokes": 7187,
+      "planningSeconds": 10.0465,
+      "stageRecordingSeconds": 169.65,
+      "batchP95Ms": 5.599999904632568,
+      "batchMaxMs": 10.600000023841858,
+      "historyBytes": 0,
+      "arrayMatch": true,
+      "pngMatch": true
+    },
+    {
+      "sample": "complex",
+      "strokes": 7036,
+      "planningSeconds": 7.299899999976158,
+      "stageRecordingSeconds": 172.05789999997617,
+      "batchP95Ms": 6.5,
+      "batchMaxMs": 8.100000023841858,
+      "historyBytes": 0,
+      "arrayMatch": true,
+      "pngMatch": true
+    }
+  ],
+  "humanQuality": "待用户确认",
+  "timingNote": "Includes planning and per-stage pause/export/screenshot collection; not uninterrupted runtime."
+}

@@ -4,3 +4,5 @@ test-results/
 playwright-report/
 *.local
 artifacts/deployment/
+artifacts/e1/refinement/runtime/
+artifacts/e1/refinement/local/

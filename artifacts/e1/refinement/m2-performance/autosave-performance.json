@@ -1,0 +1,46 @@
+{
+  "status": "通过",
+  "durationMs": 60323,
+  "sent": 2429,
+  "averageFps": 238.60718258516664,
+  "p95FrameMs": 4.30000000000291,
+  "maxFrameMs": 75,
+  "framesOver50ms": 2,
+  "receivedMoveEvents": 2430,
+  "draft": {
+    "snapshots": 7,
+    "copiedBytes": 44040192,
+    "maxCopyMs": 3.899999976158142,
+    "writes": 7,
+    "maxWriteMs": 55.59999990463257,
+    "capturesDuringStroke": 0
+  },
+  "painting": {
+    "currentBytes": 6291456,
+    "historyBytes": 125829120,
+    "pendingBytes": 0,
+    "batchBufferBytes": 0,
+    "brushBytes": 2048,
+    "cacheEntries": 0,
+    "historyCount": 20
+  },
+  "active": false,
+  "environment": {
+    "mode": "webgl2",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (Intel)",
+    "backing": [
+      611,
+      611
+    ],
+    "dpr": 1.0000000298023224,
+    "cpuBufferBytes": 4194304,
+    "gpuTextureBytes": 6291456
+  },
+  "snapshotsDuringMeasurement": 6,
+  "writesDuringMeasurement": 6,
+  "snapshotsDuringFirst30sHeldStroke": 0,
+  "beforeHeap": 7095212,
+  "afterHeap": 7820904,
+  "method": "headed Chrome, no video; Playwright mouse -> Pointer Events -> original engine/WebGL; 20-entry initial history; 30s held stroke + five 4.6s strokes with 1.25s saving pauses. rAF timing is not hardware input latency; heap excludes driver and external buffers."
+}

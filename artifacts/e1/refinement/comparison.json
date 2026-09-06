@@ -1,0 +1,57 @@
+{
+  "status": "通过",
+  "comparisons": [
+    {
+      "sample": "landscape",
+      "inputHash": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c",
+      "planHash": "f2cd29bd45d486b65b63b02fd8f600c2f66407309fe1fbab60d92f7c88feae6e",
+      "pngHash": "b189eb4c9a505fd610d04fe8a933916a06cb281846a4b4415c97297414001ebf",
+      "oldState": {
+        "color": "0a1fb390c48bbc827633465146bc3872e3067e28d94bb36f58f2a27ef04eb99f",
+        "height": "25c8caeeacf7336b54420fef5485019a984060b4f0e3061353a331fbea553911"
+      },
+      "newState": {
+        "color": "d61aa785f3caeaee08a1dbc8d0f49e720a06f50de6fd3a16a86755081d166c50",
+        "height": "66f0d33eacc0f3ec3cef87f91fd9f75823a0bea49aee136b8078b7fc8934c797"
+      },
+      "oldStrokes": 3463,
+      "newStrokes": 6735,
+      "visiblePenMatchesEarlierFullStroke": true
+    },
+    {
+      "sample": "still-life",
+      "inputHash": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+      "planHash": "d7789804a27efe1fd6131d9afc3176c14c3ce9466423d9bf737253024a935c88",
+      "pngHash": "493ccfdc877e2afa53d0f95f91aa6887c8f2db7514062884fa854b48fbb4c725",
+      "oldState": {
+        "color": "7acbac42954c1b5e3da1f0b3a5e18ddddd2b8b380e7e836a828f1c1e9b348b9b",
+        "height": "0932afd4487817a93b54d6de2274d37331ec3209ac2a8729df929fbd13c4ef79"
+      },
+      "newState": {
+        "color": "3fcc40b6a527282892b26064942e29a8df1e854283bed8c1e455afe815a19de6",
+        "height": "acbe772ee9c40f1a12f4136a251e1647cfc96e1b7166f19cb164eece55ee42ff"
+      },
+      "oldStrokes": 3435,
+      "newStrokes": 7187,
+      "visiblePenMatchesEarlierFullStroke": true
+    },
+    {
+      "sample": "complex",
+      "inputHash": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0",
+      "planHash": "de52b32be19e2e5788fc599b8fac6296824ab4b9fc2843ca6b084623de8b64f4",
+      "pngHash": "586a75c22f68a51c0d91a91c0469cfe264136205eeb448bd78cb444f5920c9b6",
+      "oldState": {
+        "color": "748f2a4e6aee786143170ecfc2f697b1cf619ca0c867107006e0b058f15f727f",
+        "height": "bc7f69e2986480942b5847b1816833ba41799c3123e45c19fa0a65735ff92dfd"
+      },
+      "newState": {
+        "color": "b39b9fcd49063bba742b2de529f24840ba013410a90f53287981230db6a5c64a",
+        "height": "9c0627b05da13378d669731bac824cd31f95f97fc03f60f081d13259bac2864d"
+      },
+      "oldStrokes": 3527,
+      "newStrokes": 7036,
+      "visiblePenMatchesEarlierFullStroke": true
+    }
+  ],
+  "note": "Exact arrays and PNG correspondence only. Image quality and process acceptance remain pending."
+}

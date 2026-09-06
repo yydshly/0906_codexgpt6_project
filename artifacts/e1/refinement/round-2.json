@@ -1,0 +1,10 @@
+{
+  "focusedRound": 2,
+  "scope": "Remove the optional full-canvas SVG pen drop-shadow and verify display/performance; no painting, source image, planner, seed, path, color, thickness or sample change.",
+  "trigger": "Some long-recording screenshots omit the heading; isolated short diagnostic did not reproduce it. First continuous run passes batch gates but records four rAF gaps above 100ms, max 1020.8ms. Root cause is unconfirmed.",
+  "beforeEvidence": "performance/continuous.json",
+  "afterEvidence": "performance-verified/continuous.json",
+  "earlyTestFailure": "performance-final/test-e1perf-results.json: navigation added another styled paragraph; test helper now selects the actual status role. This run did not measure full performance.",
+  "historicalScreenshotsPreserved": true,
+  "qualityAcceptance": "待用户确认"
+}
