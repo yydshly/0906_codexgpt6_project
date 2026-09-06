@@ -4,11 +4,11 @@ import type { PlanPlayer } from './player';
 export const brushName = (size: number) => size >= 40 ? '宽扁刷' : size >= 14 ? '中扁刷' : '细扁刷';
 
 /** A view of the Painting contact, never an input to painting or PNG export. */
-export function BrushCursor({ tip }: { tip: PlanPlayer['tip'] }) {
+export function BrushCursor({ tip, rack = false }: { tip: PlanPlayer['tip']; rack?: boolean }) {
   const id = useId().replaceAll(':', '');
   const width = tip.down ? tip.width : tip.size * .82, half = width / 2;
   const neck = Math.max(2, Math.min(half * .75, 19)), length = Math.min(34, 18 + width * .18);
-  return <svg className="experiment-pen" viewBox="0 0 1024 1024" aria-hidden="true" data-testid="experiment-pen" data-down={tip.down} data-width={tip.width} data-angle={tip.angle} data-size={tip.size}>
+  return <svg className={rack ? 'rack-pen' : 'experiment-pen'} viewBox={rack ? '-48 -16 96 152' : '0 0 1024 1024'} aria-hidden="true" data-testid={rack ? undefined : 'experiment-pen'} data-down={tip.down} data-width={tip.width} data-angle={tip.angle} data-size={tip.size}>
     <defs>
       <linearGradient id={`${id}-wood`}><stop stopColor="#423325"/><stop offset=".4" stopColor="#a4885c"/><stop offset=".65" stopColor="#796043"/><stop offset="1" stopColor="#46372a"/></linearGradient>
       <linearGradient id={`${id}-metal`}><stop stopColor="#756f60"/><stop offset=".3" stopColor="#ece4cd"/><stop offset=".6" stopColor="#a9a38f"/><stop offset="1" stopColor="#666658"/></linearGradient>

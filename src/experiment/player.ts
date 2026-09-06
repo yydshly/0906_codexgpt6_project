@@ -3,6 +3,9 @@ import type { StrokePlan } from './plan';
 import { StrokeRunner } from './stroke-runner';
 import { DIP_MS, PAINT_WELL, type PaintPickup } from './process-plan';
 
+type Station = { x: number; y: number };
+export type MaterialStations = { dishes: Record<string, Station>; brushes: Record<string, Station>; wipe: Station };
+
 export class PlanPlayer {
   index = 0;
   state: 'ready' | 'playing' | 'paused' | 'complete' = 'ready';
@@ -11,6 +14,10 @@ export class PlanPlayer {
   tip = { x: 0, y: 0, down: false, visible: false, color: '#433e32', size: 24, width: 24, angle: 0, load: 0 };
   loadedPaint: PaintPickup | null = null;
   dipProgress = 0;
+  heldBrushId: string | null = null;
+  private dwell = 0;
+  private afterWipe: 'return-brush' | 'to-paint' = 'to-paint';
+  private stations: MaterialStations = { dishes: {}, brushes: {}, wipe: { x: 1220, y: 1030 } };
   private pickups = new Map<number, PaintPickup>();
   readonly metrics = { batches: [] as number[], frames: [] as number[], strokeMaxMs: 0, paintingMs: 0, totalBatches: 0, maxBatchMs: 0, maxConsecutiveOver100: 0 };
   private consecutiveOver100 = 0;
@@ -18,7 +25,7 @@ export class PlanPlayer {
   private lastTime = 0;
   private credit = 0;
   private runner: StrokeRunner | null = null;
-  private phase: 'prepare' | 'to-paint' | 'dip' | 'travel' | 'draw' | 'lift' = 'prepare';
+  private phase: 'prepare' | 'take-brush' | 'return-brush' | 'release-brush' | 'to-wipe' | 'wipe' | 'to-paint' | 'dip' | 'travel' | 'draw' | 'lift' = 'prepare';
   private travel: { x: number; y: number; elapsed: number; duration: number } | null = null;
   private strokeCpuMs = 0;
   private liftRemaining = 6;
@@ -32,6 +39,17 @@ export class PlanPlayer {
         if (!load || load.color !== stroke.brush.color || load.size !== stroke.brush.size || load.load !== stroke.brush.load) throw new Error('取色计划与笔触不一致');
       }
     }
+    if (plan.materials) {
+      const { brushes, dishes } = plan.materials;
+      if (plan.materials.version !== 1 || !brushes.length || brushes.length > 8 || !dishes.length || dishes.length > 24 || new Set(brushes.map(b => b.id)).size !== brushes.length || new Set(dishes.map(d => d.id)).size !== dishes.length) throw new Error('备料清单无效');
+      for (const s of plan.strokes) if (brushes.find(b => b.id === s.brushId)?.size !== s.brush.size || dishes.find(d => d.id === s.dishId)?.color !== s.brush.color) throw new Error('笔具或色盘与实际笔触不一致');
+      brushes.forEach((b, i) => { this.stations.brushes[b.id] = { x: 1120 + i * 48, y: 860 }; });
+      dishes.forEach((d, i) => { this.stations.dishes[d.id] = { x: 1120 + i % 4 * 80, y: 180 + Math.floor(i / 4) * 80 }; });
+    }
+  }
+  setStations(stations: MaterialStations) {
+    this.stations = stations;
+    if (!['draw', 'lift', 'prepare'].includes(this.phase)) this.travel = null;
   }
   get action() { return this.phase; }
   get nextPaint() { return this.pickups.get(this.index) ?? this.loadedPaint; }
@@ -42,6 +60,7 @@ export class PlanPlayer {
   replay() {
     this.pause(); this.painting.clear(); this.index = 0; this.runner = null; this.travel = null; this.phase = 'prepare';
     this.loadedPaint = null; this.dipProgress = 0; this.tip.load = 0;
+    this.heldBrushId = null; this.dwell = 0; this.afterWipe = 'to-paint';
     this.credit = 0; this.strokeCpuMs = 0; this.liftRemaining = 6; this.tip.visible = false; this.tip.down = false;
     this.state = 'ready'; this.play();
   }
@@ -55,18 +74,43 @@ export class PlanPlayer {
     // Bound catch-up after a hidden tab or slow frame. Speed affects timing only.
     this.credit = Math.min(100, this.credit + Math.min(40, elapsedFrame) * Math.max(.5, Math.min(4, this.speed)));
     const start = performance.now();
-    while (this.index < this.plan.strokes.length && this.state === 'playing' && this.credit > 0 && performance.now() - start < 6) {
-      const stroke = this.plan.strokes[this.index];
+    while ((this.index < this.plan.strokes.length || this.plan.materials && this.heldBrushId) && this.state === 'playing' && this.credit > 0 && performance.now() - start < 6) {
+      const stroke = this.plan.strokes[Math.min(this.index, this.plan.strokes.length - 1)];
+      if (this.index === this.plan.strokes.length && !['return-brush', 'release-brush', 'to-wipe', 'wipe'].includes(this.phase)) this.returnBrush();
       if (this.phase === 'prepare') {
-        this.phase = this.pickups.has(this.index) ? 'to-paint' : 'travel'; this.travel = null;
+        if (this.plan.materials && this.heldBrushId !== stroke.brushId) {
+          if (this.heldBrushId) this.returnBrush();
+          else {
+            this.heldBrushId = stroke.brushId!;
+            const point = this.stations.brushes[this.heldBrushId];
+            this.tip.x = point.x; this.tip.y = point.y; this.tip.size = stroke.brush.size; this.tip.width = stroke.brush.size;
+            this.tip.angle = -Math.PI / 2; this.tip.visible = true; this.tip.down = false; this.tip.load = 0;
+            this.phase = 'take-brush'; this.dwell = 70;
+          }
+        } else this.phase = this.pickups.has(this.index) ? this.plan.materials && this.loadedPaint && this.loadedPaint.color !== stroke.brush.color ? 'to-wipe' : 'to-paint' : 'travel';
+        this.travel = null;
+      } else if (this.phase === 'take-brush') {
+        if (this.waitDwell()) this.phase = 'to-paint';
+      } else if (this.phase === 'return-brush') {
+        if (this.moveTip(this.stations.brushes[this.heldBrushId!], 64)) { this.phase = 'release-brush'; this.dwell = 50; this.tip.angle = -Math.PI / 2; this.travel = null; }
+      } else if (this.phase === 'release-brush') {
+        if (this.waitDwell()) { this.heldBrushId = null; this.loadedPaint = null; this.tip.visible = false; this.tip.load = 0; this.phase = 'prepare'; }
+      } else if (this.phase === 'to-wipe') {
+        if (this.moveTip(this.stations.wipe, 54)) { this.phase = 'wipe'; this.dwell = 45; this.travel = null; }
+      } else if (this.phase === 'wipe') {
+        const done = this.waitDwell(); this.tip.load = (this.loadedPaint?.load ?? 0) * this.dwell / 45;
+        if (done) { this.loadedPaint = null; this.phase = this.afterWipe; this.afterWipe = 'to-paint'; }
       } else if (this.phase === 'to-paint') {
-        if (this.moveTip(PAINT_WELL, 24)) { this.phase = 'dip'; this.dipProgress = 0; this.travel = null; this.tip.angle = Math.PI / 2; }
+        const well = this.plan.materials ? this.stations.dishes[stroke.dishId!] : PAINT_WELL;
+        if (this.moveTip(well, this.plan.materials ? 54 : 24)) { this.phase = 'dip'; this.dipProgress = 0; this.travel = null; this.tip.angle = Math.PI / 2; }
       } else if (this.phase === 'dip') {
         const paint = this.pickups.get(this.index)!;
-        const used = Math.min(this.credit, DIP_MS * (1 - this.dipProgress)); this.credit -= used;
-        this.dipProgress = Math.min(1, this.dipProgress + used / DIP_MS);
+        const duration = this.plan.materials ? 100 : DIP_MS;
+        const used = Math.min(this.credit, duration * (1 - this.dipProgress)); this.credit -= used;
+        this.dipProgress = Math.min(1, this.dipProgress + used / duration);
         this.tip.color = paint.color; this.tip.size = paint.size; this.tip.width = paint.size; this.tip.load = paint.load * this.dipProgress;
-        this.tip.y = PAINT_WELL.y + Math.sin(this.dipProgress * Math.PI) * 9;
+        const well = this.plan.materials ? this.stations.dishes[stroke.dishId!] : PAINT_WELL;
+        this.tip.x = well.x; this.tip.y = well.y + Math.sin(this.dipProgress * Math.PI) * 9;
         if (this.dipProgress >= 1) { this.loadedPaint = paint; this.phase = 'travel'; this.travel = null; }
       } else if (this.phase === 'lift') {
         const used = Math.min(this.credit, this.liftRemaining); this.credit -= used; this.liftRemaining -= used;
@@ -79,7 +123,7 @@ export class PlanPlayer {
           const next = stroke.path[1];
           if (next) this.tip.angle = Math.atan2(next.y - target.y, next.x - target.x);
         }
-        if (this.moveTip(target, this.plan.processVersion ? 24 : 48)) {
+        if (this.moveTip(target, this.plan.materials ? 54 : this.plan.processVersion ? 24 : 48)) {
           const prepared = this.loadedPaint ? { ...stroke, brush: { ...stroke.brush, color: this.loadedPaint.color, load: this.loadedPaint.load, size: this.loadedPaint.size } } : stroke;
           const before = performance.now(); this.runner = new StrokeRunner(this.painting, prepared); this.strokeCpuMs = performance.now() - before;
           this.phase = 'draw'; this.tip.down = true;
@@ -107,10 +151,12 @@ export class PlanPlayer {
     this.consecutiveOver100 = elapsed > 100 ? this.consecutiveOver100 + 1 : 0;
     this.metrics.maxConsecutiveOver100 = Math.max(this.metrics.maxConsecutiveOver100, this.consecutiveOver100);
     if (this.metrics.batches.length < 20000) this.metrics.batches.push(elapsed);
-    if (this.index === this.plan.strokes.length) { this.state = 'complete'; this.tip.down = false; this.tip.visible = false; }
+    if (this.index === this.plan.strokes.length && (!this.plan.materials || !this.heldBrushId)) { this.state = 'complete'; this.tip.down = false; this.tip.visible = false; }
     this.update();
     if (this.state === 'playing') this.frame = requestAnimationFrame(this.tick);
   };
+  private waitDwell() { const used = Math.min(this.credit, this.dwell); this.credit -= used; this.dwell -= used; return this.dwell <= 0; }
+  private returnBrush() { this.afterWipe = 'return-brush'; this.phase = this.loadedPaint ? 'to-wipe' : 'return-brush'; this.travel = null; }
   private moveTip(target: { x: number; y: number }, maximum: number) {
     if (!this.travel) {
       if (!this.tip.visible) { this.tip.x = target.x; this.tip.y = target.y; }

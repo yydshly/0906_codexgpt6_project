@@ -1,0 +1,172 @@
+{
+  "status": "通过",
+  "inventory": {
+    "version": 1,
+    "dishes": [
+      {
+        "id": "P01",
+        "color": "#cacfd4"
+      },
+      {
+        "id": "P02",
+        "color": "#b8bdc2"
+      },
+      {
+        "id": "P03",
+        "color": "#abbad1"
+      },
+      {
+        "id": "P04",
+        "color": "#b0b8c4"
+      },
+      {
+        "id": "P05",
+        "color": "#aab2bd"
+      },
+      {
+        "id": "P06",
+        "color": "#a0aab8"
+      },
+      {
+        "id": "P07",
+        "color": "#9ba2ad"
+      },
+      {
+        "id": "P08",
+        "color": "#6f9bc8"
+      },
+      {
+        "id": "P09",
+        "color": "#8a929e"
+      },
+      {
+        "id": "P10",
+        "color": "#8d8475"
+      },
+      {
+        "id": "P11",
+        "color": "#4e85cb"
+      },
+      {
+        "id": "P12",
+        "color": "#687893"
+      },
+      {
+        "id": "P13",
+        "color": "#366cbf"
+      },
+      {
+        "id": "P14",
+        "color": "#605e5a"
+      },
+      {
+        "id": "P15",
+        "color": "#2f5dab"
+      },
+      {
+        "id": "P16",
+        "color": "#5c4f3a"
+      },
+      {
+        "id": "P17",
+        "color": "#564427"
+      },
+      {
+        "id": "P18",
+        "color": "#33425f"
+      },
+      {
+        "id": "P19",
+        "color": "#463b27"
+      },
+      {
+        "id": "P20",
+        "color": "#28354d"
+      },
+      {
+        "id": "P21",
+        "color": "#343330"
+      },
+      {
+        "id": "P22",
+        "color": "#372c18"
+      },
+      {
+        "id": "P23",
+        "color": "#282a2e"
+      },
+      {
+        "id": "P24",
+        "color": "#241e11"
+      }
+    ],
+    "brushes": [
+      {
+        "id": "B01",
+        "size": 72
+      },
+      {
+        "id": "B02",
+        "size": 36
+      },
+      {
+        "id": "B03",
+        "size": 23
+      },
+      {
+        "id": "B04",
+        "size": 16
+      },
+      {
+        "id": "B05",
+        "size": 10
+      },
+      {
+        "id": "B06",
+        "size": 8
+      },
+      {
+        "id": "B07",
+        "size": 5
+      },
+      {
+        "id": "B08",
+        "size": 4
+      }
+    ]
+  },
+  "contact": {
+    "tip": {
+      "x": 1335.1610627170103,
+      "y": 340.0289465409965,
+      "down": false,
+      "visible": true,
+      "color": "#2f5dab",
+      "size": 72,
+      "width": 72,
+      "angle": 1.5707963267948966,
+      "load": 0.06288988619079036
+    },
+    "brush": "B01",
+    "dish": "P15",
+    "held": "B01",
+    "screenX": 947.9479370117188,
+    "screenY": 493.88745918950974,
+    "dishBounds": {
+      "left": 929.9479370117188,
+      "right": 965.9479370117188,
+      "top": 479.72918701171875,
+      "bottom": 505.72918701171875
+    }
+  },
+  "main": {
+    "color": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "height": "5647f05ec18958947d32874eeb788fa396a05d0bab7c1b71f112ceb7e9b31eee"
+  },
+  "draft": null,
+  "partial": {
+    "color": "f6f17a1542a5f8cbbf8ff2c668127c1ffebdeafc2a1c4104c46c1974af06679b",
+    "height": "6eb57e09f611459309379723c2675485515dc92374711b27c26aa0da9da7ec7d"
+  },
+  "scope": "real input -> prepared inventory -> explicit start -> actual dip -> partial strokes -> real PNG; complete fixed samples tested separately"
+}

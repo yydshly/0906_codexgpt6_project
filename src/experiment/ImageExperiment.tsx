@@ -1,17 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Painting } from '../painting/engine';
 import { StudioRenderer } from '../rendering/renderer';
 import { downloadBlob } from '../works/export';
 import { analyzeImage, decodeLocalImage } from './image';
-import { PlanPlayer } from './player';
+import { PlanPlayer, type MaterialStations } from './player';
 import { STAGES, type StrokePlan, type Composition } from './plan';
 import './experiment.css';
+import './prepared.css';
 import { BrushCursor, brushName } from './BrushCursor';
+import { MaterialBoard } from './MaterialBoard';
 
 type ExperimentTest = { painting: Painting; renderer: StudioRenderer; player: PlanPlayer | null; plan: StrokePlan | null; planningMs: number };
 declare global { interface Window { __experiment?: ExperimentTest } }
 export function ImageExperiment({ back }: { back: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null), canvas = useRef<HTMLCanvasElement>(null), flat = useRef<HTMLCanvasElement>(null);
+  const workspace = useRef<HTMLDivElement>(null), overlay = useRef<HTMLDivElement>(null);
   const runtime = useRef<ExperimentTest | null>(null), worker = useRef<Worker | null>(null), generation = useRef(0);
   const source = useRef<{ bitmap: ImageBitmap; inputHash: string } | null>(null);
   const [preview, setPreview] = useState(''), [composition, setComposition] = useState<Composition>('contain');
@@ -19,6 +22,7 @@ export function ImageExperiment({ back }: { back: () => void }) {
   const [working, setWorking] = useState(false), [version, refresh] = useState(0), [leaving, setLeaving] = useState(false);
   const [exporting, setExporting] = useState(false), [fallback, setFallback] = useState(false);
   const [speed, setSpeed] = useState(1), [pending, setPending] = useState<{ kind: 'replace' | 'replan' | 'replay'; file?: File } | null>(null);
+  const [showReference, setShowReference] = useState(true), [preparationValid, setPreparationValid] = useState(false);
   const deadline = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const changed = () => { runtime.current?.renderer.request(); refresh(v => v + 1); };
   useEffect(() => {
@@ -52,7 +56,8 @@ export function ImageExperiment({ back }: { back: () => void }) {
   function changeComposition(next: Composition) {
     if (!source.current || next === composition) return;
     stopWork(); setComposition(next); setPreview(analyzeImage(source.current.bitmap, next).preview);
-    setMessage(next === 'crop' ? '居中方形将裁去预览框外内容。请检查主体；再次确认前不会改变右侧作品。' : '完整保留原比例，空白处保留画布纹理。再次确认前不会改变右侧作品。');
+    setPreparationValid(false); setShowReference(true);
+    setMessage(next === 'crop' ? '居中方形将裁去预览框外内容。原实验画作保留，请检查构图并重新准备。' : '完整保留原比例。原实验画作保留，请重新准备笔与颜色。');
   }
   async function select(file?: File) {
     if (!file) return;
@@ -62,14 +67,16 @@ export function ImageExperiment({ back }: { back: () => void }) {
       if (id !== generation.current) { next.bitmap.close(); return; }
       source.current?.bitmap.close(); source.current = next;
       setName(file.name); setComposition('contain'); setPreview(analyzeImage(next.bitmap, 'contain').preview);
+      setPreparationValid(false); setShowReference(true);
       const current = runtime.current!; current.player?.dispose(); current.player = null; current.plan = null; current.painting.clear(); changed();
-      setMessage('完整保留构图，上下或两侧留白。确认后，从空白画布逐笔开始。');
+      setMessage('先检查原图构图，再准备笔与颜色。准备完成后由你决定何时开始。');
     } catch (error) { if (id === generation.current) setMessage((error as Error).message); }
     finally { if (id === generation.current) setWorking(false); }
   }
   function generate() {
     if (!source.current) return;
     stopWork(); const id = generation.current, current = runtime.current!;
+    setPreparationValid(false);
     current.player?.dispose(); current.player = null; current.plan = null; current.painting.clear(); changed();
     setWorking(true); setMessage('正在本地规划大色块与轮廓…');
     let task: Worker;
@@ -83,8 +90,10 @@ export function ImageExperiment({ back }: { back: () => void }) {
       if (event.data.type === 'progress') setMessage(`正在规划 · ${STAGES[event.data.stage].name}`);
       else if (event.data.type === 'plan') {
         clearTimeout(deadline.current); task.terminate(); worker.current = null; setWorking(false); current.plan = event.data.plan; current.planningMs = event.data.elapsed;
-        current.player = new PlanPlayer(current.painting, current.plan, changed); current.player.speed = speed; current.player.play();
-        setMessage('先沾色，再沿真实路径落笔。可随时暂停；继续时接着当前动作。每次换色会多一个取色动作，快一点可缩短观看时间。');
+        try { current.player = new PlanPlayer(current.painting, current.plan, changed); current.player.speed = speed; }
+        catch { current.plan = null; setMessage('备料校验失败，没有开始绘制，请重新准备。'); changed(); return; }
+        setPreparationValid(true); changed();
+        setMessage(`已备好 ${current.plan.materials!.brushes.length} 支笔、${current.plan.materials!.dishes.length} 盘颜色。检查后点击“确认准备，开始绘制”。`);
       } else { stopWork(); setMessage(event.data.message); }
     };
     const { pixels } = analyzeImage(source.current.bitmap, composition);
@@ -108,14 +117,46 @@ export function ImageExperiment({ back }: { back: () => void }) {
     finally { setExporting(false); }
   }
   const player = runtime.current?.player;
-  const progressText = !player ? '等待第一笔' : player.state === 'complete' ? `${player.index} 笔 · 绘制完成` : `第 ${player.index + 1} 笔 · ${player.state === 'paused' ? '已暂停' : player.action === 'dip' ? '正在沾色' : player.action === 'to-paint' ? '移向沾色台' : player.tip.down ? '落笔中' : '抬笔移动'}（已完成 ${player.index} / ${player.plan.strokes.length} 笔）`;
+  const materials = runtime.current?.plan?.materials;
+  useLayoutEffect(() => {
+    const root = workspace.current, layer = overlay.current, surface = canvas.current?.parentElement;
+    if (!root || !layer || !surface) return;
+    const locate = () => {
+      const rect = surface.getBoundingClientRect(), outer = root.getBoundingClientRect(), scale = 1024 / Math.max(1, rect.width);
+      root.style.setProperty('--world-scale', String(rect.width / 1024));
+      Object.assign(layer.style, { left: `${rect.left - outer.left}px`, top: `${rect.top - outer.top}px`, width: `${rect.width}px`, height: `${rect.height}px` });
+      const point = (x: number, y: number) => ({ x: (x - rect.left) * scale, y: (y - rect.top) * scale });
+      const center = (element: Element) => { const b = element.getBoundingClientRect(); return point(b.left + b.width / 2, b.top + b.height / 2); };
+      const stations: MaterialStations = { brushes: {}, dishes: {}, wipe: center(root.querySelector('[data-wipe-station]')!) };
+      root.querySelectorAll<HTMLElement>('[data-dish-id]').forEach(item => { stations.dishes[item.dataset.dishId!] = center(item.querySelector('.prepared-well')!); });
+      root.querySelectorAll<HTMLElement>('[data-brush-id]').forEach(item => { const svg = item.querySelector('svg')!, matrix = svg.getScreenCTM(); if (matrix) stations.brushes[item.dataset.brushId!] = point(matrix.e, matrix.f); });
+      player?.setStations(stations);
+    };
+    locate(); const observer = new ResizeObserver(locate); observer.observe(root); observer.observe(surface);
+    return () => observer.disconnect();
+  }, [player, materials]);
+  const actionNames: Record<NonNullable<typeof player>['action'], string> = { prepare: '准备下一笔', 'take-brush': '从笔架取笔', 'return-brush': '送回原笔位', 'release-brush': '放回笔架', 'to-wipe': '移向擦拭处', wipe: '擦拭笔毛', 'to-paint': '移向对应色盘', dip: '正在沾色', travel: '抬笔移动', draw: '落笔中', lift: '提笔' };
+  const progressText = !player ? '等待备笔与配色' : player.state === 'ready' ? '准备完成 · 等待确认' : player.state === 'complete' ? `${player.index} 笔 · 绘制完成` : `${player.state === 'paused' ? '已暂停 · ' : ''}${actionNames[player.action]}（已完成 ${player.index} / ${player.plan.strokes.length} 笔）`;
   return <dialog ref={dialog} className="image-experiment" aria-label="图片自动绘制实验" onCancel={event => { event.preventDefault(); if (pending) setPending(null); else leave(); }} data-version={version}>
     <div inert={!!pending || leaving}>
     <header className="experiment-heading"><div><p className="eyebrow">SLOWLIGHT / LOCAL STUDY · E1</p><h1>让照片，慢慢成为笔触。</h1><p>图片自动绘制 · 实验　<span>原画室与草稿已保留</span></p></div><button disabled={exporting} onClick={leave}>返回画室</button></header>
-    <div className="experiment-tools"><label className="file-button">{name ? '更换本地图片' : '选择本地图片'}<input aria-label="选择本地图片" type="file" accept="image/png,image/jpeg" disabled={exporting || !!pending || leaving} onChange={event => { choose(event.target.files?.[0]); event.target.value = ''; }}/></label><span>{name || 'PNG / JPEG · 最多 12 MB / 1200 万像素'}</span><button className="confirm-button" disabled={!preview || working || exporting} onClick={requestGenerate}>确认构图并绘制</button>{working && <button onClick={() => { stopWork(); setMessage('已取消。可以重新选图或重新开始。'); }}>取消处理</button>}</div>
+    <div className="experiment-tools"><label className="file-button">{name ? '更换本地图片' : '选择本地图片'}<input aria-label="选择本地图片" type="file" accept="image/png,image/jpeg" disabled={exporting || !!pending || leaving} onChange={event => { choose(event.target.files?.[0]); event.target.value = ''; }}/></label><span>{name || 'PNG / JPEG · 最多 12 MB / 1200 万像素'}</span><button disabled={!preview || working || exporting} onClick={requestGenerate}>确认构图，准备笔与颜色</button>{working && <button onClick={() => { stopWork(); setMessage('已取消。可以重新选图或重新开始。'); }}>取消处理</button>}</div>
     <div className="composition-options" aria-label="构图方式"><button aria-pressed={composition === 'contain'} disabled={!preview || exporting} onClick={() => changeComposition('contain')}>完整保留 · 留白</button><button aria-pressed={composition === 'crop'} disabled={!preview || exporting} onClick={() => changeComposition('crop')}>居中方形 · 裁切</button><span>{composition === 'crop' ? '请检查主体：只绘制预览框内的部分' : '保留完整比例，无拉伸或裁切'}</span></div>
-    <div className="experiment-pair"><figure><figcaption><span>01 / 原图构图</span><small>只用于分析与对照</small></figcaption><div className="experiment-reference">{preview ? <img src={preview} alt="原图构图缩略预览"/> : <div className="experiment-empty"><span>＋</span><p>一处风景，一件小物<br/>先从轮廓清楚的照片试起</p></div>}</div><p>{composition === 'contain' ? '完整保留比例 · 留白保留画布纹理' : '居中方形 · 框外部分不进入新画作'}</p></figure><figure><figcaption><span>02 / 实际画作</span><small>1024 × 1024 · 油画布</small></figcaption><div className="canvas-frame"><div className="experiment-surface" data-testid="experiment-surface"><canvas ref={canvas}/><canvas ref={flat}/>{player?.tip.visible && <BrushCursor tip={player.tip}/>}</div></div><div className="experiment-palette" data-testid="paint-palette" data-action={player?.action ?? 'idle'}><svg viewBox="0 0 1024 128" aria-hidden="true"><ellipse cx="96" cy="66" rx="54" ry="39" fill="#b5a483"/><ellipse cx="96" cy="66" rx="44" ry="29" fill={player?.nextPaint?.color ?? '#d4c8ae'}/><path d="M65 62 Q86 42 117 56" stroke="#fff6dd" strokeOpacity=".4" strokeWidth="4" fill="none"/></svg><p><strong>{player?.action === 'dip' ? '正在沾取此笔颜色' : '沾色台 · 当前备色'}</strong><br/>{player?.nextPaint ? `${player.nextPaint.color.toUpperCase()} · 上色量 ${Math.round(player.nextPaint.load * 100)}%` : '颜色与笔宽随已确定的计划准备'}</p></div><p>{progressText}{player && ` · ${brushName(player.tip.size)} ${player.tip.size} px · 上色量 ${Math.round(player.tip.load * 100)}%`}</p></figure></div>
-    <div className="experiment-playback"><label>播放速度 <select aria-label="播放速度" value={speed} disabled={exporting} onChange={event => { const next = +event.target.value; setSpeed(next); if (player) player.speed = next; }}><option value="0.5">慢一点 · 0.5×</option><option value="1">从容 · 1×</option><option value="4">快一点 · 4×</option></select></label><button disabled={!player || player.state === 'complete' || exporting} onClick={() => player?.state === 'playing' ? player.pause() : player?.play()}>{player?.state === 'playing' ? '暂停绘制' : '继续绘制'}</button><button disabled={!player || exporting} onClick={() => { player?.pause(); setPending({ kind: 'replay' }); }}>从空白重新播放</button><button className="confirm-button" disabled={!player?.hasPaint || working || exporting} onClick={download}>{exporting ? '正在导出…' : '导出实验 PNG'}</button></div>
+    <div className="experiment-playback"><label>播放速度 <select aria-label="播放速度" value={speed} disabled={exporting} onChange={event => { const next = +event.target.value; setSpeed(next); if (player) player.speed = next; }}><option value="0.5">慢一点 · 0.5×</option><option value="1">从容 · 1×</option><option value="4">快一点 · 4×</option></select></label><button disabled={!player || !preparationValid || player.state === 'ready' || player.state === 'complete' || working || exporting} onClick={() => player?.state === 'playing' ? player.pause() : player?.play()}>{player?.state === 'playing' ? '暂停绘制' : '继续绘制'}</button><button disabled={!player?.hasPaint || !preparationValid || working || exporting} onClick={() => { player?.pause(); setPending({ kind: 'replay' }); }}>从空白重新播放</button><button className="confirm-button" disabled={!player?.hasPaint || working || exporting} onClick={download}>{exporting ? '正在导出…' : '导出实验 PNG'}</button></div>
+    {player?.state === 'ready' && <div className="prepared-confirm-row"><span>{preparationValid ? `${materials?.brushes.length} 支笔 · ${materials?.dishes.length} 盘颜色 · 已准备` : '构图已更改，请重新准备'}</span><button className="confirm-button prepared-start" disabled={!preparationValid || working || exporting} onClick={() => { setShowReference(false); player.play(); setMessage('先取笔、沾对应色盘，再沿实际路径绘画。可暂停；擦拭只重置本次笔上的颜色，不模拟颜料化学。'); }}>确认准备，开始绘制</button></div>}
+    <div className="prepared-workspace" ref={workspace}>
+      <section className="prepared-canvas-column">
+        <div className="prepared-canvas-heading"><span>实际画作 · 1024 × 1024</span><button aria-expanded={showReference} disabled={!preview} onClick={() => setShowReference(v => !v)}>{showReference ? '收起原图' : '展开原图'}</button></div>
+        <div className="canvas-frame"><div className="experiment-surface" data-testid="experiment-surface"><canvas ref={canvas}/><canvas ref={flat}/></div>
+          <div className="prepared-reference" hidden={!showReference || !preview}><div className="experiment-reference">{preview && <img src={preview} alt="原图构图缩略预览"/>}</div><small>仅供对照 · 不进入作品</small></div>
+          {!player?.hasPaint && !player?.tip.visible && <div className="prepared-canvas-note"><span>{working ? '正在备笔与配色…' : preparationValid ? '笔与颜色，已经摆好。' : '从一张想留住的照片开始。'}</span><small>{preparationValid ? '确认准备后，从第一笔开始。' : '先检查构图，再为这一幅备料。'}</small></div>}
+        </div>
+        <p className="prepared-progress" data-testid="prepared-progress">{progressText}</p>
+        {player?.hasPaint && <p className="prepared-current">{player.plan.stages[player.plan.strokes[Math.min(player.index, player.plan.strokes.length - 1)].stage]?.name} · {brushName(player.tip.size)} {player.tip.size} px · 上色量 {Math.round(player.tip.load * 100)}%</p>}
+      </section>
+      <MaterialBoard materials={materials} player={player}/>
+      <div className="prepared-overlay" ref={overlay}>{player?.tip.visible && <BrushCursor tip={player.tip}/>}</div>
+    </div>
     <p className="experiment-message" role="status">{message}</p>{fallback && <p role="alert">正在使用简化画布显示，局部材质光照暂不可用。</p>}
     {import.meta.env.DEV && <p className="experiment-message"><a href={`${import.meta.env.BASE_URL}artifacts/e1/brush-process/index.html`} target="_blank" rel="noopener">查看笔头、沾色与三图过程 ↗</a></p>}
     <footer className="experiment-note">图片仅在本机处理，不上传。实验结果不自动保存，退出或刷新前请导出。<br/>这是算法的绘制过程，不是专业画师教学步骤；细小文字、人脸与复杂场景可能失真。</footer>

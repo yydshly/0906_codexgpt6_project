@@ -1,5 +1,6 @@
 import { Painting, type Brush, type Point } from '../painting/engine';
 import { prepareProcess, type PaintPickup } from './process-plan';
+import { attachMaterials, prepareDishes, dishMatcher, type Materials } from './materials';
 
 export const ANALYSIS_SIZE = 512;
 export const PLANNER_VERSION = 'e1-brush-process-3';
@@ -13,8 +14,8 @@ export const STAGES = [
 ] as const;
 export const MAX_STROKES = STAGES.reduce((n, s) => n + s.limit, 0);
 export type Composition = 'contain' | 'crop';
-export type PlannedStroke = { order: number; stage: number; path: Point[]; brush: Brush; sampleStep?: number; sourceOrder?: number };
-export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[]; processVersion?: 1; pickups?: PaintPickup[]; processMetrics?: { movedStrokes: number; previousTravel: number; travel: number; previousScore: number; score: number; pickups: number } };
+export type PlannedStroke = { order: number; stage: number; path: Point[]; brush: Brush; sampleStep?: number; sourceOrder?: number; brushId?: string; dishId?: string };
+export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[]; materials?: Materials; processVersion?: 1; pickups?: PaintPickup[]; processMetrics?: { movedStrokes: number; previousTravel: number; travel: number; previousScore: number; score: number; pickups: number } };
 
 /** Fixed commands are independent of frame rate; legacy plans keep their original points. */
 export function strokeSamples(stroke: PlannedStroke): Point[] {
@@ -63,10 +64,12 @@ function distribute(candidates: Candidate[], limit: number) {
 
 /** Original local implementation inspired by Hertzmann's coarse-to-fine idea.
  * Error feedback uses the existing Painting, never a pasted photo. */
-export function createPlan(source: Uint8ClampedArray, composition: Composition, inputHash: string, progress: (stage: number) => void = () => {}) {
+export function createPlan(source: Uint8ClampedArray, composition: Composition, inputHash: string, progress: (stage: number) => void = () => {}, prepared = false) {
   if (source.length !== W * W * 4) throw new Error('分析尺寸不正确');
   const painting = new Painting(false);
   const plan: StrokePlan = { plannerVersion: PLANNER_VERSION, brushVersion: 2, seed: PLAN_SEED, size: 1024, analysisSize: W, composition, inputHash, stages: [], strokes: [] };
+  const dishes = prepared ? prepareDishes(source) : null, match = dishes ? dishMatcher(dishes) : null;
+  if (prepared) plan.plannerVersion = 'e1-prepared-studio-1';
   let state = PLAN_SEED;
   const random = () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
   const inside = (x: number, y: number) => x >= 0 && x < W && y >= 0 && y < W && source[at(x, y) + 3] > 8;
@@ -118,9 +121,10 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
       };
       const path = [...trace(-1).reverse(), { x: start.x * SCALE, y: start.y * SCALE, pressure: .5 }, ...trace(1)];
       const stroke: PlannedStroke = { order: plan.strokes.length, stage, path, sampleStep: 2, brush: { color: '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join(''), size, load: spec.load, thickness: spec.thickness, mode: 'cover', seed: Math.floor(random() * 4294967296) } };
+      if (match) stroke.brush.color = match(stroke.brush.color).color;
       executeStroke(painting, stroke); plan.strokes.push(stroke);
     }
     plan.stages.push({ name: spec.name, end: plan.strokes.length });
   }
-  return prepareProcess(plan);
+  return prepareProcess(dishes ? attachMaterials(plan, dishes) : plan);
 }
