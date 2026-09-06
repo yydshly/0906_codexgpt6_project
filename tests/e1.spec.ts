@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { ready, digest } from './helpers';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { ready, digest, draw } from './helpers';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { experimentDigest, completed, loadedPlan, experimentPng, storedDraft } from './e1-helpers';
 
 const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/a';
 test('E1-A actual redraw in the existing page with isolated state', async ({ page }, info) => {
@@ -27,3 +28,56 @@ test('E1-A actual redraw in the existing page with isolated state', async ({ pag
   const video = page.video(); await page.close(); if (video) await video.saveAs(`${root}/actual-process.webm`);
   await info.attach('metrics', { body: JSON.stringify(metrics), contentType: 'application/json' });
 });
+
+test('E1-B composition, playback invariance, real export and M2 isolation', async ({ page }) => {
+  mkdirSync(root, { recursive: true }); await ready(page);
+  await page.getByRole('button', { name: '画一幅旅行日落', exact: true }).click();
+  await page.getByRole('button', { name: '继续下一步' }).click();
+  await draw(page, [{ x: 350, y: 480 }, { x: 550, y: 460 }]);
+  await page.getByRole('button', { name: '签名与完成', exact: true }).click();
+  await page.getByLabel('给这幅画签名', { exact: false }).fill('原作 E1');
+  await page.getByRole('button', { name: '返回修改', exact: true }).click();
+  await expect(page.getByTestId('save-state')).toHaveAttribute('data-phase', 'saved', { timeout: 15000 });
+  const original = await digest(page), stored = await storedDraft(page);
+  const history = await page.evaluate(() => window.__studio!.painting.history.length);
+  await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
+  await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/still-life.jpg');
+  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  const empty = await experimentDigest(page);
+  const firstPreview = await page.locator('.experiment-reference img').getAttribute('src');
+  await page.getByRole('button', { name: '居中方形 · 裁切', exact: true }).click();
+  expect(await page.locator('.experiment-reference img').getAttribute('src')).not.toEqual(firstPreview); expect(await experimentDigest(page)).toEqual(empty);
+  await page.getByRole('button', { name: '完整保留 · 留白', exact: true }).click();
+  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
+  const paused = await experimentDigest(page), pausedIndex = await page.evaluate(() => window.__experiment!.player!.index);
+  await page.waitForTimeout(350); expect(await experimentDigest(page)).toEqual(paused);
+  expect(await page.evaluate(() => window.__experiment!.player!.index)).toBe(pausedIndex);
+  await page.getByLabel('播放速度', { exact: true }).selectOption('4');
+  await page.getByRole('button', { name: '继续绘制', exact: true }).click(); await completed(page);
+  const final = await experimentDigest(page), plan = await page.evaluate(() => window.__experiment!.plan);
+  writeFileSync(`${root}/b-still-life-plan.json`, JSON.stringify(plan));
+  const actual = await experimentPng(page, `${root}/b-still-life.png`);
+  const download = page.waitForEvent('download'); await page.getByRole('button', { name: '导出实验 PNG', exact: true }).click();
+  await (await download).saveAs(`${root}/b-downloaded.png`); expect(readFileSync(`${root}/b-downloaded.png`).equals(actual)).toBe(true);
+  await page.locator('.experiment-reference').evaluate(element => { element.replaceChildren(); });
+  const without = await experimentPng(page, `${root}/b-without-reference.png`); expect(without.equals(actual)).toBe(true);
+  await page.getByRole('button', { name: '从空白重新播放', exact: true }).click();
+  await page.getByRole('button', { name: '取消，保留实验画作', exact: true }).click(); expect(await experimentDigest(page)).toEqual(final);
+  await page.getByLabel('播放速度', { exact: true }).selectOption('1');
+  await page.getByRole('button', { name: '从空白重新播放', exact: true }).click();
+  await page.getByRole('button', { name: '确认重新播放', exact: true }).click(); await completed(page);
+  expect(await experimentDigest(page)).toEqual(final); expect(await page.evaluate(() => window.__experiment!.plan)).toEqual(plan);
+  await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/complex.jpg');
+  await page.getByRole('button', { name: '取消，保留实验画作', exact: true }).click(); expect(await experimentDigest(page)).toEqual(final);
+  await page.getByRole('button', { name: '返回画室', exact: true }).click(); await page.getByRole('button', { name: '留在实验', exact: true }).click(); expect(await experimentDigest(page)).toEqual(final);
+  await page.screenshot({ path: `${root}/b-controls.png` });
+  await page.getByRole('button', { name: '返回画室', exact: true }).click(); await page.getByRole('button', { name: '确认退出实验', exact: true }).click();
+  expect(await digest(page)).toEqual(original); expect(await storedDraft(page)).toEqual(stored);
+  expect(await page.evaluate(() => window.__studio!.painting.history.length)).toBe(history);
+  await expect(page.getByRole('button', { name: '02远山', exact: true })).toHaveAttribute('aria-current', 'step');
+  await page.getByRole('button', { name: '签名与完成', exact: true }).click(); await expect(page.getByLabel('给这幅画签名', { exact: false })).toHaveValue('原作 E1');
+  writeFileSync(`${root}/b-invariants.json`, JSON.stringify({ status: '通过', original, stored, history, paused, pausedIndex, final, checks: ['pause frozen', 'same plan at speed 4 with pause vs speed 1', 'composition leaves arrays unchanged', 'reference removed PNG identical', 'actual download equals renderer PNG', 'cancel replay/replace/exit preserves experiment', 'M2 arrays/draft/guide/signature/history unchanged'] }, null, 2));
+  const video = page.video(); await page.close(); if (video) await video.saveAs(`${root}/b-controls-process.webm`);
+});
+

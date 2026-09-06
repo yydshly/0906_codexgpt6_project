@@ -1,0 +1,48 @@
+{
+  "status": "通过",
+  "original": {
+    "color": "68c5abdf02ae927bde42fdf09136d706d552eece108cd4ba8ea2494468397103",
+    "height": "6a52a2b099cd37d158fe5948afa09516b0391136222d7ce64ab3280d67f53067"
+  },
+  "stored": {
+    "id": "8f56df44-69b4-4720-aca0-6f3546323a71",
+    "checksums": [
+      "68c5abdf02ae927bde42fdf09136d706d552eece108cd4ba8ea2494468397103",
+      "6a52a2b099cd37d158fe5948afa09516b0391136222d7ce64ab3280d67f53067",
+      "783a5b434af006cd01c52c8bcfcbe1bc39c129ebe2dee08674577e57c275b51b"
+    ],
+    "signature": "原作 E1",
+    "guide": {
+      "theme": "sunset",
+      "step": 1,
+      "open": true,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#3155A6",
+      "size": 32,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "history": 1,
+  "paused": {
+    "color": "f731de3ce87d9003a67eb36a1aebcd9131c25c4a0ebe38a5b249782a33fac4c3",
+    "height": "f746cbfe6f774520005a3acbd201350f424ef60e2b25139cae26de458566c7aa"
+  },
+  "pausedIndex": 6,
+  "final": {
+    "color": "7acbac42954c1b5e3da1f0b3a5e18ddddd2b8b380e7e836a828f1c1e9b348b9b",
+    "height": "0932afd4487817a93b54d6de2274d37331ec3209ac2a8729df929fbd13c4ef79"
+  },
+  "checks": [
+    "pause frozen",
+    "same plan at speed 4 with pause vs speed 1",
+    "composition leaves arrays unchanged",
+    "reference removed PNG identical",
+    "actual download equals renderer PNG",
+    "cancel replay/replace/exit preserves experiment",
+    "M2 arrays/draft/guide/signature/history unchanged"
+  ]
+}
