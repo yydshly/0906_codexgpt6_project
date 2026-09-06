@@ -1,0 +1,545 @@
+{
+  "status": "通过",
+  "scope": "Read-only counts of existing fixed plans; no new painting or quality/performance benchmark.",
+  "notes": [
+    "Cause combinations are exclusive; initial pickup counted once per summary.",
+    "A run ends on exact color, width, or load change; no pigment depletion is modeled.",
+    "128px cells are geometric bins, not semantic objects.",
+    "Region-material key count ignores overlap dependencies and is NOT an achievable pickup bound or proposed reorder.",
+    "Path lengths use existing 1024px logical coordinates, not physical travel or elapsed time.",
+    "Private portrait source/plan unavailable; not included or uploaded."
+  ],
+  "samples": [
+    {
+      "sample": "landscape",
+      "path": "artifacts/e1/prepared-studio/c/landscape/plan.json",
+      "sourceHash": "f4db17a5eb2162da7c4f044d209f23823254269032d06ace89fa30381b49749d",
+      "plannerVersion": "e1-prepared-studio-2",
+      "seed": 1906,
+      "totals": {
+        "strokes": 7046,
+        "pickups": 3832,
+        "causes": {
+          "initial": 1,
+          "color": 3140,
+          "color+size+load": 4,
+          "color+size": 526,
+          "size": 161
+        },
+        "strokesPerPickup": 1.8387265135699373,
+        "singleStrokePickups": 2468,
+        "singleStrokePickupFraction": 0.6440501043841336,
+        "runMedian": 1,
+        "runP90": 3,
+        "runMax": 29,
+        "singlePointStrokes": 206,
+        "pathLengthMedian": 7.496575132278541,
+        "pathLengthP90": 35.99722381842376,
+        "colors": 24,
+        "widths": [
+          72,
+          36,
+          23,
+          16,
+          10,
+          8,
+          5,
+          4
+        ],
+        "regionVisits": 324,
+        "regionReturns": 84,
+        "uniqueStageRegionMaterialKeys": 2009
+      },
+      "stages": [
+        {
+          "name": "铺开大色块",
+          "strokes": 368,
+          "pickups": 237,
+          "causes": {
+            "initial": 1,
+            "color": 236
+          },
+          "strokesPerPickup": 1.5527426160337552,
+          "singleStrokePickups": 165,
+          "singleStrokePickupFraction": 0.6962025316455697,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 7,
+          "singlePointStrokes": 5,
+          "pathLengthMedian": 107.99667949682424,
+          "pathLengthP90": 108.00436176838247,
+          "colors": 22,
+          "widths": [
+            72
+          ],
+          "regionVisits": 64,
+          "regionReturns": 16,
+          "uniqueStageRegionMaterialKeys": 192
+        },
+        {
+          "name": "建立主要形体",
+          "strokes": 743,
+          "pickups": 491,
+          "causes": {
+            "initial": 1,
+            "color": 321,
+            "color+size": 140,
+            "size": 29
+          },
+          "strokesPerPickup": 1.5132382892057026,
+          "singleStrokePickups": 352,
+          "singleStrokePickupFraction": 0.7169042769857433,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 7,
+          "singlePointStrokes": 42,
+          "pathLengthMedian": 34.50765071515281,
+          "pathLengthP90": 54.001883950875275,
+          "colors": 23,
+          "widths": [
+            36,
+            23
+          ],
+          "regionVisits": 66,
+          "regionReturns": 18,
+          "uniqueStageRegionMaterialKeys": 336
+        },
+        {
+          "name": "细化局部轮廓",
+          "strokes": 1311,
+          "pickups": 820,
+          "causes": {
+            "initial": 1,
+            "color+size": 225,
+            "color": 519,
+            "size": 75
+          },
+          "strokesPerPickup": 1.5987804878048781,
+          "singleStrokePickups": 569,
+          "singleStrokePickupFraction": 0.6939024390243902,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 14,
+          "singlePointStrokes": 80,
+          "pathLengthMedian": 15.000639971523132,
+          "pathLengthP90": 24.002149900556383,
+          "colors": 24,
+          "widths": [
+            16,
+            10
+          ],
+          "regionVisits": 74,
+          "regionReturns": 26,
+          "uniqueStageRegionMaterialKeys": 474
+        },
+        {
+          "name": "补充小处色彩",
+          "strokes": 2024,
+          "pickups": 1052,
+          "causes": {
+            "initial": 1,
+            "color": 833,
+            "color+size": 161,
+            "size": 57
+          },
+          "strokesPerPickup": 1.9239543726235742,
+          "singleStrokePickups": 646,
+          "singleStrokePickupFraction": 0.6140684410646388,
+          "runMedian": 1,
+          "runP90": 4,
+          "runMax": 21,
+          "singlePointStrokes": 79,
+          "pathLengthMedian": 7.50039997824266,
+          "pathLengthP90": 12.001361162697364,
+          "colors": 24,
+          "widths": [
+            8,
+            5
+          ],
+          "regionVisits": 60,
+          "regionReturns": 12,
+          "uniqueStageRegionMaterialKeys": 520
+        },
+        {
+          "name": "收拾边缘细节",
+          "strokes": 2600,
+          "pickups": 1232,
+          "causes": {
+            "initial": 1,
+            "color": 1231
+          },
+          "strokesPerPickup": 2.1103896103896105,
+          "singleStrokePickups": 736,
+          "singleStrokePickupFraction": 0.5974025974025974,
+          "runMedian": 1,
+          "runP90": 4,
+          "runMax": 29,
+          "singlePointStrokes": 0,
+          "pathLengthMedian": 5.995937994572296,
+          "pathLengthP90": 6.0042418267981095,
+          "colors": 24,
+          "widths": [
+            4
+          ],
+          "regionVisits": 60,
+          "regionReturns": 12,
+          "uniqueStageRegionMaterialKeys": 487
+        }
+      ]
+    },
+    {
+      "sample": "still-life",
+      "path": "artifacts/e1/prepared-studio/c/still-life/plan.json",
+      "sourceHash": "94c200e492f93b95b6c04521e630023278b028d927bb9eacca9960d4eeeb6dbf",
+      "plannerVersion": "e1-prepared-studio-2",
+      "seed": 1906,
+      "totals": {
+        "strokes": 7305,
+        "pickups": 5193,
+        "causes": {
+          "initial": 1,
+          "color": 4393,
+          "color+size+load": 4,
+          "color+size": 692,
+          "size": 103
+        },
+        "strokesPerPickup": 1.4067013287117274,
+        "singleStrokePickups": 4064,
+        "singleStrokePickupFraction": 0.7825919507028692,
+        "runMedian": 1,
+        "runP90": 2,
+        "runMax": 50,
+        "singlePointStrokes": 678,
+        "pathLengthMedian": 6.0018930464326505,
+        "pathLengthP90": 23.996852550379536,
+        "colors": 24,
+        "widths": [
+          72,
+          36,
+          23,
+          16,
+          10,
+          8,
+          5,
+          4
+        ],
+        "regionVisits": 353,
+        "regionReturns": 113,
+        "uniqueStageRegionMaterialKeys": 2573
+      },
+      "stages": [
+        {
+          "name": "铺开大色块",
+          "strokes": 368,
+          "pickups": 258,
+          "causes": {
+            "initial": 1,
+            "color": 257
+          },
+          "strokesPerPickup": 1.426356589147287,
+          "singleStrokePickups": 212,
+          "singleStrokePickupFraction": 0.8217054263565892,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 26,
+          "singlePointStrokes": 33,
+          "pathLengthMedian": 89.9995483356336,
+          "pathLengthP90": 108.00400632362212,
+          "colors": 22,
+          "widths": [
+            72
+          ],
+          "regionVisits": 73,
+          "regionReturns": 25,
+          "uniqueStageRegionMaterialKeys": 194
+        },
+        {
+          "name": "建立主要形体",
+          "strokes": 800,
+          "pickups": 683,
+          "causes": {
+            "initial": 1,
+            "color": 371,
+            "color+size": 286,
+            "size": 25
+          },
+          "strokesPerPickup": 1.171303074670571,
+          "singleStrokePickups": 611,
+          "singleStrokePickupFraction": 0.8945827232796486,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 21,
+          "singlePointStrokes": 230,
+          "pathLengthMedian": 11.49895647439366,
+          "pathLengthP90": 53.998183421259995,
+          "colors": 24,
+          "widths": [
+            36,
+            23
+          ],
+          "regionVisits": 66,
+          "regionReturns": 18,
+          "uniqueStageRegionMaterialKeys": 488
+        },
+        {
+          "name": "细化局部轮廓",
+          "strokes": 1507,
+          "pickups": 1182,
+          "causes": {
+            "initial": 1,
+            "color": 898,
+            "color+size": 241,
+            "size": 42
+          },
+          "strokesPerPickup": 1.2749576988155669,
+          "singleStrokePickups": 959,
+          "singleStrokePickupFraction": 0.811336717428088,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 12,
+          "singlePointStrokes": 163,
+          "pathLengthMedian": 10.001495357033512,
+          "pathLengthP90": 23.99730820752117,
+          "colors": 24,
+          "widths": [
+            16,
+            10
+          ],
+          "regionVisits": 78,
+          "regionReturns": 30,
+          "uniqueStageRegionMaterialKeys": 625
+        },
+        {
+          "name": "补充小处色彩",
+          "strokes": 2031,
+          "pickups": 1428,
+          "causes": {
+            "initial": 1,
+            "color+size": 165,
+            "color": 1226,
+            "size": 36
+          },
+          "strokesPerPickup": 1.4222689075630253,
+          "singleStrokePickups": 1084,
+          "singleStrokePickupFraction": 0.7591036414565826,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 18,
+          "singlePointStrokes": 252,
+          "pathLengthMedian": 7.494323233379731,
+          "pathLengthP90": 11.997471181843123,
+          "colors": 24,
+          "widths": [
+            8,
+            5
+          ],
+          "regionVisits": 58,
+          "regionReturns": 10,
+          "uniqueStageRegionMaterialKeys": 654
+        },
+        {
+          "name": "收拾边缘细节",
+          "strokes": 2599,
+          "pickups": 1642,
+          "causes": {
+            "initial": 1,
+            "color": 1641
+          },
+          "strokesPerPickup": 1.5828258221680878,
+          "singleStrokePickups": 1198,
+          "singleStrokePickupFraction": 0.7295980511571255,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 50,
+          "singlePointStrokes": 0,
+          "pathLengthMedian": 5.991190140746691,
+          "pathLengthP90": 6.0041715276439245,
+          "colors": 24,
+          "widths": [
+            4
+          ],
+          "regionVisits": 78,
+          "regionReturns": 30,
+          "uniqueStageRegionMaterialKeys": 612
+        }
+      ]
+    },
+    {
+      "sample": "complex",
+      "path": "artifacts/e1/prepared-studio/c/complex/plan.json",
+      "sourceHash": "002b8d9c63903ae0b0b27cf6f59b48bcfad17355772a4876c875c80453f08f01",
+      "plannerVersion": "e1-prepared-studio-2",
+      "seed": 1906,
+      "totals": {
+        "strokes": 7240,
+        "pickups": 4485,
+        "causes": {
+          "initial": 1,
+          "color": 3719,
+          "color+size+load": 4,
+          "color+size": 626,
+          "size": 135
+        },
+        "strokesPerPickup": 1.6142697881828316,
+        "singleStrokePickups": 3207,
+        "singleStrokePickupFraction": 0.7150501672240802,
+        "runMedian": 1,
+        "runP90": 3,
+        "runMax": 68,
+        "singlePointStrokes": 361,
+        "pathLengthMedian": 6.010669242116971,
+        "pathLengthP90": 28.74984664905408,
+        "colors": 24,
+        "widths": [
+          72,
+          36,
+          23,
+          16,
+          10,
+          8,
+          5,
+          4
+        ],
+        "regionVisits": 364,
+        "regionReturns": 124,
+        "uniqueStageRegionMaterialKeys": 2342
+      },
+      "stages": [
+        {
+          "name": "铺开大色块",
+          "strokes": 368,
+          "pickups": 261,
+          "causes": {
+            "initial": 1,
+            "color": 260
+          },
+          "strokesPerPickup": 1.4099616858237547,
+          "singleStrokePickups": 213,
+          "singleStrokePickupFraction": 0.8160919540229885,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 16,
+          "singlePointStrokes": 16,
+          "pathLengthMedian": 90.00402643127026,
+          "pathLengthP90": 108.00396054664446,
+          "colors": 22,
+          "widths": [
+            72
+          ],
+          "regionVisits": 76,
+          "regionReturns": 28,
+          "uniqueStageRegionMaterialKeys": 222
+        },
+        {
+          "name": "建立主要形体",
+          "strokes": 790,
+          "pickups": 592,
+          "causes": {
+            "initial": 1,
+            "color+size": 241,
+            "color": 321,
+            "size": 29
+          },
+          "strokesPerPickup": 1.3344594594594594,
+          "singleStrokePickups": 478,
+          "singleStrokePickupFraction": 0.8074324324324325,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 20,
+          "singlePointStrokes": 109,
+          "pathLengthMedian": 28.74678175335747,
+          "pathLengthP90": 54.00029342135458,
+          "colors": 24,
+          "widths": [
+            36,
+            23
+          ],
+          "regionVisits": 76,
+          "regionReturns": 28,
+          "uniqueStageRegionMaterialKeys": 426
+        },
+        {
+          "name": "细化局部轮廓",
+          "strokes": 1437,
+          "pickups": 923,
+          "causes": {
+            "initial": 1,
+            "color": 661,
+            "color+size": 202,
+            "size": 59
+          },
+          "strokesPerPickup": 1.5568797399783316,
+          "singleStrokePickups": 663,
+          "singleStrokePickupFraction": 0.7183098591549296,
+          "runMedian": 1,
+          "runP90": 2,
+          "runMax": 47,
+          "singlePointStrokes": 153,
+          "pathLengthMedian": 12.496274766974887,
+          "pathLengthP90": 24.000674990508077,
+          "colors": 24,
+          "widths": [
+            16,
+            10
+          ],
+          "regionVisits": 79,
+          "regionReturns": 31,
+          "uniqueStageRegionMaterialKeys": 513
+        },
+        {
+          "name": "补充小处色彩",
+          "strokes": 2045,
+          "pickups": 1230,
+          "causes": {
+            "initial": 1,
+            "color": 999,
+            "color+size": 183,
+            "size": 47
+          },
+          "strokesPerPickup": 1.6626016260162602,
+          "singleStrokePickups": 865,
+          "singleStrokePickupFraction": 0.7032520325203252,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 31,
+          "singlePointStrokes": 83,
+          "pathLengthMedian": 7.50003999936002,
+          "pathLengthP90": 12.000690359658535,
+          "colors": 24,
+          "widths": [
+            8,
+            5
+          ],
+          "regionVisits": 64,
+          "regionReturns": 16,
+          "uniqueStageRegionMaterialKeys": 622
+        },
+        {
+          "name": "收拾边缘细节",
+          "strokes": 2600,
+          "pickups": 1479,
+          "causes": {
+            "initial": 1,
+            "color": 1478
+          },
+          "strokesPerPickup": 1.7579445571331982,
+          "singleStrokePickups": 988,
+          "singleStrokePickupFraction": 0.6680189317106153,
+          "runMedian": 1,
+          "runP90": 3,
+          "runMax": 68,
+          "singlePointStrokes": 0,
+          "pathLengthMedian": 5.994246026365381,
+          "pathLengthP90": 6.004519307246879,
+          "colors": 24,
+          "widths": [
+            4
+          ],
+          "regionVisits": 69,
+          "regionReturns": 21,
+          "uniqueStageRegionMaterialKeys": 559
+        }
+      ]
+    }
+  ]
+}
