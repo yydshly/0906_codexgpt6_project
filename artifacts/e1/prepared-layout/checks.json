@@ -1,0 +1,1619 @@
+{
+  "scope": "Static preparation layout only; no product implementation or painting validation",
+  "browser": "152.0.7977.82",
+  "fragmentSha256": "5f2b287b66a003d63cfec5067336b45f811c08ce1de3f009c6a5d00215dfe0ca",
+  "checkedAt": "2026-09-06T07:41:21.338Z",
+  "results": [
+    {
+      "theme": "light",
+      "width": 1024,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 1162.328125,
+        "scrollWidth": 1022,
+        "clientWidth": 1022,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 30,
+            "right": 59.1875,
+            "width": 29.1875,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 60.1875,
+            "right": 89.390625,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 90.390625,
+            "right": 119.59375,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 120.59375,
+            "right": 149.796875,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 150.796875,
+            "right": 180,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 1162.328125,
+        "scrollWidth": 1022,
+        "clientWidth": 1022,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 844,
+            "right": 873.1875,
+            "width": 29.1875,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 874.1875,
+            "right": 903.390625,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 904.390625,
+            "right": 933.59375,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 934.59375,
+            "right": 963.796875,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 964.796875,
+            "right": 994,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "light",
+      "width": 736,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 1231.515625,
+        "scrollWidth": 734,
+        "clientWidth": 734,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 30,
+            "right": 54.390625,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 55.390625,
+            "right": 79.796875,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 80.796875,
+            "right": 105.1875,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 106.1875,
+            "right": 130.59375,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 131.59375,
+            "right": 156,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "light",
+      "width": 736,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 1231.515625,
+        "scrollWidth": 734,
+        "clientWidth": 734,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 580,
+            "right": 604.390625,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 605.390625,
+            "right": 629.796875,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 630.796875,
+            "right": 655.1875,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 656.1875,
+            "right": 680.59375,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 681.59375,
+            "right": 706,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1604.015625,
+        "scrollWidth": 358,
+        "clientWidth": 358,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 28,
+            "right": 84,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "02中",
+            "left": 90,
+            "right": 146,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "03小",
+            "left": 152,
+            "right": 208,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "04细",
+            "left": 214,
+            "right": 270,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "05点",
+            "left": 276,
+            "right": 332,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "light",
+      "width": 360,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1604.015625,
+        "scrollWidth": 358,
+        "clientWidth": 358,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 28,
+            "right": 84,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "02中",
+            "left": 90,
+            "right": 146,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "03小",
+            "left": 152,
+            "right": 208,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "04细",
+            "left": 214,
+            "right": 270,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "05点",
+            "left": 276,
+            "right": 332,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 1162.328125,
+        "scrollWidth": 1022,
+        "clientWidth": 1022,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 30,
+            "right": 59.1875,
+            "width": 29.1875,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 60.1875,
+            "right": 89.390625,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 90.390625,
+            "right": 119.59375,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 120.59375,
+            "right": 149.796875,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 150.796875,
+            "right": 180,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 1162.328125,
+        "scrollWidth": 1022,
+        "clientWidth": 1022,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 844,
+            "right": 873.1875,
+            "width": 29.1875,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 874.1875,
+            "right": 903.390625,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 904.390625,
+            "right": 933.59375,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 934.59375,
+            "right": 963.796875,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 964.796875,
+            "right": 994,
+            "width": 29.203125,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 46,
+            "right": 188,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 204,
+            "right": 346,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 362,
+            "right": 504,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 520,
+            "right": 662,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 678,
+            "right": 820,
+            "width": 142,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 836,
+            "right": 978,
+            "width": 142,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 736,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 1231.515625,
+        "scrollWidth": 734,
+        "clientWidth": 734,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 30,
+            "right": 54.390625,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 55.390625,
+            "right": 79.796875,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 80.796875,
+            "right": 105.1875,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 106.1875,
+            "right": 130.59375,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 131.59375,
+            "right": 156,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 736,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 1231.515625,
+        "scrollWidth": 734,
+        "clientWidth": 734,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 580,
+            "right": 604.390625,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "02中",
+            "left": 605.390625,
+            "right": 629.796875,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "03小",
+            "left": 630.796875,
+            "right": 655.1875,
+            "width": 24.390625,
+            "height": 235.1875
+          },
+          {
+            "label": "04细",
+            "left": 656.1875,
+            "right": 680.59375,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "05点",
+            "left": 681.59375,
+            "right": 706,
+            "width": 24.40625,
+            "height": 235.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 46,
+            "right": 195,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 211,
+            "right": 360,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 376,
+            "right": 525,
+            "width": 149,
+            "height": 49.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 541,
+            "right": 690,
+            "width": 149,
+            "height": 49.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "side": "left",
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1604.015625,
+        "scrollWidth": 358,
+        "clientWidth": 358,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 28,
+            "right": 84,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "02中",
+            "left": 90,
+            "right": 146,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "03小",
+            "left": 152,
+            "right": 208,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "04细",
+            "left": 214,
+            "right": 270,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "05点",
+            "left": 276,
+            "right": 332,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          }
+        ],
+        "fits": true
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "side": "right",
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1604.015625,
+        "scrollWidth": 358,
+        "clientWidth": 358,
+        "controls": [
+          {
+            "label": "01宽",
+            "left": 28,
+            "right": 84,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "02中",
+            "left": 90,
+            "right": 146,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "03小",
+            "left": 152,
+            "right": 208,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "04细",
+            "left": 214,
+            "right": 270,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "05点",
+            "left": 276,
+            "right": 332,
+            "width": 56,
+            "height": 177.1875
+          },
+          {
+            "label": "01暖白",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "02浅米",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "03金黄",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "04赭石",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "05陶红",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "06深褐",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "07雾蓝",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "08灰蓝",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "09深蓝",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          },
+          {
+            "label": "10灰紫",
+            "left": 30,
+            "right": 127.328125,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "11橄榄",
+            "left": 131.328125,
+            "right": 228.65625,
+            "width": 97.328125,
+            "height": 70.1875
+          },
+          {
+            "label": "12深绿",
+            "left": 232.65625,
+            "right": 330,
+            "width": 97.34375,
+            "height": 70.1875
+          }
+        ],
+        "fits": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "humanAcceptance": "待用户确认",
+  "productRegression": "未测试，本次没有修改应用或测试代码"
+}
