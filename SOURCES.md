@@ -38,3 +38,15 @@ M2 没有增加运行或测试依赖。四步引导文案与 SVG 轮廓为本项
 - [OffscreenCanvas.convertToBlob：原生 PNG 编码](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/convertToBlob)
 
 上述文档说明接口机制，实际功能与性能以 artifacts/m1 的历史记录及 artifacts/m2 的当前测试结果为准。
+
+## E1 参考与固定照片
+
+规划思想参考 Aaron Hertzmann, 1998, [Painterly Rendering with Curved Brush Strokes of Multiple Sizes](https://mrl.cs.nyu.edu/publications/painterly98/)。使用由粗到细、局部差异选择及梯度切向思路；本项目独立编写实现，没有复制论文配套代码，也未新增依赖。
+
+三张固定输入仅为许可已核对的公开测试素材，用户私图不进入仓库：
+
+- 风景：NPS / Jim Peaco，2014，黄石湖冬景。[文件与许可](https://commons.wikimedia.org/wiki/File:View_of_Yellowstone_Lake_from_Bluebell_Pool_in_West_Thumb_Geyser_Basin_(05b9248a-1dd8-b71b-0ba2-f766d11fbc0f).jpg)。美国联邦政府 NPS 公务作品，美国公共领域。固定输入为 Commons 1280×853 缩略版本，保留完整构图，非作者 5184×3456 原始相机文件；在首次算法输出前固定。
+- 静物：mcfoodie，2013，[Coffee cup and coffee bean](https://commons.wikimedia.org/wiki/File:Coffee_cup_and_coffee_bean.jpg)，CC0 1.0。固定原文件 1547×1024。
+- 复杂场景：Chris Spielmann / National Cancer Institute，2002，[City street at night](https://commons.wikimedia.org/wiki/File:City_street_at_night.jpg)。作者释放至公共领域，NCI 图号 3531；固定原文件 3642×2406。保留作者与机构署名。
+
+artifacts/e1/fixtures/manifest.json 记录固定文件 SHA-256 和参数。照片仅用于测试输入/对照；结果来自现有引擎笔触。不以自动化成功或误差指标代替人工质量验收。

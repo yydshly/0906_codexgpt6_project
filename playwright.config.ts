@@ -4,6 +4,8 @@ export default defineConfig({
   reporter: [['list'], ['json', { outputFile: `${process.env.M1_ARTIFACT_DIR || 'artifacts/m2/regression'}/${(process.env.npm_lifecycle_event || 'tests').replace(':','-')}-results.json` }]],
   use: { baseURL: 'http://127.0.0.1:5174', viewport: { width: 1440, height: 900 }, channel: 'chrome', headless: false, launchOptions: { args: ['--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'] } },
   projects: [
+    { name: 'e1-engine', testMatch: 'e1-engine.spec.ts' },
+    { name: 'e1', testMatch: 'e1.spec.ts', timeout: 360000, use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
     { name: 'engine', testMatch: 'engine.spec.ts' },
     { name: 'studio', testMatch: 'studio.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
     { name: 'm2', testMatch: 'm2.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },

@@ -8,6 +8,7 @@ import { emptyGuide, type GuideState } from './guidance/sunset';
 import { DraftSession, type DraftRecord, type SaveState } from './works/draft';
 import { Completion } from './works/Completion';
 import { downloadBlob, exportArtwork } from './works/export';
+import { ImageExperiment } from './experiment/ImageExperiment';
 import './style.css';
 
 export const COLORS = [
@@ -35,6 +36,7 @@ type TestStudio = { painting: Painting; renderer: StudioRenderer; draft: DraftSe
 declare global { interface Window { __studio?: TestStudio } }
 
 function App() {
+  const [experimentOpen, setExperimentOpen] = useState(false);
   const [brush, setBrush] = useState<Brush>({ color: '#3155A6', size: 32, load: .6, mode: 'cover', seed: 906 });
   const [historyCount, setHistoryCount] = useState(0);
   const [hasPaint, setHasPaint] = useState(false);
@@ -142,7 +144,7 @@ function App() {
     <header className="header">
       <div className="wordmark" aria-label="慢光数字油画室"><span className="brand-symbol"><Icon name="sun" size={24}/></span><span className="brand-name">慢光<span className="brand-en">SLOWLIGHT</span></span></div>
       <div className="header-note">留一点时间，给手中的颜色。</div>
-      <div className="edition"><span/> 数字油画室 <small>VOL. 01</small><a className="review-shortcut" href={`${import.meta.env.BASE_URL}review/`} target="_blank" rel="noopener">体验与验收 ↗</a></div>
+      <div className="edition"><span/> 数字油画室 <small>VOL. 01</small><button className="experiment-entry" disabled={busy} onClick={() => { input.current?.finish(); setExperimentOpen(true); }}>图片自动绘制 · 实验</button><a className="review-shortcut" href={`${import.meta.env.BASE_URL}review/`} target="_blank" rel="noopener">体验与验收 ↗</a></div>
     </header>
 
     <main className="workspace" inert={saveState.phase === 'loading'}>
@@ -190,6 +192,7 @@ function App() {
     <dialog ref={newDialog} className="clear-dialog" onCancel={() => setNewChoice(false)} onClose={() => setNewChoice(false)}><p className="eyebrow">KEEP YOUR MARKS</p><h2>从哪里开始这场日落？</h2><p>画布上已经有你的笔触。可以直接在当前画作上开启提示；新画一张会清空当前画布，这次清空仍可撤销。</p><div className="choice-actions"><button autoFocus onClick={() => setNewChoice(false)}>取消，保留画作</button><button onClick={() => chooseGuide(true)}>新画一张旅行日落</button><button className="confirm-button" onClick={() => chooseGuide(false)}>在当前画作上继续</button></div></dialog>
     <dialog ref={recoveryDialog} className="clear-dialog" onCancel={() => setRecoveryOpen(false)} onClose={() => setRecoveryOpen(false)}><p className="eyebrow">WELCOME BACK</p><h2>上次的日光，还在这里。</h2><p>找到一个本地草稿{availableDraft ? `，保存于 ${new Date(availableDraft.savedAt).toLocaleString('zh-CN')}` : ''}。恢复颜色、厚度与创作步骤后，可以继续绘画。旧撤销历史不会恢复，撤销从接下来的新笔开始。</p>{hasPaint && <p>恢复会替换当前未保存画面；请先导出当前画作。</p>}<p>选择新建会替换这个唯一的已存草稿。暂不恢复时，旧草稿会保留，当前画面只在内存中。</p><div className="choice-actions"><button onClick={() => setRecoveryOpen(false)}>暂不恢复，保留草稿</button>{hasPaint && <button onClick={download}>导出当前画面</button>}<button onClick={replaceSavedDraft}>新建并替换旧草稿</button><button className="confirm-button" autoFocus onClick={restore}>{hasPaint ? '确认恢复并替换当前画面' : '恢复草稿'}</button></div></dialog>
     {finishing && renderer.current && <Completion renderer={renderer.current} signature={signature} changeSignature={setSignature} back={() => { setFinishing(false); setStatus('画作与签名都已保留，可以继续修改。'); }}/>}
+    {experimentOpen && <ImageExperiment back={() => setExperimentOpen(false)}/>}
   </div>;
 }
 

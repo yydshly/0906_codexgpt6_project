@@ -15,6 +15,8 @@ export class Painting {
   readonly metadata = { formatVersion: 1, brushVersion: 1, canvasSeed: 906, size: SIZE, light: [-0.55, -0.65, 0.9] };
   history: Snapshot[] = [];
   private before: Snapshot | null = null;
+  private batchBefore: Snapshot | null = null;
+  constructor(private readonly recordHistory = true) {}
   private profile = new Float32Array(256);
   private tips = new Float32Array(256);
   private targetCache = new Map<number, RGB>();
@@ -38,7 +40,13 @@ export class Painting {
   }
   begin(p: Point, brush: Brush) {
     this.end();
-    this.before = this.snapshot(); // Exactly once per stroke, never per sample.
+    if (this.recordHistory) this.before = this.snapshot(); // Exactly once per manual stroke.
+    else {
+      // Automated paintings reuse one color buffer; coverage never needs a copy.
+      this.batchBefore ??= { color: new Uint8ClampedArray(this.color.length), height: new Uint16Array(0) };
+      if (brush.mode === 'mix') this.batchBefore.color.set(this.color);
+      this.before = this.batchBefore;
+    }
     this.brush = { ...brush, size: Math.max(8, Math.min(96, brush.size)), load: Math.max(.15, Math.min(1, brush.load)) };
     this.rgb = fromHex(brush.color);
     this.last = p; this.lastDab = null; this.angle = null; this.distance = 0; this.travel = 0; this.changed = false;
@@ -77,7 +85,7 @@ export class Painting {
   end() {
     if (!this.before) return;
     if (this.last && (!this.lastDab || Math.hypot(this.last.x - this.lastDab.x, this.last.y - this.lastDab.y) > .5)) this.dab(this.last, this.angle ?? 0);
-    if (this.changed) { this.remember(this.before); this.revision++; }
+    if (this.changed) { if (this.recordHistory) this.remember(this.before); this.revision++; }
     this.before = null; this.last = null; this.lastDab = null; this.targetCache.clear();
   }
   private dab(p: Point, angle: number) {
@@ -138,10 +146,11 @@ export class Painting {
   clear() {
     this.end();
     if (!this.color.some(v => v !== 0)) return;
-    this.remember(this.snapshot()); this.color.fill(0); this.height.fill(0); this.revision++; this.invalidate();
+    if (this.recordHistory) this.remember(this.snapshot());
+    this.color.fill(0); this.height.fill(0); this.revision++; this.invalidate();
   }
   memory() {
     const bytes = this.color.byteLength + this.height.byteLength;
-    return { currentBytes: bytes, historyBytes: this.history.length * bytes, pendingBytes: this.before ? bytes : 0, brushBytes: this.profile.byteLength + this.tips.byteLength, cacheEntries: this.targetCache.size, historyCount: this.history.length };
+    return { currentBytes: bytes, historyBytes: this.history.length * bytes, pendingBytes: this.before && this.recordHistory ? bytes : 0, batchBufferBytes: this.batchBefore?.color.byteLength ?? 0, brushBytes: this.profile.byteLength + this.tips.byteLength, cacheEntries: this.targetCache.size, historyCount: this.history.length };
   }
 }

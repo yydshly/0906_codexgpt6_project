@@ -1,0 +1,41 @@
+{
+  "load": 0.85,
+  "limits": [
+    320,
+    850,
+    1200,
+    1400
+  ],
+  "canvasSeed": 906,
+  "performanceGate": "Desktop: active playback batch p95 <= 50ms; no continuous >100ms batches; planning in Worker cancellable; no per-stroke snapshot allocation. Max two focused correction rounds, then stop expansion if composition or sustained responsiveness still fails.",
+  "sizes": [
+    80,
+    40,
+    20,
+    10
+  ],
+  "seed": 1906,
+  "composition": "contain",
+  "plannerVersion": "e1-multiscale-1",
+  "fixedBeforeFirstRender": true,
+  "mode": "cover",
+  "analysisSize": 256,
+  "brushVersion": 1,
+  "files": [
+    {
+      "sha256": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0",
+      "file": "complex.jpg",
+      "bytes": 3905831
+    },
+    {
+      "sha256": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c",
+      "file": "landscape.jpg",
+      "bytes": 250255
+    },
+    {
+      "sha256": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+      "file": "still-life.jpg",
+      "bytes": 203274
+    }
+  ]
+}

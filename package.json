@@ -12,7 +12,8 @@
     "test:e2e": "playwright test --project=studio",
     "test:m2": "playwright test --project=m2",
     "test:m2perf": "playwright test --project=m2-performance",
-    "test:perf": "playwright test --project=performance"
+    "test:perf": "playwright test --project=performance",
+    "test:e1": "playwright test --project=e1-engine --project=e1"
   },
   "dependencies": {
     "react": "19.2.8",
