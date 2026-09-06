@@ -1,0 +1,320 @@
+{
+  "status": "通过",
+  "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/index.html",
+  "linkChecks": [
+    {
+      "url": "http://127.0.0.1:5174/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/E1_PREPARED_STUDIO_REPORT.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/brush-process/index.html",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m1/index.html",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/m2/index.html",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/SOURCES.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/b-ordering-browser/prepared/prepared-screen.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/b-ordering-browser/prepared/dip-at-fixed-dish.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/b-ordering-browser/prepared/original-studio.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/b-ordering-browser/prepared/checks.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/fixtures/landscape.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/refinement/c/landscape/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/input.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/reference-hidden.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/fixtures/still-life.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/refinement/c/still-life/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/input.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/reference-hidden.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/fixtures/complex.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/refinement/c/complex/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/final.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/input.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/reference-hidden.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c-controls/controls/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c-engine/tests-results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/performance/continuous.json",
+      "status": 200
+    }
+  ],
+  "videos": [
+    {
+      "src": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/b-ordering-browser/prepared/actual-preparation-process.webm",
+      "duration": 20.48,
+      "width": 1440,
+      "height": 900,
+      "frames": [
+        {
+          "time": 1,
+          "bytes": 668294
+        },
+        {
+          "time": 10.24,
+          "bytes": 543454
+        },
+        {
+          "time": 19.48,
+          "bytes": 366310
+        }
+      ]
+    },
+    {
+      "src": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/landscape/process.webm",
+      "duration": 395.76,
+      "width": 1440,
+      "height": 900,
+      "frames": [
+        {
+          "time": 1,
+          "bytes": 900530
+        },
+        {
+          "time": 197.88,
+          "bytes": 1469386
+        },
+        {
+          "time": 394.76,
+          "bytes": 1470218
+        }
+      ]
+    },
+    {
+      "src": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/still-life/process.webm",
+      "duration": 676.68,
+      "width": 1440,
+      "height": 900,
+      "frames": [
+        {
+          "time": 1,
+          "bytes": 379442
+        },
+        {
+          "time": 338.34,
+          "bytes": 1237522
+        },
+        {
+          "time": 675.68,
+          "bytes": 1327974
+        }
+      ]
+    },
+    {
+      "src": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c/complex/process.webm",
+      "duration": 552.76,
+      "width": 1440,
+      "height": 900,
+      "frames": [
+        {
+          "time": 1,
+          "bytes": 445094
+        },
+        {
+          "time": 276.38,
+          "bytes": 1304742
+        },
+        {
+          "time": 551.76,
+          "bytes": 1280698
+        }
+      ]
+    },
+    {
+      "src": "http://127.0.0.1:5174/artifacts/e1/prepared-studio/c-controls/controls/process.webm",
+      "duration": 95.36,
+      "width": 1440,
+      "height": 900,
+      "frames": [
+        {
+          "time": 1,
+          "bytes": 757306
+        },
+        {
+          "time": 47.68,
+          "bytes": 706562
+        },
+        {
+          "time": 94.36,
+          "bytes": 513006
+        }
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 700,
+      "scrollWidth": 700
+    },
+    {
+      "width": 360,
+      "scrollWidth": 360
+    }
+  ],
+  "errors": [],
+  "note": "Video metadata and first/middle/end frames decoded; not every-frame visual inspection. Viewports are simulations, not physical devices."
+}
