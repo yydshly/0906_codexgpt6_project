@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { ready, draw, digest } from './helpers';
 import { loadedPlan, completed, experimentDigest, experimentPng, storedDraft } from './e1-helpers';
+import { Painting } from '../src/painting/engine';
+import { executeStroke } from '../src/experiment/plan';
+import { createHash } from 'node:crypto';
 
 test('visible pen pauses inside a stroke; export and context loss preserve continuation', async ({ page }) => {
   const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local'}/pen`; mkdirSync(dir, { recursive: true });
@@ -11,7 +14,7 @@ test('visible pen pauses inside a stroke; export and context loss preserve conti
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/landscape.jpg');
   await page.getByLabel('播放速度', { exact: true }).selectOption('0.5');
-  await page.getByRole('button', { name: '确认构图并绘制', exact: true }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色', exact: true }).click(); await loadedPlan(page);
   await page.waitForFunction(() => {
     const e = window.__experiment!, p = e.player!;
     if (e.painting.active && p.sampleIndex >= 3 && p.tip.down) { p.pause(); return true; }
@@ -45,7 +48,12 @@ test('visible pen pauses inside a stroke; export and context loss preserve conti
   await page.screenshot({ path: `${dir}/pen-moved.png` });
   await page.getByLabel('播放速度', { exact: true }).selectOption('4');
   await page.getByRole('button', { name: '继续绘制', exact: true }).click(); await completed(page);
-  const final = await experimentDigest(page), expected = JSON.parse(readFileSync('artifacts/e1/refinement/r1-verified/landscape/results.json', 'utf8')).final;
+  // The prepared palette intentionally changes colors. Independent execution of
+  // the actual plan is the continuation oracle; historical plans remain separately tested.
+  const final = await experimentDigest(page), plan = await page.evaluate(() => window.__experiment!.plan!);
+  const independent = new Painting(false); plan.strokes.forEach(s => executeStroke(independent, s));
+  const sha = (bytes: Uint8Array | Uint8ClampedArray) => createHash('sha256').update(bytes).digest('hex');
+  const expected = { color: sha(independent.color), height: sha(new Uint8Array(independent.height.buffer)) };
   expect(final).toEqual(expected); await expect(page.getByTestId('experiment-pen')).toHaveCount(0);
   await experimentPng(page, `${dir}/fallback-final.png`);
   await page.getByRole('button', { name: '返回画室', exact: true }).click(); await page.getByRole('button', { name: '确认退出实验', exact: true }).click();

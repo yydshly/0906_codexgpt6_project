@@ -50,6 +50,13 @@ export class PlanPlayer {
   setStations(stations: MaterialStations) {
     this.stations = stations;
     if (!['draw', 'lift', 'prepare'].includes(this.phase)) this.travel = null;
+    // A paused pickup follows its fixed dish when the responsive layout moves;
+    // this changes only the display position, never the artwork or dip progress.
+    const stroke = this.plan.strokes[this.index];
+    const target = this.phase === 'dip' && stroke?.dishId ? stations.dishes[stroke.dishId]
+      : ['take-brush', 'release-brush'].includes(this.phase) && this.heldBrushId ? stations.brushes[this.heldBrushId]
+      : this.phase === 'wipe' ? stations.wipe : undefined;
+    if (target) { this.tip.x = target.x; this.tip.y = target.y + (this.phase === 'dip' ? Math.sin(this.dipProgress * Math.PI) * 9 : 0); }
   }
   get action() { return this.phase; }
   get nextPaint() { return this.pickups.get(this.index) ?? this.loadedPaint; }
@@ -94,7 +101,7 @@ export class PlanPlayer {
       } else if (this.phase === 'return-brush') {
         if (this.moveTip(this.stations.brushes[this.heldBrushId!], 64)) { this.phase = 'release-brush'; this.dwell = 50; this.tip.angle = -Math.PI / 2; this.travel = null; }
       } else if (this.phase === 'release-brush') {
-        if (this.waitDwell()) { this.heldBrushId = null; this.loadedPaint = null; this.tip.visible = false; this.tip.load = 0; this.phase = 'prepare'; }
+        if (this.waitDwell()) { this.heldBrushId = null; this.loadedPaint = null; this.tip.visible = false; this.tip.load = 0; this.afterWipe = 'to-paint'; this.phase = 'prepare'; }
       } else if (this.phase === 'to-wipe') {
         if (this.moveTip(this.stations.wipe, 54)) { this.phase = 'wipe'; this.dwell = 45; this.travel = null; }
       } else if (this.phase === 'wipe') {

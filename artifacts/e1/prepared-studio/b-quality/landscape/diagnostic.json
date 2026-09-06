@@ -1,0 +1,54 @@
+{
+  "scope": "Fast quality diagnostic: same real Painting commands and renderer, executed directly without timed playback. Not an operation video or performance result.",
+  "planner": "e1-prepared-studio-1",
+  "planningMs": 5507.5,
+  "renderer": {
+    "mode": "webgl2",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (Intel)",
+    "backing": [
+      486,
+      486
+    ],
+    "dpr": 1.0000000298023224,
+    "cpuBufferBytes": 4194304,
+    "gpuTextureBytes": 6291456
+  },
+  "brushes": [
+    {
+      "id": "B01",
+      "size": 72
+    },
+    {
+      "id": "B02",
+      "size": 36
+    },
+    {
+      "id": "B03",
+      "size": 23
+    },
+    {
+      "id": "B04",
+      "size": 16
+    },
+    {
+      "id": "B05",
+      "size": 10
+    },
+    {
+      "id": "B06",
+      "size": 8
+    },
+    {
+      "id": "B07",
+      "size": 5
+    },
+    {
+      "id": "B08",
+      "size": 4
+    }
+  ],
+  "dishes": 24,
+  "strokes": 7046,
+  "pickups": 4005
+}

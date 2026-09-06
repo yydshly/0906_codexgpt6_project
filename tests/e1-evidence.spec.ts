@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { ready, digest, draw } from './helpers';
-import { loadedPlan, experimentDigest, experimentPng, storedDraft } from './e1-helpers';
+import { loadedPlan, completed, experimentDigest, experimentPng, storedDraft } from './e1-helpers';
 import { Painting } from '../src/painting/engine';
 import { executeStroke, MAX_STROKES, STAGES } from '../src/experiment/plan';
 import type { StrokePlan } from '../src/experiment/plan';
@@ -18,7 +18,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles(`artifacts/e1/fixtures/${sample}.jpg`);
   const speed = process.env.E1_EVIDENCE_SPEED || '1';
   await page.getByLabel('播放速度', { exact: true }).selectOption(speed);
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   await page.screenshot({ path: `${dir}/composition.png` });
   const heap = await page.context().newCDPSession(page); await heap.send('HeapProfiler.collectGarbage');
   const heapBefore = await heap.send('Runtime.getHeapUsage');
@@ -26,7 +26,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
     const w = window as any; w.__e1Stage = -1; w.__e1LongTasks = []; w.__e1StageTimes = []; w.__e1Start = performance.now();
     w.__e1Observer = new PerformanceObserver(list => { for (const entry of list.getEntries()) w.__e1LongTasks.push({ start: entry.startTime, duration: entry.duration }); }); w.__e1Observer.observe({ entryTypes: ['longtask'] });
   });
-  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
   await page.evaluate(() => { window.__experiment!.player!.onStage = stage => { window.__experiment!.player!.pause(); (window as any).__e1Stage = stage; (window as any).__e1StageTimes.push({ stage, elapsed: performance.now() - (window as any).__e1Start }); }; });
   const stageStates = [];
   for (let stage = 0; stage < STAGES.length; stage++) {
@@ -37,6 +37,12 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
     if (stage < STAGES.length - 1) await page.getByRole('button', { name: '继续绘制', exact: true }).click();
   }
   const final = await experimentDigest(page);
+  // Capture the final clean-up and return to the rack as part of the real process.
+  if (await page.evaluate(() => window.__experiment!.player!.state !== 'complete')) {
+    await page.getByRole('button', { name: '继续绘制', exact: true }).click(); await completed(page);
+    expect(await experimentDigest(page)).toEqual(final);
+    expect(await page.evaluate(() => window.__experiment!.player!.heldBrushId)).toBeNull();
+  }
   const plan: StrokePlan = await page.evaluate(() => window.__experiment!.plan!);
   const inputHash = createHash('sha256').update(readFileSync(`artifacts/e1/fixtures/${sample}.jpg`)).digest('hex');
   expect(plan.inputHash).toBe(inputHash); expect(plan.strokes.length).toBeLessThanOrEqual(MAX_STROKES);
@@ -56,7 +62,10 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   const independent = { color: createHash('sha256').update(cpu.color).digest('hex'), height: createHash('sha256').update(new Uint8Array(cpu.height.buffer)).digest('hex') };
   const replayMs = performance.now() - start; expect(independent).toEqual(final);
   const prior = JSON.parse(readFileSync(`artifacts/e1/refinement/c/${sample}/results.json`, 'utf8')).final;
-  expect(final).toEqual(prior);
+  // New finite colors intentionally differ; never re-label the old exact-PNG check as passed.
+  // The independent serialized-plan color/height oracle above remains mandatory.
+  if (!plan.materials) expect(final).toEqual(prior);
+  else writeFileSync(`${dir}/prior-comparison.json`, JSON.stringify({ prior, current: final, identical: JSON.stringify(final) === JSON.stringify(prior), reason: 'Prepared palette changes actual colors and planner error feedback; human quality remains pending' }, null, 2));
   expect(await digest(page)).toEqual(before); expect(errors).toEqual([]); expect(requests).toEqual([]);
   const diagnostics = await page.evaluate(() => {
     const e = window.__experiment!, w = window as any; w.__e1Observer.disconnect();
@@ -81,19 +90,19 @@ test('E1-C runtime failures, PNG input, reproducible planner and released experi
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   const upload = page.getByLabel('选择本地图片', { exact: true });
   await upload.setInputFiles('artifacts/e1/fixtures/landscape.jpg');
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   await page.evaluate(() => { const w = window as any; w.__Worker = Worker; w.Worker = class extends Worker { constructor(url: string | URL, options?: WorkerOptions) { if (String(url).includes('planner.worker')) throw new Error('Injected worker construction failure'); super(url, options); } }; });
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await expect(page.getByText('后台规划不可用，请使用支持 Worker 的浏览器或重试。')).toBeVisible();
   await page.evaluate(() => { const w = window as any; w.Worker = w.__Worker; delete w.__Worker; });
   await page.evaluate(() => { const w = window as any; w.__setTimeout = window.setTimeout; w.setTimeout = (handler: TimerHandler, timeout: number, ...args: unknown[]) => w.__setTimeout(handler, timeout === 120000 ? 50 : timeout, ...args); });
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await expect(page.getByText('规划超过 120 秒，已停止。请缩小或简化图片后重试。')).toBeVisible();
   await page.evaluate(() => { const w = window as any; w.setTimeout = w.__setTimeout; delete w.__setTimeout; });
-  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
   await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
   const firstPlan = await page.evaluate(() => JSON.stringify(window.__experiment!.plan));
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await page.getByRole('button', { name: '确认替换实验画作', exact: true }).click(); await loadedPlan(page);
   await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
   expect(await page.evaluate(() => JSON.stringify(window.__experiment!.plan))).toBe(firstPlan);
@@ -115,9 +124,9 @@ test('E1-C runtime failures, PNG input, reproducible planner and released experi
   for (let i = 0; i < 5; i++) {
     await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
     await upload.setInputFiles({ name: 'format-only.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') });
-    await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
     if (i === 0) {
-      await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+      await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
       await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
       expect(await page.evaluate(() => window.__experiment!.plan!.inputHash)).toBe(createHash('sha256').update(Buffer.from(png, 'base64')).digest('hex'));
     }
@@ -148,9 +157,9 @@ test('E1-C late image decode cannot overwrite a newer selection', async ({ page 
   const upload = page.getByLabel('选择本地图片', { exact: true });
   await upload.setInputFiles('artifacts/e1/fixtures/landscape.jpg'); await page.waitForFunction(() => (window as any).__decodeWaiting);
   await upload.setInputFiles('artifacts/e1/fixtures/complex.jpg');
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   await page.waitForTimeout(1000); await expect(page.getByText('complex.jpg', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
   await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
   const inputHash = await page.evaluate(() => window.__experiment!.plan!.inputHash);
   expect(inputHash).toBe(createHash('sha256').update(readFileSync('artifacts/e1/fixtures/complex.jpg')).digest('hex'));
@@ -176,22 +185,22 @@ test('E1-C invalid, oversized, cancellation, replacement and exit never change M
   huge.writeUInt32BE(100, 16); huge.writeUInt32BE(100, 20);
   await upload.setInputFiles({ name: 'broken.png', mimeType: 'image/png', buffer: huge });
   await expect(page.getByText('图片解码失败。当前实验画作已保留，请选择另一张 PNG 或 JPEG。')).toBeVisible();
-  await upload.setInputFiles('artifacts/e1/fixtures/landscape.jpg'); await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await upload.setInputFiles('artifacts/e1/fixtures/landscape.jpg'); await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await page.getByRole('button', { name: '取消处理', exact: true }).click();
   const cancelState = await experimentDigest(page); await page.waitForTimeout(7000); expect(await experimentDigest(page)).toEqual(cancelState);
   expect(await page.evaluate(() => window.__experiment!.player)).toBeNull();
-  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
   await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
   const partial = await experimentDigest(page);
   await upload.setInputFiles({ name: 'invalid.png', mimeType: 'image/png', buffer: Buffer.from('bad') });
   await page.getByRole('button', { name: '确认替换实验画作', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: '无法读取图片' })).toBeVisible(); expect(await experimentDigest(page)).toEqual(partial);
   await upload.setInputFiles('artifacts/e1/fixtures/complex.jpg'); await page.getByRole('button', { name: '确认替换实验画作', exact: true }).click();
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   const replaced = await experimentDigest(page); await page.waitForTimeout(500); expect(await experimentDigest(page)).toEqual(replaced);
   expect(await page.evaluate(() => window.__experiment!.painting.color.some(Boolean))).toBe(false);
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await page.getByRole('button', { name: '返回画室', exact: true }).click(); await page.getByRole('button', { name: '确认退出实验', exact: true }).click();
   await page.waitForTimeout(7000); expect(await digest(page)).toEqual(original); expect(await storedDraft(page)).toEqual(record);
   await page.screenshot({ path: `${root}/errors/m2-preserved.png` });

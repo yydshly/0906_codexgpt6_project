@@ -10,9 +10,9 @@ test('E1-A actual redraw in the existing page with isolated state', async ({ pag
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/landscape.jpg');
   await page.getByLabel('播放速度', { exact: true }).selectOption(process.env.E1_EVIDENCE_SPEED || '1');
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   await page.screenshot({ path: `${root}/first-screen.png` });
-  await page.getByRole('button', { name: '确认构图并绘制' }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click();
   await loadedPlan(page); await completed(page);
   await page.screenshot({ path: `${root}/landscape-result.png` });
   const output = await page.evaluate(async () => {
@@ -42,13 +42,13 @@ test('E1-B composition, playback invariance, real export and M2 isolation', asyn
   const history = await page.evaluate(() => window.__studio!.painting.history.length);
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/still-life.jpg');
-  await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
   const empty = await experimentDigest(page);
   const firstPreview = await page.locator('.experiment-reference img').getAttribute('src');
   await page.getByRole('button', { name: '居中方形 · 裁切', exact: true }).click();
   expect(await page.locator('.experiment-reference img').getAttribute('src')).not.toEqual(firstPreview); expect(await experimentDigest(page)).toEqual(empty);
   await page.getByRole('button', { name: '完整保留 · 留白', exact: true }).click();
-  await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色' }).click(); await loadedPlan(page);
   await page.getByRole('button', { name: '暂停绘制', exact: true }).click();
   const paused = await experimentDigest(page), pausedIndex = await page.evaluate(() => window.__experiment!.player!.index);
   await page.waitForTimeout(350); expect(await experimentDigest(page)).toEqual(paused);

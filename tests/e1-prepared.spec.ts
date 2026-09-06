@@ -34,6 +34,17 @@ test('prepared studio requires confirmation, dips at actual fixed dishes and pre
   await expect(page.locator('[data-brush-id][data-away="true"]')).toHaveCount(1);
   await page.screenshot({path:`${dir}/dip-at-fixed-dish.png`});
   const frozen=await experimentDigest(page); await page.waitForTimeout(250); expect(await experimentDigest(page)).toEqual(frozen);
+  for (const width of [1000,700,1440]) {
+    await page.setViewportSize({width,height:900});
+    await page.waitForFunction(()=>{
+      const p=window.__experiment!.player!, stroke=p.plan.strokes[p.index];
+      const rect=document.querySelector('.experiment-surface')!.getBoundingClientRect(), d=document.querySelector(`[data-dish-id="${stroke.dishId}"] .prepared-well`)!.getBoundingClientRect();
+      const x=rect.left+p.tip.x*rect.width/1024,y=rect.top+p.tip.y*rect.height/1024;
+      return x>d.left && x<d.right && y>d.top && y<d.bottom;
+    });
+    expect(await experimentDigest(page)).toEqual(frozen);
+    expect(await page.evaluate(()=>window.__experiment!.player!.state)).toBe('paused');
+  }
   await page.getByLabel('播放速度',{exact:true}).selectOption('4');
   await page.getByRole('button',{name:'继续绘制',exact:true}).click();
   await page.waitForFunction(()=>{const p=window.__experiment!.player!;if(p.index>=35){p.pause();return true;}return false;});

@@ -11,7 +11,9 @@ test('paint dock, dipping and contact follow real parameters; pause and export i
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/landscape.jpg');
   await page.getByLabel('播放速度', { exact: true }).selectOption('0.5');
-  await page.getByRole('button', { name: '确认构图并绘制', exact: true }).click();
+  await page.getByRole('button', { name: '确认构图，准备笔与颜色', exact: true }).click();
+  await expect(page.getByRole('button', { name: '确认准备，开始绘制', exact: true })).toBeEnabled({ timeout: 130000 });
+  await page.getByRole('button', { name: '确认准备，开始绘制', exact: true }).click();
   await page.waitForFunction(() => { const p = window.__experiment?.player; if (p?.action === 'dip' && p.index === 0) { p.pause(); return true; } return false; }, undefined, { timeout: 130000 });
   const blank = await experimentDigest(page), dip = await page.evaluate(() => { const p = window.__experiment!.player!; return { tip: p.tip, progress: p.dipProgress, next: p.nextPaint, active: window.__experiment!.painting.active, hasPaint: p.hasPaint }; });
   expect(dip.active).toBe(false); expect(dip.hasPaint).toBe(false); expect(dip.tip.color).toBe(dip.next!.color);
@@ -27,9 +29,9 @@ test('paint dock, dipping and contact follow real parameters; pause and export i
   await page.screenshot({ path: `${dir}/real-contact.png` });
   const downloading = page.waitForEvent('download'); await page.getByRole('button', { name: '导出实验 PNG', exact: true }).click(); await (await downloading).saveAs(`${dir}/partial.png`);
   const visible = await experimentPng(page, `${dir}/visible.png`);
-  await page.locator('.experiment-pen, .experiment-palette, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = 'hidden'));
+  await page.locator('.experiment-pen, .prepared-materials, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = 'hidden'));
   expect((await experimentPng(page, `${dir}/hidden.png`)).equals(visible)).toBe(true); expect(await experimentDigest(page)).toEqual(painted);
-  await page.locator('.experiment-pen, .experiment-palette, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = ''));
+  await page.locator('.experiment-pen, .prepared-materials, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = ''));
   // Pause on the next pickup: a completed stroke exists, but no dip may deposit paint.
   await page.getByRole('button', { name: '继续绘制', exact: true }).click();
   await page.waitForFunction(() => { const p = window.__experiment!.player!; if (p.index > 0 && p.action === 'dip') { p.pause(); return true; } return false; });
