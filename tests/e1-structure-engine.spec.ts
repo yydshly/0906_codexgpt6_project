@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { createHash } from 'node:crypto';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { Painting } from '../src/painting/engine';
-import { createPlan, executeStroke, MAX_STROKES } from '../src/experiment/plan';
+import { createPlan, executeStroke, MAX_STROKES, type StrokePlan } from '../src/experiment/plan';
 import { structureImportance, regionTasks } from '../src/experiment/structure';
 import { PlanPlayer } from '../src/experiment/player';
 
@@ -16,6 +17,22 @@ test('structure priorities preserve transparent margins and group local material
   expect(new Set(result).size).toBe(input.length);
   expect(result.slice(0,64).every(p=>p.x<64)).toBe(true);
   expect(result.slice(1).filter((p,i)=>p.color!==result[i].color).length).toBe(3);
+});
+
+for (const sample of ['landscape','still-life','complex']) for(const speed of [.5,1,4]) test(`complete structure ${sample} at ${speed}x matches recorded independent states`,()=>{
+  const plan:StrokePlan=JSON.parse(readFileSync(`artifacts/e1/structure-mode/b-fixed/${sample}/plan.json`,'utf8'));
+  const result=JSON.parse(readFileSync(`artifacts/e1/structure-mode/b-fixed/${sample}/results.json`,'utf8'));
+  const raf=globalThis.requestAnimationFrame,cancel=globalThis.cancelAnimationFrame;
+  let frames=0;
+  try {
+    let pending:FrameRequestCallback|null=null;
+    globalThis.requestAnimationFrame=fn=>{pending=fn;return 1;};globalThis.cancelAnimationFrame=()=>{pending=null;};
+    const painting=new Painting(false),player=new PlanPlayer(painting,plan,()=>{});player.speed=speed;player.play();
+    while(player.state!=='complete' && frames<1000000){const callback=pending;pending=null;(callback as FrameRequestCallback|null)?.(++frames*16.7);}
+    expect(player.state).toBe('complete');expect(hash(painting)).toEqual([result.final.color,result.final.height]);expect(painting.history).toHaveLength(0);player.dispose();
+  } finally {globalThis.requestAnimationFrame=raf;globalThis.cancelAnimationFrame=cancel;}
+  const dir=`${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/structure-mode/local'}/full-speeds`;mkdirSync(dir,{recursive:true});
+  writeFileSync(`${dir}/${sample}-${speed}.json`,JSON.stringify({status:'通过',sample,speed,frames,expected:result.final,note:'Synthetic rAF schedule executes all actual strokes; full real-time browser video separately recorded at 4x.'},null,2));
 });
 
 test('optional structure plan is bounded and deterministic; default remains original', () => {

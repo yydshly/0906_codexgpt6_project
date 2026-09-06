@@ -1,0 +1,38 @@
+{
+  "status": "通过",
+  "baselinePickups": 5306,
+  "movedStrokes": 5110,
+  "previousTravel": 275196.94910951855,
+  "travel": 224965.86476382898,
+  "previousScore": 1112078.7862273487,
+  "score": 970034.0231784383,
+  "pickups": 5193,
+  "costModel": "material-actions-v1",
+  "previousActionScore": 11911596.949109513,
+  "actionScore": 10529365.864763834,
+  "previousPickups": 5765,
+  "previousBrushChanges": 1051,
+  "brushChanges": 799,
+  "states": [
+    {
+      "color": "2f6f7e6eb63e87963ffc6e9bffaa0aad07cc0ec2ed63631e16be549c4bd43b3f",
+      "height": "1ed3c22d5a81bf2c411f4cfdadf5f4506d5334d93a5352178e0683d3e5196588"
+    },
+    {
+      "color": "c17d56a6fb1bffb52ae1168c735609c487e4f82064bfaf1d27a84fda4f9759e0",
+      "height": "b33057edd57c2f199df227aff52daa3396b36b626daa1181adef6fd162abefe0"
+    },
+    {
+      "color": "2b5938260d034ce05f5705fc66ef34a7762782db7a2111c6d872b62bcc007bf8",
+      "height": "db061e8af014ed7419349cb5cbdc884ef50310bb474a9815bd9a36b8b0fc2e1a"
+    },
+    {
+      "color": "c01c08ab2ba6eccb29819d9b664e179b36f3efeb69352c21975d987229a9e427",
+      "height": "4afacd0c2a6267cde8fb3e12ff7042eec378b5780d0fc24a8d95d64aa259fdc3"
+    },
+    {
+      "color": "5962cb5314e32eeed9c918ca9748f811ea7fba54e6bd9b3a51acfd6c6b9ce53d",
+      "height": "db6ee6cc39b4fcd00ecdb4643f08d6d6022e23d7bd306edfcda65b8d9c35bd37"
+    }
+  ]
+}

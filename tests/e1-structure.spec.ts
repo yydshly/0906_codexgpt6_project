@@ -33,8 +33,14 @@ test('switchable mode keeps original plan exact, preserves artwork on cancel and
   const partial=await experimentDigest(page); await page.waitForTimeout(250); expect(await experimentDigest(page)).toEqual(partial);
   const png=await experimentPng(page,`${dir}/actual-partial.png`);
   await page.getByRole('button',{name:'展开原图',exact:true}).click(); expect((await experimentPng(page,`${dir}/reference-visible.png`)).equals(png)).toBe(true);
+  await page.evaluate(()=>window.__experiment!.renderer.gl!.getExtension('WEBGL_lose_context')!.loseContext());
+  await expect(page.getByText('正在使用简化画布显示，局部材质光照暂不可用。')).toBeVisible(); expect(await experimentDigest(page)).toEqual(partial);
+  await experimentPng(page,`${dir}/fallback-partial.png`); expect(await experimentDigest(page)).toEqual(partial);
+  await page.getByRole('button',{name:'继续绘制',exact:true}).click();
+  await page.waitForFunction(()=>{const p=window.__experiment!.player!;if(p.index>=40){p.pause();return true;}return false;});
+  expect(await experimentDigest(page)).not.toEqual(partial);
   await page.getByRole('button',{name:'返回画室',exact:true}).click(); await page.getByRole('button',{name:'确认退出实验',exact:true}).click();
   expect(await digest(page)).toEqual(main); expect(await storedDraft(page)).toEqual(draft);
-  writeFileSync(`${dir}/results.json`,JSON.stringify({status:'通过',originalPlanExact:true,partial,main,draft,note:'Actual UI partial process; complete fixed plans recorded separately.'},null,2));
+  writeFileSync(`${dir}/results.json`,JSON.stringify({status:'通过',originalPlanExact:true,partial,main,draft,note:'Actual UI partial process with context-loss export and continued painting; complete fixed plans recorded separately.'},null,2));
   const video=page.video(); await page.close(); if(video) await video.saveAs(`${dir}/process.webm`);
 });

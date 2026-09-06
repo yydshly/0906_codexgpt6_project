@@ -1,0 +1,2132 @@
+{
+  "config": {
+    "argv": [
+      "D:\\software\\nodejs\\node.exe",
+      "E:\\0906_codexgpt6_project\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=engine",
+      "--project=studio",
+      "--project=m2",
+      "--project=e1-engine"
+    ],
+    "configFile": "E:\\0906_codexgpt6_project\\playwright.config.ts",
+    "rootDir": "E:/0906_codexgpt6_project/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1-engine",
+        "name": "e1-engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1-engine.spec.ts",
+          "e1-materials-engine.spec.ts",
+          "e1-structure-engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1-performance",
+        "name": "e1-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1-performance.spec.ts"
+        ],
+        "timeout": 1500000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1",
+        "name": "e1",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1.spec.ts",
+          "e1-evidence.spec.ts",
+          "e1-refinement.spec.ts",
+          "e1-brush-process.spec.ts",
+          "e1-prepared.spec.ts",
+          "e1-structure.spec.ts"
+        ],
+        "timeout": 1800000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "engine",
+        "name": "engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "studio",
+        "name": "studio",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "studio.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2",
+        "name": "m2",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2-performance",
+        "name": "m2-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/structure-mode/c-regression/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "performance",
+        "name": "performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "performance.spec.ts"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/e1/structure-mode/c-regression/npx-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5174 --strictPort",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "e1-engine.spec.ts",
+      "file": "e1-engine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "fixed three plans keep exact paint while local ordering and pickups are reproducible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14231,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:16.085Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-c210824009b2c1efd7c5",
+          "file": "e1-engine.spec.ts",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "pickup pauses without painting; all speeds execute the loaded color and amount exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 315,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:30.371Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-fc9e8ab7278969bc39a5",
+          "file": "e1-engine.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "brush display reads actual contact width, direction and load without mutating artwork",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16340,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:30.707Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-3561b8d2371ecc3d2b85",
+          "file": "e1-engine.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "batch shares the manual brush, including stroke-before mixing; no undo snapshots",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1056,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:47.058Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-4eb4023d12580a21cfa1",
+          "file": "e1-engine.spec.ts",
+          "line": 78,
+          "column": 1
+        },
+        {
+          "title": "valid image headers and malformed/truncated data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:48.132Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-b3aedb17dc274e43a536",
+          "file": "e1-engine.spec.ts",
+          "line": 92,
+          "column": 1
+        },
+        {
+          "title": "refined planner accepts its analysis dimensions and obeys stroke bounds",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4796,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:48.159Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-6a1cf3535f769de85c82",
+          "file": "e1-engine.spec.ts",
+          "line": 97,
+          "column": 1
+        },
+        {
+          "title": "thin experimental paint changes height only; manual thickness and legacy plans stay exact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14132,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T10:59:52.965Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-2a6044d3d547a3f4774b",
+          "file": "e1-engine.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "fixed point execution and all speeds preserve every stroke, including mixing and pauses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 790,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:07.105Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "00f14f896c4cb9bcdf2b-b0f187e920f1e42e5a0e",
+          "file": "e1-engine.spec.ts",
+          "line": 124,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e1-materials-engine.spec.ts",
+      "file": "e1-materials-engine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "complete prepared landscape plan is invariant at 0.5x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4936,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:07.946Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-fe1be957cf7a1d8a14ed",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared landscape plan is invariant at 1x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4881,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:12.892Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-eda5490668c58905d3f2",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared landscape plan is invariant at 4x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5021,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:17.785Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-0e4e1d421da612e65548",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared still-life plan is invariant at 0.5x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4029,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:22.820Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-3265cafca903a42f796c",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared still-life plan is invariant at 1x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3963,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:26.861Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-7166ec65c4f891c541e7",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared still-life plan is invariant at 4x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4456,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:30.838Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-ab46bbd24d1c7927cab4",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared complex plan is invariant at 0.5x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3849,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:35.311Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-1ef039019b845586a314",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared complex plan is invariant at 1x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4418,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:39.174Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-c4ea5e34a1e68df3e02a",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "complete prepared complex plan is invariant at 4x scheduled time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4717,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:43.607Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-be83d742ec07f7306a45",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 11,
+          "column": 92
+        },
+        {
+          "title": "prepared local actions preserve every landscape stage exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5442,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:48.344Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-d5d0da042d99ad348a53",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 26,
+          "column": 62
+        },
+        {
+          "title": "prepared local actions preserve every still-life stage exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4173,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:53.801Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-01f2246de0caf39bef6d",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 26,
+          "column": 62
+        },
+        {
+          "title": "prepared local actions preserve every complex stage exactly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4687,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:00:57.986Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-68e3bebd8b917de63110",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 26,
+          "column": 62
+        },
+        {
+          "title": "prepared palette is bounded, deterministic, image-dependent and ignores transparent margins",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:02.687Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-40c2ce9947fd1c6b2fb2",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "planner feeds actual prepared colors back into shared Painting and names every tool",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4580,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:02.844Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-a8e778edc20a227c67a5",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "fixed tools and dishes execute the same colors/heights at all speeds, pause during every action and return clean",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2918,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:07.433Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "83da1b8c39e64a1d8318-1effbbe697f64c7078b8",
+          "file": "e1-materials-engine.spec.ts",
+          "line": 66,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e1-structure-engine.spec.ts",
+      "file": "e1-structure-engine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "structure priorities preserve transparent margins and group local materials without dropping candidates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:10.399Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-24c91fb49ec056aeef4f",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "complete structure landscape at 0.5x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5157,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:10.435Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-f0a687b21c4d07984e47",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure landscape at 1x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5288,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:15.609Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-fb93f62e66e9b47e3fc0",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure landscape at 4x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4832,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:20.913Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-32beac518c5a2078da44",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure still-life at 0.5x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3608,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:25.759Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-d9065023551831bf9910",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure still-life at 1x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3637,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:29.379Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-1b17852918a8ccc9aa4e",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure still-life at 4x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3701,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:33.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-d04f78028259a7563802",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure complex at 0.5x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3840,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:36.737Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-7e15c9966117a67aaf0b",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure complex at 1x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3971,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:40.588Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-a3c8994b26b36586eb95",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "complete structure complex at 4x matches recorded independent states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3960,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:44.570Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-6fcb307c4c9600c325db",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 22,
+          "column": 89
+        },
+        {
+          "title": "optional structure plan is bounded and deterministic; default remains original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1-engine",
+              "projectName": "e1-engine",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:01:48.541Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "012d2b47e62ecb5b1c99-a92af66952e0faad3a6c",
+          "file": "e1-structure-engine.spec.ts",
+          "line": 38,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "engine.spec.ts",
+      "file": "engine.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "expected snapshots own their bytes when live height and color change",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:21.073Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-6eb528f0974fae362b8e",
+          "file": "engine.spec.ts",
+          "line": 36,
+          "column": 1
+        },
+        {
+          "title": "RYB has bounded colors, round trips, green contact, identity and white lightening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:21.114Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-d21bbb13041870be676a",
+          "file": "engine.spec.ts",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "20 strokes restore independent color and height expectations one undo at a time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 840,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:21.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-e9cb9d7c37a9089d1e5f",
+          "file": "engine.spec.ts",
+          "line": 68,
+          "column": 37
+        },
+        {
+          "title": "21 strokes restore independent color and height expectations one undo at a time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 810,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:21.988Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-851e8f9e87c22789c906",
+          "file": "engine.spec.ts",
+          "line": 68,
+          "column": 37
+        },
+        {
+          "title": "independent undo assertion rejects deliberately stale height restoration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 63,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:22.807Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-1d26692ede41e5de9112",
+          "file": "engine.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "mix only modifies brush contact and repeated height remains bounded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 783,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:22.877Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-d91356adb7696dde0f29",
+          "file": "engine.spec.ts",
+          "line": 108,
+          "column": 1
+        },
+        {
+          "title": "size, load, directional footprint and CSS coordinate invariants",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "engine",
+              "projectName": "engine",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:23.674Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "80e453acc87b615b08fa-3e38f9eacbdc9431ffb9",
+          "file": "engine.spec.ts",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio.spec.ts",
+      "file": "studio.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "designed studio, fixed brush samples and real UI workflow PNG download",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:02:24.445Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\studio-designed-studio-fix-fa656-al-UI-workflow-PNG-download-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-67145de5a8bf37361a6a",
+          "file": "studio.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "input cancellation, outside release, fast turns, clear confirmation and resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4823,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:00.128Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\studio-input-cancellation--9b6ea-ear-confirmation-and-resize-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-c97a367cfacc264c287e",
+          "file": "studio.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "WebGL unavailable fallback retains editable color, undo and PNG",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:04.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\studio-WebGL-unavailable-f-9fdce-editable-color-undo-and-PNG-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-9128609424c84e16fc25",
+          "file": "studio.spec.ts",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "context loss and restore keep complete color and height state including edits made in fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "studio",
+              "projectName": "studio",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7396,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:13.663Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\studio-context-loss-and-re-3b053-ding-edits-made-in-fallback-studio\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "64bdea7002f9c9cea9f4-5b5eb299682a7284cbce",
+          "file": "studio.spec.ts",
+          "line": 76,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "m2.spec.ts",
+      "file": "m2.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "A guide choices and overlays preserve independent artwork and user choices",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8078,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:22.190Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-A-guide-choices-and-ove-f5fe8-nt-artwork-and-user-choices-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-51b1115751f909079002",
+          "file": "m2.spec.ts",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "A explicitly choosing a fresh themed canvas remains undoable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3631,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:30.656Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-A-explicitly-choosing-a-ddc0f-med-canvas-remains-undoable-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-e93ba498746246bf9717",
+          "file": "m2.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "B committed draft restores exact color/height, brush and step; new undo returns to restored state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12563,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:34.307Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-B-committed-draft-resto-81664-o-returns-to-restored-state-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-7d8927eda443991fd6da",
+          "file": "m2.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "B deferred recovery preserves the old record and asks before replacing current work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6733,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:46.885Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-B-deferred-recovery-pre-1a9a5-fore-replacing-current-work-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-72a1282ba5981de24ccd",
+          "file": "m2.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "B write failure cannot claim saved, retains both current painting and previous committed draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7516,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:03:53.639Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-B-write-failure-cannot--aecab-nd-previous-committed-draft-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-6402c64166b78197e5f6",
+          "file": "m2.spec.ts",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "B corrupted bytes are rejected without replacing stored data; drawing and export remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7635,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:04:01.184Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-B-corrupted-bytes-are-r-8e9e7-and-export-remain-available-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-7117eb176bb089e54de0",
+          "file": "m2.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "C real travel sunset journey, signed preview/download, return to edit and signature recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30590,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:04:08.846Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-C-real-travel-sunset-jo-abfe5-edit-and-signature-recovery-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-6f281b44c6f810aba295",
+          "file": "m2.spec.ts",
+          "line": 110,
+          "column": 1
+        },
+        {
+          "title": "C newer draft in another tab cannot be silently overwritten by an older session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "m2",
+              "projectName": "m2",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6800,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T11:04:39.454Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-C-newer-draft-in-anothe-054ed-written-by-an-older-session-m2\\video-1.webm"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\structure-mode\\c-regression\\.runtime\\m2-C-newer-draft-in-anothe-054ed-written-by-an-older-session-m2\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01f49e799d3ea91d35fe-75a3b0a8f7f68154f83b",
+          "file": "m2.spec.ts",
+          "line": 187,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T10:59:14.813Z",
+    "duration": 331897.718,
+    "expected": 53,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

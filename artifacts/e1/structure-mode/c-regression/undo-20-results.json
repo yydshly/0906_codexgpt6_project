@@ -1,0 +1,122 @@
+{
+  "status": "通过",
+  "strokeCount": 20,
+  "independentExpectations": true,
+  "undoSteps": [
+    {
+      "remainingStrokes": 19,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 18,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 17,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 16,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 15,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 14,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 13,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 12,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 11,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 10,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 9,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 8,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 7,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 6,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 5,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 4,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 3,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 2,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 1,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    },
+    {
+      "remainingStrokes": 0,
+      "colorBytesEqual": true,
+      "heightBytesEqual": true
+    }
+  ],
+  "perStrokeByteComparisons": 40,
+  "additionalStateChecks": [
+    "fork color/height",
+    "clear color/height",
+    "single undo to empty"
+  ],
+  "history": {
+    "currentBytes": 6291456,
+    "historyBytes": 125829120,
+    "pendingBytes": 0,
+    "batchBufferBytes": 0,
+    "brushBytes": 2048,
+    "cacheEntries": 0,
+    "historyCount": 20
+  }
+}
