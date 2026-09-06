@@ -1,6 +1,9 @@
 import { Painting, type Brush, type Point } from '../painting/engine';
 import { prepareProcess, type PaintPickup } from './process-plan';
 import { attachMaterials, prepareDishes, dishMatcher, type Materials } from './materials';
+import { regionTasks, structureImportance } from './structure';
+
+export type PaintingApproach = 'original' | 'structure';
 
 export const ANALYSIS_SIZE = 512;
 export const PLANNER_VERSION = 'e1-brush-process-3';
@@ -64,18 +67,21 @@ function distribute(candidates: Candidate[], limit: number) {
 
 /** Original local implementation inspired by Hertzmann's coarse-to-fine idea.
  * Error feedback uses the existing Painting, never a pasted photo. */
-export function createPlan(source: Uint8ClampedArray, composition: Composition, inputHash: string, progress: (stage: number) => void = () => {}, prepared = false) {
+export function createPlan(source: Uint8ClampedArray, composition: Composition, inputHash: string, progress: (stage: number) => void = () => {}, prepared = false, approach: PaintingApproach = 'original') {
   if (source.length !== W * W * 4) throw new Error('分析尺寸不正确');
   const painting = new Painting(false);
   const plan: StrokePlan = { plannerVersion: PLANNER_VERSION, brushVersion: 2, seed: PLAN_SEED, size: 1024, analysisSize: W, composition, inputHash, stages: [], strokes: [] };
-  const dishes = prepared ? prepareDishes(source) : null, match = dishes ? dishMatcher(dishes) : null;
+  const structured = approach === 'structure';
+  const importance = structured ? structureImportance(source, W) : undefined;
+  const dishes = prepared ? prepareDishes(source, importance) : null, match = dishes ? dishMatcher(dishes) : null;
   if (prepared) plan.plannerVersion = 'e1-prepared-studio-2';
+  if (structured) plan.plannerVersion = 'e1-structure-1';
   let state = PLAN_SEED;
   const random = () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
   const inside = (x: number, y: number) => x >= 0 && x < W && y >= 0 && y < W && source[at(x, y) + 3] > 8;
   for (let stage = 0; stage < STAGES.length; stage++) {
     progress(stage);
-    const spec = STAGES[stage], reference = blurred(source, Math.max(0, Math.round(spec.size / SCALE * .16)));
+    const spec = STAGES[stage], reference = blurred(source, structured && stage >= 3 ? 0 : Math.max(0, Math.round(spec.size / SCALE * .16)));
     const luminance = (x: number, y: number) => { const i = at(x, y); return .299 * reference[i] + .587 * reference[i + 1] + .114 * reference[i + 2]; };
     const direction = (x: number, y: number) => {
       let gx = 0, gy = 0;
@@ -92,7 +98,7 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
       let best: Candidate | null = null;
       for (let yy = y; yy < Math.min(W, y + step); yy += 2) for (let xx = x; xx < Math.min(W, x + step); xx += 2) {
         if (!inside(xx, yy)) continue;
-        const e = error(xx, yy); if (!best || e > best.error) best = { x: xx, y: yy, error: e };
+        const e = error(xx, yy) * (stage > 0 ? importance?.[yy * W + xx] ?? 1 : 1); if (!best || e > best.error) best = { x: xx, y: yy, error: e };
       }
       if (!best) continue;
       if (stage === 0) {
@@ -101,7 +107,11 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
       }
       if (best.error >= spec.threshold) candidates.push(best);
     }
-    for (const start of distribute(candidates, spec.limit)) {
+    const brushSize = (p: Candidate) => Math.max(4, Math.round(spec.size * (stage && direction(p.x, p.y).strength > 12 ? .65 : 1)));
+    const colorAt = (p: Candidate) => { const i = at(p.x, p.y); const color = '#' + [reference[i], reference[i + 1], reference[i + 2]].map(v => v.toString(16).padStart(2, '0')).join(''); return match ? match(color).color : color; };
+    const selected = distribute(candidates, spec.limit);
+    const tasks = structured ? regionTasks(selected, p => `${String(brushSize(p)).padStart(2, '0')}:${colorAt(p)}`) : selected;
+    for (const start of tasks) {
       if (stage && error(start.x, start.y) < spec.threshold * .8) continue;
       const i = at(start.x, start.y), rgb = [reference[i], reference[i + 1], reference[i + 2]], flow = direction(start.x, start.y);
       const size = Math.max(4, Math.round(spec.size * (stage && flow.strength > 12 ? .65 : 1)));
@@ -121,6 +131,8 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
       };
       const path = [...trace(-1).reverse(), { x: start.x * SCALE, y: start.y * SCALE, pressure: .5 }, ...trace(1)];
       const stroke: PlannedStroke = { order: plan.strokes.length, stage, path, sampleStep: 2, brush: { color: '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join(''), size, load: spec.load, thickness: spec.thickness, mode: 'cover', seed: Math.floor(random() * 4294967296) } };
+      // Explicit new-plan parameters only; historical/manual brush behavior is unchanged.
+      if (structured) { stroke.brush.load = .9; stroke.brush.thickness = stage >= 3 ? .065 : spec.thickness; }
       if (match) stroke.brush.color = match(stroke.brush.color).color;
       executeStroke(painting, stroke); plan.strokes.push(stroke);
     }

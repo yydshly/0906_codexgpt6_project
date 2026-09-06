@@ -4,7 +4,7 @@ import { StudioRenderer } from '../rendering/renderer';
 import { downloadBlob } from '../works/export';
 import { analyzeImage, decodeLocalImage } from './image';
 import { PlanPlayer, type MaterialStations } from './player';
-import { STAGES, type StrokePlan, type Composition } from './plan';
+import { STAGES, type StrokePlan, type Composition, type PaintingApproach } from './plan';
 import './experiment.css';
 import './prepared.css';
 import { BrushCursor, brushName } from './BrushCursor';
@@ -23,6 +23,7 @@ export function ImageExperiment({ back }: { back: () => void }) {
   const [exporting, setExporting] = useState(false), [fallback, setFallback] = useState(false);
   const [speed, setSpeed] = useState(1), [pending, setPending] = useState<{ kind: 'replace' | 'replan' | 'replay'; file?: File } | null>(null);
   const [showReference, setShowReference] = useState(true), [preparationValid, setPreparationValid] = useState(false);
+  const [approach, setApproach] = useState<PaintingApproach>('original');
   const deadline = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const changed = () => { runtime.current?.renderer.request(); refresh(v => v + 1); };
   useEffect(() => {
@@ -58,6 +59,14 @@ export function ImageExperiment({ back }: { back: () => void }) {
     stopWork(); setComposition(next); setPreview(analyzeImage(source.current.bitmap, next).preview);
     setPreparationValid(false); setShowReference(true);
     setMessage(next === 'crop' ? '居中方形将裁去预览框外内容。原实验画作保留，请检查构图并重新准备。' : '完整保留原比例。原实验画作保留，请重新准备笔与颜色。');
+  }
+  function changeApproach(next: PaintingApproach) {
+    if (next === approach) return;
+    stopWork(); setApproach(next);
+    const plan = runtime.current?.plan;
+    const matches = !!plan && plan.composition === composition && (plan.plannerVersion === 'e1-structure-1' ? 'structure' : 'original') === next;
+    setPreparationValid(matches);
+    setMessage(matches ? '已切回当前画作的方式，可以继续绘制。' : '绘制方式已选择。当前画作保留；点击准备笔与颜色后，确认是否替换。');
   }
   async function select(file?: File) {
     if (!file) return;
@@ -97,7 +106,7 @@ export function ImageExperiment({ back }: { back: () => void }) {
       } else { stopWork(); setMessage(event.data.message); }
     };
     const { pixels } = analyzeImage(source.current.bitmap, composition);
-    try { task.postMessage({ pixels, composition, inputHash: source.current.inputHash }, [pixels.buffer]); }
+    try { task.postMessage({ pixels, composition, inputHash: source.current.inputHash, approach }, [pixels.buffer]); }
     catch { stopWork(); setMessage('无法启动本地规划，请重试。'); }
   }
   function requestGenerate() {
@@ -142,6 +151,7 @@ export function ImageExperiment({ back }: { back: () => void }) {
     <header className="experiment-heading"><div><p className="eyebrow">SLOWLIGHT / LOCAL STUDY · E1</p><h1>让照片，慢慢成为笔触。</h1><p>图片自动绘制 · 实验　<span>原画室与草稿已保留</span></p></div><button disabled={exporting} onClick={leave}>返回画室</button></header>
     <div className="experiment-tools"><label className="file-button">{name ? '更换本地图片' : '选择本地图片'}<input aria-label="选择本地图片" type="file" accept="image/png,image/jpeg" disabled={exporting || !!pending || leaving} onChange={event => { choose(event.target.files?.[0]); event.target.value = ''; }}/></label><span>{name || 'PNG / JPEG · 最多 12 MB / 1200 万像素'}</span><button disabled={!preview || working || exporting} onClick={requestGenerate}>确认构图，准备笔与颜色</button>{working && <button onClick={() => { stopWork(); setMessage('已取消。可以重新选图或重新开始。'); }}>取消处理</button>}</div>
     <div className="composition-options" aria-label="构图方式"><button aria-pressed={composition === 'contain'} disabled={!preview || exporting} onClick={() => changeComposition('contain')}>完整保留 · 留白</button><button aria-pressed={composition === 'crop'} disabled={!preview || exporting} onClick={() => changeComposition('crop')}>居中方形 · 裁切</button><span>{composition === 'crop' ? '请检查主体：只绘制预览框内的部分' : '保留完整比例，无拉伸或裁切'}</span></div>
+    <div className="painting-approach" role="group" aria-label="绘制方式"><div><span className="eyebrow">这一幅，怎样落笔</span><div className="approach-options"><button aria-pressed={approach === 'original'} disabled={exporting} onClick={() => changeApproach('original')}>原版 · 油画笔触</button><button aria-pressed={approach === 'structure'} disabled={exporting} onClick={() => changeApproach('structure')}>结构优先 · 实验</button></div></div><p>{approach === 'original' ? '保留现有画风，逐层铺色与细化。' : '优先局部轮廓，同一区域同笔同色连续画。仍保留油画笔触，人脸细节可能失真。'}<small>{player ? `当前画作：${player.plan.plannerVersion === 'e1-structure-1' ? '结构优先' : '原版油画'}${preparationValid ? '' : ' · 重新准备前保留原作'}` : '选择方式后，再准备笔与颜色。'}</small></p></div>
     <div className="experiment-playback"><label>播放速度 <select aria-label="播放速度" value={speed} disabled={exporting || working} onChange={event => { const next = +event.target.value; setSpeed(next); if (player) player.speed = next; }}><option value="0.5">慢一点 · 0.5×</option><option value="1">从容 · 1×</option><option value="4">快一点 · 4×</option></select></label><button disabled={!player || !preparationValid || player.state === 'ready' || player.state === 'complete' || working || exporting} onClick={() => player?.state === 'playing' ? player.pause() : player?.play()}>{player?.state === 'playing' ? '暂停绘制' : '继续绘制'}</button><button disabled={!player?.hasPaint || !preparationValid || working || exporting} onClick={() => { player?.pause(); setPending({ kind: 'replay' }); }}>从空白重新播放</button><button className="confirm-button" disabled={!player?.hasPaint || working || exporting} onClick={download}>{exporting ? '正在导出…' : '导出实验 PNG'}</button></div>
     {player?.state === 'ready' && <div className="prepared-confirm-row"><span>{preparationValid ? `${materials?.brushes.length} 支笔 · ${materials?.dishes.length} 盘颜色 · 已准备` : '构图已更改，请重新准备'}</span><button className="confirm-button prepared-start" disabled={!preparationValid || working || exporting} onClick={() => { setShowReference(false); player.play(); setMessage('先取笔、沾对应色盘，再沿实际路径绘画。可暂停；擦拭只重置本次笔上的颜色，不模拟颜料化学。'); }}>确认准备，开始绘制</button></div>}
     <div className="prepared-workspace" ref={workspace}>

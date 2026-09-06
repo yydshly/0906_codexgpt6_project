@@ -6,6 +6,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 test('continuous fixed complex scene without screenshot or encoding interference', async ({ page }) => {
   const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local'; mkdirSync(root, { recursive: true });
   await ready(page); await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
+  if (process.env.E1_APPROACH === 'structure') await page.getByRole('button', { name: '结构优先 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/complex.jpg');
   const speed = +(process.env.E1_EVIDENCE_SPEED || 1);
   await page.getByLabel('播放速度', { exact: true }).selectOption(String(speed));

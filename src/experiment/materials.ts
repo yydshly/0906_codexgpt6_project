@@ -10,12 +10,12 @@ const rgb = (color: string) => [1, 3, 5].map(i => parseInt(color.slice(i, i + 2)
 const distance = (a: number[], b: number[]) => (a[0] - b[0]) ** 2 + 2 * (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2;
 
 /** Bounded, deterministic weighted median-cut. Transparent margins contribute no paint. */
-export function prepareDishes(pixels: Uint8ClampedArray): PaintDish[] {
+export function prepareDishes(pixels: Uint8ClampedArray, importance?: Float32Array): PaintDish[] {
   const bins = new Map<number, { sum: number[]; weight: number }>();
   for (let i = 0; i < pixels.length; i += 4) {
     if (pixels[i + 3] <= 8) continue;
     const key = (pixels[i] >> 4) * 256 + (pixels[i + 1] >> 4) * 16 + (pixels[i + 2] >> 4);
-    const bin = bins.get(key) ?? { sum: [0, 0, 0], weight: 0 }, weight = pixels[i + 3] / 255;
+    const bin = bins.get(key) ?? { sum: [0, 0, 0], weight: 0 }, weight = pixels[i + 3] / 255 * (importance?.[i / 4] ?? 1);
     bin.weight += weight;
     for (let c = 0; c < 3; c++) bin.sum[c] += pixels[i + c] * weight;
     bins.set(key, bin);

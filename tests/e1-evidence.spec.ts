@@ -15,6 +15,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   const requests: string[] = []; page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:5174') && !/^(blob:|data:)/.test(request.url())) requests.push(request.url()); });
   const before = await digest(page);
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
+  if (process.env.E1_APPROACH === 'structure') await page.getByRole('button', { name: '结构优先 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles(`artifacts/e1/fixtures/${sample}.jpg`);
   const speed = process.env.E1_EVIDENCE_SPEED || '1';
   await page.getByLabel('播放速度', { exact: true }).selectOption(speed);
