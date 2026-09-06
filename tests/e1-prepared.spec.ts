@@ -1,7 +1,46 @@
 import { test, expect } from '@playwright/test';
-import { mkdirSync, writeFileSync } from 'node:fs';
-import { ready, digest } from './helpers';
-import { experimentDigest, experimentPng, storedDraft } from './e1-helpers';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { ready, digest, draw } from './helpers';
+import { experimentDigest, experimentPng, storedDraft, loadedPlan } from './e1-helpers';
+
+test('prepared replay controls, partial stroke fallback and original signed sunset remain correct', async ({page})=>{
+  const dir=`${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/prepared-studio/local'}/controls`; mkdirSync(dir,{recursive:true});
+  await ready(page); await page.getByRole('button',{name:'画一幅旅行日落',exact:true}).click();
+  await page.getByRole('button',{name:'继续下一步'}).click(); await draw(page,[{x:350,y:480},{x:550,y:460}]);
+  await page.getByRole('button',{name:'签名与完成',exact:true}).click(); await page.getByLabel('给这幅画签名',{exact:false}).fill('原作 · 备料测试');
+  await page.getByRole('button',{name:'返回修改',exact:true}).click(); await expect(page.getByTestId('save-state')).toHaveAttribute('data-phase','saved',{timeout:15000});
+  const original=await digest(page),stored=await storedDraft(page),history=await page.evaluate(()=>window.__studio!.painting.history.length);
+  await page.getByRole('button',{name:'图片自动绘制 · 实验',exact:true}).click();
+  await page.getByLabel('选择本地图片',{exact:true}).setInputFiles('artifacts/e1/fixtures/still-life.jpg');
+  await page.getByLabel('播放速度',{exact:true}).selectOption('4'); await page.getByRole('button',{name:'确认构图，准备笔与颜色',exact:true}).click(); await loadedPlan(page);
+  await page.evaluate(()=>{const p=window.__experiment!.player!; p.onStage=s=>{if(s===0)p.pause();};});
+  await page.waitForFunction(()=>{const e=window.__experiment!;return e.player!.index===e.plan!.stages[0].end && e.player!.state==='paused';},undefined,{timeout:180000});
+  const firstStage=await experimentDigest(page),plan=await page.evaluate(()=>JSON.stringify(window.__experiment!.plan));
+  expect(firstStage).toEqual(JSON.parse(readFileSync('artifacts/e1/prepared-studio/b-quality/still-life/stage-1-state.json','utf8')));
+  const originalPng=await experimentPng(page,`${dir}/first-stage.png`);
+  const download=page.waitForEvent('download'); await page.getByRole('button',{name:'导出实验 PNG',exact:true}).click(); await(await download).saveAs(`${dir}/downloaded-first-stage.png`);
+  expect(readFileSync(`${dir}/downloaded-first-stage.png`).equals(originalPng)).toBe(true);
+  await page.getByRole('button',{name:'从空白重新播放',exact:true}).click(); await page.getByRole('button',{name:'取消，保留实验画作',exact:true}).click(); expect(await experimentDigest(page)).toEqual(firstStage);
+  await page.getByLabel('播放速度',{exact:true}).selectOption('1'); await page.getByRole('button',{name:'从空白重新播放',exact:true}).click(); await page.getByRole('button',{name:'确认重新播放',exact:true}).click();
+  await page.waitForFunction(()=>{const e=window.__experiment!,p=e.player!;if(e.painting.active && p.sampleIndex>=3 && p.tip.down){p.pause();return true;}return false;});
+  const partial=await experimentDigest(page),sampleIndex=await page.evaluate(()=>window.__experiment!.player!.sampleIndex);
+  await page.waitForTimeout(350); expect(await experimentDigest(page)).toEqual(partial); await experimentPng(page,`${dir}/partial-stroke.png`);
+  expect(await page.evaluate(()=>window.__experiment!.painting.active)).toBe(true); expect(await page.evaluate(()=>window.__experiment!.player!.sampleIndex)).toBe(sampleIndex);
+  await page.evaluate(()=>window.__experiment!.renderer.gl!.getExtension('WEBGL_lose_context')!.loseContext());
+  await expect(page.getByText('正在使用简化画布显示，局部材质光照暂不可用。')).toBeVisible(); expect(await experimentDigest(page)).toEqual(partial);
+  await experimentPng(page,`${dir}/fallback-partial.png`); expect(await experimentDigest(page)).toEqual(partial);
+  await page.getByLabel('播放速度',{exact:true}).selectOption('4'); await page.getByRole('button',{name:'继续绘制',exact:true}).click();
+  await page.waitForFunction(()=>{const e=window.__experiment!;return e.player!.index===e.plan!.stages[0].end && e.player!.state==='paused';},undefined,{timeout:180000});
+  expect(await experimentDigest(page)).toEqual(firstStage); expect(await page.evaluate(()=>JSON.stringify(window.__experiment!.plan))).toBe(plan);
+  await experimentPng(page,`${dir}/fallback-first-stage.png`); await page.screenshot({path:`${dir}/replay-and-fallback.png`});
+  await page.getByLabel('选择本地图片',{exact:true}).setInputFiles('artifacts/e1/fixtures/complex.jpg'); await page.getByRole('button',{name:'取消，保留实验画作',exact:true}).click(); expect(await experimentDigest(page)).toEqual(firstStage);
+  await page.getByRole('button',{name:'返回画室',exact:true}).click(); await page.getByRole('button',{name:'留在实验',exact:true}).click(); expect(await experimentDigest(page)).toEqual(firstStage);
+  await page.getByRole('button',{name:'返回画室',exact:true}).click(); await page.getByRole('button',{name:'确认退出实验',exact:true}).click();
+  expect(await digest(page)).toEqual(original); expect(await storedDraft(page)).toEqual(stored); expect(await page.evaluate(()=>window.__studio!.painting.history.length)).toBe(history);
+  await expect(page.getByRole('button',{name:'02远山',exact:true})).toHaveAttribute('aria-current','step'); await page.getByRole('button',{name:'签名与完成',exact:true}).click(); await expect(page.getByLabel('给这幅画签名',{exact:false})).toHaveValue('原作 · 备料测试');
+  writeFileSync(`${dir}/results.json`,JSON.stringify({status:'通过',scope:'Actual UI first-stage replay, speed 1 then 4, active-stroke pause/export/context loss/continuation; this is NOT a full 1x video. Complete plans at all three speeds are separately CPU-clock tested, and three complete UI videos use 4x.',firstStage,partial,sampleIndex,original,stored,history},null,2));
+  const video=page.video(); await page.close(); if(video)await video.saveAs(`${dir}/process.webm`);
+});
 
 test('prepared studio requires confirmation, dips at actual fixed dishes and preserves the main studio', async ({ page }) => {
   const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/prepared-studio/local'}/prepared`; mkdirSync(dir,{recursive:true});

@@ -154,11 +154,11 @@ export function ImageExperiment({ back }: { back: () => void }) {
         <p className="prepared-progress" data-testid="prepared-progress">{progressText}</p>
         {player?.hasPaint && <p className="prepared-current">{player.plan.stages[player.plan.strokes[Math.min(player.index, player.plan.strokes.length - 1)].stage]?.name} · {brushName(player.tip.size)} {player.tip.size} px · 上色量 {Math.round(player.tip.load * 100)}%</p>}
       </section>
-      <MaterialBoard materials={materials} player={player}/>
+      <MaterialBoard materials={materials} heldBrushId={player?.heldBrushId} dishId={player?.plan.strokes[player.index]?.dishId} action={player?.action}/>
       <div className="prepared-overlay" ref={overlay}>{player?.tip.visible && <BrushCursor tip={player.tip}/>}</div>
     </div>
     <p className="experiment-message" role="status">{message}</p>{fallback && <p role="alert">正在使用简化画布显示，局部材质光照暂不可用。</p>}
-    {import.meta.env.DEV && <p className="experiment-message"><a href={`${import.meta.env.BASE_URL}artifacts/e1/brush-process/index.html`} target="_blank" rel="noopener">查看笔头、沾色与三图过程 ↗</a></p>}
+    {import.meta.env.DEV && <p className="experiment-message"><a href={`${import.meta.env.BASE_URL}artifacts/e1/prepared-studio/index.html`} target="_blank" rel="noopener">查看备笔、固定色盘与三图过程 ↗</a></p>}
     <footer className="experiment-note">图片仅在本机处理，不上传。实验结果不自动保存，退出或刷新前请导出。<br/>这是算法的绘制过程，不是专业画师教学步骤；细小文字、人脸与复杂场景可能失真。</footer>
     </div>
     {leaving && <div className="experiment-leave" role="alertdialog" aria-modal="true" aria-label="离开实验确认"><div><h2>把这次实验带走吗？</h2><p>实验画作不会自动保存。退出后原画室、签名与草稿仍在。</p><button autoFocus onClick={() => setLeaving(false)}>留在实验</button><button disabled={exporting || !player?.hasPaint} onClick={download}>先导出 PNG</button><button className="confirm-button" disabled={exporting} onClick={back}>确认退出实验</button></div></div>}

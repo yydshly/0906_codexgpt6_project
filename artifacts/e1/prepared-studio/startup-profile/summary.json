@@ -1,0 +1,256 @@
+{
+  "longTasks": [
+    {
+      "start": 11173.300000071526,
+      "duration": 4842
+    },
+    {
+      "start": 16073.900000095367,
+      "duration": 55
+    }
+  ],
+  "planningMs": 8109.200000047684,
+  "top": [
+    {
+      "ms": 7936.561999999984,
+      "functionName": "(idle)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 2919.225,
+      "functionName": "run",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 900.9649999999996,
+      "functionName": "(garbage collector)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 802.0979999999993,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 607.8899999999999,
+      "functionName": "addObjectToProperties",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 2332,
+      "columnNumber": 32
+    },
+    {
+      "ms": 377.5960000000001,
+      "functionName": "addValueToProperties",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 2335,
+      "columnNumber": 31
+    },
+    {
+      "ms": 182.676,
+      "functionName": "dab",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 158,
+      "columnNumber": 4
+    },
+    {
+      "ms": 82.73500000000001,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 59.75099999999999,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 52.495999999999995,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 35.20099999999999,
+      "functionName": "addValueToProperties",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 2335,
+      "columnNumber": 31
+    },
+    {
+      "ms": 30.313000000000002,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 28.633000000000006,
+      "functionName": "measure",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 28.492,
+      "functionName": "task.onmessage",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/src/experiment/ImageExperiment.tsx?t=1788683884335",
+      "lineNumber": 165,
+      "columnNumber": 19
+    },
+    {
+      "ms": 18.842999999999996,
+      "functionName": "clear",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 241,
+      "columnNumber": 6
+    },
+    {
+      "ms": 17.289,
+      "functionName": "ReactElement",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 103,
+      "columnNumber": 23
+    },
+    {
+      "ms": 15.159,
+      "functionName": "requestAnimationFrame",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 14.968999999999998,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 13.556000000000001,
+      "functionName": "move",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 119,
+      "columnNumber": 5
+    },
+    {
+      "ms": 13.152,
+      "functionName": "getBoundingClientRect",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 12.543,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 12.421000000000001,
+      "functionName": "runWithFiberInDEV",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 846,
+      "columnNumber": 28
+    },
+    {
+      "ms": 11.379,
+      "functionName": "updatedAncestorInfoDev",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 1642,
+      "columnNumber": 33
+    },
+    {
+      "ms": 10.992999999999999,
+      "functionName": "beginWork",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 6080,
+      "columnNumber": 20
+    },
+    {
+      "ms": 10.983,
+      "functionName": "dab",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 158,
+      "columnNumber": 4
+    },
+    {
+      "ms": 10.659,
+      "functionName": "updateProperties",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 9925,
+      "columnNumber": 27
+    },
+    {
+      "ms": 9.57,
+      "functionName": "toDataURL",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 8.045,
+      "functionName": "ReactElement",
+      "scriptId": "21",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 103,
+      "columnNumber": 23
+    },
+    {
+      "ms": 8.044,
+      "functionName": "setProp",
+      "scriptId": "10",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 9527,
+      "columnNumber": 18
+    },
+    {
+      "ms": 7.955,
+      "functionName": "setAttribute",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    }
+  ],
+  "note": "Focused startup diagnostic with CPU profiler, not an independent performance benchmark."
+}

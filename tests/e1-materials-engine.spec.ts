@@ -8,6 +8,21 @@ import { prepareProcess } from '../src/experiment/process-plan';
 import { PlanPlayer } from '../src/experiment/player';
 
 const hash = (p: Painting) => [p.color, new Uint8Array(p.height.buffer)].map(a => createHash('sha256').update(a).digest('hex'));
+for (const sample of ['landscape', 'still-life', 'complex']) for (const speed of [.5,1,4]) test(`complete prepared ${sample} plan is invariant at ${speed}x scheduled time`, () => {
+  const plan: StrokePlan = JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-ordering/ordering/${sample}/plan.json`,'utf8'));
+  const expected = JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-quality/${sample}/stage-5-state.json`,'utf8'));
+  const raf=globalThis.requestAnimationFrame, cancel=globalThis.cancelAnimationFrame;
+  let pending:FrameRequestCallback|null=null, frames=0;
+  try {
+    globalThis.requestAnimationFrame=fn=>{pending=fn;return 1;}; globalThis.cancelAnimationFrame=()=>{pending=null;};
+    const painting=new Painting(false), player=new PlanPlayer(painting,plan,()=>{}); player.speed=speed; player.play();
+    const start=performance.now();
+    while(player.state!=='complete' && frames<1000000) { const callback=pending; pending=null; (callback as FrameRequestCallback|null)?.(++frames*16.7); }
+    expect(player.state).toBe('complete'); expect(hash(painting)).toEqual([expected.color,expected.height]); expect(player.heldBrushId).toBeNull(); expect(painting.history.length).toBe(0);
+    const dir=`${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/prepared-studio/local'}/complete-speeds`; mkdirSync(dir,{recursive:true});
+    writeFileSync(`${dir}/${sample}-${speed}.json`,JSON.stringify({status:'通过',sample,speed,strokes:plan.strokes.length,frames,scheduledMs:frames*16.7,cpuTestMs:performance.now()-start,expected,note:'Complete real plan and Painting; deterministic synthetic rAF clock, no DOM or actual-time video. UI playback recorded separately at 4x.'},null,2));
+  } finally { globalThis.requestAnimationFrame=raf; globalThis.cancelAnimationFrame=cancel; }
+});
 for (const sample of ['landscape', 'still-life', 'complex']) test(`prepared local actions preserve every ${sample} stage exactly`, () => {
   const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/prepared-studio/local'}/ordering/${sample}`; mkdirSync(dir, { recursive: true });
   const baseline: StrokePlan = JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-quality/${sample}/plan.json`, 'utf8'));

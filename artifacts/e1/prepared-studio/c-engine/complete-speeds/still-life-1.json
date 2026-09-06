@@ -1,0 +1,14 @@
+{
+  "status": "通过",
+  "sample": "still-life",
+  "speed": 1,
+  "strokes": 7305,
+  "frames": 108970,
+  "scheduledMs": 1819799,
+  "cpuTestMs": 3431.498400000004,
+  "expected": {
+    "color": "5962cb5314e32eeed9c918ca9748f811ea7fba54e6bd9b3a51acfd6c6b9ce53d",
+    "height": "db6ee6cc39b4fcd00ecdb4643f08d6d6022e23d7bd306edfcda65b8d9c35bd37"
+  },
+  "note": "Complete real plan and Painting; deterministic synthetic rAF clock, no DOM or actual-time video. UI playback recorded separately at 4x."
+}

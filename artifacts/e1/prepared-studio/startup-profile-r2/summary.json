@@ -1,0 +1,256 @@
+{
+  "longTasks": [
+    {
+      "start": 3691.100000023842,
+      "duration": 86
+    },
+    {
+      "start": 13532.5,
+      "duration": 81
+    }
+  ],
+  "planningMs": 9687.699999928474,
+  "top": [
+    {
+      "ms": 9703.937000000007,
+      "functionName": "(idle)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 762.4389999999997,
+      "functionName": "(program)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 219.42100000000002,
+      "functionName": "dab",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 158,
+      "columnNumber": 4
+    },
+    {
+      "ms": 57.06400000000001,
+      "functionName": "task.onmessage",
+      "scriptId": "24",
+      "url": "http://127.0.0.1:5174/src/experiment/ImageExperiment.tsx?t=1788686670002",
+      "lineNumber": 165,
+      "columnNumber": 19
+    },
+    {
+      "ms": 43.902000000000015,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 42.031000000000006,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 40.3,
+      "functionName": "(garbage collector)",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 26.956000000000003,
+      "functionName": "requestAnimationFrame",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 24.215,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 23.256999999999998,
+      "functionName": "clear",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 241,
+      "columnNumber": 6
+    },
+    {
+      "ms": 20.34,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 18.316,
+      "functionName": "getBoundingClientRect",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 18.163,
+      "functionName": "",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 243,
+      "columnNumber": 23
+    },
+    {
+      "ms": 17.672,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 15.632000000000001,
+      "functionName": "ReactElement",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 103,
+      "columnNumber": 23
+    },
+    {
+      "ms": 13.829,
+      "functionName": "BrushCursor",
+      "scriptId": "30",
+      "url": "http://127.0.0.1:5174/src/experiment/BrushCursor.tsx?t=1788681997307",
+      "lineNumber": 6,
+      "columnNumber": 27
+    },
+    {
+      "ms": 13.701,
+      "functionName": "toDataURL",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 13.187,
+      "functionName": "dab",
+      "scriptId": "11",
+      "url": "http://127.0.0.1:5174/src/painting/engine.ts?t=1788675219271",
+      "lineNumber": 158,
+      "columnNumber": 4
+    },
+    {
+      "ms": 12.745,
+      "functionName": "completeWork",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 6275,
+      "columnNumber": 23
+    },
+    {
+      "ms": 11.366,
+      "functionName": "beginWork",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 6080,
+      "columnNumber": 20
+    },
+    {
+      "ms": 10.270000000000001,
+      "functionName": "createWorkInProgress",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 2727,
+      "columnNumber": 31
+    },
+    {
+      "ms": 9.717,
+      "functionName": "react_stack_bottom_frame",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 12861,
+      "columnNumber": 58
+    },
+    {
+      "ms": 9.503,
+      "functionName": "runWithFiberInDEV",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 846,
+      "columnNumber": 28
+    },
+    {
+      "ms": 9.168,
+      "functionName": "texSubImage2D",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 9.042,
+      "functionName": "run",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 8.599,
+      "functionName": "ReactElement",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 103,
+      "columnNumber": 23
+    },
+    {
+      "ms": 8.484,
+      "functionName": "exports.jsxDEV",
+      "scriptId": "19",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0b836f7b",
+      "lineNumber": 190,
+      "columnNumber": 27
+    },
+    {
+      "ms": 8.32,
+      "functionName": "createTask",
+      "scriptId": "0",
+      "url": "",
+      "lineNumber": -1,
+      "columnNumber": -1
+    },
+    {
+      "ms": 7.8870000000000005,
+      "functionName": "reconcileChildrenArray",
+      "scriptId": "9",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/react-dom_client.js?v=0b836f7b",
+      "lineNumber": 3719,
+      "columnNumber": 34
+    },
+    {
+      "ms": 7.833,
+      "functionName": "tick",
+      "scriptId": "26",
+      "url": "http://127.0.0.1:5174/src/experiment/player.ts?t=1788683884333",
+      "lineNumber": 149,
+      "columnNumber": 8
+    }
+  ],
+  "note": "Focused startup diagnostic with CPU profiler, not an independent performance benchmark."
+}
