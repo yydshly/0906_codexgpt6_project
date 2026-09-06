@@ -1,0 +1,236 @@
+{
+  "scope": "布局草案二，仅检查排布、点选、原图区域开关；没有执行绘画",
+  "browser": "152.0.7977.82",
+  "checkedAt": "2026-09-06T07:54:25.071Z",
+  "sourceSha256": "9b687e4f4757ea32f9012ade093259fa8ed874846c99bda5cb0419252cb588a4",
+  "fixedProductTheme": "按用户要求沿用原版暖色；宿主明暗外观均检查",
+  "checks": [
+    {
+      "hostTheme": "light",
+      "width": 1024,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 956.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "71.3281px 71.3281px 71.3438px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 1024,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 956.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "52.25px 52.25px 52.25px 52.25px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 736,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 866.0625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "61.3281px 61.3281px 61.3281px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 736,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 858.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "44.75px 44.75px 44.75px 44.75px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 360,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1472.625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "98.6562px 98.6719px 98.6562px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 360,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1394.03125,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "72.75px 72.75px 72.75px 72.75px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 320,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 320,
+        "height": 1432.625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "85.3281px 85.3281px 85.3438px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "light",
+      "width": 320,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 320,
+        "height": 1354.03125,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "62.75px 62.75px 62.75px 62.75px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 1024,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 956.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "71.3281px 71.3281px 71.3438px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 1024,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 1024,
+        "height": 956.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "52.25px 52.25px 52.25px 52.25px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 736,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 866.0625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "61.3281px 61.3281px 61.3281px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 736,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 736,
+        "height": 858.5625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "44.75px 44.75px 44.75px 44.75px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 360,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1472.625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "98.6562px 98.6719px 98.6562px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 360,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 360,
+        "height": 1394.03125,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "72.75px 72.75px 72.75px 72.75px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 320,
+      "columns": 3,
+      "status": "通过",
+      "metrics": {
+        "width": 320,
+        "height": 1432.625,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "85.3281px 85.3281px 85.3438px",
+        "fixedTheme": "light"
+      }
+    },
+    {
+      "hostTheme": "dark",
+      "width": 320,
+      "columns": 4,
+      "status": "通过",
+      "metrics": {
+        "width": 320,
+        "height": 1354.03125,
+        "fits": true,
+        "noHorizontalOverflow": true,
+        "paletteColumns": "62.75px 62.75px 62.75px 62.75px",
+        "fixedTheme": "light"
+      }
+    }
+  ],
+  "errors": [],
+  "humanAcceptance": "待用户确认",
+  "productRegression": "未测试，应用与测试代码未改变"
+}
