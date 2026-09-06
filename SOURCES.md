@@ -50,3 +50,5 @@ M2 没有增加运行或测试依赖。四步引导文案与 SVG 轮廓为本项
 - 复杂场景：Chris Spielmann / National Cancer Institute，2002，[City street at night](https://commons.wikimedia.org/wiki/File:City_street_at_night.jpg)。作者释放至公共领域，NCI 图号 3531；固定原文件 3642×2406。保留作者与机构署名。
 
 artifacts/e1/fixtures/manifest.json 记录固定文件 SHA-256 和参数。照片仅用于测试输入/对照；结果来自现有引擎笔触。不以自动化成功或误差指标代替人工质量验收。
+
+E1 细节补正继续使用相同照片与论文思路。512 像素分析、空间配额、边缘截断、细笔和薄颜料参数均为本项目编写，未引入第三方代码或依赖。新参数另记 artifacts/e1/refinement/manifest.json，历史参数与证据保持不变。

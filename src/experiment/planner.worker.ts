@@ -4,5 +4,8 @@ self.onmessage = (event: MessageEvent<{ pixels: Uint8ClampedArray; composition: 
     const start = performance.now();
     const plan = createPlan(event.data.pixels, event.data.composition, event.data.inputHash, stage => self.postMessage({ type: 'progress', stage }));
     self.postMessage({ type: 'plan', plan, elapsed: performance.now() - start });
-  } catch { self.postMessage({ type: 'error', message: '规划失败，请更换有效图片后重试。' }); }
+  } catch (error) {
+    if (import.meta.env.DEV) console.error('Local planner failed', error);
+    self.postMessage({ type: 'error', message: '规划失败，请更换有效图片后重试。' });
+  }
 };

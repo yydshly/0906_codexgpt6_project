@@ -1,4 +1,4 @@
-import type { Composition } from './plan';
+import { ANALYSIS_SIZE, type Composition } from './plan';
 export const MAX_FILE_BYTES = 12 * 1024 * 1024;
 export const MAX_PIXELS = 12_000_000;
 export const MAX_EDGE = 8192;
@@ -33,10 +33,11 @@ export async function decodeLocalImage(file: File) {
   return { bitmap, inputHash };
 }
 export function analyzeImage(bitmap: ImageBitmap, composition: Composition) {
-  const canvas = document.createElement('canvas'); canvas.width = canvas.height = 256;
+  const side = ANALYSIS_SIZE;
+  const canvas = document.createElement('canvas'); canvas.width = canvas.height = side;
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
-  ctx.fillStyle = '#f1edde'; ctx.fillRect(0, 0, 256, 256);
-  const scale = (composition === 'contain' ? Math.min : Math.max)(256 / bitmap.width, 256 / bitmap.height);
-  ctx.drawImage(bitmap, (256 - bitmap.width * scale) / 2, (256 - bitmap.height * scale) / 2, bitmap.width * scale, bitmap.height * scale);
-  return { pixels: ctx.getImageData(0, 0, 256, 256).data, preview: canvas.toDataURL('image/png') };
+  const scale = (composition === 'contain' ? Math.min : Math.max)(side / bitmap.width, side / bitmap.height);
+  ctx.drawImage(bitmap, (side - bitmap.width * scale) / 2, (side - bitmap.height * scale) / 2, bitmap.width * scale, bitmap.height * scale);
+  // Transparent margins stay unpainted canvas; these pixels are analysis only.
+  return { pixels: ctx.getImageData(0, 0, side, side).data, preview: canvas.toDataURL('image/png') };
 }

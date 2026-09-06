@@ -1,0 +1,64 @@
+{
+  "baseline": "7de403e",
+  "round": 1,
+  "seed": 1906,
+  "canvasSeed": 906,
+  "analysisSize": 512,
+  "brushVersion": 2,
+  "plannerVersion": "e1-refined-2",
+  "maxStrokes": 8020,
+  "stages": [
+    72,
+    36,
+    16,
+    8,
+    4
+  ],
+  "batchP95GateMs": 50,
+  "consecutiveOver100msStop": 3,
+  "samples": [
+    {
+      "sample": "landscape",
+      "file": "../../../fixtures/landscape.jpg",
+      "inputHash": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c",
+      "composition": "contain",
+      "plannerVersion": "e1-refined-2",
+      "seed": 1906,
+      "canvasSeed": 906,
+      "brushVersion": 2,
+      "analysisSize": 512,
+      "strokes": 6735,
+      "planningMs": 5240.199999928474,
+      "p95BatchMs": 13.399999976158142
+    },
+    {
+      "sample": "still-life",
+      "file": "../../../fixtures/still-life.jpg",
+      "inputHash": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+      "composition": "contain",
+      "plannerVersion": "e1-refined-2",
+      "seed": 1906,
+      "canvasSeed": 906,
+      "brushVersion": 2,
+      "analysisSize": 512,
+      "strokes": 7187,
+      "planningMs": 7197.300000071526,
+      "p95BatchMs": 19.699999928474426
+    },
+    {
+      "sample": "complex",
+      "file": "../../../fixtures/complex.jpg",
+      "inputHash": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0",
+      "composition": "contain",
+      "plannerVersion": "e1-refined-2",
+      "seed": 1906,
+      "canvasSeed": 906,
+      "brushVersion": 2,
+      "analysisSize": 512,
+      "strokes": 7036,
+      "planningMs": 5230.300000071526,
+      "p95BatchMs": 13.899999976158142
+    }
+  ],
+  "humanQuality": "待用户确认"
+}

@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { ready, digest, draw } from './helpers';
 import { loadedPlan, experimentDigest, experimentPng, storedDraft } from './e1-helpers';
 import { Painting } from '../src/painting/engine';
-import { executeStroke, MAX_STROKES } from '../src/experiment/plan';
+import { executeStroke, MAX_STROKES, STAGES } from '../src/experiment/plan';
 import type { StrokePlan } from '../src/experiment/plan';
 
 const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/c';
@@ -26,12 +26,12 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   await page.getByRole('button', { name: '确认构图并绘制' }).click(); await loadedPlan(page);
   await page.evaluate(() => { window.__experiment!.player!.onStage = stage => { window.__experiment!.player!.pause(); (window as any).__e1Stage = stage; (window as any).__e1StageTimes.push({ stage, elapsed: performance.now() - (window as any).__e1Start }); }; });
   const stageStates = [];
-  for (let stage = 0; stage < 4; stage++) {
+  for (let stage = 0; stage < STAGES.length; stage++) {
     await page.waitForFunction(n => (window as any).__e1Stage === n, stage, { timeout: 180000 });
     stageStates.push(await experimentDigest(page));
     await experimentPng(page, `${dir}/stage-${stage + 1}.png`);
     await page.screenshot({ path: `${dir}/stage-${stage + 1}-page.png` });
-    if (stage < 3) await page.getByRole('button', { name: '继续绘制', exact: true }).click();
+    if (stage < STAGES.length - 1) await page.getByRole('button', { name: '继续绘制', exact: true }).click();
   }
   const final = await experimentDigest(page);
   const plan: StrokePlan = await page.evaluate(() => window.__experiment!.plan!);
@@ -42,7 +42,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   writeFileSync(`${dir}/input.json`, JSON.stringify({ file: `../../fixtures/${sample}.jpg`, inputHash, composition: plan.composition, plannerVersion: plan.plannerVersion, seed: plan.seed, canvasSeed: 906, brushVersion: plan.brushVersion, analysisSize: plan.analysisSize }, null, 2));
   const download = page.waitForEvent('download'); await page.getByRole('button', { name: '导出实验 PNG', exact: true }).click();
   await (await download).saveAs(`${dir}/final.png`);
-  expect(readFileSync(`${dir}/final.png`).equals(readFileSync(`${dir}/stage-4.png`))).toBe(true);
+  expect(readFileSync(`${dir}/final.png`).equals(readFileSync(`${dir}/stage-${STAGES.length}.png`))).toBe(true);
   await page.locator('.experiment-reference').evaluate(element => (element as HTMLElement).style.visibility = 'hidden');
   const noReference = await experimentPng(page, `${dir}/without-reference.png`);
   expect(noReference.equals(readFileSync(`${dir}/final.png`))).toBe(true);

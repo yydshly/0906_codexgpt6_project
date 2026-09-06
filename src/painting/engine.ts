@@ -3,7 +3,7 @@ import { fromHex, mixRyb, type RGB } from './mix';
 export const SIZE = 1024;
 export const HISTORY_LIMIT = 20;
 export const MAX_HEIGHT = 18000;
-export type Brush = { color: string; size: number; load: number; mode: 'cover' | 'mix'; seed: number };
+export type Brush = { color: string; size: number; load: number; mode: 'cover' | 'mix'; seed: number; thickness?: number };
 export type Point = { x: number; y: number; pressure?: number };
 type Snapshot = { color: Uint8ClampedArray; height: Uint16Array };
 export type Dirty = { x0: number; y0: number; x1: number; y1: number };
@@ -47,7 +47,7 @@ export class Painting {
       if (brush.mode === 'mix') this.batchBefore.color.set(this.color);
       this.before = this.batchBefore;
     }
-    this.brush = { ...brush, size: Math.max(8, Math.min(96, brush.size)), load: Math.max(.15, Math.min(1, brush.load)) };
+    this.brush = { ...brush, size: Math.max(this.recordHistory ? 8 : 4, Math.min(96, brush.size)), load: Math.max(.15, Math.min(1, brush.load)) };
     this.rgb = fromHex(brush.color);
     this.last = p; this.lastDab = null; this.angle = null; this.distance = 0; this.travel = 0; this.changed = false;
     this.targetCache.clear();
@@ -96,6 +96,7 @@ export class Painting {
     const y0 = Math.max(0, Math.floor(p.y - radius)), y1 = Math.min(SIZE, Math.ceil(p.y + radius));
     if (x0 >= x1 || y0 >= y1) return;
     const load = this.brush.load, mix = this.brush.mode === 'mix';
+    const relief = this.recordHistory ? 1 : Math.max(.02, Math.min(1, this.brush.thickness ?? 1));
     for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
       const dx = x + .5 - p.x, dy = y + .5 - p.y;
       const along = dx * c + dy * s;
@@ -127,7 +128,9 @@ export class Painting {
       const alpha = deposit + oldAlpha * (1 - deposit);
       for (let ch = 0; ch < 3; ch++) this.color[i + ch] = (target[ch] * deposit + this.color[i + ch] * oldAlpha * (1 - deposit)) / alpha;
       this.color[i + 3] = Math.round(alpha * 255);
-      this.height[pixel] = Math.min(MAX_HEIGHT, this.height[pixel] + Math.round(deposit * (280 + load * 920) * (.35 + bristle)));
+      // Default/manual strokes retain their original height. Thin paint is an
+      // explicit version-2 experiment parameter, separate from color opacity.
+      this.height[pixel] = Math.min(MAX_HEIGHT, this.height[pixel] + Math.round(deposit * (280 + load * 920) * (.35 + bristle) * relief));
       this.changed = true;
     }
     this.mark({ x0, y0, x1, y1 });

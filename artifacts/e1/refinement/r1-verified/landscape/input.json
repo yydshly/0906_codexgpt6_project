@@ -1,0 +1,10 @@
+{
+  "file": "../../../fixtures/landscape.jpg",
+  "inputHash": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c",
+  "composition": "contain",
+  "plannerVersion": "e1-refined-2",
+  "seed": 1906,
+  "canvasSeed": 906,
+  "brushVersion": 2,
+  "analysisSize": 512
+}
