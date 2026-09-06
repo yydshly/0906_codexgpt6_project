@@ -1,0 +1,20 @@
+{
+  "status": "通过",
+  "actual": {
+    "color": "3fcc40b6a527282892b26064942e29a8df1e854283bed8c1e455afe815a19de6",
+    "height": "acbe772ee9c40f1a12f4136a251e1647cfc96e1b7166f19cb164eece55ee42ff"
+  },
+  "expected": {
+    "color": "3fcc40b6a527282892b26064942e29a8df1e854283bed8c1e455afe815a19de6",
+    "height": "acbe772ee9c40f1a12f4136a251e1647cfc96e1b7166f19cb164eece55ee42ff"
+  },
+  "metrics": {
+    "movedStrokes": 4970,
+    "previousTravel": 275305.24015728396,
+    "travel": 235678.3688113247,
+    "previousScore": 1115302.4928931415,
+    "score": 852529.0854314951,
+    "pickups": 7110
+  },
+  "strokes": 7187
+}

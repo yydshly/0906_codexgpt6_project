@@ -1,7 +1,8 @@
 import { Painting, type Brush, type Point } from '../painting/engine';
+import { prepareProcess, type PaintPickup } from './process-plan';
 
 export const ANALYSIS_SIZE = 512;
-export const PLANNER_VERSION = 'e1-refined-2';
+export const PLANNER_VERSION = 'e1-brush-process-3';
 export const PLAN_SEED = 1906;
 export const STAGES = [
   { name: '铺开大色块', size: 72, limit: 420, threshold: 0, load: .72, thickness: .09 },
@@ -12,8 +13,8 @@ export const STAGES = [
 ] as const;
 export const MAX_STROKES = STAGES.reduce((n, s) => n + s.limit, 0);
 export type Composition = 'contain' | 'crop';
-export type PlannedStroke = { order: number; stage: number; path: Point[]; brush: Brush; sampleStep?: number };
-export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[] };
+export type PlannedStroke = { order: number; stage: number; path: Point[]; brush: Brush; sampleStep?: number; sourceOrder?: number };
+export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[]; processVersion?: 1; pickups?: PaintPickup[]; processMetrics?: { movedStrokes: number; previousTravel: number; travel: number; previousScore: number; score: number; pickups: number } };
 
 /** Fixed commands are independent of frame rate; legacy plans keep their original points. */
 export function strokeSamples(stroke: PlannedStroke): Point[] {
@@ -121,5 +122,5 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
     }
     plan.stages.push({ name: spec.name, end: plan.strokes.length });
   }
-  return plan;
+  return prepareProcess(plan);
 }

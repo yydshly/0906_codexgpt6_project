@@ -1,0 +1,43 @@
+import { test, expect } from '@playwright/test';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { ready, digest, draw } from './helpers';
+import { experimentDigest, experimentPng, storedDraft } from './e1-helpers';
+
+test('paint dock, dipping and contact follow real parameters; pause and export isolate all overlays', async ({ page }) => {
+  const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local'}/dipping`; mkdirSync(dir, { recursive: true });
+  await ready(page); await draw(page, [{ x: 200, y: 300 }, { x: 420, y: 330 }]);
+  await expect(page.getByTestId('save-state')).toHaveAttribute('data-phase', 'saved', { timeout: 15000 });
+  const manual = await digest(page), saved = await storedDraft(page);
+  await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
+  await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/landscape.jpg');
+  await page.getByLabel('播放速度', { exact: true }).selectOption('0.5');
+  await page.getByRole('button', { name: '确认构图并绘制', exact: true }).click();
+  await page.waitForFunction(() => { const p = window.__experiment?.player; if (p?.action === 'dip' && p.index === 0) { p.pause(); return true; } return false; }, undefined, { timeout: 130000 });
+  const blank = await experimentDigest(page), dip = await page.evaluate(() => { const p = window.__experiment!.player!; return { tip: p.tip, progress: p.dipProgress, next: p.nextPaint, active: window.__experiment!.painting.active, hasPaint: p.hasPaint }; });
+  expect(dip.active).toBe(false); expect(dip.hasPaint).toBe(false); expect(dip.tip.color).toBe(dip.next!.color);
+  await expect(page.getByTestId('paint-palette')).toHaveAttribute('data-action', 'dip');
+  await page.waitForTimeout(300); expect(await experimentDigest(page)).toEqual(blank);
+  expect(await page.evaluate(() => window.__experiment!.player!.dipProgress)).toBe(dip.progress);
+  await page.screenshot({ path: `${dir}/dip-paused.png` });
+  await page.getByRole('button', { name: '继续绘制', exact: true }).click();
+  await page.waitForFunction(() => { const p = window.__experiment!.player!; if (p.tip.down && p.sampleIndex > 5) { p.pause(); return true; } return false; });
+  const painted = await experimentDigest(page), contact = await page.evaluate(() => ({ contact: window.__experiment!.painting.contact, tip: window.__experiment!.player!.tip, loaded: window.__experiment!.player!.loadedPaint }));
+  expect(painted).not.toEqual(blank); expect(contact.tip.width).toBe(contact.contact!.width);
+  expect(contact.tip.angle).toBe(contact.contact!.angle); expect(contact.contact!.color).toBe(contact.loaded!.color); expect(contact.contact!.load).toBe(contact.loaded!.load);
+  await page.screenshot({ path: `${dir}/real-contact.png` });
+  const downloading = page.waitForEvent('download'); await page.getByRole('button', { name: '导出实验 PNG', exact: true }).click(); await (await downloading).saveAs(`${dir}/partial.png`);
+  const visible = await experimentPng(page, `${dir}/visible.png`);
+  await page.locator('.experiment-pen, .experiment-palette, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = 'hidden'));
+  expect((await experimentPng(page, `${dir}/hidden.png`)).equals(visible)).toBe(true); expect(await experimentDigest(page)).toEqual(painted);
+  await page.locator('.experiment-pen, .experiment-palette, .experiment-reference').evaluateAll(elements => elements.forEach(e => (e as HTMLElement).style.visibility = ''));
+  // Pause on the next pickup: a completed stroke exists, but no dip may deposit paint.
+  await page.getByRole('button', { name: '继续绘制', exact: true }).click();
+  await page.waitForFunction(() => { const p = window.__experiment!.player!; if (p.index > 0 && p.action === 'dip') { p.pause(); return true; } return false; });
+  const beforeReplace = await experimentDigest(page);
+  await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/complex.jpg');
+  await page.getByRole('button', { name: '取消，保留实验画作', exact: true }).click(); expect(await experimentDigest(page)).toEqual(beforeReplace);
+  await page.getByRole('button', { name: '返回画室', exact: true }).click(); await page.getByRole('button', { name: '确认退出实验', exact: true }).click();
+  expect(await digest(page)).toEqual(manual); expect(await storedDraft(page)).toEqual(saved);
+  writeFileSync(`${dir}/results.json`, JSON.stringify({ status: '通过', dip, contact, blank, painted, beforeReplace, manual, saved, humanQuality: '待用户确认' }, null, 2));
+  const video = page.video(); await page.close(); if (video) await video.saveAs(`${dir}/process.webm`);
+});

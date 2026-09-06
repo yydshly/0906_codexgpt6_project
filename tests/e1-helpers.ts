@@ -10,6 +10,8 @@ export const completed = (page: Page) => page.waitForFunction(() => window.__exp
 export async function loadedPlan(page: Page) {
   await page.waitForFunction(() => !!window.__experiment?.player || /失败|未能完成|超过 120 秒/.test(document.querySelector('.experiment-message[role="status"]')?.textContent || ''), undefined, { timeout: 130000 });
   expect(await page.evaluate(() => !!window.__experiment?.player), await page.locator('.experiment-message[role="status"]').innerText()).toBe(true);
+  // These legacy workflow setups expect a preservable artwork, after the first pickup.
+  await page.waitForFunction(() => window.__experiment?.player?.hasPaint);
 }
 export async function experimentPng(page: Page, path: string) {
   const encoded = await page.evaluate(async () => {

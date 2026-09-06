@@ -1,0 +1,92 @@
+{
+  "status": "通过",
+  "dip": {
+    "tip": {
+      "x": 96,
+      "y": 1091.1747357299805,
+      "down": false,
+      "visible": true,
+      "color": "#2f61b2",
+      "size": 72,
+      "width": 72,
+      "angle": 1.5707963267948966,
+      "load": 0.03
+    },
+    "progress": 0.041666666666666664,
+    "next": {
+      "before": 0,
+      "color": "#2f61b2",
+      "size": 72,
+      "load": 0.72
+    },
+    "active": false,
+    "hasPaint": false
+  },
+  "contact": {
+    "contact": {
+      "x": 920.0031471726483,
+      "y": 181.8565117685248,
+      "angle": -0.02389761755264428,
+      "width": 72,
+      "size": 72,
+      "load": 0.72,
+      "color": "#2f61b2"
+    },
+    "tip": {
+      "x": 920.0031471726483,
+      "y": 181.8565117685248,
+      "down": true,
+      "visible": true,
+      "color": "#2f61b2",
+      "size": 72,
+      "width": 72,
+      "angle": -0.02389761755264428,
+      "load": 0.72
+    },
+    "loaded": {
+      "before": 0,
+      "color": "#2f61b2",
+      "size": 72,
+      "load": 0.72
+    }
+  },
+  "blank": {
+    "color": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "height": "5647f05ec18958947d32874eeb788fa396a05d0bab7c1b71f112ceb7e9b31eee"
+  },
+  "painted": {
+    "color": "152d6f2f9d091ced7c93e872f6a56cb73b542f75e49728a67240e11ffb3b8c1f",
+    "height": "79ae1ab02a487111068cf63567728c5f90f56755c7244a3bac195d649dd8db9e"
+  },
+  "beforeReplace": {
+    "color": "dac339cd0237e006ce11e5bc7951d3aa325fa931c6dd958610f2f66167ac8bf0",
+    "height": "a4424eb4cea697f21034082b9fbcded2a4d32caca99307f8c06bd3b3d7039e37"
+  },
+  "manual": {
+    "color": "73595d17f23d441fd682ff12e047ada66de4418e2817ef5b67637047b97163d5",
+    "height": "ad55436127fe7867511f1917f80db6491c96fc120c6be2bcc9b33cc10e87a1ef"
+  },
+  "saved": {
+    "id": "b3a31733-5ba4-4487-9aca-ef6708beee66",
+    "checksums": [
+      "73595d17f23d441fd682ff12e047ada66de4418e2817ef5b67637047b97163d5",
+      "ad55436127fe7867511f1917f80db6491c96fc120c6be2bcc9b33cc10e87a1ef",
+      "cd2d28e8ccfde045ff992e2cd3b2cf74be99a39573832e2cdd3b379eac3e71be"
+    ],
+    "signature": "",
+    "guide": {
+      "theme": null,
+      "step": 0,
+      "open": false,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#3155A6",
+      "size": 32,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "humanQuality": "待用户确认"
+}

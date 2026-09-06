@@ -2,11 +2,61 @@ import { test, expect } from '@playwright/test';
 import { Painting, type Brush } from '../src/painting/engine';
 import { ANALYSIS_SIZE, MAX_STROKES, createPlan, executeStroke } from '../src/experiment/plan';
 import { imageDimensions } from '../src/experiment/image';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import type { StrokePlan } from '../src/experiment/plan';
 import { StrokeRunner } from '../src/experiment/stroke-runner';
 import { PlanPlayer } from '../src/experiment/player';
+import { prepareProcess } from '../src/experiment/process-plan';
+
+test('fixed three plans keep exact paint while local ordering and pickups are reproducible', () => {
+  const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/refinement/local'}/ordering`; mkdirSync(dir, { recursive: true });
+  for (const sample of ['landscape', 'still-life', 'complex']) {
+    const original: StrokePlan = JSON.parse(readFileSync(`artifacts/e1/refinement/c/${sample}/plan.json`, 'utf8'));
+    const expected = JSON.parse(readFileSync(`artifacts/e1/refinement/c/${sample}/results.json`, 'utf8')).final;
+    const serialized = JSON.stringify(original), plan = prepareProcess(original);
+    expect(JSON.stringify(original)).toBe(serialized); expect(JSON.stringify(prepareProcess(original))).toBe(JSON.stringify(plan));
+    expect(plan.strokes.map(s => s.sourceOrder).sort((a, b) => a! - b!)).toEqual(original.strokes.map(s => s.order));
+    const commands = (stroke: typeof plan.strokes[number]) => ({ path: stroke.path, brush: stroke.brush, stage: stroke.stage, sampleStep: stroke.sampleStep });
+    expect(JSON.stringify(plan.strokes.map(commands))).toBe(JSON.stringify(plan.strokes.map(s => commands(original.strokes[s.sourceOrder!]))));
+    const p = new Painting(false); for (const stroke of plan.strokes) executeStroke(p, stroke);
+    const actual = { color: createHash('sha256').update(p.color).digest('hex'), height: createHash('sha256').update(new Uint8Array(p.height.buffer)).digest('hex') };
+    expect(actual).toEqual(expected);
+    expect(plan.processMetrics!.travel).toBeLessThanOrEqual(plan.processMetrics!.previousTravel);
+    expect(plan.processMetrics!.score).toBeLessThanOrEqual(plan.processMetrics!.previousScore);
+    writeFileSync(`${dir}/${sample}.json`, JSON.stringify({ status: '通过', actual, expected, metrics: plan.processMetrics, strokes: plan.strokes.length }, null, 2));
+  }
+});
+
+test('pickup pauses without painting; all speeds execute the loaded color and amount exactly', () => {
+  const original: StrokePlan = { plannerVersion: 'test', brushVersion: 2, seed: 1906, size: 1024, analysisSize: 512, composition: 'contain', inputHash: 'synthetic', stages: [{ name: 'test', end: 3 }], strokes: [72, 16, 4].map((size, order) => ({ order, stage: 0, sampleStep: 2, brush: { color: order % 2 ? '#ebc43c' : '#3155a6', size, load: .4 + order * .2, mode: order % 2 ? 'mix' : 'cover', seed: 1906 + order }, path: [{ x: 200, y: 200 }, { x: 260, y: 230 }] })) };
+  const plan = prepareProcess(original), expected = new Painting(false);
+  for (const stroke of plan.strokes) executeStroke(expected, stroke);
+  const digest = (p: Painting) => [p.color, new Uint8Array(p.height.buffer)].map(v => createHash('sha256').update(v).digest('hex'));
+  const oldRaf = globalThis.requestAnimationFrame, oldCancel = globalThis.cancelAnimationFrame;
+  try {
+    for (const speed of [.5, 1, 4]) {
+      let pending: FrameRequestCallback | null = null, time = 0, paused = false;
+      globalThis.requestAnimationFrame = callback => { pending = callback; return 1; };
+      globalThis.cancelAnimationFrame = () => { pending = null; };
+      const p = new Painting(false), player = new PlanPlayer(p, plan, () => {}); player.speed = speed; player.play();
+      while (player.state !== 'complete' && time < 20000) {
+        const cb = pending; pending = null; time += 17; (cb as FrameRequestCallback | null)?.(time);
+        if (player.action === 'dip' && !paused) {
+          expect(p.active).toBe(false); player.pause(); const before = digest(p), tip = { ...player.tip };
+          expect(pending).toBeNull(); expect(digest(p)).toEqual(before); expect(player.tip).toEqual(tip);
+          paused = true; player.play();
+        }
+        if (p.active) { expect(p.contact!.color).toBe(player.loadedPaint!.color); expect(p.contact!.load).toBe(player.loadedPaint!.load); }
+      }
+      if (speed <= 1) expect(paused).toBe(true);
+      expect(player.state).toBe('complete'); expect(digest(p)).toEqual(digest(expected));
+      player.replay(); player.pause(); expect(player.loadedPaint).toBeNull(); expect(p.color.some(Boolean)).toBe(false);
+      player.dispose(); expect(pending).toBeNull();
+    }
+    expect(() => new PlanPlayer(new Painting(false), { ...plan, pickups: [] }, () => {})).toThrow('取色计划与笔触不一致');
+  } finally { globalThis.requestAnimationFrame = oldRaf; globalThis.cancelAnimationFrame = oldCancel; }
+});
 
 test('brush display reads actual contact width, direction and load without mutating artwork', () => {
   for (const size of [4, 16, 72]) {

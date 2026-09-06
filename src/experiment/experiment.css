@@ -1,5 +1,9 @@
 .experiment-entry{background:none;border:1px solid #b9ae96;padding:8px 10px;border-radius:3px;font-size:11px;color:#626d54}
-.experiment-pen{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.experiment-pen{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.experiment-palette{position:relative;aspect-ratio:8;background:#e2dac8;border:1px solid #c8bca4;border-radius:0 0 12px 12px;margin-top:0}
+.experiment-palette svg{display:block;width:100%;height:100%;position:absolute;inset:0}
+.experiment-palette p{position:absolute;left:25%;top:50%;transform:translateY(-50%);margin:0;font-size:10px;color:#726851;line-height:1.6}
+.experiment-palette strong{font-weight:500;color:#4d5842}
 .experiment-message a{color:inherit;text-underline-offset:3px}
 .image-experiment{border:1px solid #c9c1ae;border-radius:8px;width:min(1240px,96vw);max-width:96vw;max-height:96vh;padding:28px 38px;color:#433e32;background:radial-gradient(ellipse at 15% 0,#fffcf5,transparent 70%),#eeeae2;box-shadow:0 20px 90px #29251c55}
 .image-experiment::backdrop{background:#403b306e;backdrop-filter:blur(5px)}
