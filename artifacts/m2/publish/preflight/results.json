@@ -1,0 +1,59 @@
+{
+  "status": "通过",
+  "checkedAt": "2026-09-06T02:56:50.811Z",
+  "url": "http://127.0.0.1:5176/0906_codexgpt6_project/",
+  "expectedBundle": "/0906_codexgpt6_project/assets/index-Dufj6Tif.js",
+  "workers": [
+    "http://127.0.0.1:5176/0906_codexgpt6_project/assets/png.worker-CD6LPnT8.js",
+    "http://127.0.0.1:5176/0906_codexgpt6_project/assets/png.worker-CD6LPnT8.js",
+    "http://127.0.0.1:5176/0906_codexgpt6_project/assets/png.worker-CD6LPnT8.js",
+    "http://127.0.0.1:5176/0906_codexgpt6_project/assets/png.worker-CD6LPnT8.js"
+  ],
+  "errors": [],
+  "failedResponses": [],
+  "pngSize": [
+    1024,
+    1024
+  ],
+  "previewDownloadIdentical": true,
+  "restoredPreviewIdentical": true,
+  "savedStateBefore": {
+    "color": "4bd6329f793fdb0668ca610428b2e3813170320ffa39e8b56fb9fb894735d2b9",
+    "height": "d1bfcfa6d39467a24d0c96383ed261fba4794515f233ad3e439becf9479ad097",
+    "signature": "慢光 · M2",
+    "guide": {
+      "theme": "sunset",
+      "step": 0,
+      "open": false,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#EBC43C",
+      "size": 96,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "savedStateAfterRestoreDrawUndo": {
+    "color": "4bd6329f793fdb0668ca610428b2e3813170320ffa39e8b56fb9fb894735d2b9",
+    "height": "d1bfcfa6d39467a24d0c96383ed261fba4794515f233ad3e439becf9479ad097",
+    "signature": "慢光 · M2",
+    "guide": {
+      "theme": "sunset",
+      "step": 0,
+      "open": false,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#EBC43C",
+      "size": 96,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "oldUndoHistoryAbsent": true,
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "scope": "Real mouse inputs in isolated Chrome; local storage, restore, new-stroke undo, signed PNG and subpath Worker. Does not replace V4 or prior full M2 regression."
+}

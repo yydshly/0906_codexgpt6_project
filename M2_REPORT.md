@@ -2,6 +2,8 @@
 
 核对日期：2026-09-06。M2 开发与自动化验证已完成；完整体验等待人工验收。**M1 的 V4 人工视觉/手感仍为「待用户确认」**，没有因开始 M2 改为通过。
 
+后续发布说明：本报告保留 M2 开发交付时的范围与测试记录，其中“不合并/不部署”描述当时边界。用户随后另行授权提交 GitHub 并发布远端网页；新的发布状态及线上验证见 [M2_DEPLOYMENT.md](M2_DEPLOYMENT.md)，不改变本报告的人工验收状态。
+
 当前最终证据为 [artifacts/m2/delivery](artifacts/m2/delivery)，不要将迭代目录 `final`、`release` 的名称理解为最终结果。可打开 [本地验收页](http://127.0.0.1:5174/artifacts/m2/index.html)，或直接双击 [离线证据入口](artifacts/m2/index.html)。
 
 ## 基线与范围
