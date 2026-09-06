@@ -15,7 +15,7 @@ export const STAGES = [
 export const MAX_STROKES = STAGES.reduce((n, s) => n + s.limit, 0);
 export type Composition = 'contain' | 'crop';
 export type PlannedStroke = { order: number; stage: number; path: Point[]; brush: Brush; sampleStep?: number; sourceOrder?: number; brushId?: string; dishId?: string };
-export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[]; materials?: Materials; processVersion?: 1; pickups?: PaintPickup[]; processMetrics?: { movedStrokes: number; previousTravel: number; travel: number; previousScore: number; score: number; pickups: number } };
+export type StrokePlan = { plannerVersion: string; brushVersion: number; seed: number; size: 1024; analysisSize: number; composition: Composition; inputHash: string; stages: { name: string; end: number }[]; strokes: PlannedStroke[]; materials?: Materials; processVersion?: 1; pickups?: PaintPickup[]; processMetrics?: { movedStrokes: number; previousTravel: number; travel: number; previousScore: number; score: number; pickups: number; costModel?: string; previousActionScore?: number; actionScore?: number; previousPickups?: number; previousBrushChanges?: number; brushChanges?: number } };
 
 /** Fixed commands are independent of frame rate; legacy plans keep their original points. */
 export function strokeSamples(stroke: PlannedStroke): Point[] {
@@ -69,7 +69,7 @@ export function createPlan(source: Uint8ClampedArray, composition: Composition, 
   const painting = new Painting(false);
   const plan: StrokePlan = { plannerVersion: PLANNER_VERSION, brushVersion: 2, seed: PLAN_SEED, size: 1024, analysisSize: W, composition, inputHash, stages: [], strokes: [] };
   const dishes = prepared ? prepareDishes(source) : null, match = dishes ? dishMatcher(dishes) : null;
-  if (prepared) plan.plannerVersion = 'e1-prepared-studio-1';
+  if (prepared) plan.plannerVersion = 'e1-prepared-studio-2';
   let state = PLAN_SEED;
   const random = () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
   const inside = (x: number, y: number) => x >= 0 && x < W && y >= 0 && y < W && source[at(x, y) + 3] > 8;

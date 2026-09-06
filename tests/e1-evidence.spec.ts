@@ -37,6 +37,9 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
     if (stage < STAGES.length - 1) await page.getByRole('button', { name: '继续绘制', exact: true }).click();
   }
   const final = await experimentDigest(page);
+  if (await page.evaluate(() => window.__experiment!.plan!.plannerVersion === 'e1-prepared-studio-2')) {
+    for (let stage=0; stage<STAGES.length; stage++) expect(stageStates[stage]).toEqual(JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-quality/${sample}/stage-${stage+1}-state.json`, 'utf8')));
+  }
   // Capture the final clean-up and return to the rack as part of the real process.
   if (await page.evaluate(() => window.__experiment!.player!.state !== 'complete')) {
     await page.getByRole('button', { name: '继续绘制', exact: true }).click(); await completed(page);

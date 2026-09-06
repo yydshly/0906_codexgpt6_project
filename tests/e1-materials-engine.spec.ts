@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { createHash } from 'node:crypto';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { Painting } from '../src/painting/engine';
 import { attachMaterials, prepareDishes, MAX_DISHES } from '../src/experiment/materials';
 import { createPlan, executeStroke, type StrokePlan } from '../src/experiment/plan';
@@ -7,6 +8,23 @@ import { prepareProcess } from '../src/experiment/process-plan';
 import { PlanPlayer } from '../src/experiment/player';
 
 const hash = (p: Painting) => [p.color, new Uint8Array(p.height.buffer)].map(a => createHash('sha256').update(a).digest('hex'));
+for (const sample of ['landscape', 'still-life', 'complex']) test(`prepared local actions preserve every ${sample} stage exactly`, () => {
+  const dir = `${process.env.M1_ARTIFACT_DIR || 'artifacts/e1/prepared-studio/local'}/ordering/${sample}`; mkdirSync(dir, { recursive: true });
+  const baseline: StrokePlan = JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-quality/${sample}/plan.json`, 'utf8'));
+  const source = structuredClone(baseline); source.strokes.sort((a,b) => a.sourceOrder! - b.sourceOrder!); source.strokes.forEach((s,i) => { s.order=i; });
+  source.plannerVersion = 'e1-prepared-studio-2';
+  const plan = prepareProcess(source); expect(plan).toEqual(prepareProcess(source));
+  const metrics = plan.processMetrics!;
+  expect(metrics.pickups).toBeLessThanOrEqual(metrics.previousPickups!); expect(metrics.brushChanges).toBeLessThanOrEqual(metrics.previousBrushChanges!);
+  const painting = new Painting(false), states = [];
+  for (let stage=0; stage<plan.stages.length; stage++) {
+    for (const stroke of plan.strokes.filter(s=>s.stage===stage)) executeStroke(painting,stroke);
+    const state = hash(painting), expected = JSON.parse(readFileSync(`artifacts/e1/prepared-studio/b-quality/${sample}/stage-${stage+1}-state.json`, 'utf8'));
+    expect(state).toEqual([expected.color,expected.height]); states.push({color:state[0],height:state[1]});
+  }
+  writeFileSync(`${dir}/plan.json`,JSON.stringify(plan));
+  writeFileSync(`${dir}/results.json`,JSON.stringify({status:'通过',baselinePickups:baseline.pickups!.length,...metrics,states},null,2));
+});
 test('prepared palette is bounded, deterministic, image-dependent and ignores transparent margins', () => {
   const pixels = new Uint8ClampedArray(512 ** 2 * 4);
   for (let i = 0; i < pixels.length; i += 4) pixels.set([i % 251, (i / 4) % 241, (i / 1024) % 233, 255], i);
