@@ -1,5 +1,7 @@
 # M2 远端发布记录
 
+后续的画室/M1/M2 入口关联与验收资料上线记录见 [NAVIGATION_REPORT.md](NAVIGATION_REPORT.md)。以下保留首次 M2 发布时的检查与提交记录。
+
 用户在 M2 开发交付后另行授权“提交到远端 GitHub，网页部署在远端”。本次只发布已有 M2，不继续产品开发，也不把 V4 或完整体验的人工状态改为通过。
 
 目标站点：[慢光数字油画室](https://yydshly.github.io/0906_codexgpt6_project/)。

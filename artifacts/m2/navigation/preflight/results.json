@@ -1,0 +1,21 @@
+{
+  "status": "通过",
+  "checkedAt": "2026-09-06T03:12:50.554Z",
+  "url": "http://127.0.0.1:5176/0906_codexgpt6_project/",
+  "artworkBeforeAfterIdentical": true,
+  "oldStudioPreservedInOriginalTab": true,
+  "newStudioOffersExistingDraft": true,
+  "overviewM1M2Navigation": true,
+  "evidenceFiles": 47,
+  "evidenceBytes": 38031914,
+  "evidenceSha256AllMatch": true,
+  "sameSiteLinks": 44,
+  "video": {
+    "width": 1440,
+    "height": 900,
+    "duration": 29.44,
+    "readyState": 4
+  },
+  "localLegacyM1EntryChecked": true,
+  "errors": []
+}

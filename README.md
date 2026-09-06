@@ -2,7 +2,9 @@
 
 当前版本实现 M2：保留同页平头笔绘画、覆盖/基础 RYB 混色和最近 20 笔撤销，增加旅行日落四步引导、一个本地草稿的保存/恢复、签名与完成预览。导出为实际画作和签名的原生 1024×1024 PNG。没有预制作品或运行时模型调用。
 
-[M2 验收报告](M2_REPORT.md) · [本地证据入口](http://127.0.0.1:5174/artifacts/m2/index.html) · [后续扩展记录](BACKLOG.md)。M1 的 V4 人工视觉/手感仍待用户确认，M2 完整体验等待人工验收。
+[体验与验收总览](https://yydshly.github.io/0906_codexgpt6_project/review/) · [M1 实际验收](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m1/index.html) · [M2 完整体验](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m2/index.html) · [M2 验收报告](M2_REPORT.md)。M1 的 V4 人工视觉/手感仍待用户确认，M2 完整体验等待人工验收。
+
+M1 的真实绘画、混色、撤销和导出已包含在当前 M2 画室中；M2 增加引导、草稿恢复、签名与完成。验收页用于查看历史证据，实际绘画请打开画室。画室右上角“体验与验收”新开资料页，保留原标签页和画作；三个资料入口也能互相切换。[导航补正记录](NAVIGATION_REPORT.md)。
 
 ## GitHub Pages 部署
 
@@ -10,7 +12,7 @@
 
 现有 `.github/workflows/deploy.yml` 在 main 推送时构建并发布 dist；M2 分支不匹配这个推送条件。部署配置通过 `DEPLOY_BASE_PATH=/0906_codexgpt6_project/` 设置资源路径，本地开发仍使用根路径与 5174 端口。
 
-线上仅发布应用构建产物；产品资料、截图、录像和验收报告保留在仓库中。M2 使用当前浏览器的 IndexedDB 保存一个草稿，没有后端或云同步；等待“已保存”后刷新可恢复。线上与 localhost 的草稿按站点隔离，不会自动迁移本地作品，请导出留存。
+线上发布应用、体验与验收页面及其中引用的 47 份既有媒体/测试文件；报告链接到 GitHub，未引用的过程资料仍保留在仓库中。历史源文件不被改写，导航与阶段说明在开发服务和构建产物中添加。M2 使用当前浏览器的 IndexedDB 保存一个草稿，没有后端或云同步；等待“已保存”后刷新可恢复。线上与 localhost 的草稿按站点隔离，不会自动迁移本地作品，请导出留存。
 
 ## 启动
 

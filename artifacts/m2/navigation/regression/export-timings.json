@@ -1,0 +1,46 @@
+[
+  {
+    "stage": "fonts ready",
+    "at": 1555
+  },
+  {
+    "stage": "bitmap start",
+    "at": 14581.699999988079
+  },
+  {
+    "stage": "bitmap done",
+    "at": 14586.800000011921
+  },
+  {
+    "stage": "bitmap start",
+    "at": 15565.399999976158
+  },
+  {
+    "stage": "bitmap done",
+    "at": 15569.899999976158
+  },
+  {
+    "stage": "bitmap start",
+    "at": 16173.399999976158
+  },
+  {
+    "stage": "bitmap done",
+    "at": 16173.5
+  },
+  {
+    "stage": "bitmap start",
+    "at": 16242.699999988079
+  },
+  {
+    "stage": "bitmap done",
+    "at": 16261.699999988079
+  },
+  {
+    "stage": "bitmap start",
+    "at": 16264.199999988079
+  },
+  {
+    "stage": "bitmap done",
+    "at": 16265.5
+  }
+]
