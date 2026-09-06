@@ -1,0 +1,66 @@
+{
+  "status": "通过",
+  "scope": "Same fixed inputs/seeds/compositions; counts and independent state correspondence, not a quality verdict.",
+  "comparisons": [
+    {
+      "sample": "landscape",
+      "original": {
+        "strokes": 7046,
+        "pickups": 3832,
+        "perPickup": 1.8387265135699373,
+        "singleFraction": 0.6440501043841336,
+        "brushChanges": 691
+      },
+      "structure": {
+        "strokes": 7333,
+        "pickups": 2103,
+        "perPickup": 3.4869234427009035,
+        "singleFraction": 0.371849738468854,
+        "brushChanges": 249
+      },
+      "planningMs": 5693,
+      "p95BatchMs": 6.100000023841858,
+      "humanQuality": "待用户确认"
+    },
+    {
+      "sample": "still-life",
+      "original": {
+        "strokes": 7305,
+        "pickups": 5193,
+        "perPickup": 1.4067013287117274,
+        "singleFraction": 0.7825919507028692,
+        "brushChanges": 799
+      },
+      "structure": {
+        "strokes": 7440,
+        "pickups": 2485,
+        "perPickup": 2.993963782696177,
+        "singleFraction": 0.39517102615694166,
+        "brushChanges": 218
+      },
+      "planningMs": 7416.799999952316,
+      "p95BatchMs": 6.300000071525574,
+      "humanQuality": "待用户确认"
+    },
+    {
+      "sample": "complex",
+      "original": {
+        "strokes": 7240,
+        "pickups": 4485,
+        "perPickup": 1.6142697881828316,
+        "singleFraction": 0.7150501672240802,
+        "brushChanges": 765
+      },
+      "structure": {
+        "strokes": 7315,
+        "pickups": 2316,
+        "perPickup": 3.15846286701209,
+        "singleFraction": 0.40414507772020725,
+        "brushChanges": 261
+      },
+      "planningMs": 9519.5,
+      "p95BatchMs": 6.5,
+      "humanQuality": "待用户确认"
+    }
+  ]
+}

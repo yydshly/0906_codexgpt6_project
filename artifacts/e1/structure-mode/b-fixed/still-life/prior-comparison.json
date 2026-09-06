@@ -1,0 +1,12 @@
+{
+  "prior": {
+    "color": "3fcc40b6a527282892b26064942e29a8df1e854283bed8c1e455afe815a19de6",
+    "height": "acbe772ee9c40f1a12f4136a251e1647cfc96e1b7166f19cb164eece55ee42ff"
+  },
+  "current": {
+    "color": "3a41c5fc059b216ea7757e4703981961a5029645a79a9b19105cecedf555c3d8",
+    "height": "b64df1315302294a717794f1126a77bedb572e7b04564794445be7c58334f482"
+  },
+  "identical": false,
+  "reason": "Prepared palette changes actual colors and planner error feedback; human quality remains pending"
+}
