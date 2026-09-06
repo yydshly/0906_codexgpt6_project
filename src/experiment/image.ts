@@ -33,11 +33,18 @@ export async function decodeLocalImage(file: File) {
   return { bitmap, inputHash };
 }
 export function analyzeImage(bitmap: ImageBitmap, composition: Composition) {
-  const side = ANALYSIS_SIZE;
+  const canvas = referenceCanvas(bitmap, composition, ANALYSIS_SIZE);
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
+  return { pixels: ctx.getImageData(0, 0, ANALYSIS_SIZE, ANALYSIS_SIZE).data, preview: canvas.toDataURL('image/png') };
+}
+function referenceCanvas(bitmap: ImageBitmap, composition: Composition, side: number) {
   const canvas = document.createElement('canvas'); canvas.width = canvas.height = side;
   const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
   const scale = (composition === 'contain' ? Math.min : Math.max)(side / bitmap.width, side / bitmap.height);
   ctx.drawImage(bitmap, (side - bitmap.width * scale) / 2, (side - bitmap.height * scale) / 2, bitmap.width * scale, bitmap.height * scale);
   // Transparent margins stay unpainted canvas; these pixels are analysis only.
-  return { pixels: ctx.getImageData(0, 0, side, side).data, preview: canvas.toDataURL('image/png') };
+  return canvas;
+}
+export function detailReference(bitmap: ImageBitmap, composition: Composition) {
+  return referenceCanvas(bitmap, composition, 1024).getContext('2d', { willReadFrequently: true })!.getImageData(0, 0, 1024, 1024).data;
 }

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 const [input, destination, regionArgument, paletteArgument='24', focusArgument='off'] = process.argv.slice(2);
-const paletteCount=Number(paletteArgument), focus=focusArgument==='focus';
+const paletteCount=Number(paletteArgument), focus=focusArgument==='focus', quality=focusArgument==='quality';
 if(![24,96].includes(paletteCount))throw new Error('Only fixed diagnostic palette counts 24/96 are allowed.');
 if (!input || !destination) throw new Error('Usage: node scripts/local-painting-diagnosis.mjs INPUT OUTSIDE_REPO_DIRECTORY [x,y,width,height in original pixels]');
 const repo=realpathSync(fileURLToPath(new URL('../',import.meta.url))),output=resolve(destination);
@@ -45,22 +45,31 @@ try {
   const region=regionArgument?.split(',').map(Number);
   if(focus && (!region || region.length!==4 || !region.every(Number.isFinite)))throw new Error('Focus diagnostic requires a manually marked source-pixel rectangle');
   const summaries=[];
-  for(const approach of ['original','structure']) {
-    const result=await page.evaluate(async ({approach,inputHash,region,originalSize,paletteCount,focus})=>{
+  for(const approach of quality ? ['quality'] : ['original','structure']) {
+    const result=await page.evaluate(async ({approach,inputHash,region,originalSize,paletteCount,focus,originalData})=>{
       const {createPlan,executeStroke}=await import('/src/experiment/plan.ts');
       const {Painting}=await import('/src/painting/engine.ts');
       const {StudioRenderer}=await import('/src/rendering/renderer.ts');
       const {prepareDishes,dishMatcher}=await import('/src/experiment/materials.ts');
       const {structureImportance}=await import('/src/experiment/structure.ts');
+      const {qualityDishes,qualityDistance}=await import('/src/experiment/quality.ts');
       const image=document.querySelector('.experiment-reference img');await image.decode();
       const analysis=document.createElement('canvas');analysis.width=analysis.height=512;
       const ctx=analysis.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);
       const pixels=ctx.getImageData(0,0,512,512).data;
-      const dishes=prepareDishes(pixels,approach==='structure'?structureImportance(pixels,512):undefined), match=dishMatcher(dishes);
+      const dishes=approach==='quality'?qualityDishes(pixels):prepareDishes(pixels,approach==='structure'?structureImportance(pixels,512):undefined);
+      const match=approach==='quality' ? color=>dishes.reduce((best,d)=>qualityDistance([1,3,5].map(i=>parseInt(color.slice(i,i+2),16)),[1,3,5].map(i=>parseInt(d.color.slice(i,i+2),16)))<qualityDistance([1,3,5].map(i=>parseInt(color.slice(i,i+2),16)),[1,3,5].map(i=>parseInt(best.color.slice(i,i+2),16)))?d:best) : dishMatcher(dishes);
       const palette=ctx.createImageData(512,512);
       for(let i=0;i<pixels.length;i+=4){if(pixels[i+3]<=8)continue;const color=match('#'+[pixels[i],pixels[i+1],pixels[i+2]].map(v=>v.toString(16).padStart(2,'0')).join('')).color;palette.data.set([1,3,5].map(i=>parseInt(color.slice(i,i+2),16)),i);palette.data[i+3]=pixels[i+3];}
       ctx.putImageData(palette,0,0);const palettePng=analysis.toDataURL();
-      const started=performance.now(), plan=createPlan(pixels,'contain',inputHash,()=>{},true,approach), planningMs=performance.now()-started;
+      const {createQualityPlan}=await import('/src/experiment/quality.ts');
+      const {detailReference}=await import('/src/experiment/image.ts');
+      let detail;
+      if(approach==='quality'){
+        const bitmap=await createImageBitmap(await (await fetch(originalData)).blob(),{imageOrientation:'from-image'});
+        detail=detailReference(bitmap,'contain');bitmap.close();
+      }
+      const started=performance.now(), plan=approach==='quality'?createQualityPlan(pixels,detail,'contain',inputHash):createPlan(pixels,'contain',inputHash,()=>{},true,approach), planningMs=performance.now()-started;
       const painting=new Painting(false), canvas=document.createElement('canvas'),fallback=document.createElement('canvas');
       const renderer=new StudioRenderer(canvas,fallback,painting,()=>{});
       const png=async blob=>new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(blob);});
@@ -99,8 +108,8 @@ try {
       const digest=async a=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',a.buffer))).map(v=>v.toString(16).padStart(2,'0')).join('');
       const state={color:await digest(painting.color),height:await digest(painting.height)};
       renderer.dispose();renderer.gl?.getExtension('WEBGL_lose_context')?.loseContext();
-      return {plan,planningMs,palettePng,flatPng:flat.toDataURL(),stages,state,region,focusStats,paletteCount,note:'Offline diagnostic execution of real Painting/StudioRenderer. No real-time process video or performance benchmark. Palette override only in this isolated browser; focus is manually marked, not automatic face detection. No application files changed.'};
-    },{approach,inputHash,region,originalSize,paletteCount,focus});
+      return {plan,planningMs,palettePng,flatPng:flat.toDataURL(),stages,state,region,focusStats,paletteCount,note:approach==='quality'?'Offline execution of versioned application quality planner, native reference from original source, no manual region. Real-time video and independent performance measured separately.':'Offline diagnostic execution of real Painting/StudioRenderer. Palette override only in this isolated browser; focus is manually marked, not automatic face detection.'};
+    },{approach,inputHash,region,originalSize,paletteCount,focus,originalData:quality?'data:image/png;base64,'+bytes.toString('base64'):''});
     for(const [name,data] of [['palette',result.palettePng],['flat',result.flatPng],...result.stages.map((data,i)=>[`stage-${i+1}`,data])])writeFileSync(`${output}/${approach}-${name}.png`,Buffer.from(data.split(',')[1],'base64'));
     writeFileSync(`${output}/${approach}-plan.json`,JSON.stringify(result.plan));
     const {palettePng,flatPng,stages,plan,...summary}=result;
@@ -109,6 +118,6 @@ try {
   assert.deepEqual(external,[]);
   writeFileSync(`${output}/diagnosis.json`,JSON.stringify({inputHash,summaries,externalRequests:external,private:true},null,2));
   const figure=(file,label)=>`<figure><img src="${file}"><figcaption>${label}</figcaption></figure>`;
-  writeFileSync(`${output}/index.html`,`<!doctype html><meta charset="utf-8"><title>慢光 · 私人照片本地诊断</title><style>body{background:#eee9de;color:#514c41;font:15px/1.8 sans-serif;padding:24px}section{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}img{width:100%;object-fit:contain;max-height:90vh}figure{margin:0;background:#fff9ee;padding:12px}h2{font-weight:400}</style><h1>私人照片 · 仅本地诊断</h1><p>真实笔触的离线分阶段检查，不是实时播放录像。结果没有上传或写入项目目录。</p><section>${figure('source.png','本次原图')}${figure('analysis-512.png','实际 512 分析图')}${figure('original-palette.png','原版 24 色映射 · 仅诊断')}</section>${summaries.map(s=>`<h2>${s.approach==='original'?'原版':'结构优先'}：${s.strokes} 笔 / ${s.pickups} 次取色</h2><section>${figure(s.approach+'-palette.png','色盘映射（非画作）')}${figure(s.approach+'-flat.png','实际颜色结果（无材质）')}${figure(s.approach+'-stage-'+s.stages+'.png','实际最终材质结果')}</section>`).join('')}`);
+  writeFileSync(`${output}/index.html`,`<!doctype html><meta charset="utf-8"><title>慢光 · 私人照片本地诊断</title><style>body{background:#eee9de;color:#514c41;font:15px/1.8 sans-serif;padding:24px}section{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}img{width:100%;object-fit:contain;max-height:90vh}figure{margin:0;background:#fff9ee;padding:12px}h2{font-weight:400}</style><h1>私人照片 · 仅本地诊断</h1><p>真实笔触的离线分阶段检查，不是实时播放录像。结果没有上传或写入项目目录。</p><section>${figure('source.png','本次原图')}${figure('analysis-512.png','实际 512 分析图')}${figure(quality?'quality-palette.png':'original-palette.png','24 色映射 · 仅诊断')}</section>${summaries.map(s=>`<h2>${s.approach==='quality'?'自动成品质量':s.approach==='original'?'原版':'结构优先'}：${s.strokes} 笔 / ${s.pickups} 次取色</h2><section>${figure(s.approach+'-palette.png','色盘映射（非画作）')}${figure(s.approach+'-flat.png','实际颜色结果（无材质）')}${figure(s.approach+'-stage-'+s.stages+'.png','实际最终材质结果')}</section>`).join('')}`);
   console.log(JSON.stringify({output,externalRequests:external,summaries:summaries.map(s=>({approach:s.approach,strokes:s.strokes,pickups:s.pickups,planningMs:s.planningMs}))},null,2));
 } finally {await browser.close();}
