@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "landscape",
+  "speed": 1,
+  "frames": 49698,
+  "expected": {
+    "color": "4d2573c62ed8dddaf18bc6305ae0b132c82f375cd58e1764b684899314c4926e",
+    "height": "5c63a86ef22edece5ddb66532605fab1c4a5e0289cedd720ba64556948b7335b"
+  },
+  "note": "Synthetic rAF schedule executes all actual strokes; full real-time browser video separately recorded at 4x."
+}

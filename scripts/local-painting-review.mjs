@@ -4,7 +4,8 @@ import { readFileSync,writeFileSync,realpathSync } from 'node:fs';
 import { resolve,relative,isAbsolute,dirname } from 'node:path';
 import { fileURLToPath,pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
-const dirs=process.argv.slice(2).map(p=>realpathSync(p));
+const quality=process.argv.includes('--quality');
+const dirs=process.argv.slice(2).filter(p=>p!=='--quality').map(p=>realpathSync(p));
 assert.equal(dirs.length,3,'Pass baseline, palette-only, and focus output directories');
 const repo=realpathSync(fileURLToPath(new URL('../',import.meta.url)));
 const outside=p=>{const r=relative(repo,p);return !!r&&(r==='..'||r.startsWith('..\\')||r.startsWith('../')||isAbsolute(r));};
@@ -17,16 +18,31 @@ try{
   await page.route('**/*',r=>/^(http:\/\/127\.0\.0\.1:5174\/|file:|blob:|data:)/.test(r.request().url())?r.continue():r.abort());
   await page.goto('http://127.0.0.1:5174/?test=1');await page.waitForFunction(()=>!!window.__studio);
   const checks=[];
-  for(const approach of ['original','structure']){
-    const plan=JSON.parse(readFileSync(`${dirs[2]}/${approach}-plan.json`,'utf8'));
+  for(const [directory,approach] of quality?[[1,'quality'],[2,'quality']]:[[2,'original'],[2,'structure']]){
+    const plan=JSON.parse(readFileSync(`${dirs[directory]}/${approach}-plan.json`,'utf8'));
     const actual=await page.evaluate(async plan=>{
       const {Painting}=await import('/src/painting/engine.ts');const {executeStroke}=await import('/src/experiment/plan.ts');const p=new Painting(false);
       for(let i=0;i<plan.strokes.length;i++){executeStroke(p,plan.strokes[i]);if(i%64===0)await new Promise(r=>setTimeout(r,0));}
       const hash=async a=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',a.buffer))).map(v=>v.toString(16).padStart(2,'0')).join('');
       return {color:await hash(p.color),height:await hash(p.height)};
     },plan);
-    assert.deepEqual(actual,studies[2].summaries.find(s=>s.approach===approach).state);checks.push({approach,independentReplay:'通过'});
+    assert.deepEqual(actual,studies[directory].summaries.find(s=>s.approach===approach).state);checks.push({directory,approach,independentReplay:'通过'});
   }
+  if(quality){
+    const baseline=studies[0].summaries.find(s=>s.approach==='structure');
+    const bytes=readFileSync(`${dirs[0]}/source.png`),width=bytes.readUInt32BE(16),height=bytes.readUInt32BE(20),scale=1024/Math.max(width,height),dx=(1024-width*scale)/2,dy=(1024-height*scale)/2;
+    const rect=baseline.region;assert.ok(rect?.length===4,'Use the existing diagnostic review region, never planner input');
+    const box=[dx+rect[0]*scale,dy+rect[1]*scale,rect[2]*scale,rect[3]*scale];
+    const local=(d,file)=>relative(parent,resolve(d,file)).replaceAll('\\','/');
+    const refs=[{file:local(dirs[0],'source.png'),label:'原图',source:true},{file:local(dirs[0],'structure-stage-5.png'),label:'当前结构优先基线'},{file:local(dirs[1],'quality-stage-5.png'),label:'第一轮：采用的实验策略'},{file:local(dirs[2],'quality-stage-5.png'),label:'第二轮：质量退步，未采用'}];
+    const panels=zoom=>refs.map(r=>`<figure><svg viewBox="${zoom?box.join(' '):'0 0 1024 1024'}"><rect x="0" y="0" width="1024" height="1024" fill="#f2eee2"/><image href="${r.file}" x="${r.source?dx:0}" y="${r.source?dy:0}" width="${r.source?width*scale:1024}" height="${r.source?height*scale:1024}"/></svg><figcaption>${r.label}</figcaption></figure>`).join('');
+    const html=`<!doctype html><meta charset="utf-8"><title>慢光 · 自动成品私人对照</title><style>body{background:#f1ebdf;color:#514b3f;font:15px/1.8 sans-serif;margin:24px}h1{font:32px KaiTi,serif}section{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}figure{background:#fff9ee;margin:0;padding:10px}svg{display:block;width:100%}.zoom svg{height:320px}a{color:#52644c}video{width:min(100%,1000px)}</style><h1>同一原图 · 自动成品质量两轮对照</h1><p>仅本地。两轮均自动处理整图，未用手动圈区参与规划；局部裁框只用于这里的同尺度验收。没有照片贴入画作。</p><p>第一轮肤色及部分面部线索有改善，第二轮动作减少但结构退步，未采用。独立人物验证未通过：当前质量仍不足以宣称通用人物成品可用。</p><section>${panels(false)}</section><h2>同一关键局部</h2><section class="zoom">${panels(true)}</section><h2>实际操作与文件</h2><p><a href="finished-quality-ui/final.png">应用实际导出的 PNG</a> · <a href="finished-quality-ui/plan.json">可重放计划</a> · <a href="finished-quality-ui/results.json">操作与状态验证</a></p><video controls preload="metadata" src="finished-quality-ui/process.webm"></video><p>录像为真实页面 4× 播放，含暂停、取消、切换、对照和导出检查。不是生成视频，也不是专业画师步骤。私人原图、结果和计划均未提交公开仓库。</p>`;
+    const htmlPath=`${parent}/finished-quality-comparison.html`;writeFileSync(htmlPath,html);
+    await page.goto(pathToFileURL(htmlPath).href);await page.locator('image').evaluateAll(async nodes=>{for(const n of nodes){const img=new Image();img.src=n.href.baseVal;await img.decode();}});
+    await page.screenshot({path:`${parent}/finished-quality-comparison.png`,fullPage:true});
+    writeFileSync(`${parent}/finished-quality-replay-check.json`,JSON.stringify({status:'通过',checks,note:'Only serialized plans were used for independent Painting execution. Visual quality remains pending / independent portrait objective failed.'},null,2));
+    console.log(JSON.stringify({status:'通过',checks,review:htmlPath}));
+  }else{
   const summary=studies[2].summaries.find(s=>s.approach==='structure'), [x,y,w,h]=summary.focusStats.analysisPixels;
   const rect=summary.region,bytes=readFileSync(`${dirs[0]}/source.png`),width=bytes.readUInt32BE(16),height=bytes.readUInt32BE(20);
   const local=(dir,file)=>relative(parent,resolve(dir,file)).replaceAll('\\','/');
@@ -39,4 +55,5 @@ try{
   await page.screenshot({path:`${parent}/portrait-comparison.png`});
   writeFileSync(`${parent}/replay-check.json`,JSON.stringify({status:'通过',checks,note:'Actual serialized diagnostic plans, with no reference image during independent replay. Quality is not asserted.'},null,2));
   console.log(JSON.stringify({status:'通过',checks,review:htmlPath}));
+  }
 }finally{await browser.close();}

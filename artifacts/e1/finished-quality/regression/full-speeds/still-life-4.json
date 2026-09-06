@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "still-life",
+  "speed": 4,
+  "frames": 13917,
+  "expected": {
+    "color": "3a41c5fc059b216ea7757e4703981961a5029645a79a9b19105cecedf555c3d8",
+    "height": "b64df1315302294a717794f1126a77bedb572e7b04564794445be7c58334f482"
+  },
+  "note": "Synthetic rAF schedule executes all actual strokes; full real-time browser video separately recorded at 4x."
+}

@@ -3,7 +3,7 @@ import { prepareProcess, type PaintPickup } from './process-plan';
 import { attachMaterials, prepareDishes, dishMatcher, type Materials } from './materials';
 import { regionTasks, structureImportance } from './structure';
 
-export type PaintingApproach = 'original' | 'structure';
+export type PaintingApproach = 'original' | 'structure' | 'quality';
 
 export const ANALYSIS_SIZE = 512;
 export const PLANNER_VERSION = 'e1-brush-process-3';
@@ -68,6 +68,7 @@ function distribute(candidates: Candidate[], limit: number) {
 /** Original local implementation inspired by Hertzmann's coarse-to-fine idea.
  * Error feedback uses the existing Painting, never a pasted photo. */
 export function createPlan(source: Uint8ClampedArray, composition: Composition, inputHash: string, progress: (stage: number) => void = () => {}, prepared = false, approach: PaintingApproach = 'original') {
+  if (approach === 'quality') throw new Error('成品细节策略需要从原图独立读取细节参考');
   if (source.length !== W * W * 4) throw new Error('分析尺寸不正确');
   const painting = new Painting(false);
   const plan: StrokePlan = { plannerVersion: PLANNER_VERSION, brushVersion: 2, seed: PLAN_SEED, size: 1024, analysisSize: W, composition, inputHash, stages: [], strokes: [] };

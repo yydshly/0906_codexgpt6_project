@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "landscape",
+  "speed": 0.5,
+  "frames": 231173,
+  "expected": {
+    "color": "925c9f457c23cb9ac8fcd9d83048209b6a804704da9f9d47253f46a4ccdae65a",
+    "height": "e12b065d1ab3cc9771159226d07d9e6916990035c9cf3f53be89858bcc4ef27b"
+  },
+  "note": "Synthetic frame clock; real actual engine strokes, no image loaded. Not a real-time video or performance result."
+}

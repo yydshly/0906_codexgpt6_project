@@ -15,7 +15,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   const requests: string[] = []; page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:5174') && !/^(blob:|data:)/.test(request.url())) requests.push(request.url()); });
   const before = await digest(page);
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
-  if (process.env.E1_APPROACH === 'structure') await page.getByRole('button', { name: '结构优先 · 实验', exact: true }).click();
+  if (process.env.E1_APPROACH === 'structure' || process.env.E1_APPROACH === 'quality') await page.getByRole('button', { name: process.env.E1_APPROACH === 'quality' ? '成品细节 · 实验' : '结构优先 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles(`artifacts/e1/fixtures/${sample}.jpg`);
   const speed = process.env.E1_EVIDENCE_SPEED || '1';
   await page.getByLabel('播放速度', { exact: true }).selectOption(speed);
@@ -92,7 +92,7 @@ test('E1-C runtime failures, PNG input, reproducible planner and released experi
   const cdp = await page.context().newCDPSession(page); await cdp.send('HeapProfiler.collectGarbage');
   const baseline = await cdp.send('Runtime.getHeapUsage');
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
-  if (process.env.E1_APPROACH === 'structure') await page.getByRole('button', { name: '结构优先 · 实验', exact: true }).click();
+  if (process.env.E1_APPROACH === 'structure' || process.env.E1_APPROACH === 'quality') await page.getByRole('button', { name: process.env.E1_APPROACH === 'quality' ? '成品细节 · 实验' : '结构优先 · 实验', exact: true }).click();
   const upload = page.getByLabel('选择本地图片', { exact: true });
   await upload.setInputFiles('artifacts/e1/fixtures/landscape.jpg');
   await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
@@ -128,7 +128,7 @@ test('E1-C runtime failures, PNG input, reproducible planner and released experi
   const png = await page.evaluate(() => { const canvas = document.createElement('canvas'); canvas.width = 32; canvas.height = 16; const ctx = canvas.getContext('2d')!; ctx.fillStyle = '#c95139'; ctx.fillRect(0, 0, 16, 16); ctx.fillStyle = '#3155a6'; ctx.fillRect(16, 0, 16, 16); return canvas.toDataURL('image/png').split(',')[1]; });
   for (let i = 0; i < 5; i++) {
     await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
-    if (process.env.E1_APPROACH === 'structure') await page.getByRole('button', { name: '结构优先 · 实验', exact: true }).click();
+    if (process.env.E1_APPROACH === 'structure' || process.env.E1_APPROACH === 'quality') await page.getByRole('button', { name: process.env.E1_APPROACH === 'quality' ? '成品细节 · 实验' : '结构优先 · 实验', exact: true }).click();
     await upload.setInputFiles({ name: 'format-only.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') });
     await expect(page.getByRole('button', { name: '确认构图，准备笔与颜色' })).toBeEnabled();
     if (i === 0) {

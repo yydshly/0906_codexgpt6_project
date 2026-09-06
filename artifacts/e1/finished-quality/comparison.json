@@ -1,0 +1,94 @@
+{
+  "status": "通过",
+  "scope": "Fixed inputs, native PNGs, plans and measured counts. Visual quality objective NOT passed.",
+  "rows": [
+    {
+      "sample": "portrait-holdout",
+      "baseline": 7659,
+      "quality": 8020,
+      "pickups": [
+        2774,
+        6286
+      ],
+      "planningMs": [
+        5544.399999976158,
+        3836.100000023842
+      ],
+      "offlineComputeMs": [
+        4912.900000691414,
+        2383.1999992132187
+      ],
+      "materials": [
+        24,
+        24
+      ],
+      "qualityObjective": "未通过 / 不宣称全面改善"
+    },
+    {
+      "sample": "landscape",
+      "baseline": 7333,
+      "quality": 8020,
+      "pickups": [
+        2103,
+        5605
+      ],
+      "planningMs": [
+        5822.799999952316,
+        4804
+      ],
+      "offlineComputeMs": [
+        5187.599999547005,
+        2623.899999976158
+      ],
+      "materials": [
+        24,
+        24
+      ],
+      "qualityObjective": "未通过 / 不宣称全面改善"
+    },
+    {
+      "sample": "still-life",
+      "baseline": 7440,
+      "quality": 8020,
+      "pickups": [
+        2485,
+        5858
+      ],
+      "planningMs": [
+        4527.800000071526,
+        4174.899999976158
+      ],
+      "offlineComputeMs": [
+        4238.899999976158,
+        2141.599999189377
+      ],
+      "materials": [
+        24,
+        24
+      ],
+      "qualityObjective": "未通过 / 不宣称全面改善"
+    },
+    {
+      "sample": "complex",
+      "baseline": 7315,
+      "quality": 8020,
+      "pickups": [
+        2316,
+        5304
+      ],
+      "planningMs": [
+        4752.100000023842,
+        4068.1999999284744
+      ],
+      "offlineComputeMs": [
+        4613.200000047684,
+        2500.6000002622604
+      ],
+      "materials": [
+        24,
+        24
+      ],
+      "qualityObjective": "未通过 / 不宣称全面改善"
+    }
+  ]
+}

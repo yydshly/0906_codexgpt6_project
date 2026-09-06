@@ -1,0 +1,118 @@
+{
+  "status": "通过",
+  "sample": "still-life",
+  "inputHash": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+  "composition": "contain",
+  "seed": 1906,
+  "qualityPlanningMs": 4174.899999976158,
+  "baselinePlanningMs": 4527.800000071526,
+  "summaries": [
+    {
+      "prefix": "baseline",
+      "strokes": 7440,
+      "materials": 24,
+      "pickups": 2485,
+      "computeMs": 4238.899999976158,
+      "exportMs": 359.5,
+      "rmseDiagnosticOnly": 29.533019630201828,
+      "memory": {
+        "currentBytes": 6291456,
+        "historyBytes": 0,
+        "pendingBytes": 0,
+        "batchBufferBytes": 4194304,
+        "brushBytes": 2048,
+        "cacheEntries": 0,
+        "historyCount": 0
+      },
+      "renderer": {
+        "mode": "webgl2",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (Intel)",
+        "backing": [
+          1,
+          1
+        ],
+        "dpr": 1.0000000298023224,
+        "cpuBufferBytes": 4194304,
+        "gpuTextureBytes": 6291456
+      },
+      "stages": [
+        {
+          "color": "6f27ebc35c77bdca61a984e6ccc5e04489cc6eac8d77a60d609dd2dbcc9eae2e",
+          "height": "c71976607bfe883b2266e80d2932aa1250253c24705c7fcce9f6ca4550304a9b"
+        },
+        {
+          "color": "211aa80e43d74a5dd87545f419fd1288f826e01edb6663e3b65097592d9a3f60",
+          "height": "e882d55fc427b4371813cc3154c4f9b0b7cc110f0928ce3287738589404c4686"
+        },
+        {
+          "color": "0a589c32f0ac86a8f3b6483aff08cf0e301c99d6d5f8f12c8ca33427573eb411",
+          "height": "23b33ee465a7b8d5f9d519d67fb2640e7a9b83f39722334496e4f9bbd704c46c"
+        },
+        {
+          "color": "15a57e22d629adf3a9e206c72f36af0e9f71a0efd5039602209ff7ec20c98869",
+          "height": "98c77c218086c3741f8a96f2fb2f59684e16680ea2c378f7594dc927e0d7be21"
+        },
+        {
+          "color": "3a41c5fc059b216ea7757e4703981961a5029645a79a9b19105cecedf555c3d8",
+          "height": "b64df1315302294a717794f1126a77bedb572e7b04564794445be7c58334f482"
+        }
+      ]
+    },
+    {
+      "prefix": "quality",
+      "strokes": 8020,
+      "materials": 24,
+      "pickups": 5858,
+      "computeMs": 2141.599999189377,
+      "exportMs": 301.39999997615814,
+      "rmseDiagnosticOnly": 38.74753677536331,
+      "memory": {
+        "currentBytes": 6291456,
+        "historyBytes": 0,
+        "pendingBytes": 0,
+        "batchBufferBytes": 4194304,
+        "brushBytes": 2048,
+        "cacheEntries": 0,
+        "historyCount": 0
+      },
+      "renderer": {
+        "mode": "webgl2",
+        "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (Intel)",
+        "backing": [
+          1,
+          1
+        ],
+        "dpr": 1.0000000298023224,
+        "cpuBufferBytes": 4194304,
+        "gpuTextureBytes": 6291456
+      },
+      "stages": [
+        {
+          "color": "d46867e67c6e7f984bf029d6b6eb7e3da21ca8efc89457569e0ba162cf83666c",
+          "height": "8d500e0c5bb6aa03eb4424f572af25ab9a8792bfcccc6dac5c70391375d4d81f"
+        },
+        {
+          "color": "63833d6b6d1ce0a1e523213a3cef78dac9f53deaf1283c9c9974366669295825",
+          "height": "9a86acdffffe812854bacaef8d504e39854b19c6d4f3592dd0c5b1c3283eb32e"
+        },
+        {
+          "color": "dfaebeaae514dc0b6e1323d735ca2ff9116ab20621ad2234e13101ccda1432f7",
+          "height": "d96d35e4abb8eee8bf238ed236bd82e65d01806f5cae9b4a90c5b8dec31aacf1"
+        },
+        {
+          "color": "772b8467fca52581386b0fa5d0fd25ec2a8c39998a49b7449d46e1492851528f",
+          "height": "493e01e6e924e11e3f9cb75c6952faae611f439fe156db1874ced46b3135a6bd"
+        },
+        {
+          "color": "f38c607dbc2cb1b1d5cd8b766991e8626ab5ca2f1aeefce082408c7b42e92d43",
+          "height": "e3013de1187831a0ca08ca53cf37bc425a59e04f7b2c04f4face5766193cfaf7"
+        }
+      ]
+    }
+  ],
+  "external": [],
+  "errors": [],
+  "note": "Actual offline stage execution, not an animated-process recording. Numerical residual is diagnostic only; human quality pending."
+}

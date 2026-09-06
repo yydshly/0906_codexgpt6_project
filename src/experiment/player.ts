@@ -20,6 +20,9 @@ export class PlanPlayer {
   private stations: MaterialStations = { dishes: {}, brushes: {}, wipe: { x: 1220, y: 1030 } };
   private pickups = new Map<number, PaintPickup>();
   readonly metrics = { batches: [] as number[], frames: [] as number[], strokeMaxMs: 0, paintingMs: 0, totalBatches: 0, maxBatchMs: 0, maxConsecutiveOver100: 0 };
+  // Cumulative observation only. Schedule milliseconds exclude wall-clock stalls
+  // and must not be presented as independently measured end-to-end latency.
+  readonly timing = { strokeComputeMs: 0, actionScheduleMs: 0, drawScheduleMs: 0 };
   private consecutiveOver100 = 0;
   private frame = 0;
   private lastTime = 0;
@@ -82,6 +85,7 @@ export class PlanPlayer {
     this.credit = Math.min(100, this.credit + Math.min(40, elapsedFrame) * Math.max(.5, Math.min(4, this.speed)));
     const start = performance.now();
     while ((this.index < this.plan.strokes.length || this.plan.materials && this.heldBrushId) && this.state === 'playing' && this.credit > 0 && performance.now() - start < 6) {
+      const phaseBefore = this.phase, creditBefore = this.credit;
       const stroke = this.plan.strokes[Math.min(this.index, this.plan.strokes.length - 1)];
       if (this.index === this.plan.strokes.length && !['return-brush', 'release-brush', 'to-wipe', 'wipe'].includes(this.phase)) this.returnBrush();
       if (this.phase === 'prepare') {
@@ -148,10 +152,14 @@ export class PlanPlayer {
         }
         if (runner.done) {
           this.metrics.strokeMaxMs = Math.max(this.metrics.strokeMaxMs, this.strokeCpuMs);
+          this.timing.strokeComputeMs += this.strokeCpuMs;
           this.runner = null; this.index++; this.tip.down = false; this.phase = 'lift'; this.liftRemaining = 6;
           for (let stage = 0; stage < this.plan.stages.length; stage++) if (this.plan.stages[stage].end === this.index) this.onStage?.(stage);
         }
       }
+      const usedSchedule = Math.max(0, creditBefore - this.credit) / Math.max(.5, Math.min(4, this.speed));
+      if (phaseBefore === 'draw') this.timing.drawScheduleMs += usedSchedule;
+      else this.timing.actionScheduleMs += usedSchedule;
     }
     const elapsed = performance.now() - start; this.metrics.paintingMs += elapsed;
     this.metrics.totalBatches++; this.metrics.maxBatchMs = Math.max(this.metrics.maxBatchMs, elapsed);

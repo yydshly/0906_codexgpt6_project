@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "complex",
+  "speed": 0.5,
+  "frames": 217553,
+  "expected": {
+    "color": "c301df812a0024106d7eceec03452e41eefd4ed40c1ec22c065e5892f4b461be",
+    "height": "55cfa8ec1d6c01c332164bb9723e14b39aed59f023ba27df2ba71022c4d6dafa"
+  },
+  "note": "Synthetic frame clock; real actual engine strokes, no image loaded. Not a real-time video or performance result."
+}

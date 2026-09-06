@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "still-life",
+  "speed": 0.5,
+  "frames": 234400,
+  "expected": {
+    "color": "f38c607dbc2cb1b1d5cd8b766991e8626ab5ca2f1aeefce082408c7b42e92d43",
+    "height": "e3013de1187831a0ca08ca53cf37bc425a59e04f7b2c04f4face5766193cfaf7"
+  },
+  "note": "Synthetic frame clock; real actual engine strokes, no image loaded. Not a real-time video or performance result."
+}

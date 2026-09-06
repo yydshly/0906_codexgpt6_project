@@ -1,0 +1,83 @@
+diff --git a/src/experiment/quality.ts b/src/experiment/quality.ts
+index 0201728..af3008d 100644
+--- a/src/experiment/quality.ts
++++ b/src/experiment/quality.ts
+@@ -3,7 +3,7 @@ import { executeStroke, PLAN_SEED, STAGES, type Composition, type PlannedStroke,
+ import { attachMaterials, prepareDishes, type PaintDish } from './materials';
+ import { prepareProcess } from './process-plan';
+ 
+-export const QUALITY_VERSION = 'e1-finished-quality-1';
++export const QUALITY_VERSION = 'e1-finished-quality-2';
+ const N = 1024, linen = [242, 238, 226];
+ const clamp = (v: number) => Math.max(0, Math.min(N - 1, Math.round(v)));
+ const at = (x: number, y: number) => (clamp(y) * N + clamp(x)) * 4;
+@@ -91,6 +91,7 @@ export function createQualityPlan(global: Uint8ClampedArray, detail: Uint8Clampe
+   if (global.length !== 512 * 512 * 4 || detail.length !== N * N * 4) throw new Error('需要独立的全局与原输入细节参考');
+   const painting = new Painting(false), trial = new FootprintTrial(painting, detail);
+   const dishes = qualityDishes(global), colors = dishes.map(d => rgb(d.color));
++  const match = (value: number[]) => { let best = Infinity, index = 0; colors.forEach((c, i) => { const d = qualityDistance(c, value); if (d < best) { best = d; index = i; } }); return index; };
+   const plan: StrokePlan = { plannerVersion: QUALITY_VERSION, brushVersion: 2, seed: PLAN_SEED, size: 1024, analysisSize: 512, detailSize: 1024, composition, inputHash, stages: [], strokes: [] };
+   const stats = { candidates: 0, rejected: 0, acceptedGain: 0, protectedDamage: 0, scratchBytes: trial.bytes, referenceBytes: global.byteLength + detail.byteLength };
+   const target = (x: number, y: number) => { const i = at(x, y); return [detail[i], detail[i + 1], detail[i + 2]]; };
+@@ -116,12 +117,31 @@ export function createQualityPlan(global: Uint8ClampedArray, detail: Uint8Clampe
+         if (best.score > 16) candidates.push(best);
+       }
+       candidates.sort((a, b) => b.score - a.score || a.y - b.y || a.x - b.x);
+-      for (const start of candidates.slice(0, (spec.limit - accepted) * 4)) {
++      const selected = candidates.slice(0, (spec.limit - accepted) * 4);
++      const region = (p: { x: number; y: number }) => Math.floor(p.y / 64) * 16 + Math.floor(p.x / 64);
++      const available = spec.limit - accepted, population = new Map<number, number>(), used = new Map<number, number>();
++      for (const p of selected) population.set(region(p), (population.get(region(p)) ?? 0) + 1);
++      // Keep the current error-ranked shortlist, but work nearby material tasks
++      // together BEFORE trial execution. No reordering of overlapping final paint.
++      if (stage) selected.sort((a, b) => {
++        return region(a) - region(b) || match(target(a.x, a.y)) - match(target(b.x, b.y)) || b.score - a.score;
++      });
++      for (const start of selected) {
+         if (accepted >= spec.limit) break;
++        const tile = region(start);
++        if (stage && (used.get(tile) ?? 0) >= Math.max(1, Math.floor(available * population.get(tile)! / selected.length))) continue;
+         if (error(start.x, start.y) < 12) continue;
+-        const value = target(start.x, start.y);
+-        let best = Infinity, dish = 0;
+-        colors.forEach((c, i) => { const d = qualityDistance(c, value); if (d < best) { best = d; dish = i; } });
++        let value = target(start.x, start.y);
++        if (stage === 0) {
++          // Establish a spatially complete ground, not just isolated worst pixels.
++          start.x = Math.min(N - 1, Math.floor(start.x / step) * step + Math.floor(step / 2));
++          start.y = Math.min(N - 1, Math.floor(start.y / step) * step + Math.floor(step / 2));
++          if (detail[at(start.x, start.y) + 3] < 240) continue;
++          const samples: number[][] = [];
++          for (const dy of [-12,0,12]) for (const dx of [-12,0,12]) if (detail[at(start.x + dx, start.y + dy) + 3] > 240) samples.push(target(start.x + dx, start.y + dy));
++          value = [0,1,2].map(c => samples.reduce((sum,p) => sum + p[c], 0) / samples.length);
++        }
++        const dish = match(value);
+         const gx = lum(start.x + 2, start.y) - lum(start.x - 2, start.y), gy = lum(start.x, start.y + 2) - lum(start.x, start.y - 2);
+         const angle = Math.hypot(gx, gy) > 3 ? Math.atan2(gy, gx) + Math.PI / 2 : 0;
+         let size = spec.size as number;
+@@ -130,20 +150,21 @@ export function createQualityPlan(global: Uint8ClampedArray, detail: Uint8Clampe
+           if (across < 160) break;
+           size = size > 36 ? 36 : size > 16 ? 16 : size > 8 ? 8 : 4;
+         }
++        const pressure = stage >= 3 && size === 4 ? 0 : .5;
+         const trace = (sign: number): Point[] => {
+           const points: Point[] = [];
+           for (let i = 1; i <= 3; i++) {
+             const x = start.x + Math.cos(angle) * size * .3 * sign * i, y = start.y + Math.sin(angle) * size * .3 * sign * i;
+             if (x < 1 || y < 1 || x >= N - 1 || y >= N - 1 || detail[at(x, y) + 3] < 240 || qualityDistance(value, target(x, y)) > (stage > 1 ? 100 : 400)) break;
+-            points.push({ x, y, pressure: .5 });
++            points.push({ x, y, pressure });
+           }
+           return points;
+         };
+-        const path = [...trace(-1).reverse(), { x: start.x, y: start.y, pressure: .5 }, ...trace(1)];
+-        if (path.length === 1) path.push({ x: start.x + Math.cos(angle) * .8, y: start.y + Math.sin(angle) * .8, pressure: .5 });
++        const path = [...trace(-1).reverse(), { x: start.x, y: start.y, pressure }, ...trace(1)];
++        if (path.length === 1) path.push({ x: start.x + Math.cos(angle) * .8, y: start.y + Math.sin(angle) * .8, pressure });
+         const stroke: PlannedStroke = { order: plan.strokes.length, stage, path, sampleStep: 1, brush: { size, color: dishes[dish].color, load: 1, thickness: stage > 1 ? .04 : .07, mode: 'cover', seed: seed() } };
+         const result = trial.attempt(stroke, stage > 1); stats.candidates++;
+-        if (result.accepted) { plan.strokes.push(stroke); accepted++; stats.acceptedGain += result.improvement; stats.protectedDamage += result.damage; }
++        if (result.accepted) { plan.strokes.push(stroke); accepted++; used.set(tile, (used.get(tile) ?? 0) + 1); stats.acceptedGain += result.improvement; stats.protectedDamage += result.damage; }
+         else stats.rejected++;
+       }
+     }

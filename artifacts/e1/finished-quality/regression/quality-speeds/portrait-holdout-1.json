@@ -1,0 +1,11 @@
+{
+  "status": "通过",
+  "sample": "portrait-holdout",
+  "speed": 1,
+  "frames": 128733,
+  "expected": {
+    "color": "04e5deda52e561fb364d93becb338993932d88084ce07e75dd7ac08ae27a49e1",
+    "height": "a6e85b15a6830d0845fb36394ca77f3af3814349b29dbc00fb3ddfcccecaf7fd"
+  },
+  "note": "Synthetic frame clock; real actual engine strokes, no image loaded. Not a real-time video or performance result."
+}

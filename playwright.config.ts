@@ -8,6 +8,8 @@ export default defineConfig({
   reporter: [['list'], ['json', { outputFile: `${reportDirectory}/${(process.env.npm_lifecycle_event || 'tests').replace(':','-')}-results.json` }]],
   use: { baseURL: 'http://127.0.0.1:5174', viewport: { width: 1440, height: 900 }, channel: 'chrome', headless: false, launchOptions: { args: ['--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'] } },
   projects: [
+    { name: 'e1-quality', testMatch: 'e1-quality.spec.ts', timeout: 240000, use: { video: 'off' } },
+    { name: 'e1-quality-ui', testMatch: 'e1-quality-ui.spec.ts', timeout: 1500000, use: { video: { mode: 'on', size: { width: 1440, height: 900 } } } },
     { name: 'e1-engine', testMatch: ['e1-engine.spec.ts', 'e1-materials-engine.spec.ts', 'e1-structure-engine.spec.ts', 'e1-quality-engine.spec.ts'] },
     { name: 'e1-performance', testMatch: 'e1-performance.spec.ts', timeout: 1500000, use: { video: 'off', screenshot: 'off' } },
     { name: 'e1', testMatch: ['e1.spec.ts', 'e1-evidence.spec.ts', 'e1-refinement.spec.ts', 'e1-brush-process.spec.ts', 'e1-prepared.spec.ts', 'e1-structure.spec.ts'], timeout: 1800000, use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },

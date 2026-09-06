@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test';
 import { Painting } from '../src/painting/engine';
 import { executeStroke, type PlannedStroke } from '../src/experiment/plan';
 import { FootprintTrial, qualityDishes } from '../src/experiment/quality';
+import { createHash } from 'node:crypto';
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { PlanPlayer } from '../src/experiment/player';
+import type { StrokePlan } from '../src/experiment/plan';
 
 const stroke = (color: string): PlannedStroke => ({ order: 0, stage: 0, sampleStep: 1, path: [{ x: 400, y: 400 }, { x: 430, y: 410 }], brush: { size: 16, color, seed: 1906, mode: 'cover', load: 1, thickness: .04 } });
 test('quality trials reject destructive coverage and restore independent color and height exactly', () => {
@@ -26,4 +30,21 @@ test('quality palette stays within the visible 24 materials and is deterministic
   const dishes = qualityDishes(pixels);
   expect(dishes).toEqual(qualityDishes(pixels)); expect(dishes.length).toBeLessThanOrEqual(24);
   expect(new Set(dishes.map(d => d.id)).size).toBe(dishes.length);
+});
+
+for(const sample of ['portrait-holdout','landscape','still-life','complex']) for(const speed of [.5,1,4]) test(`full quality ${sample} at ${speed}x preserves exact color and height`,()=>{
+  const plan:StrokePlan=JSON.parse(readFileSync(`artifacts/e1/finished-quality/frozen/${sample}/quality-plan.json`,'utf8'));
+  const recorded=JSON.parse(readFileSync(`artifacts/e1/finished-quality/frozen/${sample}/results.json`,'utf8')).summaries.find((s:{prefix:string})=>s.prefix==='quality').stages.at(-1);
+  const hash=(p:Painting)=>({color:createHash('sha256').update(p.color).digest('hex'),height:createHash('sha256').update(new Uint8Array(p.height.buffer)).digest('hex')});
+  const raf=globalThis.requestAnimationFrame,cancel=globalThis.cancelAnimationFrame;
+  let frames=0;
+  try {
+    let pending:FrameRequestCallback|null=null;
+    globalThis.requestAnimationFrame=fn=>{pending=fn;return 1;};globalThis.cancelAnimationFrame=()=>{pending=null;};
+    const painting=new Painting(false),player=new PlanPlayer(painting,plan,()=>{});player.speed=speed;player.play();
+    let paused=false;
+    while(player.state!=='complete'&&frames<1000000){const callback=pending;pending=null;(callback as FrameRequestCallback|null)?.(++frames*16.7);if(!paused&&player.index>20){player.pause();const frozen=hash(painting);expect(pending).toBeNull();expect(hash(painting)).toEqual(frozen);player.play();paused=true;}}
+    expect(player.state).toBe('complete');expect(hash(painting)).toEqual(recorded);expect(painting.history).toHaveLength(0);player.dispose();
+  } finally {globalThis.requestAnimationFrame=raf;globalThis.cancelAnimationFrame=cancel;}
+  const dir=`${process.env.M1_ARTIFACT_DIR}/quality-speeds`;mkdirSync(dir,{recursive:true});writeFileSync(`${dir}/${sample}-${speed}.json`,JSON.stringify({status:'通过',sample,speed,frames,expected:recorded,note:'Synthetic frame clock; real actual engine strokes, no image loaded. Not a real-time video or performance result.'},null,2));
 });
