@@ -1,0 +1,41 @@
+{
+  "status": "通过",
+  "first": {
+    "color": "4ea21128bbdbdbc5952a608781e014c2c4c557db471856fd693aabd25750e99b",
+    "height": "23cb9fb78f37660c715690b5e01e862f8e0c1d355726df6c043090989dcd9b48"
+  },
+  "sampleIndex": 9,
+  "tip": {
+    "x": 912.0011111111111,
+    "y": 182.04777777777778,
+    "down": true,
+    "visible": true,
+    "color": "#2f61b2"
+  },
+  "moved": {
+    "x": 925.6,
+    "y": 182.328,
+    "down": true,
+    "visible": true,
+    "color": "#2f60b0"
+  },
+  "final": {
+    "color": "d61aa785f3caeaee08a1dbc8d0f49e720a06f50de6fd3a16a86755081d166c50",
+    "height": "66f0d33eacc0f3ec3cef87f91fd9f75823a0bea49aee136b8078b7fc8934c797"
+  },
+  "expected": {
+    "color": "d61aa785f3caeaee08a1dbc8d0f49e720a06f50de6fd3a16a86755081d166c50",
+    "height": "66f0d33eacc0f3ec3cef87f91fd9f75823a0bea49aee136b8078b7fc8934c797"
+  },
+  "checks": [
+    "pen follows actual samples",
+    "pause freezes partial stroke",
+    "partial export keeps active stroke",
+    "pen excluded from PNG",
+    "replacement cancellation preserves partial painting",
+    "context loss and fallback export preserve active stroke",
+    "continued result equals independent complete execution",
+    "M2 unchanged"
+  ],
+  "humanProcess": "待用户确认"
+}

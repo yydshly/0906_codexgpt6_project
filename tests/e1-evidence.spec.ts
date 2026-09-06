@@ -6,6 +6,7 @@ import { loadedPlan, experimentDigest, experimentPng, storedDraft } from './e1-h
 import { Painting } from '../src/painting/engine';
 import { executeStroke, MAX_STROKES, STAGES } from '../src/experiment/plan';
 import type { StrokePlan } from '../src/experiment/plan';
+import { relative } from 'node:path';
 
 const root = process.env.M1_ARTIFACT_DIR || 'artifacts/e1/c';
 for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${sample}: real strokes, every phase, video and exact independent replay`, async ({ page }, info) => {
@@ -39,7 +40,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   expect(plan.inputHash).toBe(inputHash); expect(plan.strokes.length).toBeLessThanOrEqual(MAX_STROKES);
   for (const [i, stroke] of plan.strokes.entries()) { expect(stroke.order).toBe(i); expect(stroke.path.length).toBeLessThanOrEqual(7); expect(stroke.brush.mode).toBe('cover'); }
   writeFileSync(`${dir}/plan.json`, JSON.stringify(plan));
-  writeFileSync(`${dir}/input.json`, JSON.stringify({ file: `../../fixtures/${sample}.jpg`, inputHash, composition: plan.composition, plannerVersion: plan.plannerVersion, seed: plan.seed, canvasSeed: 906, brushVersion: plan.brushVersion, analysisSize: plan.analysisSize }, null, 2));
+  writeFileSync(`${dir}/input.json`, JSON.stringify({ file: relative(dir, `artifacts/e1/fixtures/${sample}.jpg`).replaceAll('\\', '/'), inputHash, composition: plan.composition, plannerVersion: plan.plannerVersion, seed: plan.seed, canvasSeed: 906, brushVersion: plan.brushVersion, analysisSize: plan.analysisSize }, null, 2));
   const download = page.waitForEvent('download'); await page.getByRole('button', { name: '导出实验 PNG', exact: true }).click();
   await (await download).saveAs(`${dir}/final.png`);
   expect(readFileSync(`${dir}/final.png`).equals(readFileSync(`${dir}/stage-${STAGES.length}.png`))).toBe(true);

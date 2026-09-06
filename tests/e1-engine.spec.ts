@@ -5,6 +5,8 @@ import { imageDimensions } from '../src/experiment/image';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import type { StrokePlan } from '../src/experiment/plan';
+import { StrokeRunner } from '../src/experiment/stroke-runner';
+import { PlanPlayer } from '../src/experiment/player';
 
 test('batch shares the manual brush, including stroke-before mixing; no undo snapshots', () => {
   const manual = new Painting(), batch = new Painting(false);
@@ -50,4 +52,36 @@ test('thin experimental paint changes height only; manual thickness and legacy p
     const hash = (bytes: Uint8Array | Uint8ClampedArray) => createHash('sha256').update(bytes).digest('hex');
     expect({ color: hash(painting.color), height: hash(new Uint8Array(painting.height.buffer)) }).toEqual(prior.final);
   }
+});
+
+test('fixed point execution and all speeds preserve every stroke, including mixing and pauses', () => {
+  const strokes = Array.from({ length: 12 }, (_, i) => ({ order: i, stage: 0, sampleStep: 2, path: [{ x: 180, y: 250 + i }, { x: 260, y: 280, pressure: .8 }, { x: 340, y: 240, pressure: .3 }], brush: { color: i % 2 ? '#3155a6' : '#ebc43c', size: 8 + i * 2, load: .7, thickness: .12, mode: i % 3 ? 'mix' as const : 'cover' as const, seed: 1906 + i } }));
+  const hash = (p: Painting) => [p.color, new Uint8Array(p.height.buffer)].map(bytes => createHash('sha256').update(bytes).digest('hex'));
+  const full = new Painting(false), stepped = new Painting(false);
+  for (const s of strokes) {
+    executeStroke(full, s); const runner = new StrokeRunner(stepped, s);
+    while (!runner.done) runner.advance(); expect(hash(stepped)).toEqual(hash(full));
+  }
+  const plan: StrokePlan = { plannerVersion: 'test', brushVersion: 2, seed: 1906, size: 1024, analysisSize: 512, composition: 'contain', inputHash: 'synthetic', stages: [{ name: 'test', end: strokes.length }], strokes };
+  const oldRaf = globalThis.requestAnimationFrame, oldCancel = globalThis.cancelAnimationFrame;
+  try {
+    for (const speed of [.5, 1, 4]) {
+      let pending: FrameRequestCallback | null = null;
+      globalThis.requestAnimationFrame = callback => { pending = callback; return 1; };
+      globalThis.cancelAnimationFrame = () => { pending = null; };
+      const p = new Painting(false), player = new PlanPlayer(p, plan, () => {}); player.speed = speed; player.play();
+      let frame = 0, time = 0, paused = false;
+      while (player.state !== 'complete' && frame < 20000) {
+        const callback = pending; pending = null; frame++; time += frame % 3 ? 16.7 : 33.4; (callback as FrameRequestCallback | null)?.(time);
+        if (!paused && p.active && player.sampleIndex > 3) {
+          player.pause(); const frozen = hash(p), tip = { ...player.tip };
+          expect(pending).toBeNull(); expect(hash(p)).toEqual(frozen); expect(player.tip).toEqual(tip);
+          paused = true; player.play();
+        }
+      }
+      expect(paused).toBe(true); expect(player.state).toBe('complete'); expect(hash(p)).toEqual(hash(full)); expect(p.history).toHaveLength(0);
+      player.replay(); player.pause(); expect(p.color.some(Boolean)).toBe(false); expect(p.height.some(Boolean)).toBe(false);
+      player.dispose(); expect(pending).toBeNull();
+    }
+  } finally { globalThis.requestAnimationFrame = oldRaf; globalThis.cancelAnimationFrame = oldCancel; }
 });

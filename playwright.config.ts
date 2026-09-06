@@ -6,7 +6,7 @@ export default defineConfig({
   projects: [
     { name: 'e1-engine', testMatch: 'e1-engine.spec.ts' },
     { name: 'e1-performance', testMatch: 'e1-performance.spec.ts', timeout: 180000, use: { video: 'off', screenshot: 'off' } },
-    { name: 'e1', testMatch: ['e1.spec.ts', 'e1-evidence.spec.ts'], timeout: 360000, use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
+    { name: 'e1', testMatch: ['e1.spec.ts', 'e1-evidence.spec.ts', 'e1-refinement.spec.ts'], timeout: 360000, use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
     { name: 'engine', testMatch: 'engine.spec.ts' },
     { name: 'studio', testMatch: 'studio.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },
     { name: 'm2', testMatch: 'm2.spec.ts', use: { video: { mode: 'on', size: { width: 1440, height: 900 } }, screenshot: 'only-on-failure' } },

@@ -41,6 +41,7 @@ export class StudioRenderer {
   mode: 'webgl2' | 'canvas2d' = 'canvas2d';
   reason = '';
   lighting = 1;
+  preserveActiveStroke = false;
   private program: WebGLProgram | null = null;
   private textures: WebGLTexture[] = [];
   private fallbackImage = new ImageData(SIZE, SIZE);
@@ -58,7 +59,8 @@ export class StudioRenderer {
   }
   private lost = (e: Event) => {
     e.preventDefault(); this.mode = 'canvas2d'; this.reason = '材质显示暂时中断，画作仍在';
-    this.painting.end(); this.painting.invalidate(); this.notify(); this.request();
+    if (!this.preserveActiveStroke) this.painting.end();
+    this.painting.invalidate(); this.notify(); this.request();
   };
   private restored = () => { this.init(); this.painting.invalidate(); this.notify(); this.request(); };
   retry() { this.init(); this.painting.invalidate(); this.notify(); this.request(); }
@@ -135,7 +137,8 @@ export class StudioRenderer {
     this.context2d.putImageData(this.fallbackImage, 0, 0); this.painting.dirty = null;
   }
   async exportPng(): Promise<Blob> {
-    this.painting.end(); this.draw();
+    if (!this.preserveActiveStroke) this.painting.end();
+    this.draw();
     const output = document.createElement('canvas'); output.width = output.height = SIZE;
     const ctx = output.getContext('2d')!;
     if (this.mode === 'webgl2') {

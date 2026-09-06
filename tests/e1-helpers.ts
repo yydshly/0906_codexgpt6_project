@@ -6,7 +6,10 @@ export const experimentDigest = (page: Page) => page.evaluate(async () => {
   return { color: await hash(p.color), height: await hash(p.height) };
 });
 export const completed = (page: Page) => page.waitForFunction(() => window.__experiment?.player?.state === 'complete', undefined, { timeout: 180000 });
-export const loadedPlan = (page: Page) => page.waitForFunction(() => !!window.__experiment?.player, undefined, { timeout: 130000 });
+export async function loadedPlan(page: Page) {
+  await page.waitForFunction(() => !!window.__experiment?.player || /失败|未能完成|超过 120 秒/.test(document.querySelector('.experiment-message')?.textContent || ''), undefined, { timeout: 130000 });
+  expect(await page.evaluate(() => !!window.__experiment?.player), await page.locator('.experiment-message').innerText()).toBe(true);
+}
 export async function experimentPng(page: Page, path: string) {
   const encoded = await page.evaluate(async () => {
     const blob = await window.__experiment!.renderer.exportPng();
