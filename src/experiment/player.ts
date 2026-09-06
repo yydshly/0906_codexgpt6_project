@@ -7,7 +7,7 @@ export class PlanPlayer {
   state: 'ready' | 'playing' | 'paused' | 'complete' = 'ready';
   speed = 1;
   onStage?: (stage: number) => void;
-  tip = { x: 0, y: 0, down: false, visible: false, color: '#433e32' };
+  tip = { x: 0, y: 0, down: false, visible: false, color: '#433e32', size: 24, width: 24, angle: 0, load: 0 };
   readonly metrics = { batches: [] as number[], frames: [] as number[], strokeMaxMs: 0, paintingMs: 0 };
   private frame = 0;
   private lastTime = 0;
@@ -48,6 +48,9 @@ export class PlanPlayer {
           if (!this.tip.visible) { this.tip.x = target.x; this.tip.y = target.y; }
           this.travel = { x: this.tip.x, y: this.tip.y, elapsed: 0, duration: Math.max(6, Math.min(48, Math.hypot(target.x - this.tip.x, target.y - this.tip.y) / 8)) };
           this.tip.visible = true; this.tip.down = false; this.tip.color = stroke.brush.color;
+          this.tip.size = stroke.brush.size; this.tip.width = stroke.brush.size; this.tip.load = stroke.brush.load;
+          const next = stroke.path[1];
+          if (next) this.tip.angle = Math.atan2(next.y - target.y, next.x - target.x);
         }
         const travel = this.travel, used = Math.min(this.credit, travel.duration - travel.elapsed); travel.elapsed += used; this.credit -= used;
         const t = travel.elapsed / travel.duration; this.tip.x = travel.x + (target.x - travel.x) * t; this.tip.y = travel.y + (target.y - travel.y) * t;
@@ -61,6 +64,11 @@ export class PlanPlayer {
         this.credit -= cost;
         const before = performance.now(); runner.advance(); this.strokeCpuMs += performance.now() - before;
         this.tip.x = runner.position.x; this.tip.y = runner.position.y;
+        const contact = this.painting.contact;
+        if (contact) {
+          this.tip.x = contact.x; this.tip.y = contact.y; this.tip.width = contact.width;
+          if (contact.angle !== null) this.tip.angle = contact.angle;
+        }
         if (runner.done) {
           this.metrics.strokeMaxMs = Math.max(this.metrics.strokeMaxMs, this.strokeCpuMs);
           this.runner = null; this.index++; this.tip.down = false; this.phase = 'lift'; this.liftRemaining = 6;

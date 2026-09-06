@@ -1,0 +1,49 @@
+{
+  "status": "通过",
+  "first": {
+    "color": "152d6f2f9d091ced7c93e872f6a56cb73b542f75e49728a67240e11ffb3b8c1f",
+    "height": "79ae1ab02a487111068cf63567728c5f90f56755c7244a3bac195d649dd8db9e"
+  },
+  "sampleIndex": 16,
+  "tip": {
+    "x": 920.0031471726483,
+    "y": 181.8565117685248,
+    "down": true,
+    "visible": true,
+    "color": "#2f61b2",
+    "size": 72,
+    "width": 72,
+    "angle": -0.02389761755264428,
+    "load": 0.72
+  },
+  "moved": {
+    "x": 934.004867717891,
+    "y": 182.13655579087026,
+    "down": true,
+    "visible": true,
+    "color": "#2f60b0",
+    "size": 72,
+    "width": 72,
+    "angle": -0.024097189236981696,
+    "load": 0.72
+  },
+  "final": {
+    "color": "d61aa785f3caeaee08a1dbc8d0f49e720a06f50de6fd3a16a86755081d166c50",
+    "height": "66f0d33eacc0f3ec3cef87f91fd9f75823a0bea49aee136b8078b7fc8934c797"
+  },
+  "expected": {
+    "color": "d61aa785f3caeaee08a1dbc8d0f49e720a06f50de6fd3a16a86755081d166c50",
+    "height": "66f0d33eacc0f3ec3cef87f91fd9f75823a0bea49aee136b8078b7fc8934c797"
+  },
+  "checks": [
+    "pen follows actual samples",
+    "pause freezes partial stroke",
+    "partial export keeps active stroke",
+    "pen excluded from PNG",
+    "replacement cancellation preserves partial painting",
+    "context loss and fallback export preserve active stroke",
+    "continued result equals independent complete execution",
+    "M2 unchanged"
+  ],
+  "humanProcess": "待用户确认"
+}

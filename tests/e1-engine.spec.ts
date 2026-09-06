@@ -8,6 +8,23 @@ import type { StrokePlan } from '../src/experiment/plan';
 import { StrokeRunner } from '../src/experiment/stroke-runner';
 import { PlanPlayer } from '../src/experiment/player';
 
+test('brush display reads actual contact width, direction and load without mutating artwork', () => {
+  for (const size of [4, 16, 72]) {
+    const p = new Painting(false);
+    p.begin({ x: 250, y: 250, pressure: .8 }, { color: '#3155a6', size, load: .6, mode: 'cover', seed: 1906 });
+    p.move({ x: 280, y: 290, pressure: .8 });
+    const before = [Buffer.from(p.color), Buffer.from(new Uint8Array(p.height.buffer))];
+    const contact = p.contact!;
+    expect(contact.width).toBeCloseTo(size * 1.12);
+    expect(contact.angle).toBeCloseTo(Math.atan2(40, 30));
+    expect(contact.color).toBe('#3155a6'); expect(contact.load).toBe(.6);
+    contact.width = 999; contact.color = '#ffffff';
+    expect(p.contact!.width).toBeCloseTo(size * 1.12);
+    expect(Buffer.from(p.color)).toEqual(before[0]); expect(Buffer.from(p.height.buffer)).toEqual(before[1]);
+    p.end(); expect(p.contact).toBeNull();
+  }
+});
+
 test('batch shares the manual brush, including stroke-before mixing; no undo snapshots', () => {
   const manual = new Painting(), batch = new Painting(false);
   for (let i = 0; i < 24; i++) {

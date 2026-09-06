@@ -32,6 +32,13 @@ export class Painting {
   revision = 0;
   get active() { return this.before !== null; }
   get canUndo() { return this.history.length > 0; }
+  // Read-only display state from the same contact that deposited the last dab.
+  get contact() {
+    const point = this.lastDab ?? this.last;
+    return this.before && point ? { x: point.x, y: point.y, angle: this.angle,
+      width: this.brush.size * (.8 + .4 * (point.pressure ?? .5)),
+      size: this.brush.size, load: this.brush.load, color: this.brush.color } : null;
+  }
 
   private snapshot(): Snapshot { return { color: this.color.slice(), height: this.height.slice() }; }
   private remember(s: Snapshot) {
