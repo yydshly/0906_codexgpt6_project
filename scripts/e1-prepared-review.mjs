@@ -1,11 +1,12 @@
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
 const root=process.argv[2] || 'artifacts/e1/prepared-studio/review',base='http://127.0.0.1:5174'; mkdirSync(root,{recursive:true});
+const gallery=process.argv[3] || '/artifacts/e1/prepared-studio/index.html';
 const browser=await chromium.launch({channel:'chrome',headless:true});
 try {
   const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  const response=await page.goto(`${base}/artifacts/e1/prepared-studio/index.html`); if(response.status()!==200)throw new Error('Gallery HTTP status');
+  const response=await page.goto(`${base}${gallery}`); if(response.status()!==200)throw new Error('Gallery HTTP status');
   await page.locator('img').evaluateAll(images=>Promise.all(images.map(img=>{img.loading='eager';return img.decode();})));
   await page.screenshot({path:`${root}/gallery.png`,fullPage:true});
   const links=await page.locator('a').evaluateAll(items=>[...new Set(items.map(a=>a.href))]);

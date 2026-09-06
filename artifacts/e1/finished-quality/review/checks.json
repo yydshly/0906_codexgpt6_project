@@ -1,0 +1,215 @@
+{
+  "status": "通过",
+  "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/index.html",
+  "linkChecks": [
+    {
+      "url": "http://127.0.0.1:5174/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/E1_FINISHED_QUALITY_REPORT.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/comparison.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/fixtures/README.md",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/source-composed.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/baseline-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/quality-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/baseline-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/portrait-holdout/prepared.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/source-composed.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/baseline-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/quality-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/baseline-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/landscape/prepared.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/source-composed.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/baseline-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/quality-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/baseline-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/still-life/prepared.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/source-composed.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/baseline-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-stage-5.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-stage-1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-stage-2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-stage-3.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-stage-4.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/quality-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/baseline-plan.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/results.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/artifacts/e1/finished-quality/frozen/complex/prepared.png",
+      "status": 200
+    }
+  ],
+  "videos": [],
+  "layouts": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 700,
+      "scrollWidth": 700
+    },
+    {
+      "width": 360,
+      "scrollWidth": 360
+    }
+  ],
+  "errors": [],
+  "note": "Video metadata and first/middle/end frames decoded; not every-frame visual inspection. Viewports are simulations, not physical devices."
+}

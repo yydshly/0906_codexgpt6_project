@@ -4,6 +4,7 @@ import { readFileSync,writeFileSync,realpathSync } from 'node:fs';
 import { resolve,relative,isAbsolute,dirname } from 'node:path';
 import { fileURLToPath,pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 const quality=process.argv.includes('--quality');
 const dirs=process.argv.slice(2).filter(p=>p!=='--quality').map(p=>realpathSync(p));
 assert.equal(dirs.length,3,'Pass baseline, palette-only, and focus output directories');
@@ -36,11 +37,27 @@ try{
     const local=(d,file)=>relative(parent,resolve(d,file)).replaceAll('\\','/');
     const refs=[{file:local(dirs[0],'source.png'),label:'原图',source:true},{file:local(dirs[0],'structure-stage-5.png'),label:'当前结构优先基线'},{file:local(dirs[1],'quality-stage-5.png'),label:'第一轮：采用的实验策略'},{file:local(dirs[2],'quality-stage-5.png'),label:'第二轮：质量退步，未采用'}];
     const panels=zoom=>refs.map(r=>`<figure><svg viewBox="${zoom?box.join(' '):'0 0 1024 1024'}"><rect x="0" y="0" width="1024" height="1024" fill="#f2eee2"/><image href="${r.file}" x="${r.source?dx:0}" y="${r.source?dy:0}" width="${r.source?width*scale:1024}" height="${r.source?height*scale:1024}"/></svg><figcaption>${r.label}</figcaption></figure>`).join('');
-    const html=`<!doctype html><meta charset="utf-8"><title>慢光 · 自动成品私人对照</title><style>body{background:#f1ebdf;color:#514b3f;font:15px/1.8 sans-serif;margin:24px}h1{font:32px KaiTi,serif}section{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}figure{background:#fff9ee;margin:0;padding:10px}svg{display:block;width:100%}.zoom svg{height:320px}a{color:#52644c}video{width:min(100%,1000px)}</style><h1>同一原图 · 自动成品质量两轮对照</h1><p>仅本地。两轮均自动处理整图，未用手动圈区参与规划；局部裁框只用于这里的同尺度验收。没有照片贴入画作。</p><p>第一轮肤色及部分面部线索有改善，第二轮动作减少但结构退步，未采用。独立人物验证未通过：当前质量仍不足以宣称通用人物成品可用。</p><section>${panels(false)}</section><h2>同一关键局部</h2><section class="zoom">${panels(true)}</section><h2>实际操作与文件</h2><p><a href="finished-quality-ui/final.png">应用实际导出的 PNG</a> · <a href="finished-quality-ui/plan.json">可重放计划</a> · <a href="finished-quality-ui/results.json">操作与状态验证</a></p><video controls preload="metadata" src="finished-quality-ui/process.webm"></video><p>录像为真实页面 4× 播放，含暂停、取消、切换、对照和导出检查。不是生成视频，也不是专业画师步骤。私人原图、结果和计划均未提交公开仓库。</p>`;
+    const html=`<!doctype html><meta charset="utf-8"><title>慢光 · 自动成品私人对照</title><style>body{background:#f1ebdf;color:#514b3f;font:15px/1.8 sans-serif;margin:24px}h1{font:32px KaiTi,serif}section{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}figure{background:#fff9ee;margin:0;padding:10px}svg{display:block;width:100%}.zoom svg{height:320px}a{color:#52644c}video{width:min(100%,1000px)}</style><h1>同一原图 · 自动成品质量两轮对照</h1><p>仅本地。两轮均自动处理整图，未用手动圈区参与规划；局部裁框只用于这里的同尺度验收。没有照片贴入画作。</p><p>第一轮肤色及部分面部线索有改善，第二轮动作减少但结构退步，未采用。独立人物验证未通过：当前质量仍不足以宣称通用人物成品可用。</p><section>${panels(false)}</section><h2>同一关键局部</h2><section class="zoom">${panels(true)}</section><h2>实际操作与文件</h2><p><a href="finished-quality-ui-final/final.png">应用实际导出的 PNG</a> · <a href="finished-quality-ui-final/plan.json">可重放计划</a> · <a href="finished-quality-ui-final/results.json">操作与状态验证</a></p><video controls preload="metadata" src="finished-quality-ui-final/process.webm"></video><p>录像为真实页面 4× 播放，含暂停、取消、切换、对照和导出检查。不是生成视频，也不是专业画师步骤。私人原图、结果和计划均未提交公开仓库。</p>`;
     const htmlPath=`${parent}/finished-quality-comparison.html`;writeFileSync(htmlPath,html);
     await page.goto(pathToFileURL(htmlPath).href);await page.locator('image').evaluateAll(async nodes=>{for(const n of nodes){const img=new Image();img.src=n.href.baseVal;await img.decode();}});
+    const video=page.locator('video');
+    const metadata=await video.evaluate(v=>new Promise((resolve,reject)=>{
+      const timer=setTimeout(()=>reject(new Error('Private video metadata timeout')),20000);
+      const ready=()=>{clearTimeout(timer);resolve({duration:v.duration,width:v.videoWidth,height:v.videoHeight});};
+      if(v.readyState>=1)ready();else{v.onloadedmetadata=ready;v.onerror=()=>reject(new Error('Private video cannot decode'));v.load();}
+    }));
+    assert.ok(Number.isFinite(metadata.duration));assert.equal(metadata.width,1440);assert.equal(metadata.height,900);
+    const frames=[];
+    for(const [index,time] of [1,metadata.duration/2,metadata.duration-1].entries()){
+      frames.push(await video.evaluate((v,time)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Private video seek timeout')),20000);v.onseeked=()=>{clearTimeout(timer);resolve(v.currentTime);};v.currentTime=time;}),time));
+      // file: canvas readback is correctly blocked by the browser's origin rules.
+      // Decode the existing recording locally; never disable browser protections.
+      execFileSync('ffmpeg',['-y','-ss',String(time),'-i',resolve(parent,'finished-quality-ui-final/process.webm'),'-frames:v','1',resolve(parent,`finished-quality-video-${index+1}.png`)],{stdio:'pipe'});
+    }
+    const exported=await page.evaluate(async()=>{const img=new Image();img.src='finished-quality-ui-final/final.png';await img.decode();return {width:img.naturalWidth,height:img.naturalHeight};});
+    assert.deepEqual(exported,{width:1024,height:1024});
     await page.screenshot({path:`${parent}/finished-quality-comparison.png`,fullPage:true});
-    writeFileSync(`${parent}/finished-quality-replay-check.json`,JSON.stringify({status:'通过',checks,note:'Only serialized plans were used for independent Painting execution. Visual quality remains pending / independent portrait objective failed.'},null,2));
+    writeFileSync(`${parent}/finished-quality-replay-check.json`,JSON.stringify({status:'通过',checks,metadata,frames,exported,note:'Only serialized plans used for independent execution. Actual video beginning/middle/end decoded, not every frame visually inspected. Visual quality pending / independent portrait objective failed.'},null,2));
     console.log(JSON.stringify({status:'通过',checks,review:htmlPath}));
   }else{
   const summary=studies[2].summaries.find(s=>s.approach==='structure'), [x,y,w,h]=summary.focusStats.analysisPixels;

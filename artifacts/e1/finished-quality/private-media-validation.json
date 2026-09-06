@@ -1,0 +1,30 @@
+{
+  "scope": "Private files stayed outside repo. Only decode dimensions, duration and sampled frame times are recorded here.",
+  "metadata": {
+    "duration": 713.4,
+    "width": 1440,
+    "height": 900
+  },
+  "frames": [
+    1,
+    356.7,
+    712.4
+  ],
+  "status": "通过",
+  "checks": [
+    {
+      "directory": 1,
+      "approach": "quality",
+      "independentReplay": "通过"
+    },
+    {
+      "directory": 2,
+      "approach": "quality",
+      "independentReplay": "通过"
+    }
+  ],
+  "exported": {
+    "width": 1024,
+    "height": 1024
+  }
+}

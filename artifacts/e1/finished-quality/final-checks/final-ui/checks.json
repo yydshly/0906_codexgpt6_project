@@ -1,0 +1,21 @@
+{
+  "status": "通过",
+  "widths": [
+    {
+      "viewport": 1440,
+      "width": 1243,
+      "scroll": 1243
+    },
+    {
+      "viewport": 700,
+      "width": 655,
+      "scroll": 655
+    },
+    {
+      "viewport": 360,
+      "width": 329,
+      "scroll": 329
+    }
+  ],
+  "scope": "Text/layout and actual preparation after explicit failed-quality disclosure. Viewports are simulations, not devices."
+}

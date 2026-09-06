@@ -1,0 +1,20 @@
+{
+  "status": "通过",
+  "scope": "Private full real UI operation and exact independent replay; no images, coordinates, input hash or private plan included.",
+  "strokes": 7984,
+  "pickups": 5734,
+  "dishes": 24,
+  "brushes": 5,
+  "planningMs": 7648.5,
+  "strokeComputeMs": 3871.500003695488,
+  "actionScheduleMs": 486902.5928139826,
+  "drawScheduleMs": 8848.071428578998,
+  "wallMs": 693374,
+  "downloadWallMs": 347,
+  "batchP95": 0.5,
+  "maxBatch": 11.400000095367432,
+  "maxConsecutiveOver100": 0,
+  "recording": true,
+  "concurrentRegressionDuringRecording": true,
+  "note": "Scheduled action time excludes CPU and wall-clock stalls. Recording includes test pauses and concurrent regression overhead. Not independent performance. Visual objective NOT passed."
+}

@@ -1,0 +1,34 @@
+{
+  "scope": "Counts and timings only; private image, region, input hash and plan excluded.",
+  "rounds": [
+    {
+      "planningMs": 4794.200000047684,
+      "strokes": 7206,
+      "pickups": 2288,
+      "round": "baseline",
+      "adopted": false
+    },
+    {
+      "planningMs": 6625.200000047684,
+      "strokes": 7984,
+      "pickups": 5734,
+      "round": "r1",
+      "adopted": true
+    },
+    {
+      "planningMs": 8216.299999952316,
+      "strokes": 8001,
+      "pickups": 2659,
+      "round": "r2-initial",
+      "adopted": false
+    },
+    {
+      "planningMs": 8535.699999928474,
+      "strokes": 8001,
+      "pickups": 2787,
+      "round": "r2-final",
+      "adopted": false
+    }
+  ],
+  "decision": "Round 2 not adopted because face structure regressed. R1 retained as optional experiment; independent portrait quality objective failed."
+}

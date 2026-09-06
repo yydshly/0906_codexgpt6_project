@@ -4,6 +4,24 @@ import { createHash } from 'node:crypto';
 import { ready } from './helpers';
 import type { StrokePlan } from '../src/experiment/plan';
 
+test('quality mode discloses failed fidelity gate and preserves usable review layout',async({page})=>{
+  const dir=`${process.env.M1_ARTIFACT_DIR}/final-ui`;mkdirSync(dir,{recursive:true});
+  await ready(page);await page.getByRole('button',{name:'图片自动绘制 · 实验',exact:true}).click();
+  await page.getByRole('button',{name:'成品细节 · 实验',exact:true}).click();
+  await expect(page.getByText('尝试保留更多可见细节；本轮人物成品验证未通过，仍可能丢失结构。',{exact:false})).toBeVisible();
+  await expect(page.getByRole('link',{name:'查看自动成品质量实测 ↗',exact:true})).toHaveAttribute('href','/artifacts/e1/finished-quality/index.html');
+  await page.getByLabel('选择本地图片',{exact:true}).setInputFiles('artifacts/e1/finished-quality/fixtures/portrait-holdout.jpg');
+  await page.getByRole('button',{name:'确认构图，准备笔与颜色',exact:true}).click();
+  await expect(page.getByRole('button',{name:'确认准备，开始绘制',exact:true})).toBeEnabled({timeout:130000});
+  const widths=[];
+  for(const width of [1440,700,360]){
+    await page.setViewportSize({width,height:900});await page.waitForTimeout(150);
+    const layout=await page.locator('.image-experiment').evaluate(e=>({width:e.clientWidth,scroll:e.scrollWidth}));expect(layout.scroll).toBeLessThanOrEqual(layout.width+1);widths.push({viewport:width,...layout});
+    await page.screenshot({path:`${dir}/page-${width}.png`,fullPage:true});
+  }
+  writeFileSync(`${dir}/checks.json`,JSON.stringify({status:'通过',widths,scope:'Text/layout and actual preparation after explicit failed-quality disclosure. Viewports are simulations, not devices.'},null,2));
+});
+
 // Fixed before tuning; do not use holdout outputs for another adjustment round.
 for (const sample of ['portrait-holdout', 'landscape', 'still-life', 'complex']) test(`frozen quality ${sample}: native reference, baseline and actual stages`, async ({ page }) => {
   const dir = `${process.env.M1_ARTIFACT_DIR}/${sample}`; mkdirSync(dir, { recursive: true });

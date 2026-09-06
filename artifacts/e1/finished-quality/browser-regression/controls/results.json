@@ -1,0 +1,40 @@
+{
+  "status": "通过",
+  "scope": "Actual UI first-stage replay, speed 1 then 4, active-stroke pause/export/context loss/continuation; this is NOT a full 1x video. Complete plans at all three speeds are separately CPU-clock tested, and three complete UI videos use 4x.",
+  "firstStage": {
+    "color": "2f6f7e6eb63e87963ffc6e9bffaa0aad07cc0ec2ed63631e16be549c4bd43b3f",
+    "height": "1ed3c22d5a81bf2c411f4cfdadf5f4506d5334d93a5352178e0683d3e5196588"
+  },
+  "partial": {
+    "color": "ec1a08950aa136215149da593994a713fa18061549543a43c1704fb86c9b17c8",
+    "height": "148388a4642b482378806950d6fd55d79b98ea615c0503a15bb831932b4fea99"
+  },
+  "sampleIndex": 24,
+  "original": {
+    "color": "68c5abdf02ae927bde42fdf09136d706d552eece108cd4ba8ea2494468397103",
+    "height": "6a52a2b099cd37d158fe5948afa09516b0391136222d7ce64ab3280d67f53067"
+  },
+  "stored": {
+    "id": "32c7cfa0-bba1-4481-836f-c68e0048db8d",
+    "checksums": [
+      "68c5abdf02ae927bde42fdf09136d706d552eece108cd4ba8ea2494468397103",
+      "6a52a2b099cd37d158fe5948afa09516b0391136222d7ce64ab3280d67f53067",
+      "c778f4b558e010910ccbdc46042be4b6a0d9902c5f9eeb68a23d7d4589a468b8"
+    ],
+    "signature": "原作 · 备料测试",
+    "guide": {
+      "theme": "sunset",
+      "step": 1,
+      "open": true,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#3155A6",
+      "size": 32,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "history": 1
+}

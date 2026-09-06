@@ -1,0 +1,35 @@
+{
+  "status": "通过",
+  "originalPlanExact": true,
+  "partial": {
+    "color": "8a3c7cdcb3e4e3e7a68207a5bef88fed0511a3429e96d5127ebe8f6752af1101",
+    "height": "91a578fe6c67f05803bc19926864d3de8abea44096a3acaaa1d0402a1c8f9fc7"
+  },
+  "main": {
+    "color": "b1dd22129a7882bd9e649aab8523406100fb4ec52e2d443ea152224b9886d345",
+    "height": "3489a0a92cf964a3a2ee18345e84f77c8774bd8a86b36fd7c9ba4e5c961b1a51"
+  },
+  "draft": {
+    "id": "cdbe3f7b-b33b-40f3-a7dd-fc63e5b36675",
+    "checksums": [
+      "b1dd22129a7882bd9e649aab8523406100fb4ec52e2d443ea152224b9886d345",
+      "3489a0a92cf964a3a2ee18345e84f77c8774bd8a86b36fd7c9ba4e5c961b1a51",
+      "063b55f22412ff6eb21f86596c730f380dea12c72f604b7fc5be475368961d4a"
+    ],
+    "signature": "",
+    "guide": {
+      "theme": null,
+      "step": 0,
+      "open": false,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#3155A6",
+      "size": 32,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "note": "Actual UI partial process with context-loss export and continued painting; complete fixed plans recorded separately."
+}
