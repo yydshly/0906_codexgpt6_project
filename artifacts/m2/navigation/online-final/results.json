@@ -1,0 +1,22 @@
+{
+  "status": "通过",
+  "checkedAt": "2026-09-06T03:26:55.571Z",
+  "url": "https://yydshly.github.io/0906_codexgpt6_project/",
+  "artworkBeforeAfterIdentical": true,
+  "oldStudioPreservedInOriginalTab": true,
+  "newStudioOffersExistingDraft": true,
+  "overviewM1M2Navigation": true,
+  "evidenceFiles": 47,
+  "evidenceBytes": 38030552,
+  "evidenceSha256AllMatch": true,
+  "sameSiteLinks": 44,
+  "video": {
+    "width": 1440,
+    "height": 900,
+    "duration": 29.44,
+    "currentTime": 0.535252,
+    "readyState": 4
+  },
+  "localLegacyM1EntryChecked": false,
+  "errors": []
+}

@@ -1,0 +1,290 @@
+{
+  "status": "通过",
+  "basis": "Published manifest matches exact Git blob bytes; Windows working-copy text can have CRLF.",
+  "count": 47,
+  "bytes": 38030552,
+  "checks": [
+    {
+      "path": "artifacts/m1/page.png",
+      "bytes": 1233843,
+      "sha256": "2989d8244c9e8ca1423c4559d7762a2b761cdc1073412f4b3d1ce0248d22c44c",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/completion.png",
+      "bytes": 499066,
+      "sha256": "553c4f91dd30769a8cb0113c8f17a81e8fcd8f0152dde580b19f052e0f701b85",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/actual-painting.png",
+      "bytes": 1479671,
+      "sha256": "379cf0276780c1dd8844ab9bc0b827fd5ea6fddf97e8dbce2885d93a63dbc636",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/workflow.webm",
+      "bytes": 2546645,
+      "sha256": "10b255a984e774e0d01ec2c2bb081534e30dd058fd1fc11be8f6421245f84daa",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/undo-20-results.json",
+      "bytes": 2510,
+      "sha256": "6b0dd4a50a53d1e655c95529096cbd89d0c8d3a134f5a2d66e4bccc7cb101f54",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/undo-21-results.json",
+      "bytes": 2511,
+      "sha256": "d10dc38da39664e210a3c2ac9e33703019170ea3e8cac0d2c341d36bf8691f80",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/negative-control/runner.log",
+      "bytes": 1629,
+      "sha256": "70f1d2a4d1b48b902208fa106d02777fb6139b4e51daa32860914ab676410020",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/preserved-evidence.json",
+      "bytes": 1077,
+      "sha256": "4d58b4f1437777495727b46c4b9645b0231687358bfb9e3fe643cebe2f40c745",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/single-stroke.png",
+      "bytes": 1376587,
+      "sha256": "39888821c92e1c896bf00709a87ec2cbb6972750a8ad1d3b912cfbd1cbd4c9d8",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/two-color-overlap.png",
+      "bytes": 1426726,
+      "sha256": "267fabc814beb2703f3a0b633bc42f0c7a35525ef3384cdb359c786bc7fc5414",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/repeated-layering.png",
+      "bytes": 1398444,
+      "sha256": "6571dd3983ae4816917f266ee9197e1a29df3ae1984c0b787ecbf84b704a6176",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/painted-page.png",
+      "bytes": 1276789,
+      "sha256": "216b1805257c3967b357d84c73d22b3b3a373f2529fc734d733292b0f45147f1",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/two-color-cover.png",
+      "bytes": 1426506,
+      "sha256": "59eee4d4fa6df1fe715b6479a39cd062e65500f3818ef6d5d5e4e2e75a9c4ddd",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/height-lighting-off.png",
+      "bytes": 1147077,
+      "sha256": "8c078cc139dadf50d36630490baf3df7c5f286d980f25dfdc03c7d817c806919",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/initial/single-stroke.png",
+      "bytes": 1365785,
+      "sha256": "f8fa42528eceaf2098ed6983a8c3b1609c9fdba77183497562cf1393f79c1103",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/round-1/single-stroke.png",
+      "bytes": 1383085,
+      "sha256": "6545b4faeb40e1f4ca2f544076a10d25f8231aa97e835b55b1aa8fb1c1381cbb",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/initial/page.png",
+      "bytes": 1206123,
+      "sha256": "8a98a4b173d47326a42607fbbd7e945dad71739b99b674848bb2a0d5032c30a2",
+      "matchesPublished": true
+    },
+    {
+      "path": "oil-painting-product-kit/reference/reference.png",
+      "bytes": 301523,
+      "sha256": "826fc60dfd16d0e2d59e4c3391cffe9067adf845feea9a661ec93caa9b537a02",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/test-engine-results.json",
+      "bytes": 10337,
+      "sha256": "b5a27ec993a38f4261cb4e51825846b01cfedf51c23d129390805e0633f42be9",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/snapshot-independence.json",
+      "bytes": 131,
+      "sha256": "4be17261e3307e0bad0e15c99e68d66cf14dc67bc79d4ede3a796abd735ad0ba",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/test-e2e-results.json",
+      "bytes": 8386,
+      "sha256": "92191832934ca2f085d7d7b817b0b63c26bfd54213586ffb5e2597ee71fe5313",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/fallback-results.json",
+      "bytes": 199,
+      "sha256": "73990a5d777b1cbc360096f850018d9a44516f7fd525cc248a3c1a639ac91868",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/workflow.webm",
+      "bytes": 2339603,
+      "sha256": "59b6f7361108922d846e6818e980f6cd2c3928bf134b1a086212eca275f188cf",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/acceptance-correction/actual-painting.png",
+      "bytes": 1479671,
+      "sha256": "379cf0276780c1dd8844ab9bc0b827fd5ea6fddf97e8dbce2885d93a63dbc636",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/test-engine-results.json",
+      "bytes": 7126,
+      "sha256": "9daa70cb1e27a3100b011d1cbcb7f83d36e8858362727736dcdb60a4f98fd987",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/test-e2e-results.json",
+      "bytes": 8355,
+      "sha256": "fbb00f478161f3663c8c5d38a301336a43cd52b50404957658428f790dc13243",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/perf.json",
+      "bytes": 3867,
+      "sha256": "6c084904729454220e3ff19b1b7ec380c1ef2ee080142a56a3447c3a027515a5",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/memory.json",
+      "bytes": 2337,
+      "sha256": "823b66fbfad761745424341f4d059774d6e2cdda30f1b41f67f52433b7123e97",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/ui-perf.json",
+      "bytes": 650,
+      "sha256": "f2fc0c4205f6aeaed88a7824d578d6c2daa79d61532bbce9c5a0461abb184e02",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m1/environment.json",
+      "bytes": 473,
+      "sha256": "ce4bee7daa450c2bedf322316019b6bcb93a0067180ac83d7a6c95db2ed9cf08",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/travel-sunset.png",
+      "bytes": 2286663,
+      "sha256": "e0d367b25ce51bf9f8bfcfeacd6ce7c4b5442c2ba843b36764817914ad92a7a8",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/journey.webm",
+      "bytes": 3011706,
+      "sha256": "7adf827c7884404af8505e8ab387c62a31a87f7aeb711ff46e63626de5609445",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/first-screen.png",
+      "bytes": 1217253,
+      "sha256": "9d8def1e8affa828fbdaef88d7601ebfb4d88820d433ce5fc5fe68b7251c1fd5",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/sunset-guided.png",
+      "bytes": 1304175,
+      "sha256": "b90aa3c94b7781ab8638c882bb83b099b6dc34ce020d06840b82975d775a5902",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/sunset-guide-closed.png",
+      "bytes": 1309888,
+      "sha256": "182c0a8192ae119f2b9113c2aa0d1a5a6b38d67dc2bd872c8d950577342e52dc",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/restore-prompt.png",
+      "bytes": 289635,
+      "sha256": "2066b45275120c631a992b9e926a3dc378ce19452f95030d6bb90ddd5348651d",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/restored.png",
+      "bytes": 1213669,
+      "sha256": "db2760f09275c3ec195306a54f5c2825833478c99237a08156b9faa0bf54a651",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/save-failure.png",
+      "bytes": 1219096,
+      "sha256": "7c9f64674376617c8cca1d17c3328bfb12bf763897ed443a53eef34f1c8bd09b",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/test-engine-results.json",
+      "bytes": 11149,
+      "sha256": "d8eea97b720bd7e8c209a80cfee502fbcecfc1fc2e43d58c5f06246fffe6fa75",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/test-e2e-results.json",
+      "bytes": 9188,
+      "sha256": "728aafdb5ebd023a57ea2397cbc570f577d10a30ba21f728504b4981ee574082",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/test-m2-results.json",
+      "bytes": 14921,
+      "sha256": "ed22592b7ba961028391bdc46a70e6a14d20d56061d39612a2a82aa28a74ca7a",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/journey-results.json",
+      "bytes": 1046,
+      "sha256": "f35184f1f7a6cf53ab663a4a49e3f82d184190f60fb3e8efcb509d83ceaa7a72",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/autosave-performance.json",
+      "bytes": 1327,
+      "sha256": "4dca0aa640d7af71f3f8d0f47481ba4642e20cf427f939ccdafa1e50df6004f4",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/baseline-preservation.json",
+      "bytes": 2956,
+      "sha256": "b95961c0c03db11e8a6acf5a493d477984d2f325491633776242653f25bb2df5",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/single-stroke.png",
+      "bytes": 1376587,
+      "sha256": "39888821c92e1c896bf00709a87ec2cbb6972750a8ad1d3b912cfbd1cbd4c9d8",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/two-color-overlap.png",
+      "bytes": 1426726,
+      "sha256": "267fabc814beb2703f3a0b633bc42f0c7a35525ef3384cdb359c786bc7fc5414",
+      "matchesPublished": true
+    },
+    {
+      "path": "artifacts/m2/delivery/repeated-layering.png",
+      "bytes": 1397835,
+      "sha256": "3efa25e06dd2cb35a3e175b8262384c09afa60ada86c2259f77cab568111eaed",
+      "matchesPublished": true
+    }
+  ]
+}

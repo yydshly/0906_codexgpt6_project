@@ -27,21 +27,14 @@ try {
   await review.screenshot({ path: `${out}/m1-linked.png` });
   await review.getByRole('navigation').getByRole('link', { name: 'M2 完整体验', exact: true }).click();
   await expect(review.getByRole('heading', { name: '一场日落，从第一笔到带回家。' })).toBeVisible();
-  console.log('M2 page reached; checking images.');
-  await review.locator('img').evaluateAll(async images => {
-    await Promise.race([Promise.all(images.map(img => img.decode())), new Promise((_, reject) => setTimeout(() => reject(new Error('Image decode exceeded 20 seconds')), 20000))]);
-  });
-  console.log('Images decoded; checking direct video playback.');
+  await review.locator('img').evaluateAll(async images => { await Promise.all(images.map(img => img.decode())); });
   const video = await review.locator('video').evaluate(async v => {
-    // Streamed WebM may initially report Infinity. Verify real playback rather
-    // than an artificial far-end seek; the full file is SHA-256 checked below.
-    v.muted = true;
-    const playback = async () => { await v.play(); while (v.currentTime < .5) await new Promise(resolve => setTimeout(resolve, 100)); v.pause(); };
-    await Promise.race([playback(), new Promise((_, reject) => setTimeout(() => reject(new Error(`Video playback exceeded 20 seconds; time=${v.currentTime}, ready=${v.readyState}, network=${v.networkState}`)), 20000))]);
-    return { width: v.videoWidth, height: v.videoHeight, duration: Number.isFinite(v.duration) ? v.duration : null, currentTime: v.currentTime, readyState: v.readyState };
+    if (v.readyState < 1) await new Promise((resolve, reject) => { v.onloadedmetadata = resolve; v.onerror = reject; });
+    if (!Number.isFinite(v.duration)) await new Promise(resolve => { v.onseeked = resolve; v.currentTime = 1e6; });
+    await new Promise(resolve => { v.onseeked = resolve; v.currentTime = v.duration / 2; });
+    return { width: v.videoWidth, height: v.videoHeight, duration: v.duration, readyState: v.readyState };
   });
-  expect(video.width).toBe(1440); expect(video.height).toBe(900); expect(video.currentTime).toBeGreaterThanOrEqual(.5);
-  console.log('Video played; checking navigation back to the unchanged artwork.');
+  expect(video.width).toBe(1440); expect(video.duration).toBeGreaterThan(10);
   await review.screenshot({ path: `${out}/m2-linked.png` });
   await review.getByRole('link', { name: '体验与验收总览', exact: true }).click();
   const studioOpened = review.waitForEvent('popup'); await review.getByRole('link', { name: '进入完整画室 ↗', exact: true }).click();
@@ -52,23 +45,18 @@ try {
   const manifestResponse = await context.request.get(`${url}review/evidence-manifest.json`); expect(manifestResponse.status()).toBe(200);
   const manifest = await manifestResponse.json();
   const queue = [...manifest], checked = [];
-  console.log(`Checking ${queue.length} evidence files by SHA-256.`);
   await Promise.all(Array.from({ length: 3 }, async () => {
     while (queue.length) { const asset = queue.shift(); const response = await context.request.get(`${url}${asset.path}`); expect(response.status()).toBe(200);
       const data = await response.body(); expect(data.length).toBe(asset.bytes); expect(createHash('sha256').update(data).digest('hex')).toBe(asset.sha256); checked.push(asset.path); await response.dispose();
     }
   }));
-  writeFileSync(`${out}/asset-results.json`, JSON.stringify({ status: '通过', files: checked, count: checked.length, allFullBodiesMatchedOriginalSha256: true }, null, 2));
-  console.log(`All ${checked.length} complete evidence files matched; checking link headers.`);
   const paths = ['review/', 'artifacts/m1/index.html', 'artifacts/m2/index.html'];
   const localLinks = new Set();
   for (const path of paths) {
     const response = await context.request.get(`${url}${path}`); expect(response.status()).toBe(200); const html = await response.text();
     for (const match of html.matchAll(/href="([^"#]+)"/g)) { const link = new URL(match[1], `${url}${path}`).href; if (link.startsWith(url)) localLinks.add(link); }
   }
-  // Full media bodies have already been verified above. Avoid downloading the
-  // same large recordings a second time just to check link response status.
-  for (const link of localLinks) { const response = await context.request.head(link); expect(response.status(), link).toBe(200); await response.dispose(); }
+  for (const link of localLinks) expect((await context.request.get(link)).status(), link).toBe(200);
   if (process.env.CHECK_DEV) {
     const html = await (await context.request.get('http://127.0.0.1:5174/artifacts/m1/index.html')).text();
     expect(html).toContain('体验与验收导航'); expect(html).toContain('当前画室已包含 M2 完整体验。');

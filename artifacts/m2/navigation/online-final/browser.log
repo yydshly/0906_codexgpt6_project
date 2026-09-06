@@ -1,0 +1,6 @@
+M2 page reached; checking images.
+Images decoded; checking direct video playback.
+Video played; checking navigation back to the unchanged artwork.
+Checking 47 evidence files by SHA-256.
+All 47 complete evidence files matched; checking link headers.
+PASS: https://yydshly.github.io/0906_codexgpt6_project/ navigation, artwork preserved, 47 original assets verified.
