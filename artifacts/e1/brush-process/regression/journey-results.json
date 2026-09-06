@@ -1,0 +1,36 @@
+{
+  "status": "通过",
+  "firstStrokeMs": 4383,
+  "timingScope": "automated Playwright flow, not a first-time human test",
+  "pixels": {
+    "width": 1024,
+    "height": 1024,
+    "signaturePixels": 1601,
+    "outsideSignatureChanges": 0
+  },
+  "guideExportIdentical": true,
+  "previewDownloadIdentical": true,
+  "restoredSignature": "Lina · 2026",
+  "art": {
+    "color": "912bc17fcd05547bca9966b97ae0d53ee0c9364c639b8f4300f5e11476084acb",
+    "height": "ac52a28beb189032b78b13b4236d5b7086318ac2ca3c2061003b99b95153746e"
+  },
+  "errors": [],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+    "viewport": [
+      1440,
+      900
+    ],
+    "mode": "webgl2",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A788) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (Intel)",
+    "backing": [
+      611,
+      611
+    ],
+    "dpr": 1.0000000298023224,
+    "cpuBufferBytes": 4194304,
+    "gpuTextureBytes": 6291456
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "status": "通过",
+  "original": {
+    "color": "fc1bf81d75fc2fefafb8d35240471e175e97b40556c8e8786db338ac0be550a8",
+    "height": "6a7fad4ceba49bb25f53407935b668536d7bada973168132c015c5e150373eb2"
+  },
+  "record": {
+    "id": "fc3d61a6-2197-48c7-8ca4-370368ace2d3",
+    "checksums": [
+      "fc1bf81d75fc2fefafb8d35240471e175e97b40556c8e8786db338ac0be550a8",
+      "6a7fad4ceba49bb25f53407935b668536d7bada973168132c015c5e150373eb2",
+      "aea1b8f859924d798ebda0e49db3dadba2bb95c79be84922c5f8155ba02a50a0"
+    ],
+    "signature": "",
+    "guide": {
+      "theme": null,
+      "step": 0,
+      "open": false,
+      "overlay": true
+    },
+    "brush": {
+      "color": "#3155A6",
+      "size": 32,
+      "load": 0.6,
+      "mode": "cover",
+      "seed": 906
+    }
+  },
+  "cancelState": {
+    "color": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "height": "5647f05ec18958947d32874eeb788fa396a05d0bab7c1b71f112ceb7e9b31eee"
+  },
+  "partial": {
+    "color": "dac339cd0237e006ce11e5bc7951d3aa325fa931c6dd958610f2f66167ac8bf0",
+    "height": "a4424eb4cea697f21034082b9fbcded2a4d32caca99307f8c06bd3b3d7039e37"
+  },
+  "replaced": {
+    "color": "bb9f8df61474d25e71fa00722318cd387396ca1736605e1248821cc0de3d3af8",
+    "height": "5647f05ec18958947d32874eeb788fa396a05d0bab7c1b71f112ceb7e9b31eee"
+  },
+  "checks": [
+    "invalid magic",
+    "file size limit",
+    "predecode dimensions",
+    "decode rejection",
+    "worker cancellation late response",
+    "invalid replacement preserves partial result",
+    "valid replacement cancels old player",
+    "exit during planning preserves M2"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "baseline": "a4ea620",
+  "brushStep": "9b88381",
+  "processStep": "11b4967",
+  "photos": [
+    {
+      "name": "landscape",
+      "path": "../fixtures/landscape.jpg",
+      "sha256": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c"
+    },
+    {
+      "name": "still-life",
+      "path": "../fixtures/still-life.jpg",
+      "sha256": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1"
+    },
+    {
+      "name": "complex",
+      "path": "../fixtures/complex.jpg",
+      "sha256": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0"
+    }
+  ],
+  "composition": "contain",
+  "seed": 1906,
+  "analysisSize": 512,
+  "nativeSize": 1024,
+  "brushVersion": 2,
+  "plannerVersion": "e1-brush-process-3",
+  "processVersion": 1,
+  "fixedSampleRecordingSpeed": 4,
+  "slowDippingRecordingSpeed": 0.5,
+  "changes": "Contact display, deterministic paint pickups, nonintersecting local stroke order. Paths/colors/load/size/seeds preserved.",
+  "humanReview": "待用户确认"
+}

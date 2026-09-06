@@ -1,0 +1,17 @@
+{
+  "status": "通过（首次静物录像失败，独立目录补录通过）",
+  "engine": 15,
+  "m1M2Browser": 12,
+  "e1FirstRun": {
+    "passed": 9,
+    "failed": 1
+  },
+  "sameFixtureRetryPassed": 1,
+  "finalDippingPassed": 1,
+  "performancePassed": 1,
+  "reviewImages": 26,
+  "reviewLinks": 48,
+  "reviewVideos": 5,
+  "humanAcceptance": "待用户确认",
+  "noDeployment": true
+}

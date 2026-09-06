@@ -6,6 +6,8 @@ E1 仅在 `codex/e1-image-painting` 分支开发与推送，**没有覆盖线上
 
 用户确认的细节与可见笔尖补正见 [本轮报告](E1_REFINEMENT_REPORT.md) 和 [新旧三图对照与过程录像](http://127.0.0.1:5174/artifacts/e1/refinement/index.html)。同一照片、seed 1906，512 分析、五档细笔与薄颜料高度；笔尖沿真实路径逐点执行，可在一笔中间暂停、导出后继续。当前没有新增多风格，也不把算法阶段称为画师教学。
 
+本轮新增笔头、沾色与局部绘制过程，见 [实施与验收报告](E1_BRUSH_PROCESS_REPORT.md) 与 [三图、沾色和完整 1× 重播录像](http://127.0.0.1:5174/artifacts/e1/brush-process/index.html)。粗细、方向和用色对应实际落笔，当前仍为扁刷族；没有增加风格或颜料耗尽模拟。固定三图的成品颜色和高度保留不变。
+
 当前版本实现 M2：保留同页平头笔绘画、覆盖/基础 RYB 混色和最近 20 笔撤销，增加旅行日落四步引导、一个本地草稿的保存/恢复、签名与完成预览。导出为实际画作和签名的原生 1024×1024 PNG。没有预制作品或运行时模型调用。
 
 [体验与验收总览](https://yydshly.github.io/0906_codexgpt6_project/review/) · [M1 实际验收](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m1/index.html) · [M2 完整体验](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m2/index.html) · [M2 验收报告](M2_REPORT.md)。M1 的 V4 人工视觉/手感仍待用户确认，M2 完整体验等待人工验收。

@@ -6,3 +6,5 @@ playwright-report/
 artifacts/deployment/
 artifacts/e1/refinement/runtime/
 artifacts/e1/refinement/local/
+artifacts/**/.runtime/
+artifacts/e1/brush-process/local/

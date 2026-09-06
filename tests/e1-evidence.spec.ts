@@ -16,6 +16,8 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   const before = await digest(page);
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles(`artifacts/e1/fixtures/${sample}.jpg`);
+  const speed = process.env.E1_EVIDENCE_SPEED || '1';
+  await page.getByLabel('播放速度', { exact: true }).selectOption(speed);
   await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
   await page.screenshot({ path: `${dir}/composition.png` });
   const heap = await page.context().newCDPSession(page); await heap.send('HeapProfiler.collectGarbage');
@@ -28,7 +30,7 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   await page.evaluate(() => { window.__experiment!.player!.onStage = stage => { window.__experiment!.player!.pause(); (window as any).__e1Stage = stage; (window as any).__e1StageTimes.push({ stage, elapsed: performance.now() - (window as any).__e1Start }); }; });
   const stageStates = [];
   for (let stage = 0; stage < STAGES.length; stage++) {
-    await page.waitForFunction(n => (window as any).__e1Stage === n, stage, { timeout: 180000 });
+    await page.waitForFunction(n => (window as any).__e1Stage === n, stage, { timeout: 600000 });
     stageStates.push(await experimentDigest(page));
     await experimentPng(page, `${dir}/stage-${stage + 1}.png`);
     await page.screenshot({ path: `${dir}/stage-${stage + 1}-page.png` });
@@ -53,6 +55,8 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   for (const stroke of plan.strokes) executeStroke(cpu, stroke);
   const independent = { color: createHash('sha256').update(cpu.color).digest('hex'), height: createHash('sha256').update(new Uint8Array(cpu.height.buffer)).digest('hex') };
   const replayMs = performance.now() - start; expect(independent).toEqual(final);
+  const prior = JSON.parse(readFileSync(`artifacts/e1/refinement/c/${sample}/results.json`, 'utf8')).final;
+  expect(final).toEqual(prior);
   expect(await digest(page)).toEqual(before); expect(errors).toEqual([]); expect(requests).toEqual([]);
   const diagnostics = await page.evaluate(() => {
     const e = window.__experiment!, w = window as any; w.__e1Observer.disconnect();
@@ -63,8 +67,8 @@ for (const sample of ['landscape', 'still-life', 'complex']) test(`E1-C fixed ${
   expect(p95).toBeLessThanOrEqual(50);
   let continuous = 0, maxContinuous = 0;
   for (const value of diagnostics.metrics.batches) { continuous = value > 100 ? continuous + 1 : 0; maxContinuous = Math.max(continuous, maxContinuous); }
-  expect(maxContinuous).toBeLessThan(3); expect(cpu.memory().historyCount).toBe(0);
-  const report = { status: '通过', sample, strokeCount: plan.strokes.length, final, independent, stageStates, replayMs, p95BatchMs: p95, maxContinuousOver100ms: maxContinuous, heapBefore, heapAfter, errors, externalRequests: requests, ...diagnostics, humanQuality: '待用户确认', heapNote: 'CDP page isolate heap excludes planner worker, GPU and some native image buffers; not a whole-process memory claim' };
+  expect(maxContinuous).toBeLessThan(3); expect(diagnostics.metrics.maxConsecutiveOver100).toBeLessThan(3); expect(cpu.memory().historyCount).toBe(0);
+  const report = { status: '通过', sample, speed: +speed, processMetrics: plan.processMetrics, previousFinal: prior, strokeCount: plan.strokes.length, final, independent, stageStates, replayMs, p95BatchMs: p95, maxContinuousOver100ms: maxContinuous, heapBefore, heapAfter, errors, externalRequests: requests, ...diagnostics, humanQuality: '待用户确认', heapNote: 'CDP page isolate heap excludes planner worker, GPU and some native image buffers; not a whole-process memory claim' };
   writeFileSync(`${dir}/results.json`, JSON.stringify(report, null, 2));
   await info.attach('summary', { body: JSON.stringify({ sample, strokeCount: plan.strokes.length, final, p95BatchMs: p95 }), contentType: 'application/json' });
   const video = page.video(); await page.close(); if (video) await video.saveAs(`${dir}/process.webm`);

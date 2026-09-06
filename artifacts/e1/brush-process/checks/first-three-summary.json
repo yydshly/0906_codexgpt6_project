@@ -1,0 +1,47 @@
+[
+  {
+    "sample": "landscape",
+    "colorSameAsPrior": true,
+    "heightSameAsPrior": true,
+    "stageStatesSameAsPrior": true,
+    "strokeCount": 6735,
+    "pickups": 6599,
+    "canvasOnlyTravelReductionPercent": 9.822683673892529,
+    "batchP95Ms": 6.299999952316284,
+    "batchMaxMs": 13.799999952316284,
+    "allRunConsecutiveOver100ms": 0,
+    "planningMs": 5926.699999928474,
+    "finalStageMsIncludingEvidencePauses": 229320.10000002384,
+    "recordingExists": true
+  },
+  {
+    "sample": "still-life",
+    "colorSameAsPrior": true,
+    "heightSameAsPrior": true,
+    "stageStatesSameAsPrior": true,
+    "strokeCount": 7187,
+    "pickups": 7110,
+    "canvasOnlyTravelReductionPercent": 14.39379480147931,
+    "batchP95Ms": 5.300000071525574,
+    "batchMaxMs": 8.399999976158142,
+    "allRunConsecutiveOver100ms": 0,
+    "planningMs": 4770.600000023842,
+    "finalStageMsIncludingEvidencePauses": 209759.80000007153,
+    "recordingExists": false
+  },
+  {
+    "sample": "complex",
+    "colorSameAsPrior": true,
+    "heightSameAsPrior": true,
+    "stageStatesSameAsPrior": true,
+    "strokeCount": 7036,
+    "pickups": 6919,
+    "canvasOnlyTravelReductionPercent": 12.288797308411336,
+    "batchP95Ms": 6,
+    "batchMaxMs": 8.600000023841858,
+    "allRunConsecutiveOver100ms": 0,
+    "planningMs": 4805.600000023842,
+    "finalStageMsIncludingEvidencePauses": 210041.60000002384,
+    "recordingExists": true
+  }
+]

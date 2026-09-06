@@ -1,0 +1,254 @@
+{
+  "config": {
+    "argv": [
+      "D:\\software\\nodejs\\node.exe",
+      "E:\\0906_codexgpt6_project\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=e1",
+      "tests/e1-evidence.spec.ts",
+      "--grep",
+      "fixed still-life"
+    ],
+    "configFile": "E:\\0906_codexgpt6_project\\playwright.config.ts",
+    "rootDir": "E:/0906_codexgpt6_project/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1-engine",
+        "name": "e1-engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1-engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1-performance",
+        "name": "e1-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1-performance.spec.ts"
+        ],
+        "timeout": 1500000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1",
+        "name": "e1",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1.spec.ts",
+          "e1-evidence.spec.ts",
+          "e1-refinement.spec.ts",
+          "e1-brush-process.spec.ts"
+        ],
+        "timeout": 1800000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "engine",
+        "name": "engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "studio",
+        "name": "studio",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "studio.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2",
+        "name": "m2",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2-performance",
+        "name": "m2-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/artifacts/e1/brush-process/c-recording-retry/.runtime",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "performance",
+        "name": "performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "performance.spec.ts"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/e1/brush-process/c-recording-retry/tests-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5174 --strictPort",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "e1-evidence.spec.ts",
+      "file": "e1-evidence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E1-C fixed still-life: real strokes, every phase, video and exact independent replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1",
+              "projectName": "e1",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 423435,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T06:58:45.674Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "summary",
+                      "contentType": "application/json",
+                      "body": "eyJzYW1wbGUiOiJzdGlsbC1saWZlIiwic3Ryb2tlQ291bnQiOjcxODcsImZpbmFsIjp7ImNvbG9yIjoiM2ZjYzQwYjZhNTI3MjgyODkyYjI2MDY0OTQyZTI5YThkZjFlODU0MjgzYmVkOGMxZTQ1NWFmZTgxNWExOWRlNiIsImhlaWdodCI6ImFjYmU3NzJlZTljNDBmMWExMmY0MTM2YTI1MWUxNjQ3Y2ZjOTZlMWI3MTY2ZjE5Y2IxNjRlZWNlNTVlZTQyZmYifSwicDk1QmF0Y2hNcyI6Ni4xMDAwMDAwMjM4NDE4NTh9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\artifacts\\e1\\brush-process\\c-recording-retry\\.runtime\\e1-evidence-E1-C-fixed-sti-b764a-nd-exact-independent-replay-e1\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4173f5e38a2c71d6eb6-43fc4f20224c149bd4ca",
+          "file": "e1-evidence.spec.ts",
+          "line": 12,
+          "column": 62
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T06:58:44.109Z",
+    "duration": 426092.246,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

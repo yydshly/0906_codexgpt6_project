@@ -9,6 +9,7 @@ test('E1-A actual redraw in the existing page with isolated state', async ({ pag
   await ready(page); const before = await digest(page);
   await page.getByRole('button', { name: '图片自动绘制 · 实验', exact: true }).click();
   await page.getByLabel('选择本地图片', { exact: true }).setInputFiles('artifacts/e1/fixtures/landscape.jpg');
+  await page.getByLabel('播放速度', { exact: true }).selectOption(process.env.E1_EVIDENCE_SPEED || '1');
   await expect(page.getByRole('button', { name: '确认构图并绘制' })).toBeEnabled();
   await page.screenshot({ path: `${root}/first-screen.png` });
   await page.getByRole('button', { name: '确认构图并绘制' }).click();

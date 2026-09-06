@@ -1,0 +1,20 @@
+[
+  {
+    "sample": "landscape",
+    "allFiveColorAndHeightStatesEqual": true,
+    "allFivePngFilesByteEqual": true,
+    "finalSha256": "b189eb4c9a505fd610d04fe8a933916a06cb281846a4b4415c97297414001ebf"
+  },
+  {
+    "sample": "still-life",
+    "allFiveColorAndHeightStatesEqual": true,
+    "allFivePngFilesByteEqual": true,
+    "finalSha256": "493ccfdc877e2afa53d0f95f91aa6887c8f2db7514062884fa854b48fbb4c725"
+  },
+  {
+    "sample": "complex",
+    "allFiveColorAndHeightStatesEqual": true,
+    "allFivePngFilesByteEqual": true,
+    "finalSha256": "586a75c22f68a51c0d91a91c0469cfe264136205eeb448bd78cb444f5920c9b6"
+  }
+]

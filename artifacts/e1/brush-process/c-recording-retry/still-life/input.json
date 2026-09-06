@@ -1,0 +1,10 @@
+{
+  "file": "../../../fixtures/still-life.jpg",
+  "inputHash": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+  "composition": "contain",
+  "plannerVersion": "e1-brush-process-3",
+  "seed": 1906,
+  "canvasSeed": 906,
+  "brushVersion": 2,
+  "analysisSize": 512
+}

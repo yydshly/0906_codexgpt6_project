@@ -1,0 +1,10 @@
+{
+  "protectedPathsUnchanged": {
+    "src/works": true,
+    "src/rendering": true,
+    ".github/workflows": true
+  },
+  "paintingEngineChange": "Read-only contact getter only; dab/move/end/mixing/undo calculations unchanged.",
+  "manualReview": "M1 V4 / M2 / E1 still pending user confirmation",
+  "deployment": "No merge main or deploy, workflow unchanged"
+}

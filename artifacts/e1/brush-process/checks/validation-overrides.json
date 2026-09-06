@@ -1,0 +1,11 @@
+{
+  "c/still-life": {
+    "status": "未通过",
+    "functionalAssertions": "通过",
+    "recording": "未通过",
+    "reason": "Parallel engine run cleaned shared Playwright test-results directory. video.saveAs ENOENT. Exact same fixture/plan to be re-recorded in an isolated output directory.",
+    "resolvedBy": "c-recording-retry/still-life",
+    "rerunStatus": "通过",
+    "rerunTestReport": "c-recording-retry/tests-results.json"
+  }
+}

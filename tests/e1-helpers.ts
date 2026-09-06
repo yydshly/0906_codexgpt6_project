@@ -6,7 +6,7 @@ export const experimentDigest = (page: Page) => page.evaluate(async () => {
   return { color: await hash(p.color), height: await hash(p.height) };
 });
 // Visible travel and drawing intentionally take longer; CPU batch gates stay unchanged.
-export const completed = (page: Page) => page.waitForFunction(() => window.__experiment?.player?.state === 'complete', undefined, { timeout: 300000 });
+export const completed = (page: Page) => page.waitForFunction(() => window.__experiment?.player?.state === 'complete', undefined, { timeout: 1200000 });
 export async function loadedPlan(page: Page) {
   await page.waitForFunction(() => !!window.__experiment?.player || /失败|未能完成|超过 120 秒/.test(document.querySelector('.experiment-message[role="status"]')?.textContent || ''), undefined, { timeout: 130000 });
   expect(await page.evaluate(() => !!window.__experiment?.player), await page.locator('.experiment-message[role="status"]').innerText()).toBe(true);

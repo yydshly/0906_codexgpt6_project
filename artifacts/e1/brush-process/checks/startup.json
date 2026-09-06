@@ -1,0 +1,7 @@
+{
+  "address": "http://127.0.0.1:5174/",
+  "httpStatus": 200,
+  "startupLog": "artifacts/m2/server.log",
+  "startupLogIsHistorical": true,
+  "note": "Reused the existing local Vite server; HTTP success verified this turn. Did not claim a new server startup."
+}

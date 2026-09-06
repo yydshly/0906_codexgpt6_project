@@ -12,7 +12,8 @@ export class PlanPlayer {
   loadedPaint: PaintPickup | null = null;
   dipProgress = 0;
   private pickups = new Map<number, PaintPickup>();
-  readonly metrics = { batches: [] as number[], frames: [] as number[], strokeMaxMs: 0, paintingMs: 0 };
+  readonly metrics = { batches: [] as number[], frames: [] as number[], strokeMaxMs: 0, paintingMs: 0, totalBatches: 0, maxBatchMs: 0, maxConsecutiveOver100: 0 };
+  private consecutiveOver100 = 0;
   private frame = 0;
   private lastTime = 0;
   private credit = 0;
@@ -102,6 +103,9 @@ export class PlanPlayer {
       }
     }
     const elapsed = performance.now() - start; this.metrics.paintingMs += elapsed;
+    this.metrics.totalBatches++; this.metrics.maxBatchMs = Math.max(this.metrics.maxBatchMs, elapsed);
+    this.consecutiveOver100 = elapsed > 100 ? this.consecutiveOver100 + 1 : 0;
+    this.metrics.maxConsecutiveOver100 = Math.max(this.metrics.maxConsecutiveOver100, this.consecutiveOver100);
     if (this.metrics.batches.length < 20000) this.metrics.batches.push(elapsed);
     if (this.index === this.plan.strokes.length) { this.state = 'complete'; this.tip.down = false; this.tip.visible = false; }
     this.update();

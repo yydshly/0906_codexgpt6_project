@@ -1,0 +1,27 @@
+{
+  "status": "通过",
+  "baseline": {
+    "usedSize": 6084628,
+    "totalSize": 6684672,
+    "embedderHeapUsedSize": 1261272,
+    "backingStorageSize": 14295024
+  },
+  "after": {
+    "usedSize": 8455992,
+    "totalSize": 9367552,
+    "embedderHeapUsedSize": 2102912,
+    "backingStorageSize": 14297299
+  },
+  "stoppedIndex": 2,
+  "planHash": "2167dd8e350d7bfbc35918afb8ee40def5efb31c2c6682d6ad7219790ee31853",
+  "checks": [
+    "Worker unavailable actionable",
+    "planning timeout via injected 50ms clock for configured 120s deadline",
+    "same input yields identical full plan",
+    "context loss preserves exact CPU arrays and PNG available",
+    "exit during playback stops old player",
+    "valid PNG decode and planning",
+    "five source load/exit cycles release state",
+    "page heap growth <24MiB; excludes GPU/native/worker"
+  ]
+}
