@@ -1,0 +1,7 @@
+11:10:30 [vite] (client) Re-optimizing dependencies because vite config has changed
+
+  VITE v8.2.2  ready in 344 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+  ➜  press h + enter to show help
+11:12:41 [vite] vite.config.ts changed, restarting server...

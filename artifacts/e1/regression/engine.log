@@ -1,0 +1,18 @@
+
+> slowlight-oil-studio@0.1.0 test:engine
+> playwright test --project=engine
+
+
+Running 7 tests using 1 worker
+
+(node:3140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [engine] › tests\engine.spec.ts:36:1 › expected snapshots own their bytes when live height and color change (14ms)
+  ok 2 [engine] › tests\engine.spec.ts:55:1 › RYB has bounded colors, round trips, green contact, identity and white lightening (23ms)
+  ok 3 [engine] › tests\engine.spec.ts:68:37 › 20 strokes restore independent color and height expectations one undo at a time (1.0s)
+  ok 4 [engine] › tests\engine.spec.ts:68:37 › 21 strokes restore independent color and height expectations one undo at a time (835ms)
+  ok 5 [engine] › tests\engine.spec.ts:99:1 › independent undo assertion rejects deliberately stale height restoration (72ms)
+  ok 6 [engine] › tests\engine.spec.ts:108:1 › mix only modifies brush contact and repeated height remains bounded (828ms)
+  ok 7 [engine] › tests\engine.spec.ts:119:1 › size, load, directional footprint and CSS coordinate invariants (176ms)
+
+  7 passed (3.7s)

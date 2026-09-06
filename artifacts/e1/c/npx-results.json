@@ -1,0 +1,365 @@
+{
+  "config": {
+    "argv": [
+      "D:\\software\\nodejs\\node.exe",
+      "E:\\0906_codexgpt6_project\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--project=e1",
+      "--grep",
+      "E1-C"
+    ],
+    "configFile": "E:\\0906_codexgpt6_project\\playwright.config.ts",
+    "rootDir": "E:/0906_codexgpt6_project/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1-engine",
+        "name": "e1-engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1-engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "e1",
+        "name": "e1",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "e1.spec.ts",
+          "e1-evidence.spec.ts"
+        ],
+        "timeout": 360000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "engine",
+        "name": "engine",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "engine.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "studio",
+        "name": "studio",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "studio.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2",
+        "name": "m2",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "m2-performance",
+        "name": "m2-performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "m2-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "E:/0906_codexgpt6_project/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "performance",
+        "name": "performance",
+        "testDir": "E:/0906_codexgpt6_project/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "performance.spec.ts"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/e1/c/npx-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 5174 --strictPort",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "e1-evidence.spec.ts",
+      "file": "e1-evidence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E1-C fixed landscape: real strokes, every phase, video and exact independent replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 360000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1",
+              "projectName": "e1",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 50625,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T03:55:53.683Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "summary",
+                      "contentType": "application/json",
+                      "body": "eyJzYW1wbGUiOiJsYW5kc2NhcGUiLCJzdHJva2VDb3VudCI6MzQ2MywiZmluYWwiOnsiY29sb3IiOiIwYTFmYjM5MGM0OGJiYzgyNzYzMzQ2NTE0NmJjMzg3MmUzMDY3ZTI4ZDk0YmIzNmY1OGYyYTI3ZWYwNGViOTlmIiwiaGVpZ2h0IjoiMjVjOGNhZWVhY2Y3MzM2YjU0NDIwZmVmNTQ4NTAxOWE5ODQwNjBiNGYwZTMwNjEzNTNhMzMxZmJlYTU1MzkxMSJ9LCJwOTVCYXRjaE1zIjoxNy4wOTk5OTk5MDQ2MzI1N30="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\e1-evidence-E1-C-fixed-lan-9c019-nd-exact-independent-replay-e1\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4173f5e38a2c71d6eb6-1697098c091f36566949",
+          "file": "e1-evidence.spec.ts",
+          "line": 11,
+          "column": 62
+        },
+        {
+          "title": "E1-C fixed still-life: real strokes, every phase, video and exact independent replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 360000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1",
+              "projectName": "e1",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 52348,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T03:56:44.509Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "summary",
+                      "contentType": "application/json",
+                      "body": "eyJzYW1wbGUiOiJzdGlsbC1saWZlIiwic3Ryb2tlQ291bnQiOjM0MzUsImZpbmFsIjp7ImNvbG9yIjoiN2FjYmFjNDI5NTRjMWI1ZTNkYTFmMGIzYTVlMThkZGRkZDJiOGIzODBlN2U4MzZhODI4ZjFjMWU5YjM0OGI5YiIsImhlaWdodCI6IjA5MzJhZmQ0NDg3ODE3YTkzYjU0ZDZkZTIyNzRkMzczMzFlYzMyMDlhYzJhODcyOWRmOTI5ZmJkMTNjNGVmNzkifSwicDk1QmF0Y2hNcyI6MTcuMzk5OTk5OTc2MTU4MTQyfQ=="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\e1-evidence-E1-C-fixed-sti-b764a-nd-exact-independent-replay-e1\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4173f5e38a2c71d6eb6-43fc4f20224c149bd4ca",
+          "file": "e1-evidence.spec.ts",
+          "line": 11,
+          "column": 62
+        },
+        {
+          "title": "E1-C fixed complex: real strokes, every phase, video and exact independent replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 360000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1",
+              "projectName": "e1",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 45862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T03:57:36.884Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "summary",
+                      "contentType": "application/json",
+                      "body": "eyJzYW1wbGUiOiJjb21wbGV4Iiwic3Ryb2tlQ291bnQiOjM1MjcsImZpbmFsIjp7ImNvbG9yIjoiNzQ4ZjJhNGU2YWVlNzg2MTQzMTcwZWNmYzJmNjk3YjFjZjYxOWNhMGM4NjcxMDcwMDZlMGIwNThmMTVmNzI3ZiIsImhlaWdodCI6ImJjN2Y2OWUyOTg2NDgwOTQyYjU4NDdiMTgxNjgzM2JhNDE3OTljMzEyM2U0NWMxOWZhMGE2NTczNWZmOTJkZmQifSwicDk1QmF0Y2hNcyI6MTcuMjk5OTk5OTUyMzE2Mjg0fQ=="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\e1-evidence-E1-C-fixed-com-b7ec3-nd-exact-independent-replay-e1\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4173f5e38a2c71d6eb6-ef733eb442f8af6abdb0",
+          "file": "e1-evidence.spec.ts",
+          "line": 11,
+          "column": 62
+        },
+        {
+          "title": "E1-C invalid, oversized, cancellation, replacement and exit never change M2",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 360000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "e1",
+              "projectName": "e1",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25530,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T03:58:22.764Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "E:\\0906_codexgpt6_project\\test-results\\e1-evidence-E1-C-invalid-o-83799-nt-and-exit-never-change-M2-e1\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a4173f5e38a2c71d6eb6-36e49a4cae8425eb5bd8",
+          "file": "e1-evidence.spec.ts",
+          "line": 72,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T03:55:53.067Z",
+    "duration": 175653.742,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

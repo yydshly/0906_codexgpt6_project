@@ -30,7 +30,14 @@ export function ImageExperiment({ back }: { back: () => void }) {
     if (import.meta.env.DEV && new URLSearchParams(location.search).get('test') === '1') window.__experiment = runtime.current;
     const unload = (event: BeforeUnloadEvent) => { if (source.current) { event.preventDefault(); event.returnValue = ''; } };
     window.addEventListener('beforeunload', unload);
-    return () => { generation.current++; clearTimeout(deadline.current); worker.current?.terminate(); runtime.current?.player?.dispose(); source.current?.bitmap.close(); renderer.dispose(); resize.disconnect(); window.removeEventListener('beforeunload', unload); delete window.__experiment; };
+    return () => {
+      generation.current++; clearTimeout(deadline.current); worker.current?.terminate(); runtime.current?.player?.dispose(); source.current?.bitmap.close();
+      renderer.dispose();
+      // Release this dialog's context immediately; repeated experiments must not
+      // evict the original studio context from the browser's active-context limit.
+      renderer.gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      resize.disconnect(); window.removeEventListener('beforeunload', unload); delete window.__experiment;
+    };
   }, []);
   function stopWork() { generation.current++; clearTimeout(deadline.current); worker.current?.terminate(); worker.current = null; runtime.current?.player?.pause(); setWorking(false); }
   function leave() { stopWork(); setLeaving(true); }
@@ -63,9 +70,12 @@ export function ImageExperiment({ back }: { back: () => void }) {
     stopWork(); const id = generation.current, current = runtime.current!;
     current.player?.dispose(); current.player = null; current.plan = null; current.painting.clear(); changed();
     setWorking(true); setMessage('正在本地规划大色块与轮廓…');
-    const task = new Worker(new URL('./planner.worker.ts', import.meta.url), { type: 'module' }); worker.current = task;
+    let task: Worker;
+    try { task = new Worker(new URL('./planner.worker.ts', import.meta.url), { type: 'module' }); }
+    catch { stopWork(); setMessage('后台规划不可用，请使用支持 Worker 的浏览器或重试。'); return; }
+    worker.current = task;
     deadline.current = setTimeout(() => { if (id === generation.current) { stopWork(); setMessage('规划超过 120 秒，已停止。请缩小或简化图片后重试。'); } }, 120000);
-    task.onerror = () => { if (id === generation.current) { stopWork(); setMessage('规划未能完成，请重试。'); } };
+    task.onerror = event => { event.preventDefault(); if (id === generation.current) { stopWork(); setMessage('规划未能完成，请重试。'); } };
     task.onmessage = (event: MessageEvent<{ type: string; stage: number; plan: StrokePlan; elapsed: number; message: string }>) => {
       if (id !== generation.current) return;
       if (event.data.type === 'progress') setMessage(`正在规划 · ${STAGES[event.data.stage].name}`);
@@ -76,7 +86,8 @@ export function ImageExperiment({ back }: { back: () => void }) {
       } else { stopWork(); setMessage(event.data.message); }
     };
     const { pixels } = analyzeImage(source.current.bitmap, composition);
-    task.postMessage({ pixels, composition, inputHash: source.current.inputHash }, [pixels.buffer]);
+    try { task.postMessage({ pixels, composition, inputHash: source.current.inputHash }, [pixels.buffer]); }
+    catch { stopWork(); setMessage('无法启动本地规划，请重试。'); }
   }
   function requestGenerate() {
     if (runtime.current?.player?.index) { stopWork(); setPending({ kind: 'replan' }); }
@@ -109,4 +120,3 @@ export function ImageExperiment({ back }: { back: () => void }) {
     {pending && <div className="experiment-leave" role="alertdialog" aria-modal="true" aria-label="替换实验画作确认"><div><h2>{pending.kind === 'replay' ? '从第一笔再看一次？' : '开始一次新的实验？'}</h2><p>这会替换当前实验结果。请先导出想保留的画作；原画室草稿不会改变。</p><button autoFocus onClick={() => setPending(null)}>取消，保留实验画作</button><button disabled={exporting || !player?.index} onClick={download}>先导出 PNG</button><button className="confirm-button" disabled={exporting} onClick={confirmPending}>确认{pending.kind === 'replay' ? '重新播放' : '替换实验画作'}</button></div></div>}
   </dialog>;
 }
-

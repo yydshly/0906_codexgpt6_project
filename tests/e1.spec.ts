@@ -80,4 +80,3 @@ test('E1-B composition, playback invariance, real export and M2 isolation', asyn
   writeFileSync(`${root}/b-invariants.json`, JSON.stringify({ status: '通过', original, stored, history, paused, pausedIndex, final, checks: ['pause frozen', 'same plan at speed 4 with pause vs speed 1', 'composition leaves arrays unchanged', 'reference removed PNG identical', 'actual download equals renderer PNG', 'cancel replay/replace/exit preserves experiment', 'M2 arrays/draft/guide/signature/history unchanged'] }, null, 2));
   const video = page.video(); await page.close(); if (video) await video.saveAs(`${root}/b-controls-process.webm`);
 });
-

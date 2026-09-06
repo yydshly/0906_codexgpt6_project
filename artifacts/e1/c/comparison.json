@@ -1,0 +1,34 @@
+{
+  "status": "通过",
+  "rows": [
+    {
+      "sample": "landscape",
+      "inputHash": "1e786f3ab004b506470ea7c974f31bcdff856fa85c712f86853fbc3e7c1d158c",
+      "planHash": "0191a460f40561f382cd17267f83a7d3169102f58990b650689ea0ceb351bf82",
+      "color": "0a1fb390c48bbc827633465146bc3872e3067e28d94bb36f58f2a27ef04eb99f",
+      "height": "25c8caeeacf7336b54420fef5485019a984060b4f0e3061353a331fbea553911",
+      "p95BatchMs": 17.09999990463257,
+      "planningMs": 7503.100000023842
+    },
+    {
+      "sample": "still-life",
+      "inputHash": "5e8c56321d77e3114d050786ab43d30787324145ce3bf8868b6f209ebf007aa1",
+      "planHash": "b35205b49143b51a8b8f5313be3ba00f19ed818caf9f18db7a4a2e96aa49fd97",
+      "color": "7acbac42954c1b5e3da1f0b3a5e18ddddd2b8b380e7e836a828f1c1e9b348b9b",
+      "height": "0932afd4487817a93b54d6de2274d37331ec3209ac2a8729df929fbd13c4ef79",
+      "p95BatchMs": 17.399999976158142,
+      "planningMs": 5346.799999952316
+    },
+    {
+      "sample": "complex",
+      "inputHash": "c345e33bbe27a11e840d193cdc27db52ec439b3d5a944c866923ef67226baad0",
+      "planHash": "8897d183a6a541352fdd4730ef98b92e74ea26184d0323ba0cf00eb7278bc9cf",
+      "color": "748f2a4e6aee786143170ecfc2f697b1cf619ca0c867107006e0b058f15f727f",
+      "height": "bc7f69e2986480942b5847b1816833ba41799c3123e45c19fa0a65735ff92dfd",
+      "p95BatchMs": 17.299999952316284,
+      "planningMs": 5703
+    }
+  ],
+  "initialLandscapePlanUnchanged": true,
+  "note": "Distinct plans/states are functional diagnostics, not a quality score."
+}

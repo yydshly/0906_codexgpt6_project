@@ -1,0 +1,146 @@
+{
+  "status": "通过",
+  "entry": "http://127.0.0.1:5174/artifacts/e1/index.html",
+  "imageCount": 18,
+  "linkCount": 45,
+  "images": [
+    {
+      "src": "fixtures/landscape.jpg",
+      "width": 1280,
+      "height": 853,
+      "complete": true
+    },
+    {
+      "src": "c/landscape/final.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/landscape/stage-1.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/landscape/stage-2.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/landscape/stage-3.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/landscape/stage-4.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "fixtures/still-life.jpg",
+      "width": 1547,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/still-life/final.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/still-life/stage-1.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/still-life/stage-2.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/still-life/stage-3.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/still-life/stage-4.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "fixtures/complex.jpg",
+      "width": 3642,
+      "height": 2406,
+      "complete": true
+    },
+    {
+      "src": "c/complex/final.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/complex/stage-1.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/complex/stage-2.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/complex/stage-3.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    },
+    {
+      "src": "c/complex/stage-4.png",
+      "width": 1024,
+      "height": 1024,
+      "complete": true
+    }
+  ],
+  "media": [
+    {
+      "src": "c/landscape/process.webm",
+      "width": 1440,
+      "height": 900,
+      "currentTime": 0.254974,
+      "duration": 45.92
+    },
+    {
+      "src": "c/still-life/process.webm",
+      "width": 1440,
+      "height": 900,
+      "currentTime": 0.206266,
+      "duration": 52
+    },
+    {
+      "src": "c/complex/process.webm",
+      "width": 1440,
+      "height": 900,
+      "currentTime": 0.210075,
+      "duration": 42.84
+    }
+  ],
+  "broken": [],
+  "errors": [],
+  "narrowViewport": {
+    "client": 373,
+    "scroll": 373
+  },
+  "note": "Narrow viewport is browser simulation, not a real phone/tablet test."
+}

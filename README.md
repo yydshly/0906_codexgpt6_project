@@ -1,5 +1,9 @@
 # 慢光 · 数字油画室
 
+本分支增加 **图片自动绘制 · 实验（E1）**：从当前画室右上角进入，选择本地 PNG/JPEG、确认构图，再观看现有油画引擎逐笔重绘；支持暂停、继续、从空白重播和真实 PNG 导出。自由绘画、旅行日落及其草稿仍保留。实验结果不自动保存，退出前请导出。
+
+E1 仅在 `codex/e1-image-painting` 分支开发与推送，**没有覆盖线上 M2**。[E1 交付报告](E1_REPORT.md) · [本地固定样本与真实录像入口](artifacts/e1/index.html)。本地服务运行后访问 [E1 验收资料](http://127.0.0.1:5174/artifacts/e1/index.html)；画作与过程质量仍待用户确认。
+
 当前版本实现 M2：保留同页平头笔绘画、覆盖/基础 RYB 混色和最近 20 笔撤销，增加旅行日落四步引导、一个本地草稿的保存/恢复、签名与完成预览。导出为实际画作和签名的原生 1024×1024 PNG。没有预制作品或运行时模型调用。
 
 [体验与验收总览](https://yydshly.github.io/0906_codexgpt6_project/review/) · [M1 实际验收](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m1/index.html) · [M2 完整体验](https://yydshly.github.io/0906_codexgpt6_project/artifacts/m2/index.html) · [M2 验收报告](M2_REPORT.md)。M1 的 V4 人工视觉/手感仍待用户确认，M2 完整体验等待人工验收。
