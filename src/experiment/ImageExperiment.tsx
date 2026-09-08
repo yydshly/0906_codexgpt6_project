@@ -170,7 +170,7 @@ export function ImageExperiment({ back }: { back: () => void }) {
       <div className="prepared-overlay" ref={overlay}>{player?.tip.visible && <BrushCursor tip={player.tip}/>}</div>
     </div>
     <p className="experiment-message" role="status">{message}</p>{fallback && <p role="alert">正在使用简化画布显示，局部材质光照暂不可用。</p>}
-    {import.meta.env.DEV && <p className="experiment-message"><a href={`${import.meta.env.BASE_URL}artifacts/e1/prepared-studio/index.html`} target="_blank" rel="noopener">查看备笔、固定色盘与三图过程 ↗</a>　·　<a href={`${import.meta.env.BASE_URL}artifacts/e1/structure-mode/index.html`} target="_blank" rel="noopener">查看原版与新模式同图对照 ↗</a>　·　<a href={`${import.meta.env.BASE_URL}artifacts/e1/finished-quality/index.html`} target="_blank" rel="noopener">查看自动成品质量实测 ↗</a></p>}
+    {<p className="experiment-message"><a href={`${import.meta.env.BASE_URL}artifacts/e1/prepared-studio/index.html`} target="_blank" rel="noopener">查看备笔、固定色盘与三图过程 ↗</a>　·　<a href={`${import.meta.env.BASE_URL}artifacts/e1/structure-mode/index.html`} target="_blank" rel="noopener">查看原版与新模式同图对照 ↗</a>　·　<a href={`${import.meta.env.BASE_URL}artifacts/e1/finished-quality/index.html`} target="_blank" rel="noopener">查看自动成品质量实测 ↗</a></p>}
     <footer className="experiment-note">图片仅在本机处理，不上传。实验结果不自动保存，退出或刷新前请导出。<br/>这是算法的绘制过程，不是专业画师教学步骤；细小文字、人脸与复杂场景可能失真。</footer>
     </div>
     {leaving && <div className="experiment-leave" role="alertdialog" aria-modal="true" aria-label="离开实验确认"><div><h2>把这次实验带走吗？</h2><p>实验画作不会自动保存。退出后原画室、签名与草稿仍在。</p><button autoFocus onClick={() => setLeaving(false)}>留在实验</button><button disabled={exporting || !player?.hasPaint} onClick={download}>先导出 PNG</button><button className="confirm-button" disabled={exporting} onClick={back}>确认退出实验</button></div></div>}
