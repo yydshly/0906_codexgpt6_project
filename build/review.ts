@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 
 // Publish the existing evidence pages and only the media/data they link to.
 // Original historical HTML, samples and recordings are never edited.
-const pages = ['review/index.html', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html'];
+const pages = ['review/index.html', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/index.html', 'artifacts/e1/refinement/index.html', 'artifacts/e1/brush-process/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html'];
 const repo = 'https://github.com/yydshly/0906_codexgpt6_project/blob/main/';
 export function reviewPages(): Plugin {
   let root = '', out = '', base = '/', building = false;

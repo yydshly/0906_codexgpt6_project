@@ -33,7 +33,7 @@ try {
   assert.equal(png.readUInt32BE(16), 1024); assert.equal(png.readUInt32BE(20), 1024);
   await page.screenshot({ path: `${out}/paused.png` });
   checks.push('Production entry, failure disclosure, original input Worker planning, prepared materials, playback, pause and actual 1024 PNG download');
-  for (const file of ['review/', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html']) {
+  for (const file of ['review/', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/index.html', 'artifacts/e1/refinement/index.html', 'artifacts/e1/brush-process/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html']) {
     const url = new URL(file, base).href;
     assert.equal((await page.goto(url)).status(), 200);
     const urls = await page.locator('a[href],img[src],video[src],source[src],image[href]').evaluateAll(nodes => nodes.map(n => new URL(n.getAttribute('href') || n.getAttribute('src'), document.baseURI).href));
@@ -42,6 +42,7 @@ try {
       const response = await page.request.head(u);
       assert.equal(response.status(), 200, u);
       if (/\.(png|jpg|jpeg|json|webm|log)$/.test(new URL(u).pathname)) assert.ok(!response.headers()['content-type']?.includes('text/html'), `Asset returned HTML: ${u}`);
+      if (new URL(u).pathname.endsWith('.html')) { const html = await (await page.request.get(u)).text(); assert.ok(html.includes('<title>') && !html.includes('<div id="root">'), `Missing evidence HTML (SPA fallback): ${u}`); }
     }
     checks.push(`${file}: local links/media HTTP 200`);
   }
