@@ -1,0 +1,19 @@
+{
+  "status": "通过",
+  "base": "https://yydshly.github.io/0906_codexgpt6_project/",
+  "at": "2026-09-08T01:51:06.650Z",
+  "checks": [
+    "Production entry, failure disclosure, original input Worker planning, prepared materials, playback, pause and actual 1024 PNG download",
+    "review/: local links/media HTTP 200",
+    "artifacts/m1/index.html: local links/media HTTP 200",
+    "artifacts/m2/index.html: local links/media HTTP 200",
+    "artifacts/e1/index.html: local links/media HTTP 200",
+    "artifacts/e1/refinement/index.html: local links/media HTTP 200",
+    "artifacts/e1/brush-process/index.html: local links/media HTTP 200",
+    "artifacts/e1/prepared-studio/index.html: local links/media HTTP 200",
+    "artifacts/e1/structure-mode/index.html: local links/media HTTP 200",
+    "artifacts/e1/finished-quality/index.html: local links/media HTTP 200"
+  ],
+  "errors": [],
+  "note": "Publication smoke check, partial painting only. Full final-state and quality results refer to the frozen quality report; human acceptance pending."
+}
