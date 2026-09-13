@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="慢光成品效果研究：对照照片、候选目标与真实笔触输出，先确认值得追求的作品效果。">
+  <title>慢光 · 成品效果研究</title>
+  <link rel="stylesheet" href="./study.css">
+  <script src="./study.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#comparison">跳到作品对照</a>
+  <header class="site-header">
+    <a class="wordmark" href="../" target="_blank" rel="noopener" aria-label="打开慢光画室，新标签页"><span class="brand-symbol" aria-hidden="true">光</span><span>慢光<small>SLOWLIGHT STUDIO</small></span></a>
+    <span class="header-label">成品效果研究 <i>01</i></span>
+    <a class="back-link" href="../" target="_blank" rel="noopener">回到画室 <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="introduction" aria-labelledby="study-heading">
+      <div><p class="eyebrow">A PAINTING WORTH KEEPING</p><h1 id="study-heading">先看一幅，<br class="mobile-break">值得留下的画。</h1></div>
+      <div class="intro-note"><p>先确认希望保留的细节与油画表现，<br>再验证怎样用真实笔触画出来。</p><span class="study-stamp"><i></i>目标探索 · 尚非能力承诺</span></div>
+    </section>
+
+    <section id="comparison" class="comparison-section" aria-label="原图与成品效果对照">
+      <div class="selection-bar">
+        <div class="subject-tabs" role="group" aria-label="选择研究样本">
+          <button type="button" class="subject-button" data-subject="landscape" aria-pressed="true"><span>01</span> 黄石冬景</button>
+          <button type="button" class="subject-button" data-subject="portrait-holdout" aria-pressed="false"><span>02</span> 人物实测</button>
+        </div>
+        <label class="result-select">对照内容 <select id="result-select" aria-label="选择右侧对照内容"><option value="target">候选目标参考</option><option value="baseline">结构优先 · 实际输出</option><option value="quality">成品细节 · 实际输出</option></select></label>
+      </div>
+
+      <div class="art-caption-row"><div><span class="index-mark">A</span><h2>原始照片</h2><span class="caption-detail">完整构图</span></div><div><span class="index-mark">B</span><h2 id="result-heading">候选目标参考</h2><span id="result-status" class="result-status">AI 生成目标参考 · 非慢光笔触输出</span></div></div>
+
+      <div id="gallery" class="gallery" data-view="side" data-zoom="1">
+        <figure class="art-frame source-frame"><div class="image-window"><img id="source-image" src="../artifacts/e1/finished-quality/frozen/landscape/source-composed.png" alt="黄石湖冬景原始照片，完整构图" draggable="false"></div><figcaption class="image-tag">原图</figcaption></figure>
+        <figure class="art-frame result-frame"><div class="image-window"><img id="result-image" src="./assets/landscape-target.png" alt="黄石湖冬景候选油画目标，AI生成参考，非慢光笔触输出" draggable="false"></div><figcaption id="image-tag" class="image-tag">AI 生成目标参考 · 非慢光笔触输出</figcaption></figure>
+        <figure class="art-frame wipe-frame" aria-label="拖动比较原图与右侧结果"><div class="image-window"><img id="wipe-source" src="../artifacts/e1/finished-quality/frozen/landscape/source-composed.png" alt="叠合对照：原图" draggable="false"><div id="wipe-cover" class="wipe-cover"><img id="wipe-result" src="./assets/landscape-target.png" alt="叠合对照：候选目标参考" draggable="false"></div><div class="wipe-divider" aria-hidden="true"><span>↔</span></div></div><figcaption class="image-tag">左：原图 <span aria-hidden="true">/</span> 右：对照结果</figcaption></figure>
+      </div>
+
+      <div class="view-controls">
+        <div class="view-switch" role="group" aria-label="对照方式"><button type="button" data-view="side" aria-pressed="true">并排看</button><button type="button" data-view="wipe" aria-pressed="false">叠合对照</button></div>
+        <label id="wipe-control" class="wipe-control" hidden>原图比例 <input id="wipe-range" type="range" min="0" max="100" value="50" aria-label="叠合对照原图比例"><output id="wipe-value">50%</output></label>
+        <div class="zoom-switch" role="group" aria-label="查看尺度"><button type="button" data-zoom="1" aria-pressed="true">完整画面</button><button type="button" data-zoom="2" aria-pressed="false">局部 2×</button><button type="button" data-zoom="3" aria-pressed="false">局部 3×</button></div>
+      </div>
+      <p id="zoom-hint" class="zoom-hint">同一照片来源、相同方形显示尺度，默认完整画面。候选图存在局部重绘，叠合只用于观察，不证明保真改善。</p>
+      <div id="pan-controls" class="pan-controls" hidden><label>局部横向 <input id="pan-x" type="range" min="0" max="100" value="50" aria-label="局部横向位置"></label><label>局部纵向 <input id="pan-y" type="range" min="0" max="100" value="50" aria-label="局部纵向位置"></label><button id="reset-pan" type="button">回到中心</button></div>
+      <p id="media-error" class="media-error" role="alert" hidden>图片未能载入，请刷新后重试。当前无法据此判断效果。</p>
+
+      <div class="artwork-note" aria-live="polite"><div><p class="eyebrow" id="note-eyebrow">CANDIDATE DIRECTION / 待确认的目标</p><h3 id="note-title">保住冬景的清透，让笔触有轻重。</h3><p id="note-text">用这张参考讨论构图、枝叶与明暗应保留到什么程度。它由 AI 图像工具生成，云、树枝与雪地纹理有局部重绘，不用于证明保真改善；不是慢光引擎输出，也没有对应的真实笔触计划。</p></div><a id="download-link" class="download-link" href="./assets/landscape-target.png" download="慢光-候选目标参考-非笔触输出.png">下载目标参考图 <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="looking-notes" aria-labelledby="looking-heading"><p class="eyebrow">LOOK A LITTLE CLOSER</p><h2 id="looking-heading">我们想确认的，是这三件事。</h2><div class="notes-grid"><article><span>01</span><h3>一眼认得出原来的景与人</h3><p>主体比例、重要轮廓和明暗关系应当留下，不能用“风格”解释结构丢失。</p></article><article><span>02</span><h3>细节有取舍，关键处不含糊</h3><p>背景可以概括，影响辨识度的细节不能随意省略。人物仍需单独解决。</p></article><article><span>03</span><h3>近看有笔触，远看是一幅画</h3><p>希望保留材料感，同时避免碎裂、漏画和无意的色块。目标需再经真实引擎验证。</p></article></div></section>
+
+    <aside class="evidence-note"><div><p class="eyebrow">WHERE WE ARE NOW</p><p>当前算法的自动成品质量验证<strong>未通过</strong>。这页用来确认目标；原画室、历史模式与实际结果保持原样。</p></div><a href="../artifacts/e1/finished-quality/index.html" target="_blank" rel="noopener">查看完整实测与失败对照 <span aria-hidden="true">↗</span></a></aside>
+  </main>
+  <footer><p id="source-credit">照片：NPS / Jim Peaco，2014，黄石湖冬景。美国联邦公务作品；候选目标是 AI 生成参考。</p><div><a href="../SOURCES.md" target="_blank" rel="noopener">素材与使用说明 ↗</a><span>慢光 · 成品效果研究 / 2026</span></div><p class="footer-note">人物照片来自 NASA，仅作算法事实对照，不代表 NASA 审查、认可或代言。人工成品与过程验收仍待用户确认。</p></footer>
+</body>
+</html>

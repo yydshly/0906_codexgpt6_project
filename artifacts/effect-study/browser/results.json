@@ -1,0 +1,53 @@
+{
+  "status": "通过",
+  "base": "http://127.0.0.1:5174/",
+  "checks": [
+    "Candidate label, exact target download, split control and synchronized zoom/pan",
+    "Both real historical modes; portrait failure preserved with no invented target",
+    "Equal-size full image frames, 1440/768/390 simulated viewports, assets and original studio entry"
+  ],
+  "dimensions": [
+    {
+      "width": 1440,
+      "sizes": [
+        {
+          "width": 653,
+          "height": 653
+        },
+        {
+          "width": 653,
+          "height": 653
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "sizes": [
+        {
+          "width": 345,
+          "height": 345
+        },
+        {
+          "width": 345,
+          "height": 345
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "sizes": [
+        {
+          "width": 170,
+          "height": 170
+        },
+        {
+          "width": 170,
+          "height": 170
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "note": "Page interactions and media only; visual target is AI-generated, no new painting capability or human acceptance is claimed."
+}
