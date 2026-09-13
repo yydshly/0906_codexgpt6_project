@@ -71,3 +71,8 @@ E1 可选结构优先模式：颜色边缘权重、几何区域内材料任务�
 
 - 独立人物验证照片：NASA S99-00858，原地址与锁定 SHA-256 见 artifacts/e1/finished-quality/fixtures/README.md。NASA 媒体使用说明 https://www.nasa.gov/nasa-brand-center/images-and-media/ 于本轮核对；仅信息与算法对照，不作宣传、代言或训练，成品标为项目输出。
 - 新质量规划与覆盖范围验证为本项目原创代码，沿用已有 Painting/StudioRenderer 和依赖；未引入第三方算法实现、模型或服务。私人诊断沿用仓库外既有资料，不纳入公开素材。
+# 2026-09-13 成品目标探索页素材补充
+
+`effect-study/assets/landscape-target.png`：使用 Codex 内置 ImageGen，依据既有公开 NPS/Jim Peaco 黄石湖风景同构图参考生成的候选油画视觉稿。生成日期 2026-09-13；输出 1254×1254，保留生成文件及其来源元数据，无外部图片处理依赖。仅作视觉目标探索，不是 Painting/StudioRenderer 输出，不具备笔触计划，不作保真或画质改善的实测证明。云、树枝、雪地等细节存在生成性重绘。原始 NPS 图片来源与公共领域说明沿用下方固定素材记录。
+
+人物只复用原有 NASA 原图和算法失败输出，作为事实对照；未提交人物图片给 ImageGen。未访问或发送私人素材，未给应用接入模型/API。
