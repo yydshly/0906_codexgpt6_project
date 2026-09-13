@@ -1,0 +1,17 @@
+{
+  "status": "通过",
+  "checks": [
+    "slow/fast/turns",
+    "outside-up",
+    "synthetic pointercancel",
+    "synthetic blur",
+    "lostpointercapture",
+    "clear cancel/confirm/undo",
+    "resize idle/active",
+    "CSS zoom 125%"
+  ],
+  "limitations": [
+    "CSS zoom is not browser chrome zoom",
+    "blur injected, not human alt-tab"
+  ]
+}

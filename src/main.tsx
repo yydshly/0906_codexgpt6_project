@@ -144,7 +144,7 @@ function App() {
     <header className="header">
       <div className="wordmark" aria-label="慢光数字油画室"><span className="brand-symbol"><Icon name="sun" size={24}/></span><span className="brand-name">慢光<span className="brand-en">SLOWLIGHT</span></span></div>
       <div className="header-note">留一点时间，给手中的颜色。</div>
-      <div className="edition"><span/> 数字油画室 <small>VOL. 01</small><button className="experiment-entry" disabled={busy} onClick={() => { input.current?.finish(); setExperimentOpen(true); }}>图片自动绘制 · 实验</button><a className="review-shortcut" href={`${import.meta.env.BASE_URL}review/`} target="_blank" rel="noopener">体验与验收 ↗</a></div>
+      <div className="edition"><span/> 数字油画室 <small>VOL. 01</small><button className="experiment-entry" disabled={busy} onClick={() => { input.current?.finish(); setExperimentOpen(true); }}>图片自动绘制 · 实验</button><nav className="research-shortcuts" aria-label="研究与验收"><a className="review-shortcut" href={`${import.meta.env.BASE_URL}effect-study/`} target="_blank" rel="noopener">成品效果研究 ↗</a><a className="review-shortcut" href={`${import.meta.env.BASE_URL}review/`} target="_blank" rel="noopener">体验与验收 ↗</a></nav></div>
     </header>
 
     <main className="workspace" inert={saveState.phase === 'loading'}>
