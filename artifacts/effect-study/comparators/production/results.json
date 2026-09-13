@@ -1,0 +1,214 @@
+{
+  "base": "http://127.0.0.1:5177/0906_codexgpt6_project/",
+  "checks": [
+    "六款工具、十份官方样例切换；图片真实解码与来源标签逐项记录",
+    "放大原图与结果、Escape 关闭；1440/768/390 模拟视口无横向溢出",
+    "故意阻断官方媒体后显示失败与官方出处，不替换样本；对应网络失败为预期",
+    "父页新入口、构建资源、原画室图片实验入口可用"
+  ],
+  "media": [
+    {
+      "id": "oilbrush",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/10/oilbrush-romantic-couple.webp",
+          "width": 1500,
+          "height": 996,
+          "loaded": true
+        },
+        {
+          "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/10/oil-painting-of-a-romantic-couple-created-with-Oilbrush.webp",
+          "width": 1500,
+          "height": 996,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "dap",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.mediachance.com/dap/index_html_files/36246.png",
+          "width": 898,
+          "height": 255,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "dap",
+      "sample": 1,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.mediachance.com/dap/index_html_files/36247.png",
+          "width": 1044,
+          "height": 325,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "dap",
+      "sample": 2,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.mediachance.com/dap/index_html_files/36148.jpg",
+          "width": 1124,
+          "height": 796,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "painter",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://product.corel.com/help/Painter/540213829/Main/EN/Win-Documentation/images/Corel-Painter-auto-paint.png",
+          "width": 450,
+          "height": 298,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "becasso",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/09/BeCasso-Photo-before.webp",
+          "width": 2000,
+          "height": 1273,
+          "loaded": true
+        },
+        {
+          "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/09/BeCasso-ArtWork-After.webp",
+          "width": 2000,
+          "height": 1273,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "brushstroke",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.codeorgana.com/assets/img/brushstroke-venice-canal-painting.jpg",
+          "width": 1800,
+          "height": 1271,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "brushstroke",
+      "sample": 1,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.codeorgana.com/assets/img/brushstroke-sunflower-painting.jpg",
+          "width": 1800,
+          "height": 2394,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "waterlogue",
+      "sample": 0,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.tinrocket.com/apps/waterlogue/standard/files/stacks-image-e73f985-550x1200.jpg",
+          "width": 550,
+          "height": 1200,
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "id": "waterlogue",
+      "sample": 1,
+      "status": "通过",
+      "media": [
+        {
+          "url": "https://www.tinrocket.com/apps/waterlogue/standard/files/stacks-image-6542140-550x1200.jpg",
+          "width": 550,
+          "height": 1200,
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "video": [
+    {
+      "id": "oilbrush",
+      "status": "通过",
+      "duration": 10.733333,
+      "playedTo": 0.705421,
+      "width": 1000,
+      "height": 666
+    },
+    {
+      "id": "painter",
+      "status": "未测试",
+      "note": "外部播放器入口已建立；跨站播放器播放未自动判断，不当作播放通过",
+      "url": "https://www.youtube.com/embed/tacCIEwnyRY"
+    },
+    {
+      "id": "becasso",
+      "status": "通过",
+      "duration": 6.840167,
+      "playedTo": 0.708477,
+      "width": 540,
+      "height": 960
+    },
+    {
+      "id": "brushstroke",
+      "status": "通过",
+      "duration": 4.4,
+      "playedTo": 0.706382,
+      "width": 500,
+      "height": 284
+    },
+    {
+      "id": "waterlogue",
+      "status": "未测试",
+      "note": "外部播放器入口已建立；跨站播放器播放未自动判断，不当作播放通过",
+      "url": "https://player.vimeo.com/video/1153435616?dnt=1&autoplay=0"
+    }
+  ],
+  "errors": [],
+  "localFailures": [],
+  "externalFailures": [
+    {
+      "url": "https://www.youtube.com/embed/tacCIEwnyRY",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://player.vimeo.com/video/1153435616?dnt=1&autoplay=0",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/10/oilbrush-romantic-couple.webp",
+      "error": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://digitalmasterpieces.com/wp-content/uploads/2022/10/oil-painting-of-a-romantic-couple-created-with-Oilbrush.webp",
+      "error": "net::ERR_FAILED"
+    }
+  ],
+  "softwareGeneration": "未测试：没有安装或调用产品",
+  "humanQuality": "待用户确认",
+  "status": "通过（外部嵌入播放器播放未测试）"
+}

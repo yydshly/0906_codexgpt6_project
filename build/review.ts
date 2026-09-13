@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 
 // Publish the existing evidence pages and only the media/data they link to.
 // Original historical HTML, samples and recordings are never edited.
-const pages = ['review/index.html', 'effect-study/index.html', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/index.html', 'artifacts/e1/refinement/index.html', 'artifacts/e1/brush-process/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html'];
+const pages = ['review/index.html', 'effect-study/index.html', 'effect-study/comparators/index.html', 'artifacts/m1/index.html', 'artifacts/m2/index.html', 'artifacts/e1/index.html', 'artifacts/e1/refinement/index.html', 'artifacts/e1/brush-process/index.html', 'artifacts/e1/prepared-studio/index.html', 'artifacts/e1/structure-mode/index.html', 'artifacts/e1/finished-quality/index.html'];
 const repo = 'https://github.com/yydshly/0906_codexgpt6_project/blob/main/';
 export function reviewPages(): Plugin {
   let root = '', out = '', base = '/', building = false;
@@ -13,7 +13,7 @@ export function reviewPages(): Plugin {
     html = html.replaceAll('href="http://127.0.0.1:5174/"', `href="${base}"`)
       .replaceAll('打开本机画室', '打开当前画室').replaceAll('进入本机画室', '打开当前画室');
     html = html.replace(/href="([^"?#]+\.md)"/g, (match, link: string) => /^https?:/.test(link) ? match : `href="${repo}${relative(root, resolve(root, dirname(file), link)).split(sep).join('/')}"`);
-    if (file === 'review/index.html' || file === 'effect-study/index.html') return html;
+    if (file === 'review/index.html' || file.startsWith('effect-study/')) return html;
     if (file.startsWith('artifacts/e1/')) {
       return html.replace(/(<body>|<main>)/, '$1<p style="padding:12px;border:1px solid #c7b99c">发布说明：本页保留当时实验结论，最新实验现已发布供观察；历史“未部署”描述对应交付时状态。成品质量未通过及人工待确认状态不变。</p>');
     }

@@ -1,0 +1,32 @@
+{
+  "base": "http://127.0.0.1:5177/0906_codexgpt6_project/",
+  "status": "通过",
+  "checks": [
+    {
+      "name": "390px full-width stacked before/after",
+      "status": "通过",
+      "boxes": [
+        {
+          "x": 35,
+          "y": 739.328125,
+          "width": 320,
+          "height": 242.71875
+        },
+        {
+          "x": 35,
+          "y": 990.046875,
+          "width": 320,
+          "height": 242.71875
+        }
+      ]
+    },
+    {
+      "name": "Switch removes playback and ignores stale media callbacks",
+      "status": "通过"
+    },
+    {
+      "name": "Original portrait failed status and historical output options retained",
+      "status": "通过"
+    }
+  ]
+}

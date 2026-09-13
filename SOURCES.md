@@ -71,6 +71,19 @@ E1 可选结构优先模式：颜色边缘权重、几何区域内材料任务�
 
 - 独立人物验证照片：NASA S99-00858，原地址与锁定 SHA-256 见 artifacts/e1/finished-quality/fixtures/README.md。NASA 媒体使用说明 https://www.nasa.gov/nasa-brand-center/images-and-media/ 于本轮核对；仅信息与算法对照，不作宣传、代言或训练，成品标为项目输出。
 - 新质量规划与覆盖范围验证为本项目原创代码，沿用已有 Painting/StudioRenderer 和依赖；未引入第三方算法实现、模型或服务。私人诊断沿用仓库外既有资料，不纳入公开素材。
+# 2026-09-13 同类工具对照
+
+`effect-study/comparators/` 使用厂商原站 URL 展示有限的官方样例和嵌入视频，供当前产品研究比较；不下载原站媒体到仓库，不将它们作为慢光画作、训练数据或可再分发素材。版权仍归对应作者 / 厂商，未取得 SDK、商业服务或媒体再分发许可。页面、说明与交互为本项目编写，无新增依赖或第三方实现。
+
+- [DAP 产品](https://www.mediachance.com/dap/index.html)、[V9 功能与样例](https://www.mediachance.com/dap/new_v9.html)：人物拼图 36246.png、人物特写 36247.png、Guerbois 9 运河 36148.jpg。前两图阶段 / 设置未明示，不额外标注确定过程；第三图厂商注明未编辑输出，本轮未复现。原站 Videos 导航返回 404，未以其他动画替代。
+- [Painter 自动绘画手册](https://product.corel.com/help/Painter/540213829/Main/EN/Win-Documentation/Corel-Painter-AutoPainting-Photos.html)：Corel-Painter-auto-paint.png 为 450×298 官方合图。[官方视频](https://learn.corel.com/tutorials/painter-essentials-getting-started-auto-painting/) 为 Painter Essentials 8，显式区别版本与人工操作，没有使用专业手绘成品冒充自动结果。
+- [Oilbrush](https://digitalmasterpieces.com/oilbrush/)：官方情侣前后图及 iPad 调节视频；参数 / 修整过程未披露，视频不标成逐笔重绘。
+- [BeCasso](https://digitalmasterpieces.com/BeCasso/)：官方运河前后图及 Adjust Tools 视频；不宣称默认无人干预。[厂商商业 API / Webservice](https://digitalmasterpieces.com/b2b/) 确实存在，具体效果、价格、许可及笔触输出未验证，未注册、申请或调用。
+- [Brushstroke](https://www.codeorgana.com/brushstroke)：运河、向日葵及转换动画均为该页原站媒体；无配对原图，不据此宣称保真或零修整。
+- [Waterlogue](https://www.tinrocket.com/apps/waterlogue/standard/)：两张完整 App 截图和 Vimeo 产品介绍，截图不裁成独立生成结果，水彩不替代油画验收。
+
+本轮未运行上述软件，无同图输出、独立笔触计划或生成耗时对比。分析是对厂商样例的观察，不是对软件普遍效果的测试结论。页面 QA 截图仅存仓库外；公开记录保留 URL、载入 / 播放结果，不含私人图片。
+
 # 2026-09-13 成品目标探索页素材补充
 
 `effect-study/assets/landscape-target.png`：使用 Codex 内置 ImageGen，依据既有公开 NPS/Jim Peaco 黄石湖风景同构图参考生成的候选油画视觉稿。生成日期 2026-09-13；输出 1254×1254，保留生成文件及其来源元数据，无外部图片处理依赖。仅作视觉目标探索，不是 Painting/StudioRenderer 输出，不具备笔触计划，不作保真或画质改善的实测证明。云、树枝、雪地等细节存在生成性重绘。原始 NPS 图片来源与公共领域说明沿用下方固定素材记录。
