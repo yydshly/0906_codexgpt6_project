@@ -20,7 +20,9 @@ const products = {
     limit:'这些是厂商样例，人物拼图没有明确逐幅标明阶段与预设；本页不把它解释成一段确定的生成过程。未用同一人物照片独立复现。',source:dap+'new_v9.html',
     samples:[{title:'人物 · 官方表现拼图',image:dap+'index_html_files/36246.png',caption:'官方人物效果拼图 · 各幅具体阶段 / 设置未说明',note:'保留官方完整拼图，不额外标注“原图”“第几笔”或“最终阶段”。观察轮廓和五官可辨识度，不能用它代替同图实测。'},
       {title:'人物 · 眼部与胡须',image:dap+'index_html_files/36247.png',caption:'官方人物细节样例',note:'官方提供的局部特写。它能展示笔触与五官细节共存的方向，不能单凭特写验证完整构图或相似度。'},
-      {title:'风景 · 运河成品',image:dap+'index_html_files/36148.jpg',caption:'官方 Guerbois 9 样例',note:'厂商在该样例处注明为 DAP9 未编辑输出，用于展示平坦区域衔接；本轮未独立复现。'}]
+      {title:'风景 · 运河成品',image:dap+'index_html_files/36148.jpg',caption:'官方 Guerbois 9 样例',note:'厂商在该样例处注明为 DAP9 未编辑输出，用于展示平坦区域衔接；本轮未独立复现。'},
+      {title:'材料 · 旧引擎与 V9 衔接对照',image:dap+'index_html_files/36249.png',caption:'官方旧引擎（左）与 V9 Fair Engine（右）',note:'同一池塘局部的官方对照：左边用标线指出杂乱的细小痕迹，右边水面衔接更连贯。它示范的是放笔和材料衔接，不是增加输出分辨率；其他设置与耗时未披露。'},
+      {title:'轮廓 · 曲线落笔与建筑细节',image:dap+'index_html_files/34995.jpg',caption:'官方建筑局部 · 曲线笔触与窗框',note:'观察笔触怎样沿拱窗和屋檐弯曲。完整图像保留了建筑形体，局部仍能看到起伏的刷痕；未提供这张局部的配对原图。'}]
   },
   painter:{name:'Corel Painter',category:'BRUSH & FORM / 画笔与形体',summary:'自动落笔只是专业画室的一部分，需要区分自动结果与人工完成作品。',
     look:'这里选用自动绘画手册内的儿童照片 / 画作示例，没有拿专业画师的手绘作品冒充自动输出。',process:'Smart Stroke 跟随照片形体；Smart Settings 在细节区调笔宽、长度与压力。支持控制速度和停止。',relevance:'参考如何用实际画笔保留轮廓；但不能直接沿用它需要人工修整的工作流作为慢光默认方案。',
@@ -32,9 +34,11 @@ const products = {
     samples:[{title:'风景 · 运河原图与效果',before:dm+'wp-content/uploads/2022/09/BeCasso-Photo-before.webp',after:dm+'wp-content/uploads/2022/09/BeCasso-ArtWork-After.webp',note:'官方同图前后对照。注意建筑轮廓保留与色彩变化；这是艺术风格样例，不代表油画唯一目标。'}],
     video:{type:'video',src:dm+'wp-content/uploads/2022/10/BeCasso-Adjust-Tools-Overlayed.mp4',title:'BeCasso · 官方效果调节',note:'演示调整控制，可能包含人为参数操作；不解释为自动绘画过程。',source:dm+'BeCasso/'}
   },
-  brushstroke:{name:'Brushstroke',category:'PHOTO TO ART / 简洁成品流程',summary:'围绕选风格、调色、画布和签名，完成一张可保存的装饰画。',look:'官方运河与向日葵样例展示较明显的色块和笔触取舍；当前选择的素材没有原图对照。',process:'官网提供照片转换动画和视频风格化；没有据此确认真实笔触计划输出。',relevance:'参考成品风格选择和保存路径，不能拿转换动画解决慢光的真实过程问题。',integration:'商业 App；本轮未核实可集成的引擎 SDK 或服务。',limit:'没有配对原图，不能判断遗漏多少结构或人物相似度；动画只展示视觉转换。',source:'https://www.codeorgana.com/brushstroke',
+  brushstroke:{name:'Brushstroke',category:'PHOTO TO ART / 简洁成品流程',summary:'围绕选风格、调色、画布和签名，完成一张可保存的装饰画。',look:'官方运河与向日葵样例展示较明显的色块和笔触取舍；当前选择的素材没有原图对照。',process:'新核对的官方说明称逐笔重绘，并可分别选择色盘与表面。下方转换动画不能独立验证笔触计划输出。',relevance:'参考成品风格选择和保存路径；色盘、画布与绘画风格是不同的调整，不应全部合称“精度”。',integration:'商业 App；本轮未核实可集成的引擎 SDK 或服务。',limit:'没有配对原图，不能判断遗漏多少结构或人物相似度；动画只展示视觉转换。',source:'https://www.codeorgana.com/photo-to-painting',
     samples:[{title:'风景 · 威尼斯运河',image:'https://www.codeorgana.com/assets/img/brushstroke-venice-canal-painting.jpg',caption:'官方 Brushstroke 成品样例 · 未配原图',note:'单张厂商成品展示，不构成与其他产品的同图比赛。'},
-      {title:'静物 · 向日葵',image:'https://www.codeorgana.com/assets/img/brushstroke-sunflower-painting.jpg',caption:'官方静物成品样例 · 未配原图',note:'观察花瓣和背景的概括程度。具体参数、加工过程未提供。'}],
+      {title:'静物 · 向日葵',image:'https://www.codeorgana.com/assets/img/brushstroke-sunflower-painting.jpg',caption:'官方静物成品样例 · 未配原图',note:'观察花瓣和背景的概括程度。具体参数、加工过程未提供。'},
+      {title:'能力 · 独立选择色盘',image:'https://www.codeorgana.com/assets/img/brushstroke-pro-color-palettes.jpg',caption:'官方 Brushstroke Pro 色盘选择界面',note:'色盘调整作品的配色与氛围。它与增加可见细节是两种能力；这里保留完整软件界面，未把界面截图当作独立成品。'},
+      {title:'能力 · 独立选择画布表面',image:'https://www.codeorgana.com/assets/img/brushstroke-pro-3d-canvases.jpg',caption:'官方 Brushstroke Pro 画布选择界面',note:'表面控制纹理与材料表现。原图里缺失的结构不会仅靠更换画布自动恢复；具体算法和可导出数据未验证。'}],
     video:{type:'video',src:'https://www.codeorgana.com/assets/video/brushstroke-photo-to-painting-animation.mp4',title:'Brushstroke · 官方转换动画',note:'这是照片与效果之间的展示动画，不是逐笔从零绘制的证明。',source:'https://www.codeorgana.com/brushstroke'}
   },
   waterlogue:{name:'Waterlogue',category:'WATERCOLOR / 另一种材料方向',summary:'借助水彩的留白与概括，展示不同于油画的成品取舍。',look:'官方人物截图采用明显的暖色与水彩概括。只参考另一种材料语言，不要求慢光改成水彩。',process:'官方提供产品介绍视频；本轮未核实可导出的、可重放的笔触数据。',relevance:'帮助区分有意的风格概括与无意结构损失，也可参考单一画风的成品体验。',integration:'商业 App；未核实可直接接入慢光的接口。',limit:'这是 App 截图，不是原图 / 结果对照，无法凭此判断相似度。水彩质感不能替代油画质量验收。',source:water,
@@ -54,6 +58,7 @@ function renderSample() {
   $('left-caption').textContent=pair?'厂商提供的原始照片':s.caption;
   $('right-caption').textContent='厂商提供的处理结果';
   $('sample-note').textContent=s.note;
+  document.dispatchEvent(new CustomEvent('comparator-sample',{detail:{product:selected,sample:s}}));
   $('sample-source').href=p.source;
   $('load-status').classList.remove('failed');$('load-status').textContent='正在载入官方图片…';
   $('right-image').removeAttribute('src');

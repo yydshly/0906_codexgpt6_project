@@ -7,6 +7,7 @@
   <title>慢光 · 同类工具效果对照</title>
   <link rel="stylesheet" href="./compare.css">
   <script src="./compare.js" defer></script>
+  <script src="./effects.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#viewer">跳到效果展示</a>
@@ -14,7 +15,17 @@
   <main>
     <section class="intro"><div><p class="eyebrow">PHOTO TO PAINTING / 06 TOOLS</p><h1>别人怎样把照片，<br>变成值得留下的画。</h1></div><div class="intro-side"><p>先看人物与材料，再看绘制方法。<br>每份样例都能回到它的官方来源。</p><span class="stamp">官方样例研究 · 尚非同图实测</span></div></section>
     <aside class="scope"><strong>这里的六款是成品软件，不是六个开源库。</strong><p>图片与视频直接来自厂商，未在本机运行这些软件，也未处理你的私人照片。不同产品使用不同样本，不据此评出画质高低；是否经过人工修整，以各项说明为准。</p></aside>
+    <nav class="view-guide" aria-label="按问题看效果"><button data-tour="styles">同一个场景，能变出什么？</button><button data-tour="portrait">人物细节到底保留多少？</button><button data-tour="texture">笔触为什么会显得碎？</button></nav>
+    <section id="style-lab" class="style-lab" aria-labelledby="style-title">
+      <div class="lab-heading"><div><p class="eyebrow">ONE SCENE / FOUR TREATMENTS</p><h2 id="style-title">同一个场景，四种不同的取舍。</h2></div><div class="lab-switch" role="group" aria-label="选择同图效果组"><button data-series="oilbrush" aria-pressed="true">Oilbrush · 山水</button><button data-series="becasso" aria-pressed="false">BeCasso · 金门大桥</button></div></div>
+      <p class="lab-disclosure">每组为一个产品的官方同场景效果，点击任意两张做 A / B 对照。中文名称描述画面外观，不是已核实的预设名；这里切换已有样例，不实时运行厂商算法。</p>
+      <div id="style-cards" class="style-cards" aria-label="四种官方效果"></div>
+      <p id="series-status" role="status" class="load-status"></p>
+      <div class="ab-controls"><strong>选两种，直接比较</strong><label>A <select id="effect-a" aria-label="左侧效果"></select></label><label>B <select id="effect-b" aria-label="右侧效果"></select></label><button id="compare-effects">放大对比 A / B</button><a id="series-source" target="_blank" rel="noopener noreferrer">官方出处 ↗</a></div>
+      <p id="series-conclusion" class="series-conclusion"></p>
+    </section>
     <section id="viewer" aria-label="工具效果展示">
+      <div class="lab-heading product-heading"><div><p class="eyebrow">DETAIL / MATERIAL / WORKFLOW</p><h2>再看每款工具，具体改变了哪里。</h2></div></div>
       <div class="product-picker" role="group" aria-label="选择对比工具">
         <button data-product="oilbrush" aria-pressed="true">Oilbrush <small>人物与油画成品</small></button>
         <button data-product="dap" aria-pressed="false">DAP <small>真实逐笔重绘</small></button>
@@ -33,6 +44,7 @@
           <p id="load-status" class="load-status" role="status">正在载入官方图片…</p>
           <div class="media-actions"><button id="enlarge">放大查看</button><a id="sample-source" target="_blank" rel="noopener noreferrer">查看官方出处 ↗</a></div>
           <p id="sample-note" class="sample-note"></p>
+          <section id="detail-study" class="detail-study" hidden aria-label="原图与结果的同位置局部"><h3>不要只看缩略图，看看这些位置。</h3><div id="detail-buttons" class="detail-buttons" role="group" aria-label="选择关键局部"></div><div id="detail-images" class="detail-images"></div><p id="detail-explanation"></p><p class="detail-disclosure">同一官方前后图、相同位置的显示裁切。仅供放大观察，没有锐化、补画或改变原媒体。</p></section>
           <section id="video-section" class="video-section" hidden><div><h3 id="video-heading">官方操作演示</h3><p id="video-note"></p></div><button id="load-video">载入官方视频</button><div id="video-container"></div><p id="video-status" role="status"></p><a id="video-source" target="_blank" rel="noopener noreferrer">在官方页面观看 ↗</a></section>
         </div>
         <aside class="analysis" aria-live="polite"><p class="eyebrow" id="category"></p><h2 id="name"></h2><p id="summary"></p><dl><dt>画面重点</dt><dd id="look"></dd><dt>绘制过程</dt><dd id="process"></dd><dt>对慢光的价值</dt><dd id="relevance"></dd><dt>能否直接接入</dt><dd id="integration"></dd></dl><div class="limit"><strong>这份样例不能证明</strong><p id="limit"></p></div><p class="local-status">本机同图生成：<strong>未测试</strong></p><a id="product-source" target="_blank" rel="noopener noreferrer">产品与能力来源 ↗</a></aside>
@@ -43,7 +55,7 @@
       <tr><th><a href="https://product.corel.com/help/Painter/540213829/Main/EN/Win-Documentation/Corel-Painter-AutoPainting-Photos.html" target="_blank" rel="noopener noreferrer">Painter</a></th><td>画笔、自动绘画与克隆工具</td><td>手册说明落笔、调速和停止</td><td>专业桌面软件；未验证自动化接入及授权</td></tr>
       <tr><th><a href="https://digitalmasterpieces.com/oilbrush/" target="_blank" rel="noopener noreferrer">Oilbrush</a></th><td>油画效果处理</td><td>未核实可重放笔触计划</td><td rowspan="2">厂商有商业 API / Webservice；笔触输出、具体效果范围、价格与许可未验证</td></tr>
       <tr><th><a href="https://digitalmasterpieces.com/BeCasso/" target="_blank" rel="noopener noreferrer">BeCasso</a></th><td>艺术滤镜与风格迁移</td><td>未核实可重放笔触计划</td></tr>
-      <tr><th><a href="https://www.codeorgana.com/brushstroke" target="_blank" rel="noopener noreferrer">Brushstroke</a></th><td>照片 / 视频风格化</td><td>转换动画不等于真实笔触</td><td>商业 App；未核实可接入接口</td></tr>
+      <tr><th><a href="https://www.codeorgana.com/photo-to-painting" target="_blank" rel="noopener noreferrer">Brushstroke</a></th><td>官方称逐笔重绘照片 / 视频</td><td>文字声明；此页动画不能验证笔触序列</td><td>商业 App；未核实可接入接口</td></tr>
       <tr><th><a href="https://www.tinrocket.com/apps/waterlogue/" target="_blank" rel="noopener noreferrer">Waterlogue</a></th><td>照片转水彩</td><td>未核实对外笔触数据</td><td>商业 App；未核实可接入接口</td></tr>
     </tbody></table></div></section>
     <section class="takeaways"><article><span>01 / 成品</span><h3>先固定可接受的画质</h3><p>Oilbrush 的人物对照可用于讨论脸部辨识与衣服细节。真正比较时，需要同一照片、同一构图，并记录是否做过人工修整。</p></article><article><span>02 / 过程</span><h3>优先研究 DAP 与 Painter</h3><p>它们的公开资料描述了结构导向的实际落笔。但样例里的好结果，并不证明我们的画笔与预算能复现。</p></article><article><span>03 / 接入</span><h3>商业成品接口仍需单独验证</h3><p>BeCasso 厂商提供 API 和网页服务。如果只返回成品图，就不能把它包装成慢光真实逐笔绘制的结果。<a href="https://digitalmasterpieces.com/b2b/" target="_blank" rel="noopener noreferrer">查看厂商接口说明 ↗</a></p></article></section>
