@@ -28,6 +28,32 @@
 | M2/E1 全量回归、性能/内存基准 | 未测试（本轮未重跑） | 本轮没有改变引擎、规划、渲染、草稿或导出；沿用此前报告，不把旧记录写成新执行 |
 | 真机、人工质量与付费需求 | 未测试 / 待用户确认 | 模拟视口和页面检查不代表用户体验、成品质量或商业验收 |
 
-本地证据在 `artifacts/effect-study/deployment/production` 与 `regression`。窄屏首次检查与最终修正检查分别保留。厂商图片仍为远端来源，本次没有将其截图入库。GitHub 同步与 Pages 线上核验将在完成后追加；仅推送开发分支不代表网站已更新。
+本地证据在 `artifacts/effect-study/deployment/production` 与 `regression`。窄屏首次检查与最终修正检查分别保留。厂商图片仍为远端来源，本次没有将其截图入库。GitHub 同步与 Pages 线上核验见下方；仅推送开发分支不代表网站已更新。
 
 自动成品质量仍未通过；人工视觉、手感、完整体验与商业需求均未因发布而通过验证。
+
+## 已完成远端同步与发布
+
+- 应用与资料提交：`8bba750c253a9a55bc7d2d8e2e5156c73d978e65`，已推送 `origin/codex/effect-study`，并在确认 `origin/main` 是其祖先后正常快进推送至 main。没有强制推送或修改工作流。
+- [GitHub Pages 发布任务 34753232816](https://github.com/yydshly/0906_codexgpt6_project/actions/runs/34753232816)：**通过**。远端构建 1 分 30 秒，部署任务 29 秒；构建中的类型检查与 7 项引擎测试通过。
+- 本地构建包含 327 个文件、310 个复制资源，约 925.93 MiB，主要为历史验收素材。保留已有证据；这不是用户首屏需要下载的体积。新增本轮回归证据只存 Git 仓库，不额外打进网站包。
+
+| 线上检查 | 状态 | 证据与范围 |
+| --- | --- | --- |
+| 新画室入口与研究导航 | 通过 | 新标签打开研究，保留原画室；总览、效果、工具、产品讨论相互可达；三个模拟视口检查 |
+| 新页面与资源对应发布构建 | 通过 | 10 项文件核对；9 项原始 SHA-256 一致，compare.css 仅 Windows CRLF / Linux LF 行尾不同，统一行尾后逐字一致。初始原始哈希检查失败与原因保留在记录中；图片要求原始字节一致 |
+| 同类工具媒体与交互 | 通过 | 线上再次验证全部官方可选样例、八效果、五局部、A/B、失败提示和三段直连视频开始播放；两个外部嵌入播放器仍未测试 |
+| 原图片实验发布检查 | 通过 | 公开固定风景输入，本地 Worker 规划、确认备料、真实绘制、暂停及实际 1024×1024 PNG 导出；这是部分绘制检查，不是新画质验证 |
+| 历史 M1/M2/E1 页面及引用 | 通过 | 9 个总览/历史入口逐页检查内部链接和媒体；图片/数据不返回 HTML，历史 HTML 不是画室的兜底页面 |
+
+线上原始记录、截图与实际部分作品 PNG 在 `artifacts/effect-study/deployment/live`；发布任务详情为 `github-run.json`，文件核对为 `asset-verification.json`。本轮没有厂商软件本机生成、真实用户或付费实验，没有改写历史质量结论。后续仅记录与证据提交使用 `[skip ci]`，不重复部署未变化的应用。
+
+## 线上入口
+
+- [完整画室](https://yydshly.github.io/0906_codexgpt6_project/)
+- [体验与验收总览](https://yydshly.github.io/0906_codexgpt6_project/review/)
+- [成品效果研究](https://yydshly.github.io/0906_codexgpt6_project/effect-study/)
+- [同类工具与同场景多效果](https://yydshly.github.io/0906_codexgpt6_project/effect-study/comparators/#style-lab)
+- [产品价值讨论](https://yydshly.github.io/0906_codexgpt6_project/effect-study/comparators/#product-value)
+
+本次整理、提交、发布与线上核验已完成。保留自动成品质量未通过、人工验收待确认及商业需求未验证状态。

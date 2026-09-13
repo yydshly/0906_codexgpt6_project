@@ -1,0 +1,127 @@
+{
+  "status": "通过",
+  "time": "2026-09-13T11:03:54.569Z",
+  "base": "https://yydshly.github.io/0906_codexgpt6_project/",
+  "sourceCommit": "8bba750c253a9a55bc7d2d8e2e5156c73d978e65",
+  "initialCheck": "Raw SHA-256 failed on compare.css. All files were rechecked: Windows CRLF vs GitHub Linux LF is the sole text difference; PNG must match byte for byte. No content or asset path tolerance.",
+  "assets": [
+    {
+      "path": "index.html",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 637,
+      "sha256": "50dda2bbe7584dc5a1b25918f0a83cff82ae19ac0a99ee11c7821e36cea7d852",
+      "localSha256": "50dda2bbe7584dc5a1b25918f0a83cff82ae19ac0a99ee11c7821e36cea7d852",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "50dda2bbe7584dc5a1b25918f0a83cff82ae19ac0a99ee11c7821e36cea7d852",
+      "normalizedLocalSha256": "50dda2bbe7584dc5a1b25918f0a83cff82ae19ac0a99ee11c7821e36cea7d852"
+    },
+    {
+      "path": "review/index.html",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 5355,
+      "sha256": "604de3ceebb8d357643e9466f07695ef16d50d31b91b4e329bc757cc639d21c1",
+      "localSha256": "604de3ceebb8d357643e9466f07695ef16d50d31b91b4e329bc757cc639d21c1",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "604de3ceebb8d357643e9466f07695ef16d50d31b91b4e329bc757cc639d21c1",
+      "normalizedLocalSha256": "604de3ceebb8d357643e9466f07695ef16d50d31b91b4e329bc757cc639d21c1"
+    },
+    {
+      "path": "effect-study/index.html",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 8294,
+      "sha256": "839988097189cfb32d4f393734fc5e6e75b4422bab19964884260a920f646096",
+      "localSha256": "839988097189cfb32d4f393734fc5e6e75b4422bab19964884260a920f646096",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "839988097189cfb32d4f393734fc5e6e75b4422bab19964884260a920f646096",
+      "normalizedLocalSha256": "839988097189cfb32d4f393734fc5e6e75b4422bab19964884260a920f646096"
+    },
+    {
+      "path": "effect-study/study.css",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 15565,
+      "sha256": "586ae8f21230e25b724313dee9d5c8bb8c973ccefa1cf2293e057c425f7b1366",
+      "localSha256": "586ae8f21230e25b724313dee9d5c8bb8c973ccefa1cf2293e057c425f7b1366",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "586ae8f21230e25b724313dee9d5c8bb8c973ccefa1cf2293e057c425f7b1366",
+      "normalizedLocalSha256": "586ae8f21230e25b724313dee9d5c8bb8c973ccefa1cf2293e057c425f7b1366"
+    },
+    {
+      "path": "effect-study/study.js",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 7947,
+      "sha256": "ed8c5da41ee7992ab01f6006c6fc27b6fc6fa431aaa68e15be79df02646eca87",
+      "localSha256": "ed8c5da41ee7992ab01f6006c6fc27b6fc6fa431aaa68e15be79df02646eca87",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "ed8c5da41ee7992ab01f6006c6fc27b6fc6fa431aaa68e15be79df02646eca87",
+      "normalizedLocalSha256": "ed8c5da41ee7992ab01f6006c6fc27b6fc6fa431aaa68e15be79df02646eca87"
+    },
+    {
+      "path": "effect-study/assets/landscape-target.png",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 2302037,
+      "sha256": "2c94d34b987146a87426e2c8d2b4a1f2e924d33f5686fcde479ceb44c378f94a",
+      "localSha256": "2c94d34b987146a87426e2c8d2b4a1f2e924d33f5686fcde479ceb44c378f94a",
+      "rawEqual": true,
+      "comparison": "binary SHA-256"
+    },
+    {
+      "path": "effect-study/comparators/index.html",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 12149,
+      "sha256": "6df0f95ae30620df588a4ba00adf90e4aed37b7f9e777ddd295d47800cea6605",
+      "localSha256": "6df0f95ae30620df588a4ba00adf90e4aed37b7f9e777ddd295d47800cea6605",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "6df0f95ae30620df588a4ba00adf90e4aed37b7f9e777ddd295d47800cea6605",
+      "normalizedLocalSha256": "6df0f95ae30620df588a4ba00adf90e4aed37b7f9e777ddd295d47800cea6605"
+    },
+    {
+      "path": "effect-study/comparators/compare.css",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 11108,
+      "sha256": "1f86572d892574319d41afaf6e68a310bcf45b9532cd8f8c91f51c5f82f9c33d",
+      "localSha256": "c8c368d42ccd660fe26e6da83603564cba394b33cfc824b49c1bb6bdf3f0dff0",
+      "rawEqual": false,
+      "comparison": "CRLF to LF only; normalized SHA-256",
+      "normalizedRemoteSha256": "1f86572d892574319d41afaf6e68a310bcf45b9532cd8f8c91f51c5f82f9c33d",
+      "normalizedLocalSha256": "1f86572d892574319d41afaf6e68a310bcf45b9532cd8f8c91f51c5f82f9c33d"
+    },
+    {
+      "path": "effect-study/comparators/compare.js",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 15602,
+      "sha256": "dd78c521e3b75045238343757ff39c3cf83480738750bf3f4d9b6e543a89a97c",
+      "localSha256": "dd78c521e3b75045238343757ff39c3cf83480738750bf3f4d9b6e543a89a97c",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "dd78c521e3b75045238343757ff39c3cf83480738750bf3f4d9b6e543a89a97c",
+      "normalizedLocalSha256": "dd78c521e3b75045238343757ff39c3cf83480738750bf3f4d9b6e543a89a97c"
+    },
+    {
+      "path": "effect-study/comparators/effects.js",
+      "status": "通过",
+      "httpStatus": 200,
+      "bytes": 8783,
+      "sha256": "9b2791331ccfbbc4e20a198d0865160a6d1c3bef1518f74293aa2cff667293fe",
+      "localSha256": "9b2791331ccfbbc4e20a198d0865160a6d1c3bef1518f74293aa2cff667293fe",
+      "rawEqual": true,
+      "comparison": "raw SHA-256",
+      "normalizedRemoteSha256": "9b2791331ccfbbc4e20a198d0865160a6d1c3bef1518f74293aa2cff667293fe",
+      "normalizedLocalSha256": "9b2791331ccfbbc4e20a198d0865160a6d1c3bef1518f74293aa2cff667293fe"
+    }
+  ]
+}

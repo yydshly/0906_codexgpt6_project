@@ -1,0 +1,24 @@
+{
+  "base": "https://yydshly.github.io/0906_codexgpt6_project/",
+  "time": "2026-09-13T11:02:42.673Z",
+  "checks": [
+    "画室研究入口新开标签，原画室保留；1440/768/390 模拟视口无页面横向溢出",
+    "总览、研究、同类工具与产品讨论双向导航；真实 HTML，非 SPA 兜底；报告链接指向 GitHub main"
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "scroll": 1440
+    },
+    {
+      "width": 768,
+      "scroll": 768
+    },
+    {
+      "width": 390,
+      "scroll": 390
+    }
+  ],
+  "errors": [],
+  "status": "通过"
+}
